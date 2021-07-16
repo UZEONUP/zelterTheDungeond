@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include <vector>
+#include "player.h"
 
 #define TILESIZEX 32
 #define TILESIZEY 32
@@ -71,12 +72,7 @@ struct tagMouseDrag
 	bool isDrag;
 };
 
-struct tagPlayer
-{
-	image* img;
-	RECT rc;
-	float x, y;
-};
+
 
 class mapmap : public gameNode
 {
@@ -89,8 +85,6 @@ private:
 	tagSampleTileFake _sample[SAMPLETILEX * SAMPLETILEY];
 
 	POINT _currentTile;
-	
-	tagPlayer _player;
 
 	sampleMapTool _tool;
 
@@ -109,6 +103,8 @@ private:
 
 	int _startX, _startY;
 	int _endX, _endY;
+
+	player* _player;
 
 public:
 	mapmap() {};

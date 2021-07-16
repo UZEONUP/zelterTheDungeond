@@ -55,6 +55,12 @@
     <Filter Include="playGround\stageManager">
       <UniqueIdentifier>{74ba3978-bef4-4c32-a051-8f7f5d43a1ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{e359a6ba-8a03-45ef-b110-f205f64bb82f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player\playerState">
+      <UniqueIdentifier>{0f16b4a9-9d66-4b8b-bcc9-ec488fa4f9e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -147,6 +153,33 @@
     <ClInclude Include="inGame.h">
       <Filter>playGround\test</Filter>
     </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerBullet.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerAttack.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="playerHit.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="playerJump.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="playerRoll.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="playerRun.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="playerState.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
+    <ClInclude Include="playerStateIdle.h">
+      <Filter>playGround\player\playerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -223,6 +256,33 @@
     </ClCompile>
     <ClCompile Include="inGame.cpp">
       <Filter>playGround\test</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="playerBullet.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="playerAttack.cpp">
+      <Filter>playGround\player\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerHit.cpp">
+      <Filter>playGround\player\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerJump.cpp">
+      <Filter>playGround\player\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerRoll.cpp">
+      <Filter>playGround\player\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerRun.cpp">
+      <Filter>playGround\player\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerState.cpp">
+      <Filter>playGround\player\playerState</Filter>
+    </ClCompile>
+    <ClCompile Include="playerStateIdle.cpp">
+      <Filter>playGround\player\playerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

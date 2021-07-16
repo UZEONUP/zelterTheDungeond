@@ -29,6 +29,7 @@ void stageManager::sceneSet()
 {
 	SCENEMANAGER->addScene("title", new testScene);
 	SCENEMANAGER->addScene("mapmap", new mapmap);
+	SCENEMANAGER->addScene("player", new player);
 
-	SCENEMANAGER->changeScene("mapmap");
+	SCENEMANAGER->changeScene("player");
 }

@@ -3,13 +3,11 @@
 
 HRESULT mapmap::init()
 {
+	_player = new player;
+	_player->init();
+
 	IMAGEMANAGER->addFrameImage("sample", L"maptiles.png", SAMPLETILEX, SAMPLETILEY);
 	IMAGEMANAGER->addImage("유정", L"유정.png");
-	_player.img = IMAGEMANAGER->findImage("유정");
-	_player.x = WINSIZEX / 2 - 100;
-	_player.y = WINSIZEY / 2;
-	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getWidth(), _player.img->getHeight());
-	cout << _player.img->getWidth() << endl;
 	IMAGEMANAGER->addImage("world", L"현진.png");
 	CAMERAMANAGER->setMapCamera(BACKGROUNDX, BACKGROUNDY);
 	CAMERAMANAGER->setCamera(WINSIZEX, WINSIZEY);
@@ -24,13 +22,8 @@ void mapmap::release()
 
 void mapmap::update()
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))_player.x -= 5.f;
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))_player.x += 5.f;
-	if (KEYMANAGER->isStayKeyDown(VK_UP))_player.y -= 5.f;
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))_player.y += 5.f;
-
-	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getWidth(), _player.img->getHeight());
-	CAMERAMANAGER->updateCamera(_player.x, _player.y);
+	
+	_player->update();
 
 	tapTool();
 	setMap();
@@ -42,6 +35,7 @@ void mapmap::render()
 	/*IMAGEMANAGER->findImage("world")->mapRender2(0, 0,_player.x,_player.y,WINSIZEX,WINSIZEY);
 	_player.img->render(_player.x,_player.y);*/
 
+	_player->render();
 	//맵 타일 그리기
 	if (_vTile.size() != 0)
 	{

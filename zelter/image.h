@@ -77,6 +77,8 @@ public:
 
 	const int getMaxFrameX()const { return _imageInfo->maxFrameX; }
 	const int getMaxFrameY()const { return _imageInfo->maxFrameY; }
+	const int getFrameX()const { return _imageInfo->currentFrameX; }
+	const int getFrameY()const { return _imageInfo->currentFrameY; }
 	const UINT getWidth() const { return _bitmap->GetPixelSize().width;; }		//원본 이미지 사이즈 크기 가져오기
 	const UINT getHeight()const { return _bitmap->GetPixelSize().height; }		//원본 이미지 사이즈 크기 가져오기
 	const float getFrameWidth()const { return _imageInfo->frameWidth; }

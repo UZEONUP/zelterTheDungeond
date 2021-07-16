@@ -23,7 +23,7 @@
     <ProjectGuid>{E2958D70-CFC8-4A1D-980D-12180D9B541F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>windowsAPI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -160,6 +160,15 @@
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
     <ClInclude Include="mapmap.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="playerAttack.h" />
+    <ClInclude Include="playerBullet.h" />
+    <ClInclude Include="playerHit.h" />
+    <ClInclude Include="playerJump.h" />
+    <ClInclude Include="playerRoll.h" />
+    <ClInclude Include="playerRun.h" />
+    <ClInclude Include="playerState.h" />
+    <ClInclude Include="playerStateIdle.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -191,6 +200,15 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="mapmap.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerAttack.cpp" />
+    <ClCompile Include="playerBullet.cpp" />
+    <ClCompile Include="playerHit.cpp" />
+    <ClCompile Include="playerJump.cpp" />
+    <ClCompile Include="playerRoll.cpp" />
+    <ClCompile Include="playerRun.cpp" />
+    <ClCompile Include="playerState.cpp" />
+    <ClCompile Include="playerStateIdle.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
