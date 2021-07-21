@@ -123,6 +123,7 @@ void player::update()
 		if (_gunType >= 5)_gunType = 0;
 	}
 
+	
 }
 
 void player::render()

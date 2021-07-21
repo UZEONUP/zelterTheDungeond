@@ -42,10 +42,7 @@ void playerAttack::update(player * player)
 
 	if (player->getGuntype() == GRENADE)
 	{
-		if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
-		{
-			//player->getPlayerBullet()->getViBullet()->power +=0.01;
-		}
+		player->getPlayerBullet()->getViBullet()->power +=0.01;
 	}
 	
 	_count++;
