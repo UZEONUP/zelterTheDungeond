@@ -50,7 +50,6 @@ public:
 	//øµº∑¿Ã≤®
 	char* loadDataStr(const char* fileName, const char* subject, const char* title);
 	int loadDataInt(const char* fileName, const char* subject, const char* title);
-	float loadDataFloat(const char* fileName, const char* subject, const char* title);
 
 };
 

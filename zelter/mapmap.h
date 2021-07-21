@@ -1,7 +1,5 @@
 #pragma once
 #include "gameNode.h"
-#include <vector>
-#include "player.h"
 
 #define TILESIZEX 32
 #define TILESIZEY 32
@@ -9,54 +7,77 @@
 #define SAMPLETILEX 20
 #define SAMPLETILEY 9
 
-#define TILEX WINSIZEX / TILESIZEX
-#define TILEY WINSIZEY / TILESIZEY
+#define TILEX BACKGROUNDX / TILESIZEX 
+#define TILEY BACKGROUNDY / TILESIZEY 
 
-			  
+enum TILETYPE
+{
+	OPENWORLD,
+	BULLETKING,
+	AMOCONDA,
+	DUNBOSS
+};
 
-
-enum TERRAINFAKE
+enum TERRAIN
 {
 	CEMENT,
 	DESERT,
-	WATER
+	WATER,
+	TR_NONE
 };
 
-enum OBJECTFAKE
+enum OBJECT
 {
-	BLOCK, NONE
+	BLOCK,
+	BLOCK_LHALF,BLOCK_RHALF,
+	BLOCK_LTRIPLE,BLOCK_RTRIPLE,
+	OBJ_Be,
+	OBJ_NONE
 };
 
-struct tagTileFake
+struct tagTileInfo
 {
-	TERRAINFAKE terrain;
-	OBJECTFAKE object;
+	TILETYPE type;
+	string name;
+	RECT rc;
+	float width, height;
+};
+
+struct tagTile
+{
+	string tileType;
+	TERRAIN terrain;
+	OBJECT object;
 	image* img;
 	RECT rc;
+	RECT checkRect;
 	int terrainX;
 	int terrainY;
 	int objX;
 	int objY;
 	int sizeX;
 	int sizeY;
+	bool isMove;
 };
 
-struct tagSampleTileFake
+struct tagSampleTile
 {
+	string tileType;
 	RECT rc;
 	int frameX;
 	int frameY;
 };
 
-struct tagButtonFake
+struct tagButton
 {
 	RECT rc;
 	image* img;
 };
 
-struct sampleMapTool
+struct tagMapTool
 {
 	RECT rc;
+	float width, height;
 	bool isOn;
 };
 
@@ -72,39 +93,48 @@ struct tagMouseDrag
 	bool isDrag;
 };
 
-
+struct tagPlayer
+{
+	image* img;
+	RECT rc;
+	float x, y;
+};
 
 class mapmap : public gameNode
 {
 private:
-	vector<tagTileFake> _vTile;
+	tagTileInfo		_tileInfo;
+	tagTile			_tile[TILEX * TILEY];
 
-	tagTileFake _tile[TILEX * TILEY];
-	tagTileFake _realIile[TILEX * TILEY];
+	image*			_sampleImg;
+	tagSampleTile	_sample[SAMPLETILEX * SAMPLETILEY];
 
-	tagSampleTileFake _sample[SAMPLETILEX * SAMPLETILEY];
-
-	POINT _currentTile;
-
-	sampleMapTool _tool;
-
-	tagButtonFake _btnSave;
-	tagButtonFake _btnLoad;
-	tagButtonFake _btnEraser;
-	tagButtonFake _btnObject;
-	tagButtonFake _btnTerrain;
-	tagButtonFake _btnEnter;
-
-	tagMouseDrag _dragMouse;
-
-	RECT _message;
+	POINT			_currentTile;
+	POINT			_mapMouse;
 	
-	bool _dragStart;
+	tagPlayer		_player;
 
-	int _startX, _startY;
-	int _endX, _endY;
+	tagMapTool		_tool;
 
-	player* _player;
+	tagButton		_btnSave;
+	tagButton		_btnLoad;
+	tagButton		_btnEraser;
+	tagButton		_btnObject;
+	tagButton		_btnTerrain;
+	tagButton		_btnEnter;
+	tagButton		_btnPrevios;
+	tagButton		_btnNext;
+
+	tagMouseDrag	_dragMouse;
+
+	RECT			_message;
+	
+	bool			_dragStart;
+
+	int				_changeCount; //샘플이미지 바꾸기 위한 카운트용
+
+	//=======================================
+	POINT move;
 
 public:
 	mapmap() {};
@@ -115,20 +145,32 @@ public:
 	void update();
 	void render();
 
+	//맵 초기 설정 및 맵 설정
 	void setup();
+	void setImage();
 	void setMap();
+	void setCamera(int mapSizeX, int mapSizeY);
+	void mapClipping();
 
-	void cameraMove();
+	//샘플 관련 함수
+	void sampleRender();
+	void changeSample();
+	void tapTool();
+	void dragField();
 
+	//세이브 로드
 	void save();
 	void load();
 
-
-
+	//버튼 관련
 	void buttonRender();
 
-	void tapTool();
+	//지형 관련 함수
+	TERRAIN terrainSelect(int frameX, int frameY);
+	void setTerrainRect(TERRAIN tr, int num);
 
-	void dragField();
+	//오브젝트 관련 함수
+	OBJECT objSelect(int frameX, int frameY);
+	void setObjectRect(OBJECT obj, int num);
 };
 

@@ -3,8 +3,6 @@
 #include "testScene.h"
 //#include "mapToolManager.h"
 #include "mapmap.h"
-#include "player.h"
-
 
 class stageManager : public gameNode
 {

@@ -37,6 +37,8 @@ HRESULT gameNode::init(bool managerInit)
 
 		CAMERAMANAGER->init();
 
+		SAVELOAD->init();
+
 	}
 
 
@@ -73,6 +75,9 @@ void gameNode::release()
 		IMAGEMANAGER->release();
 		IMAGEMANAGER->releaseSingleton();
 
+		SAVELOAD->release();
+		SAVELOAD->releaseSingleton();
+
 	}
 
 	ReleaseDC(_hWnd, _hdc);
@@ -107,6 +112,7 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 
 		break;
 	case WM_LBUTTONDOWN:
+
 		_leftButtonDown = true;
 		cout << "Å¬¸¯" << endl;
 		break;

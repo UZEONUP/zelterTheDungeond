@@ -14,7 +14,6 @@ public:
 		int				maxFrameY;		//최대 프레임 번호(세로)
 		int				frameWidth;		//1프레임 당 가로크기
 		int				frameHeight;	//1프레임 당 세로크기
-
 		tagImageInfo()
 		{
 			width = 0;
@@ -46,6 +45,7 @@ public:
 	~image();
 
 	HRESULT init(ID2D1Bitmap* const bitmap);
+	HRESULT init(int width, int height);
 	HRESULT init(ID2D1Bitmap*const bitmap, int width, int height, bool type = false);
 	HRESULT init(ID2D1Bitmap*const bitmap, int width, int height, int frameX, int frameY);
 
@@ -62,8 +62,8 @@ public:
 		const float scaleW = 1.f, const float scaleH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
 		const float transX = 0.f, const float transY = 0.f);
-	void mapRender(const float x, const float y);
-	void mapRender2(const float x, const float y,const float sourX, const float sourY, const float sourW , const float sourH);
+	void mainRender(const float x, const float y);
+	void miniRender(const float x, const float y,const float sourX, const float sourY, const float sourW , const float sourH);
 	/*===============================================================
 							접근자 / 설정자
 	===============================================================*/
@@ -77,8 +77,6 @@ public:
 
 	const int getMaxFrameX()const { return _imageInfo->maxFrameX; }
 	const int getMaxFrameY()const { return _imageInfo->maxFrameY; }
-	const int getFrameX()const { return _imageInfo->currentFrameX; }
-	const int getFrameY()const { return _imageInfo->currentFrameY; }
 	const UINT getWidth() const { return _bitmap->GetPixelSize().width;; }		//원본 이미지 사이즈 크기 가져오기
 	const UINT getHeight()const { return _bitmap->GetPixelSize().height; }		//원본 이미지 사이즈 크기 가져오기
 	const float getFrameWidth()const { return _imageInfo->frameWidth; }

@@ -26,7 +26,6 @@ void cameraManager::update()
 
 void cameraManager::render()
 {
-	//IMAGEMANAGER->findImage("world")->mapRender(0, 0);
 }
 
 void cameraManager::setMapCamera(float x, float y)
@@ -41,8 +40,76 @@ void cameraManager::setCamera(float x, float y)
 	_camera.height = y;
 }
 
-void cameraManager::setPlayerCamera()
+void cameraManager::updateCamera(POINT mouse)
 {
+	if (mouse.x - _camera.width / 2 < 0)
+	{
+		_x = 0;
+	}
+	else if (mouse.x + _camera.width / 2 > _map.width)
+	{
+		_x = _map.width;
+	}
+	else
+	{
+		_x = mouse.x - _camera.width / 2;
+	}
+
+	if (mouse.y - _camera.height / 2 < 0)
+	{
+		_y = 0;
+	}
+	else if (mouse.y + _camera.height / 2 > _map.height)
+	{
+		_y = _map.height;
+	}
+	else
+	{
+		_y = mouse.y - _camera.height / 2;
+	}
+}
+
+void cameraManager::updateCamera(POINT mouse, POINT mouse2, int speed)
+{
+	//마우스(절대 좌표)
+	if (mouse2.x - _camera.width/8 < 0)
+	{
+		_x = 0;
+	}
+	else if (mouse2.x + _camera.width/8 > _map.width)
+	{
+		_x = _map.width - _camera.width;
+	}
+	else
+	{
+		if (0 < mouse.x && mouse.x < WINSIZEX / 8)
+		{
+			_x -= speed;
+		}
+		if (WINSIZEX - (WINSIZEX / 8) < mouse.x && mouse.x < WINSIZEX)
+		{
+			_x += speed;
+		}
+	}
+	if (mouse2.y - _camera.height / 8 < 0)
+	{
+		_y = 0;
+	}
+	else if (mouse2.y + _camera.height/8 > _map.height)
+	{
+		_y = _map.height - _camera.height;
+	}
+	else
+	{
+		if (0 < mouse.y && mouse.y < WINSIZEY / 8)
+		{
+			_y -= speed;
+		}
+		if (WINSIZEY - (WINSIZEY / 8) < mouse.y && mouse.y < WINSIZEY)
+		{
+			_y += speed;
+		}
+	}
 }
 
 void cameraManager::updateCamera(RECT& player, float playerX, float playerY)
@@ -94,12 +161,12 @@ void cameraManager::updateCamera(float x, float y)
 	else if (x + _camera.width * (1 - 0.5) > _map.width)
 	{
 		x = _map.width - _camera.width;
-		
+
 	}
 	else
 	{
 		x -= _camera.width*0.5;
-		
+
 	}
 
 	//Y축 (상, 하)
@@ -170,7 +237,7 @@ void cameraManager::mousePoint()
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
-		cout << _ptMouse.x <<"마우스 X"<< endl;
-		cout << _ptMouse.y <<"마우스 Y"<< endl;
+		cout << _ptMouse.x << "마우스 X" << endl;
+		cout << _ptMouse.y << "마우스 Y" << endl;
 	}
 }

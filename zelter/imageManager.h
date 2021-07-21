@@ -31,6 +31,7 @@ public:
 	void release();
 
 	image* addImage(string key, const wstring& fileName);
+	image* addImage(string key, int width , int height);
 	image* addImage(string key, const wstring& fileName,int width, int height);
 
 	image* addFrameImage(string key, const wstring& fileName, int maxFrameX, int maxFrameY);

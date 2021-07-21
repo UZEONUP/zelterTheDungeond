@@ -102,4 +102,23 @@ namespace UJN_UTIL
 		MultiByteToWideChar(CP_ACP, 0, str, strlen(str) + 1, pStr, strSize);
 		return pStr;
 	}
+
+	wstring ConvertStoWS(string str)
+	{
+		wstring w_str = L"";
+
+		w_str.assign(str.begin(), str.end());
+
+		return w_str;
+	}
+
+	string ConvertWStoS(wstring w_str)
+	{
+		string str;
+
+		str.assign(w_str.begin(), w_str.end());
+
+		return str;
+	}
+	
 }
