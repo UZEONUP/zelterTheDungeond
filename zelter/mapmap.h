@@ -93,12 +93,7 @@ struct tagMouseDrag
 	bool isDrag;
 };
 
-struct tagPlayer
-{
-	image* img;
-	RECT rc;
-	float x, y;
-};
+
 
 class mapmap : public gameNode
 {
@@ -112,7 +107,6 @@ private:
 	POINT			_currentTile;
 	POINT			_mapMouse;
 	
-	tagPlayer		_player;
 
 	tagMapTool		_tool;
 

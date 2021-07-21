@@ -17,8 +17,8 @@ HRESULT progressBar::init(float x, float y, float width, float height)
 
 	_rc = RectMake(x, y, width, height);
 
-	barTop = IMAGEMANAGER->addImage("frontBar", L"UI이미지/hpBar_front_60_30.png");
-	barBottom = IMAGEMANAGER->addImage("bottomBar", L"UI이미지/hpBar_back_60_30.png");
+	barTop = IMAGEMANAGER->addImage("hpfront", L"UI/hpfront.png");
+	barBottom = IMAGEMANAGER->addImage("hpback", L"UI/hpback.png");
 	
 
 	return S_OK;

@@ -55,6 +55,15 @@
     <Filter Include="playGround\stageManager">
       <UniqueIdentifier>{74ba3978-bef4-4c32-a051-8f7f5d43a1ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{ed1fbe7c-c35b-4c6f-b709-7c6433c1db63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player\playerSTATE">
+      <UniqueIdentifier>{18c0ded0-fa89-463c-875b-82bc69082950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player\playerUI">
+      <UniqueIdentifier>{0832b104-800d-4182-9348-69f276e48564}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -150,6 +159,48 @@
     <ClInclude Include="saveLoadManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerBullet.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="pause.h">
+      <Filter>playGround\player\playerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="playerAttack.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerDie.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerDonwJump.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerHit.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerJump.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerRoll.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerRun.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerState.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerStateIdle.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="quickSlot.h">
+      <Filter>playGround\player\playerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="characterPick.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -229,6 +280,48 @@
     </ClCompile>
     <ClCompile Include="saveLoadManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="playerBullet.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="pause.cpp">
+      <Filter>playGround\player\playerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="playerAttack.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDie.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDonwJump.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerHit.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerJump.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerRoll.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerRun.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerState.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerStateIdle.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="quickSlot.cpp">
+      <Filter>playGround\player\playerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="characterPick.cpp">
+      <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

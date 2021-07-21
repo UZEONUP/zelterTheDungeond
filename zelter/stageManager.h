@@ -1,8 +1,9 @@
 #pragma once
 #include "gameNode.h"
 #include "testScene.h"
-//#include "mapToolManager.h"
 #include "mapmap.h"
+#include "player.h"
+#include "characterPick.h"
 
 class stageManager : public gameNode
 {

@@ -5,15 +5,6 @@ HRESULT mapmap::init()
 {
 	setup();
 
-	IMAGEMANAGER->addFrameImage("frame",L"tileImg/프레임이미지.png",15,1);
-	IMAGEMANAGER->addFrameImage("idle",L"tileImg/아이들.png",4,1);
-
-	_player.img = IMAGEMANAGER->findImage("frame");
-	_player.x = WINSIZEX / 2;
-	_player.y = WINSIZEY / 2;
-
-	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
-
 	return S_OK;
 }
 
@@ -48,7 +39,6 @@ void mapmap::render()
 	//샘플 타일 그리기
 	sampleRender();
 
-	_player.img->frameRender(_player.rc.left, _player.rc.top, 10,true);
 
 }
 

@@ -22,6 +22,14 @@ HRESULT playGround::init()
 	_stageManager = new stageManager;
 	_stageManager->init();
 
+	_player = new player;
+	_playerBullet = new playerBullet;
+
+	_player->init();
+	_playerBullet->init();
+
+	_player->setplayerBulletLink(_playerBullet);
+	_playerBullet->setPlayerLink(_player);
 
 	return S_OK;
 }

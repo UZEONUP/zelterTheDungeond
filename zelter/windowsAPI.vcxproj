@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="characterPick.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="gameNode.h" />
@@ -160,8 +161,21 @@
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
     <ClInclude Include="mapmap.h" />
+    <ClInclude Include="pause.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="playerAttack.h" />
+    <ClInclude Include="playerBullet.h" />
+    <ClInclude Include="playerDie.h" />
+    <ClInclude Include="playerDonwJump.h" />
+    <ClInclude Include="playerHit.h" />
+    <ClInclude Include="playerJump.h" />
+    <ClInclude Include="playerRoll.h" />
+    <ClInclude Include="playerRun.h" />
+    <ClInclude Include="playerState.h" />
+    <ClInclude Include="playerStateIdle.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
+    <ClInclude Include="quickSlot.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="saveLoadManager.h" />
@@ -182,6 +196,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="characterPick.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="gameNode.cpp" />
@@ -192,8 +207,21 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="mapmap.cpp" />
+    <ClCompile Include="pause.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerAttack.cpp" />
+    <ClCompile Include="playerBullet.cpp" />
+    <ClCompile Include="playerDie.cpp" />
+    <ClCompile Include="playerDonwJump.cpp" />
+    <ClCompile Include="playerHit.cpp" />
+    <ClCompile Include="playerJump.cpp" />
+    <ClCompile Include="playerRoll.cpp" />
+    <ClCompile Include="playerRun.cpp" />
+    <ClCompile Include="playerState.cpp" />
+    <ClCompile Include="playerStateIdle.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="quickSlot.cpp" />
     <ClCompile Include="saveLoadManager.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
