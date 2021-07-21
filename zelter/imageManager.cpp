@@ -52,6 +52,18 @@ image * imageManager::addImage(string key, const wstring & fileName)
 
 	return nullptr;
 }
+image * imageManager::addImage(string key, int width, int height)
+{
+	image* img = findImage(key);
+
+	if (img)return img;
+
+	img = new image;
+	img->init(width, height);
+	_mImageList.insert(make_pair(key, img));
+
+	return nullptr;
+}
 image * imageManager::addImage(string key, const wstring & fileName, int width, int height)
 {
 	image* img = findImage(key);
@@ -67,8 +79,7 @@ image * imageManager::addImage(string key, const wstring & fileName, int width, 
 		_mImageList.insert(make_pair(key, img));
 		return img;
 	}
-	else assert(SUCCEEDED(E_FAIL));
-
+	else assert(SUCCEEDED(E_FAIL));\
 
 	return nullptr;
 }

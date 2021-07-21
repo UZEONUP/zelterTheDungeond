@@ -30,6 +30,17 @@ HRESULT image::init(ID2D1Bitmap * const bitmap)
 	return S_OK;
 }
 
+HRESULT image::init(int width, int height)
+{
+	_imageInfo = new IMAGE_INFO;
+	_imageInfo->width = width;
+	_imageInfo->height = height;
+
+	ResetRenderOption();
+
+	return S_OK;
+}
+
 /*
 ================================================
 ## 기본 이미지(프레임 이미지X)
@@ -200,13 +211,17 @@ void image::frameRender(const float x, const float y,
 	_count++;
 	if (_count%speed == 0)
 	{
-		if (frameX++ >= maxFrameX && loop)frameX = 0;
-		else if (frameX++ >= maxFrameX && !loop)
+		frameX++;
+		if (frameX >= maxFrameX && loop)frameX = 0;
+		else if (frameX >= maxFrameX && !loop)
 		{
 			frameX = maxFrameX - 1;
 		}
 		_count = 0;
 	}
+
+	int currentX = frameX * _imageInfo->frameWidth;
+	int currentY = frameY * _imageInfo->frameHeight;
 
 	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scaleH, D2D1::Point2F(x, y));
 	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
@@ -214,9 +229,9 @@ void image::frameRender(const float x, const float y,
 
 	//수정 필요
 
-	D2D1_RECT_F viewArea = D2D1::RectF(x,y,x+32,y+32);
-	D2D1_RECT_F sourArea = D2D1::RectF(frameX*32 ,frameY*32,
-		frameX*32 + 32, frameY*32 + 32);
+	D2D1_RECT_F viewArea = D2D1::RectF(x,y,x+_imageInfo->frameWidth,y+ _imageInfo->frameHeight);
+	D2D1_RECT_F sourArea = D2D1::RectF(currentX, currentY,
+		currentX + _imageInfo->frameWidth, currentY + _imageInfo->frameHeight);
 
 
 	D2DRENDERTARGET->SetTransform(scaleMatrix * rotateMatrix * transMatrix);
@@ -226,53 +241,25 @@ void image::frameRender(const float x, const float y,
 	if (_alpha <= 0)ResetRenderOption();
 }
 
-void image::mapRender(const float x, const float y)
+void image::mainRender(const float x, const float y)
 {
-	float cameraX = 0, cameraY = 0;
-	float width, height;
 
-	cameraX = CAMERAMANAGER->getX();
-	cameraY = CAMERAMANAGER->getY();
-
-	width = CAMERAMANAGER->getCameraInfo().width;
-	height = CAMERAMANAGER->getCameraInfo().width;
-
-	//그릴 영역 세팅 
-	D2D1_RECT_F dxArea = D2D1::RectF(cameraX, cameraY, cameraX + WINSIZEX, cameraY + WINSIZEY);		//카메라가 촬영할 부분
-	D2D1_RECT_F realView = D2D1::RectF(x, y, WINSIZEX, WINSIZEY);										//실제 볼 화면
-	D2D1_RECT_F backView = D2D1::RectF(x, y, BACKGROUNDX, BACKGROUNDY);								//백버퍼 사이즈
-
-	//비트맵 드로우
-	D2DRenderer::GetInstance()->GetBackBuffer()->DrawBitmap(_bitmap, backView, _alpha);
-
-	//렌더타겟 드로우
-	D2DRenderer::GetInstance()->GetBackBuffer()->GetBitmap(&_backBufferBitmap);
-	D2DRenderer::GetInstance()->GetRenderTarget()->DrawBitmap(_backBufferBitmap, realView, _alpha,
-		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &dxArea);
-
-	if (_alpha <= 0)this->ResetRenderOption();
 }
 
-void image::mapRender2(const float x, const float y,const float sourX, const float sourY, const float sourW,const float sourH)
+void image::miniRender(const float x, const float y, const float sourX, const float sourY, const float sourW, const float sourH)
 {
-	float cameraX = 0, cameraY = 0;
-	float width, height;
+	D2D1_RECT_F viewArea = D2D1::RectF(x, y, x + sourW, y + sourH);
+	
+	D2DRENDERTARGET->DrawBitmap(_bitmap, viewArea, _alpha);
 
-	cameraX = CAMERAMANAGER->getX();
-	cameraY = CAMERAMANAGER->getY();
+	D2D1_RECT_F sourArea = D2D1::RectF(sourX, sourY, sourX + sourW, sourY + sourH);
+	D2D1_RECT_F backArea = D2D1::RectF(0, 0, BACKGROUNDX, BACKGROUNDY);
 
-	width = CAMERAMANAGER->getCameraInfo().width;
-	height = CAMERAMANAGER->getCameraInfo().width;
+	D2DRENDER->GetBackBuffer()->GetBitmap(&_backBufferBitmap);
 
-	//그릴 영역 세팅 
-	D2D1_RECT_F realView = D2D1::RectF(x, y, WINSIZEX, WINSIZEY);										//실제 볼 화면
-	D2D1_RECT_F backView = D2D1::RectF(cameraX, cameraY,cameraX + WINSIZEX ,cameraY +WINSIZEY);			//백버퍼 사이즈
+	D2DRENDERTARGET->DrawBitmap(_backBufferBitmap, sourArea, _alpha,
+		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, backArea);
 
-	//비트맵 드로우
-	D2DRENDERTARGET->DrawBitmap(_bitmap, realView, _alpha,
-		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &backView);
-
-	if (_alpha <= 0)this->ResetRenderOption();
 }
 
 

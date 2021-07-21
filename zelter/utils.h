@@ -81,4 +81,7 @@ namespace UJN_UTIL
 	//char 에서 wchar_t 로의 형변환 함수
 	wchar_t *ConvertCtoWC(char * str);
 	const wchar_t *ConvertCtoWC(const char * str);
+	//stirng 에서 wstring 으로 형 변환 함수
+	wstring ConvertStoWS(string str);
+	string ConvertWStoS(wstring w_str);
 }

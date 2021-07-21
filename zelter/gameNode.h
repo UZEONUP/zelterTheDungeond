@@ -1,6 +1,7 @@
 #pragma once
 #include "image.h"
 
+
 enum CTRL
 {
 	CTRL_SAVE,			//ºº¿Ã∫Í		

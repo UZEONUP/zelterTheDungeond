@@ -38,9 +38,9 @@ inline RECT RectMake(int x, int y, int width, int height)
 
 	return rc;
 }
-inline RECT RectMakeDrag(int x, int y, int width, int height)
+inline RECT RectMakeDrag(int left, int top, int right, int bottom)
 {
-	RECT rc = { x, y, width, height };
+	RECT rc = { left, top, right, bottom};
 
 	return rc;
 }

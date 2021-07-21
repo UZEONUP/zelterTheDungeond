@@ -31,8 +31,11 @@ public:
 
 	void setMapCamera(float x, float y);
 	void setCamera(float x, float y);
-	void setPlayerCamera();
 
+	//게터세터 쓰는 용
+	void updateCamera(POINT mouse);		
+	//그냥 이 함수 자체로 쓰는 용
+	void updateCamera(POINT mouse,POINT mouse2, int speed =1.f);	
 
 	//맵 중앙 기준
 	void updateCamera(RECT& player, float playerX, float playerY);
@@ -47,6 +50,9 @@ public:
 	float getY() { return _y; }
 	void setY(float y) { _y = y; }
 	tagCamera getCameraInfo() { return _camera; }
+	void setLeft(float left) { _camera.rc.left = left; }
+	void setTop(float top) { _camera.rc.left = top; }
+
 	
 	void mousePoint();
 };
