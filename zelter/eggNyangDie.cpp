@@ -52,12 +52,12 @@ void eggNyangDie::enter(eggNyang * eggNyang)
 
 void eggNyangDie::render(eggNyang * eggNyang)
 {
-	eggNyang->getEggNyang().img->frameRender(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, _currentFrameX, _currentFrameY);
+	eggNyang->getEggNyang().img->frameRender2(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, _currentFrameX, _currentFrameY);
 
 
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
-		_vBoom[i].img->frameRender(_vBoom[i].x, _vBoom[i].y, _vBoom[i].effectFrameX, 0);
+		_vBoom[i].img->frameRender2(_vBoom[i].x, _vBoom[i].y, _vBoom[i].effectFrameX, 0);
 	}
 }
 

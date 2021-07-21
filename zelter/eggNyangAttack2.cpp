@@ -61,7 +61,7 @@ void eggNyangAttack2::render(eggNyang * eggNyang)
 	{
 		D2DRENDER->DrawRectangle(eggNyang->getEggNyang().rc, D2DDEFAULTBRUSH::Red, 1.0f);
 	}
-	eggNyang->getEggNyang().img->frameRender(eggNyang->getEggNyang().rc.left, eggNyang->getEggNyang().rc.top, _currentFrameX, _currentFrameY);
+	eggNyang->getEggNyang().img->frameRender2(eggNyang->getEggNyang().rc.left, eggNyang->getEggNyang().rc.top, _currentFrameX, _currentFrameY);
 }
 
 void eggNyangAttack2::exit(eggNyang * eggNyang)

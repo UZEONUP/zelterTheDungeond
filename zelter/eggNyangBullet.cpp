@@ -40,7 +40,7 @@ void eggNyangBullet::render()
 {
 	for (int i = 0; i < _vBullet.size(); i++)
 	{
-		_vBullet[i].image->frameRender(_vBullet[i].x, _vBullet[i].y, _vBullet[i].currentFrameX, 0);
+		_vBullet[i].image->frameRender2(_vBullet[i].x, _vBullet[i].y, _vBullet[i].currentFrameX, 0);
 
 		if (KEYMANAGER->isToggleKey(VK_F1))
 		{

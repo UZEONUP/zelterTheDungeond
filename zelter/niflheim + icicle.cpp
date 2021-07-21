@@ -53,7 +53,7 @@ void niflheimIcicle::render()
 {
 	for (int i = 0; i < _vIcicle.size(); i++)
 	{
-		if (!_vIcicle[i].ready || _vIcicle[i].destroy) _vIcicle[i].img->frameRender(_vIcicle[i].x, _vIcicle[i].y, _vIcicle[i].currentFrameX, 0);
+		if (!_vIcicle[i].ready || _vIcicle[i].destroy) _vIcicle[i].img->frameRender2(_vIcicle[i].x, _vIcicle[i].y, _vIcicle[i].currentFrameX, 0);
 		else if (_vIcicle[i].ready && !_vIcicle[i].destroy) _vIcicle[i].img->render(_vIcicle[i].x, _vIcicle[i].y);
 
 		if (KEYMANAGER->isToggleKey(VK_F1))

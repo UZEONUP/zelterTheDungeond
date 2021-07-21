@@ -30,7 +30,7 @@ void niflheimIceSpear::render()
 {
 	for (int i = 0; i < _vIceSpear.size(); i++)
 	{
-		_vIceSpear[i].img->frameRender(_vIceSpear[i].x, _vIceSpear[i].y, _vIceSpear[i].currentFrameX, _vIceSpear[i].currentFrameY);
+		_vIceSpear[i].img->frameRender2(_vIceSpear[i].x, _vIceSpear[i].y, _vIceSpear[i].currentFrameX, _vIceSpear[i].currentFrameY);
 		
 		if (KEYMANAGER->isToggleKey(VK_F1))
 		{

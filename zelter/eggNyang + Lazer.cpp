@@ -62,7 +62,7 @@ void eggNyangLazer::render()
 	{
 		if (_lazerTime >= 50)
 		{
-			_vLazer[i].image->frameRender(_vLazer[i].rc.left, _vLazer[i].rc.top, _vLazer[i].currentFrameX, _vLazer[i].currentFrameY);
+			_vLazer[i].image->frameRender2(_vLazer[i].rc.left, _vLazer[i].rc.top, _vLazer[i].currentFrameX, _vLazer[i].currentFrameY);
 			
 			if (KEYMANAGER->isToggleKey(VK_F1))
 			{

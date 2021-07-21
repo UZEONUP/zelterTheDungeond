@@ -107,7 +107,7 @@ void niflheimAttack1::render(niflheim * niflheim)
 		}
 	}
 
-	niflheim->getNiflheim().img->frameRender(niflheim->getNiflheim().rc.left, niflheim->getNiflheim().rc.top, _currentFrameX, _currentFrameY);
+	niflheim->getNiflheim().img->frameRender2(niflheim->getNiflheim().rc.left, niflheim->getNiflheim().rc.top, _currentFrameX, _currentFrameY);
 	if (KEYMANAGER->isToggleKey(VK_F1))
 	{
 		D2DRENDER->DrawRectangle(niflheim->getNiflheim().rc, D2DDEFAULTBRUSH::Red);
