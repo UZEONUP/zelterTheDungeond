@@ -5,6 +5,9 @@
 #include "player.h"
 #include "characterPick.h"
 
+#include"eggNyang.h"
+#include"niflheim.h"
+
 class stageManager : public gameNode
 {
 private:

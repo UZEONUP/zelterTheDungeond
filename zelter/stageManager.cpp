@@ -31,7 +31,9 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("mapmap", new mapmap);
 	SCENEMANAGER->addScene("player", new player);
 	SCENEMANAGER->addScene("pick", new characterPick);
+	SCENEMANAGER->addScene("eggNyang", new eggNyang);
+	SCENEMANAGER->addScene("niflheim", new niflheim);
 
 
-	SCENEMANAGER->changeScene("player");
+	SCENEMANAGER->changeScene("eggNyang");
 }

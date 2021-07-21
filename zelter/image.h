@@ -65,6 +65,9 @@ public:
 	void frameRender2(const float x, const float y, const int frameX, const int frameY);
 	void mainRender(const float x, const float y);
 	void miniRender(const float x, const float y,const float sourX, const float sourY, const float sourW , const float sourH);
+	//추가했습니다
+	void barRender(const float X, const float Y, const float sourX);
+	//===========
 	/*===============================================================
 							접근자 / 설정자
 	===============================================================*/

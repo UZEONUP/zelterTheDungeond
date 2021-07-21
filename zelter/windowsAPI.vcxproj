@@ -152,6 +152,14 @@
     <ClInclude Include="characterPick.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
+    <ClInclude Include="eggNyang.h" />
+    <ClInclude Include="eggNyangAttack1.h" />
+    <ClInclude Include="eggNyangAttack2.h" />
+    <ClInclude Include="eggNyangAttack3.h" />
+    <ClInclude Include="eggNyangBullet.h" />
+    <ClInclude Include="eggNyangDie.h" />
+    <ClInclude Include="eggNyangIdle.h" />
+    <ClInclude Include="eggNyangStateBase.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
@@ -161,6 +169,14 @@
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
     <ClInclude Include="mapmap.h" />
+    <ClInclude Include="niflheim.h" />
+    <ClInclude Include="niflheimAttack1.h" />
+    <ClInclude Include="niflheimAttack2.h" />
+    <ClInclude Include="niflheimAttack3.h" />
+    <ClInclude Include="niflheimBullet.h" />
+    <ClInclude Include="niflheimDie.h" />
+    <ClInclude Include="niflheimEnter.h" />
+    <ClInclude Include="niflheimIdle.h" />
     <ClInclude Include="pause.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerAttack.h" />
@@ -183,6 +199,7 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stageManager.h" />
+    <ClInclude Include="state.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="testScene.h" />
@@ -199,6 +216,16 @@
     <ClCompile Include="characterPick.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
+    <ClCompile Include="eggNyang + Lazer.cpp" />
+    <ClCompile Include="eggNyang + Sword.cpp" />
+    <ClCompile Include="eggNyang.cpp" />
+    <ClCompile Include="eggNyangAttack1.cpp" />
+    <ClCompile Include="eggNyangAttack2.cpp" />
+    <ClCompile Include="eggNyangAttack3.cpp" />
+    <ClCompile Include="eggNyangBullet.cpp" />
+    <ClCompile Include="eggNyangDie.cpp" />
+    <ClCompile Include="eggNyangIdle.cpp" />
+    <ClCompile Include="eggNyangStateBase.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
@@ -207,6 +234,16 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
     <ClCompile Include="mapmap.cpp" />
+    <ClCompile Include="niflheim + icePillar.cpp" />
+    <ClCompile Include="niflheim + iceSpear.cpp" />
+    <ClCompile Include="niflheim + icicle.cpp" />
+    <ClCompile Include="niflheim.cpp" />
+    <ClCompile Include="niflheimAttack1.cpp" />
+    <ClCompile Include="niflheimAttack2.cpp" />
+    <ClCompile Include="niflheimAttack3.cpp" />
+    <ClCompile Include="niflheimDie.cpp" />
+    <ClCompile Include="niflheimEnter.cpp" />
+    <ClCompile Include="niflheimIdle.cpp" />
     <ClCompile Include="pause.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerAttack.cpp" />
@@ -226,6 +263,7 @@
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stageManager.cpp" />
+    <ClCompile Include="state.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

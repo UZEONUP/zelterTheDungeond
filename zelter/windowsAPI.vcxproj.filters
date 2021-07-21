@@ -64,6 +64,33 @@
     <Filter Include="playGround\player\playerUI">
       <UniqueIdentifier>{0832b104-800d-4182-9348-69f276e48564}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\boss">
+      <UniqueIdentifier>{9b95cb00-643e-4bde-991c-bfb300858c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\eggNyang">
+      <UniqueIdentifier>{04afa997-dce4-40bd-9d0e-ca575b83c21a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\niflheim">
+      <UniqueIdentifier>{3378b139-d702-4705-91bd-35b58501a7ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\eggNyang\eggNyangBullet">
+      <UniqueIdentifier>{f5e6db42-1881-4794-bae6-99b121f7ad7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\eggNyang\eggNyangState">
+      <UniqueIdentifier>{52ddc8e7-864c-4e77-9cb8-47873a6b0a54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\eggNyang\eggNyangState\state">
+      <UniqueIdentifier>{3cbafba3-e0cd-44fc-aae0-89500c686012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\niflheim\niflheimBullet">
+      <UniqueIdentifier>{d6da9016-511f-48d3-a6f0-94ac5a9b5efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\niflheim\niflheimState">
+      <UniqueIdentifier>{40d533de-2374-4040-83fc-700b87bfce56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\niflheim\niflheimState\state">
+      <UniqueIdentifier>{1b51e0b1-6133-472f-806e-07aa40c3c77d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -201,6 +228,57 @@
     <ClInclude Include="characterPick.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
+    <ClInclude Include="eggNyang.h">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangBullet.h">
+      <Filter>playGround\boss\eggNyang\eggNyangBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangAttack1.h">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangAttack2.h">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangAttack3.h">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangDie.h">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangIdle.h">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangStateBase.h">
+      <Filter>playGround\boss\eggNyang\eggNyangState\state</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheim.h">
+      <Filter>playGround\boss\niflheim</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimBullet.h">
+      <Filter>playGround\boss\niflheim\niflheimBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimAttack1.h">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimAttack2.h">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimAttack3.h">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimDie.h">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimEnter.h">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimIdle.h">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClInclude>
+    <ClInclude Include="state.h">
+      <Filter>playGround\boss\niflheim\niflheimState\state</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -322,6 +400,69 @@
     </ClCompile>
     <ClCompile Include="characterPick.cpp">
       <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyang.cpp">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyang + Lazer.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyang + Sword.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangBullet.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangAttack1.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangAttack2.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangAttack3.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangDie.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangIdle.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangState</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangStateBase.cpp">
+      <Filter>playGround\boss\eggNyang\eggNyangState\state</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheim.cpp">
+      <Filter>playGround\boss\niflheim</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheim + icePillar.cpp">
+      <Filter>playGround\boss\niflheim\niflheimBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheim + iceSpear.cpp">
+      <Filter>playGround\boss\niflheim\niflheimBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheim + icicle.cpp">
+      <Filter>playGround\boss\niflheim\niflheimBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimAttack1.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimAttack2.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimAttack3.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimDie.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimEnter.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimIdle.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState</Filter>
+    </ClCompile>
+    <ClCompile Include="state.cpp">
+      <Filter>playGround\boss\niflheim\niflheimState\state</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

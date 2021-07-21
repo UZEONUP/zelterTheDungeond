@@ -121,4 +121,79 @@ namespace UJN_UTIL
 		return str;
 	}
 	
+	VECTOR addVector(VECTOR& a, VECTOR& b) //벡터 추가
+	{
+		VECTOR vector;
+		vector.x = a.x + b.x;
+		vector.y = a.y + b.y;
+		return vector;
+	}
+
+	float absDotVector(VECTOR& a, VECTOR& b) //내적 벡터절대값 (abs == 절대값)
+	{
+		return abs(a.x * b.x + a.y * b.y);
+	}
+
+	float degreeToRadian(float degreeAngle) //디그리 라디안 변환
+	{
+		return degreeAngle / 180 * PI;
+	}
+	float radianToDegree(float radianAngle)
+	{
+		return radianAngle * 180 / PI;
+	}
+
+	VECTOR getDistanceVector(SHAPE& a, SHAPE& b) //중점 거리 벡터
+	{
+		VECTOR vectorDistance;
+		vectorDistance.x = (a.left + a.width / 2) - (b.left + b.width / 2);
+		vectorDistance.y = (a.top + a.height / 2) - (b.top + b.height / 2);
+		return vectorDistance;
+	}
+
+	VECTOR getHeightVector(SHAPE& a) //높이
+	{
+		VECTOR vectorHeight;
+		vectorHeight.x = a.height * cos(degreeToRadian(a.degreeAngle - 90)) / 2;
+		vectorHeight.y = a.height * sin(degreeToRadian(a.degreeAngle - 90)) / 2;
+		return vectorHeight;
+	}
+
+	VECTOR getWidthVector(SHAPE& a) //폭
+	{
+		VECTOR vectorWidth;
+		vectorWidth.x = a.width * cos(degreeToRadian(a.degreeAngle)) / 2;
+		vectorWidth.y = a.width * sin(degreeToRadian(a.degreeAngle)) / 2;
+		return vectorWidth;
+	}
+
+	VECTOR getUnitVector(VECTOR& a) //단위벡터 == 유클리안벡터 :: 크기가 1인 방향을 갖는 벡터
+	{
+		VECTOR unitVector;
+		float size;
+		size = sqrt(pow(a.x, 2) + pow(a.y, 2));
+		unitVector.x = a.x / size;
+		unitVector.y = a.y / size;
+		return unitVector;
+	}
+
+	bool OBB(SHAPE& a, SHAPE& b) //체크
+	{
+		VECTOR distance = getDistanceVector(a, b);
+		VECTOR vector[4] = { getHeightVector(a), getHeightVector(b), getWidthVector(a), getWidthVector(b) };
+		VECTOR unitVector;
+		for (int i = 0; i < 4; i++)
+		{
+			float sum = 0;
+			unitVector = getUnitVector(vector[i]);
+			for (int j = 0; j < 4; j++) {
+				sum += absDotVector(vector[j], unitVector);
+			}
+			if (absDotVector(distance, unitVector) > sum)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

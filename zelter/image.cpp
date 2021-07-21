@@ -282,6 +282,21 @@ void image::miniRender(const float x, const float y, const float sourX, const fl
 
 }
 
+//추가했습니다
+void image::barRender(const float X, const float Y,const float sourX)
+{
+
+	D2D1_RECT_F sourArea = D2D1::RectF(X, Y, X + sourX, Y + _imageInfo->height);
+	D2D1_RECT_F backArea = D2D1::RectF(X, Y, X + _imageInfo->width, Y + _imageInfo->height);
+
+	D2DRENDER->GetBackBuffer()->GetBitmap(&_backBufferBitmap);
+
+	D2DRENDERTARGET->DrawBitmap(_backBufferBitmap, sourArea, _alpha,
+		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, backArea);
+
+	ResetRenderOption();
+}
+//================
 
 /********************************************************************************
 ## ResetRenderOption ##
