@@ -5,6 +5,10 @@
 #include "progressBar.h"
 #include "niflheimBullet.h"
 
+#include "playerBullet.h"
+
+class player;
+
 struct tagNiflheim
 {
 	image*	img;				//니플헤임이미지
@@ -33,11 +37,16 @@ enum NIFLHEIMPATTERN
 };
 class niflheim	: public gameNode
 {
+	player* _player;
+
 	state*	_state;
 
 	tagNiflheim	_niflheim;
 
 	int _bulletFireCount;
+	bool _invincibility;
+	float _timeCount;
+	float _timeCountEnd;
 
 public :
 	virtual HRESULT init();
@@ -45,11 +54,14 @@ public :
 	virtual void update();
 	virtual void render();
 	void inPutHandle();
+	void hitNifleheim();
 
 	void bulletUpdate();
 	void bulletRender();
 
 	void imageAdd();
+
+	void linkPlayer(player* player) { _player = player; }
 
 	tagNiflheim getNiflheim() { return _niflheim; }
 	void setImg(image* img) { _niflheim.img = img; }

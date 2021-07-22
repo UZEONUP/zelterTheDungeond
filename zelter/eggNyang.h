@@ -5,6 +5,10 @@
 #include "eggNyangStateBase.h"
 #include "eggNyangBullet.h"
 
+#include "playerBullet.h"
+
+class player;
+
 struct tagEggNyang
 {
 	image*	img;						//¿ÃπÃ¡ˆ
@@ -30,6 +34,8 @@ enum EGGNYANGPATTERN
 };
 class eggNyang : public gameNode
 {
+	player*	_player;
+
 	eggNyangStateBase* _eggNyangState;
 
 	tagEggNyang _eggNyang;
@@ -37,17 +43,24 @@ class eggNyang : public gameNode
 	int _bulletFireCount;
 	bool _isFire;
 
+	bool _invincibility;
+	float _timeCount;
+	float _timeCountEnd;
+
 public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
 	void inPutHandle();
+
+	void hitEggNyang();
 
 	void imageAdd();
 	void move();
 	void attackPatternSign();
+
+	void linkPlayer(player* player) { _player = player; }
 
 	tagEggNyang getEggNyang() { return _eggNyang; }
 	void setImage(image* eggNyangImage) { _eggNyang.img = eggNyangImage; }
