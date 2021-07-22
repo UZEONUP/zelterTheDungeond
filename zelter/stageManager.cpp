@@ -32,6 +32,8 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("pick", new characterPick);
 	SCENEMANAGER->addScene("bulletKing", new bulletKingBattle);
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
+	SCENEMANAGER->addScene("eggNyang", new eggNyangBattle);
+	SCENEMANAGER->addScene("niflheim", new niflheimBattle);
 
-	SCENEMANAGER->changeScene("bulletKing");
+	SCENEMANAGER->changeScene("niflheim");
 }

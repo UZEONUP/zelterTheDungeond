@@ -130,7 +130,7 @@ void player::update()
 
 	//ºÒ·¿ Å·
 
-	if (!_player.isHit)
+	/*if (!_player.isHit)
 	{
 		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
 		{
@@ -156,16 +156,16 @@ void player::update()
 				hitDamage(90.f);
 			}
 		}
-	}
+	}*/
 
 	
-	/*for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
+	for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
 	{
 		if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().icePillar->getVbullet()[i].rc))
 		{
 			_player.isHit = true;
 		}
-	}*/
+	}
 
 
 
