@@ -384,31 +384,31 @@ void mapmap::changeSample()
 	{
 	case 0:
 		_sampleImg = IMAGEMANAGER->findImage("openWorld");
-		_tileInfo.name = "openWorld";
+		_tileInfo.name = "openWorld.map";
 		_tileInfo.type = OPENWORLD;
 		setCamera(BACKGROUNDX, BACKGROUNDY);
 		break;
 	case 1:
 		_sampleImg = IMAGEMANAGER->findImage("bulletKing");
-		_tileInfo.name = "bulletKing";
+		_tileInfo.name = "bulletKing.map";
 		_tileInfo.type = BULLETKING;
 		setCamera(2000, 1000);
 		break;
 	case 2:
 		_sampleImg = IMAGEMANAGER->findImage("amoconda");
-		_tileInfo.name = "amoconda";
+		_tileInfo.name = "amoconda.map";
 		_tileInfo.type = AMOCONDA;
 		setCamera(2000, 1000);
 		break;
 	case 3:
 		_sampleImg = IMAGEMANAGER->findImage("dunBoss");
-		_tileInfo.name = "niflheim";
+		_tileInfo.name = "niflheim.map";
 		_tileInfo.type = NIFLHEIM;
 		setCamera(WINSIZEX, WINSIZEY);
 		break;
 	case 4:
 		_sampleImg = IMAGEMANAGER->findImage("dunBoss");
-		_tileInfo.name = "eggNyang";
+		_tileInfo.name = "eggNyang.map";
 		_tileInfo.type = EGGNYANG;
 		setCamera(WINSIZEX, WINSIZEY);
 		break;
