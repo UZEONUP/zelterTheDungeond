@@ -7,7 +7,6 @@
 playerState * playerJump::inputHandle(player * player)
 {
 	if(player->getPlayer().y >= WINSIZEY-100)return new playerStateIdle;
-
 	if (player->getPlayer().currentHP <= 0) return new playerDie();
 	return nullptr;
 }
@@ -21,9 +20,8 @@ void playerJump::update(player * player)
 		_jumpPower -= _gravity;
 
 	}
-	
-	_count++;
 
+	_count++;
 	if (_count % 7 == 0)
 	{
 		player->setPlayerCurrentFrameX(player->getPlayer().currentFrameX + 1);
