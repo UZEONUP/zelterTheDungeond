@@ -10,7 +10,7 @@ HRESULT player::init()
 {
 	addIMAGES(); //이미지추가
 
-	ShowCursor(false);
+	//ShowCursor(false);
 
 	_player.img = IMAGEMANAGER->findImage("gunner_idle");
 	_playerGun.img = IMAGEMANAGER->findImage("GUN1");

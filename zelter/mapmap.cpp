@@ -362,7 +362,8 @@ void mapmap::sampleRender()
 		buttonRender();
 	}
 
-
+	int sizeX = (_dragMouse.currentEndX + 1 - _dragMouse.currentStartX);
+	int sizeY = (_dragMouse.currentEndY + 1 - _dragMouse.currentStartY);
 	if (_dragStart)
 	{
 		_sampleImg->cutRender(
