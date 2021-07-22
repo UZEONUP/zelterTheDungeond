@@ -6,6 +6,7 @@
 class loading : public gameNode
 {
 private:
+	RECT _loadingRect;
 	image* _loadingImage;
 	int _currentFrameX;
 	int _count;

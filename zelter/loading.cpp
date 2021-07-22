@@ -15,7 +15,10 @@ HRESULT loading::init()
 	_loadingImage = IMAGEMANAGER->findImage("고양이로딩");
 	_currentFrameX = _count = 0;
 	_loadingTextCount = 0;
-	_loadingText = "로  딩  중  . . . . . .";
+	_loadingText = "L O A D I N G . . . . . .";
+	_loadingRect = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, WINSIZEX, WINSIZEY);
+
+
 	CreateThread(
 		NULL,			//스레드의 보안속성(자신윈도우가 존재할때)
 		NULL,			//스레드의 스택크기(NULL로 두면 메인쓰레드)
@@ -54,8 +57,9 @@ void loading::update()
 
 void loading::render()
 {
+	D2DRENDER->FillRectangle(_loadingRect, D2DDEFAULTBRUSH::Black);
 	_loadingImage->frameRender2(WINSIZEX / 2 - _loadingImage->getFrameWidth() / 2, WINSIZEY / 2 - _loadingImage->getFrameHeight() / 2, _currentFrameX, 0);
-	D2DRENDER->RenderTextField(WINSIZEX / 2 - 100, WINSIZEY / 2 + 100, ConvertCtoWC(_loadingTextCut), D2D1::ColorF::Black, 25, 500, 200, 1);
+	D2DRENDER->RenderTextField(WINSIZEX / 2 - 100, WINSIZEY / 2 + 100, ConvertCtoWC(_loadingTextCut), D2D1::ColorF::White, 25, 500, 200, 1);
 }
 
 DWORD CALLBACK threadFunction(LPVOID lpParameter)
