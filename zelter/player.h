@@ -3,6 +3,7 @@
 #include "playerState.h"
 #include "quickSlot.h"
 #include "progressBar.h"
+#include "inGameMap.h"
 
 class playerBullet;
 
@@ -65,6 +66,8 @@ private:
 	image* _mouse;
 
 	playerBullet* _playerBullet;
+	//======================다른 곳에서 불러온 변수=================
+	inGameMap* _inGame;
 public:
 	HRESULT init();
 	virtual void release();
@@ -121,5 +124,7 @@ public:
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
 
 
-
+	//맵 링크 관련
+	void linkOpenWorldMap(inGameMap* map) {  _inGame = map; }
+	void setKeyType(bool type) { _player.isDunGreed = type; }
 };
