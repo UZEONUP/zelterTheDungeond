@@ -5,7 +5,8 @@ HRESULT stageManager::init()
 {
 	sceneSet();
 
-
+	
+	
 	return S_OK;
 }
 
@@ -23,6 +24,7 @@ void stageManager::render()
 	SCENEMANAGER->render();
 
 	
+ 
 }
 
 void stageManager::sceneSet()
@@ -37,5 +39,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
 
 
-	SCENEMANAGER->changeScene("bulletKing");
+	SCENEMANAGER->changeScene("pick");
 }

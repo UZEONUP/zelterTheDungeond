@@ -120,7 +120,10 @@ void playerAttack::update(player * player)
 	if (player->getPlayerGuntype() == FLAMETHROWER)
 	{
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y), 10, player->getPlayerGuntype(), 0);
+			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
+
+		
 	}
 
 	
@@ -169,7 +172,8 @@ void playerAttack::enter(player * player)
 		break;
 	case FLAMETHROWER:
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y), 10, player->getPlayerGuntype(),0);
+			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
 		break;
 	}
 }

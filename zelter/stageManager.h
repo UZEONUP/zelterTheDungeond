@@ -3,6 +3,7 @@
 #include "testScene.h"
 #include "mapmap.h"
 #include "player.h"
+#include "playerBullet.h"
 #include "characterPick.h"
 
 #include"eggNyang.h"
@@ -15,6 +16,7 @@ class stageManager : public gameNode
 {
 private:
 
+	player* _player;
 
 public:
 	virtual HRESULT init();

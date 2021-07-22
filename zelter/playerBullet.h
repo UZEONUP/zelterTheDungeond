@@ -94,20 +94,20 @@ public:
 
 	
 
-	vector<tagPlayerBullet>& getVBullet() { return _vBullet; }
+	vector<tagPlayerBullet> getVBullet() { return _vBullet; }
 	vector<tagPlayerBullet>::iterator getViBullet() { return _viBullet; }
 
 
-	vector<tagPlayerBullet>& getVBulletS() { return _vBulletS; }
+	vector<tagPlayerBullet> getVBulletS() { return _vBulletS; }
 	vector<tagPlayerBullet>::iterator getViBulletS() { return _viBulletS; }
 
-	vector<tagPlayerBullet>& getVBulletH() { return _vBulletH; }
+	vector<tagPlayerBullet> getVBulletH() { return _vBulletH; }
 	vector<tagPlayerBullet>::iterator getViBulletH() { return _viBulletH; }
 
-	vector<tagPlayerBullet>& getVBulletG() { return _vBulletG; }
+	vector<tagPlayerBullet> getVBulletG() { return _vBulletG; }
 	vector<tagPlayerBullet>::iterator getViBulletG() { return _viBulletG; }
 
-	vector<tagPlayerBullet>& getVBulletF() { return _vBulletF; }
+	vector<tagPlayerBullet> getVBulletF() { return _vBulletF; }
 	vector<tagPlayerBullet>::iterator getViBulletF() { return _viBulletF; }
 
 	

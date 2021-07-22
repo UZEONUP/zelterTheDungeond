@@ -191,6 +191,7 @@ void player::render()
 	_progressBar->render();
 	_quickSlot->render();
 	_mouse->render(_ptMouse.x - 7, _ptMouse.y-5);
+	
 }
 
 void player::addIMAGES()
