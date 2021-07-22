@@ -181,6 +181,7 @@
     <ClInclude Include="eggNyangBullet.h" />
     <ClInclude Include="eggNyangDie.h" />
     <ClInclude Include="eggNyangIdle.h" />
+    <ClInclude Include="eggNyangMap.h" />
     <ClInclude Include="eggNyangStateBase.h" />
     <ClInclude Include="fishMan.h" />
     <ClInclude Include="gameNode.h" />
@@ -203,6 +204,7 @@
     <ClInclude Include="niflheimDie.h" />
     <ClInclude Include="niflheimEnter.h" />
     <ClInclude Include="niflheimIdle.h" />
+    <ClInclude Include="niflheimMap.h" />
     <ClInclude Include="pause.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerAttack.h" />
@@ -274,6 +276,7 @@
     <ClCompile Include="eggNyangBullet.cpp" />
     <ClCompile Include="eggNyangDie.cpp" />
     <ClCompile Include="eggNyangIdle.cpp" />
+    <ClCompile Include="eggNyangMap.cpp" />
     <ClCompile Include="eggNyangStateBase.cpp" />
     <ClCompile Include="fishMan.cpp" />
     <ClCompile Include="gameNode.cpp" />
@@ -297,6 +300,7 @@
     <ClCompile Include="niflheimDie.cpp" />
     <ClCompile Include="niflheimEnter.cpp" />
     <ClCompile Include="niflheimIdle.cpp" />
+    <ClCompile Include="niflheimMap.cpp" />
     <ClCompile Include="pause.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerAttack.cpp" />

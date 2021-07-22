@@ -384,6 +384,12 @@
     <ClInclude Include="loading.h">
       <Filter>playGround\loading</Filter>
     </ClInclude>
+    <ClInclude Include="eggNyangMap.h">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimMap.h">
+      <Filter>playGround\boss\niflheim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -649,6 +655,12 @@
     </ClCompile>
     <ClCompile Include="loading.cpp">
       <Filter>playGround\loading</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangMap.cpp">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimMap.cpp">
+      <Filter>playGround\boss\niflheim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

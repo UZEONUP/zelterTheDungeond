@@ -2,8 +2,9 @@
 #include "tileNode.h"
 #include "gameNode.h"
 
-class bulletKingMap : public gameNode
+class eggNyangMap : public gameNode
 {
+
 private:
 	tagTile _tile[TILEX*TILEY];
 	DWORD _attribute[TILEX*TILEY];
@@ -13,8 +14,8 @@ private:
 
 
 public:
-	bulletKingMap() {};
-	~bulletKingMap() {};
+	eggNyangMap() {};
+	~eggNyangMap() {};
 
 	HRESULT init();
 	void release();

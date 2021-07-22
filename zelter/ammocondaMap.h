@@ -4,6 +4,7 @@
 
 class ammocondaMap : public gameNode
 {
+private:
 	tagTile _tile[TILEX*TILEY];
 	DWORD _attribute[TILEX*TILEY];
 	POINT _mapMouse;

@@ -2,7 +2,7 @@
 #include "tileNode.h"
 #include "gameNode.h"
 
-class bulletKingMap : public gameNode
+class niflheimMap : public gameNode
 {
 private:
 	tagTile _tile[TILEX*TILEY];
@@ -13,8 +13,8 @@ private:
 
 
 public:
-	bulletKingMap() {};
-	~bulletKingMap() {};
+	niflheimMap() {};
+	~niflheimMap() {};
 
 	HRESULT init();
 	void release();
