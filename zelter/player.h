@@ -133,7 +133,7 @@ public:
 	void setPlayerisDeath(bool death) { _player.isDeath = death; }
 
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
-
+	
 
 	//==================¸Ê ¸µÅ© °ü·Ã====================================
 	void linkOpenWorldMap(inGameMap* map) {  _inGame = map; }

@@ -121,14 +121,22 @@ void playerAttack::update(player * player)
 				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
 	}
 
-	
+	_pressTime++;
+	if (_pressTime % 5 == 0)
+	{
+		if (player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
+		cout << _pressPower << endl;
+	}
+	if (player->getPlayerGuntype() == GRENADE)
+	{
+		if (player->getPlayerBullet()->getViBulletBomb()->count >= 5) player->getPlayerBullet()->setplayerBulletCount(player->getPlayerBullet()->getViBulletBomb()->count - 1);
+
+		if (player->getPlayerBullet()->getViBulletBomb()->count <=0)player->getPlayerBullet()->release();
+	}
 
 	_count++;
-	if (_count % 5 == 0)
+	if (_count % 7 == 0)
 	{
-		if(player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
-		cout << _pressPower << endl;
-		
 		player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
 	
 		if ( player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX())

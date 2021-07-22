@@ -90,7 +90,8 @@ void player::update()
 	_enemy.rc = RectMakeCenter(_enemy.x, _enemy.y, 100, 100);
 	_playerGun.x = _player.x;
 	_playerGun.y = _player.y;
-	_playerBullet->move(_gunType, _enemy.x, _enemy.y);
+	if(SCENEMANAGER->isCurrentScene("bulletKing"))_playerBullet->move(_gunType, _bulletKing->getBulletKing().x, _bulletKing->getBulletKing().y);
+	else if (SCENEMANAGER->isCurrentScene("niflheim"))_playerBullet->move(_gunType, _niflheim->getNiflheim().x,_niflheim->getNiflheim().y);
 	_playerBullet->update();
 
 	{

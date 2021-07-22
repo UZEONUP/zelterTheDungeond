@@ -5,7 +5,6 @@
 #define PI 3.141592
 
 class player;
-class niflheim;
 
 //typedef struct SHAPE
 //{
@@ -19,7 +18,8 @@ enum GUNTYPE
 	SHOTGUN,
 	HOMING,
 	GRENADE,
-	FLAMETHROWER
+	FLAMETHROWER,
+	GRENADEBULLET
 };
 
 struct tagPlayerBullet
@@ -60,6 +60,9 @@ public:
 	vector<tagPlayerBullet> _vBulletH;
 	vector<tagPlayerBullet>::iterator _viBulletH;
 
+	vector<tagPlayerBullet> _vBulletBomb;
+	vector<tagPlayerBullet>::iterator _viBulletBomb;
+
 	vector<tagPlayerBullet> _vBulletG;
 	vector<tagPlayerBullet>::iterator _viBulletG;
 
@@ -75,13 +78,13 @@ public:
 	float _disX, _disY;	
 	
 	player* _player;
-	niflheim* _niflheim;
 
 
 	HRESULT init();
 	void releaseBullet(int index);
 	void releaseS(int index);
 	void releaseH(int index);
+	void releaseBomb(int index);
 	void releaseG(int index);
 	void releaseF(int index);
 
@@ -98,7 +101,7 @@ public:
 
 	float getPower() { return _viBulletN->power; }
 	void setPower(float power) { _viBulletN->power = power; }
-
+	void setplayerBulletCount(int count) { _viBulletBomb->count = count; }
 	
 
 	vector<tagPlayerBullet> getVBulletN() { return _vBulletN; }
@@ -110,6 +113,9 @@ public:
 
 	vector<tagPlayerBullet> getVBulletH() { return _vBulletH; }
 	vector<tagPlayerBullet>::iterator getViBulletH() { return _viBulletH; }
+
+	vector<tagPlayerBullet> getVBulletBomb() { return _vBulletBomb; }
+	vector<tagPlayerBullet>::iterator getViBulletBomb() { return _viBulletBomb; }
 
 	vector<tagPlayerBullet> getVBulletG() { return _vBulletG; }
 	vector<tagPlayerBullet>::iterator getViBulletG() { return _viBulletG; }
