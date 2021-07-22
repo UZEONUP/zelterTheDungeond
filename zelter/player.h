@@ -140,6 +140,6 @@ public:
 	void setKeyType(bool type) { _player.isDunGreed = type; }
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
-	void linkNiflHeim(niflheim* niflheim) { _niflheim = niflheim; }
-	void linkEggNyang(eggNyang* eggnyang) { _eggNyang = eggnyang; }
+	void linkNiflheim(niflheim* niflheim) { _niflheim = niflheim; }
+	void linkEggNyang(eggNyang* eggNyang) { _eggNyang = eggNyang; }
 };
