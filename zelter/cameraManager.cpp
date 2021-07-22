@@ -12,6 +12,9 @@ HRESULT cameraManager::init()
 	_camera.rc = RectMakeCenter(_camera.x, _camera.y,
 		_camera.width, _camera.height);
 
+	_x = 0;
+	_y = 0;
+
 	return S_OK;
 }
 
@@ -73,11 +76,11 @@ void cameraManager::updateCamera(POINT mouse)
 void cameraManager::updateCamera(POINT mouse, POINT mouse2, int speed)
 {
 	//마우스(절대 좌표)
-	if (mouse2.x - _camera.width/8 < 0)
+	if (mouse2.x - _camera.width / 8 < 0)
 	{
 		_x = 0;
 	}
-	else if (mouse2.x + _camera.width/8 > _map.width)
+	else if (mouse2.x + _camera.width / 8 > _map.width)
 	{
 		_x = _map.width - _camera.width;
 	}
@@ -96,7 +99,7 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2, int speed)
 	{
 		_y = 0;
 	}
-	else if (mouse2.y + _camera.height/8 > _map.height)
+	else if (mouse2.y + _camera.height / 8 > _map.height)
 	{
 		_y = _map.height - _camera.height;
 	}
@@ -229,43 +232,117 @@ void cameraManager::updateCameraH(float x, float y)
 	_y = y;
 }
 
-void cameraManager::updateCameraH(RECT player, float ratio1, float ratio2)
+void cameraManager::updateCameraW(RECT player,float x, float y, float ratio1, float ratio2)
 {
-	//가로
-	if (player.left - (_camera.width * ratio1) <= 0)
+	//플레이어가 맵 왼쪽 끝에 오면
+	if (x - (_camera.width*ratio1) < 0)
 	{
 		_x = 0;
 	}
-	else if (player.right + (_camera.width * ratio1) >= _map.width)
+	//플레이어가 맵 오른쪽 끝에 오면
+	else if (x + (_camera.width* ratio1) > _map.width)
 	{
 		_x = _map.width - _camera.width;
 	}
 	else
 	{
-		
+		if (x - (_camera.width * ratio2) < 0)
+		{
+			_x = 0;
+		}
+		else if (x > (_camera.width * ratio2))
+		{
+			cout << "dlakjfd" << endl;
+			_x = x - (_camera.width*ratio2);
+		}
+		else
+		{
+
+		_x = x - _camera.width*0.5;
+		}
 	}
 
-	//가로
-	if (player.top - (_camera.height * ratio1) <= 0)
+	if (y - (_camera.height*ratio1) < 0)
 	{
 		_y = 0;
 	}
-	else if (player.bottom + (_camera.height* ratio1) >= _map.height)
+	else if (y + (_camera.height* ratio1) > _map.height)
 	{
 		_y = _map.height - _camera.height;
 	}
 	else
 	{
-		if (player.top < _camera.rc.top)
+		if (y - (_camera.height * ratio2) < 0)
 		{
-			_y += _camera.height * ratio1;
+			_y = 0;
 		}
-		else if (player.bottom > _camera.rc.bottom)
+		else if (y > (_camera.height* ratio2))
 		{
-			_y -= _camera.height * ratio1;
+			_y = y - (_camera.height*ratio2);
+		}
+		else
+		{
+			_y = y - _camera.height*0.5;
 		}
 	}
-	_camera.rc = RectMake(_x, _y, _camera.width*ratio2, _camera.height*ratio2);
+}
+
+void cameraManager::updateCameraH(RECT player, float ratioX1, float ratioY1, float ratioX2, float ratioY2)
+{
+	if (player.left - (_camera.width*ratioX1) < 0)
+	{
+		_x = 0;
+	}
+	else if (player.right + (_camera.width*ratioX1) > _map.width)
+	{
+		_x = _map.width - _camera.width;
+	}
+	else
+	{
+		if (ratioX1 > 0 && ratioX1 < 0.5f)
+		{
+			if (player.left < _x + ratioX1 * WINSIZEX)
+			{
+				_x = player.left - ratioX1 * WINSIZEX;
+			}
+		}
+
+		if (ratioX2 > 0.5f && ratioX2 < 1.0f)
+		{
+			if (player.right > _x + ratioX2 * WINSIZEX)
+			{
+				_x = player.right - ratioX2 * WINSIZEX;
+			}
+		}
+	}
+
+
+	if (player.top - (_camera.height*ratioX1) < 0)
+	{
+		_y = 0;
+	}
+	else if (player.bottom + (_camera.height*ratioX1) > _map.height)
+	{
+		_y = _map.height - _camera.height;
+	}
+	else
+	{
+		if (ratioY1 > 0 && ratioY1 < 0.5f)
+		{
+			if (player.top < _y + ratioY1 * WINSIZEY)
+			{
+				_y = player.top - ratioY1 * WINSIZEY;
+			}
+		}
+
+		if (ratioY2 > 0.5f && ratioY2 < 1.0f)
+		{
+			if (player.bottom > _y + ratioY2 * WINSIZEY)
+			{
+				_y = player.bottom - ratioY2 * WINSIZEY;
+			}
+		}
+	}
 }
 
 void cameraManager::updateCamera(bool a)

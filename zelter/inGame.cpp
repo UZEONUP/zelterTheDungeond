@@ -11,7 +11,7 @@ HRESULT inGame::init()
 	_player->init();
 
 	_player->setKeyType(false);
-	cout << _player->getPlayer().isDunGreed << endl;
+	cout << _player->getPlayer().isDunGreed <<"tlqkkdjfas;lfjioajfe;kasndf;saji"<< endl;
 	_player->linkOpenWorldMap(_inGameMap);
 
 	return S_OK;
@@ -23,7 +23,9 @@ void inGame::release()
 
 void inGame::update()
 {
-	CAMERAMANAGER->updateCameraH(_player->getRect(),0.2,0.8);
+	_player->setKeyType(false);
+	//CAMERAMANAGER->updateCamera(_player->getPlayer().x, _player->getPlayer().y);
+	CAMERAMANAGER->updateCameraW(_player->getRect(),_player->getPlayer().x, _player->getPlayer().y,0.1,0.9);
 
 	for (int i = 0; i < TILEX*TILEY; i++)
 	{
@@ -34,8 +36,6 @@ void inGame::update()
 	}
 	_inGameMap->update();
 	_player->update();
-	cout << _player->getPlayer().x << endl;
-	cout << _player->getPlayer().y << endl;
 }
 
 void inGame::render()

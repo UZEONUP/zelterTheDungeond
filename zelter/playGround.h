@@ -12,8 +12,6 @@ class playGround : public gameNode
 {
 private:
 	stageManager* _stageManager;
-	player* _player;
-	playerBullet* _playerBullet;
 	niflheim* _niflheim;
 	bulletKing* _bulletKing;
 

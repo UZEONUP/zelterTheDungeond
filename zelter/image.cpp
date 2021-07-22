@@ -249,11 +249,14 @@ void image::frameRender2(const float x, const float y, const int frameX, const i
 	int currentFrameX = frameX * _imageInfo->frameWidth;
 	int currentFrameY = frameY * _imageInfo->frameHeight;
 
+	int cameraX = CAMERAMANAGER->getX();
+	int cameraY = CAMERAMANAGER->getY();
+
 	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scaleH, D2D1::Point2F(x, y));
 	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
 	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
-	D2D1_RECT_F viewArea = D2D1::RectF(x, y, x + _imageInfo->frameWidth, y + _imageInfo->frameHeight);
+	D2D1_RECT_F viewArea = D2D1::RectF(x- cameraX, y - cameraY, x-cameraX + _imageInfo->frameWidth, y - cameraY + _imageInfo->frameHeight);
 	D2D1_RECT_F sourArea = D2D1::RectF(currentFrameX, currentFrameY,
 		currentFrameX + _imageInfo->frameWidth, currentFrameY + _imageInfo->frameHeight);
 
