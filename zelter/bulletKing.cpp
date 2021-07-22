@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "bulletKing.h"
-
+#include "player.h"
 
 bulletKing::bulletKing()
 {
@@ -15,7 +15,7 @@ HRESULT bulletKing::init()
 	//상태패턴 할당
 	_state = new bulletKingIdle();
 	_state->enter(this);
-	
+
 	//총알 할당
 	_bullet = new bulletKingBullet;
 
@@ -25,11 +25,6 @@ HRESULT bulletKing::init()
 	//보스 초기화
 	setBoss();
 
-	//적 테스트
-	_enemyTest.x = WINSIZEX / 2;
-	_enemyTest.y = WINSIZEY / 2;
-	_enemyTest.speed = 3.0f;
-	_enemyTest.rc = RectMakeCenter(_enemyTest.x, _enemyTest.y, 15, 15);
 
 	return S_OK;
 }
@@ -40,15 +35,16 @@ void bulletKing::release()
 
 void bulletKing::update()
 {
+	collision();
 	//상태패턴
 	InputHandle();
 	_state->update(this);
 	//hp
 	_hp->update();
 	_hp->setGauge(_bulletKing.currentHp, _bulletKing.maxHp);
-	if (_bulletKing.currentHp <= 0) _bulletKing.currentHp = 0;
+	if (_bulletKing.currentHp <= 3) _bulletKing.currentHp = 3;
 
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE)) 
+	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
 	{
 		_bulletKing.currentHp--;
 	}
@@ -59,18 +55,6 @@ void bulletKing::update()
 	//총알 움직임
 	_bullet->update();
 
-	//적 테스트
-	if (!_isMove)
-	{
-		_enemyTest.x += 1;
-		if (_enemyTest.x >= WINSIZEX) _isMove = true;
-	}
-	if (_isMove)
-	{
-		_enemyTest.x -= 1;
-		if (_enemyTest.x <= 0) _isMove = false;
-	}
-	_enemyTest.rc = RectMakeCenter(_enemyTest.x, _enemyTest.y, 30, 30);
 
 	//보스 이동 예외처리
 	if (_bulletKingChair.rc.left <= 0)
@@ -114,8 +98,7 @@ void bulletKing::render()
 		D2DRENDER->DrawRectangle(_bulletKingChair.rc, D2DRenderer::DefaultBrush::White);
 	}
 
-	//적 테스트
-	D2DRENDER->DrawRectangle(_enemyTest.rc, D2DRenderer::DefaultBrush::Red);
+
 }
 
 void bulletKing::InputHandle()
@@ -131,17 +114,17 @@ void bulletKing::InputHandle()
 
 void bulletKing::setBoss()
 {
-	IMAGEMANAGER->addFrameImage("bulletKingChair", L"bulletKingKing/bulletKing_chair_71_80_2.png", 2, 1);
-	IMAGEMANAGER->addFrameImage("bulletKingIdle", L"bulletKingKing/bulletKing_walk_36_40_2.png", 2, 1);
-	IMAGEMANAGER->addFrameImage("bulletKingAttack1", L"bulletKingKing/bulletKing_attack1_36_40_2.png", 2, 1);
-	IMAGEMANAGER->addFrameImage("bulletKingAttack2", L"bulletKingKing/bulletKing_attack2_36_40_2.png", 2, 1);
-	IMAGEMANAGER->addFrameImage("bulletKingAttack3", L"bulletKingKing/bulletKing_attack3_60_72_2.png", 2, 1);
-	IMAGEMANAGER->addFrameImage("bulletKingHit", L"bulletKingKing/bulletKing_hit_36_40_2.png", 2, 1);
-	IMAGEMANAGER->addFrameImage("bulletKingDeath", L"bulletKingKing/bulletKing_death_36_40_8.png", 8, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingChair", L"bulletKing/bulletKing_chair_71_80_2.png", 2, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingIdle", L"bulletKing/bulletKing_walk_36_40_2.png", 2, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingAttack1", L"bulletKing/bulletKing_attack1_36_40_2.png", 2, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingAttack2", L"bulletKing/bulletKing_attack2_36_40_2.png", 2, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingAttack3", L"bulletKing/bulletKing_attack3_60_72_2.png", 2, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingHit", L"bulletKing/bulletKing_hit_36_40_2.png", 2, 1);
+	IMAGEMANAGER->addFrameImage("bulletKingDeath", L"bulletKing/bulletKing_death_36_40_8.png", 8, 1);
 
-	IMAGEMANAGER->addImage("bulletKingBullet1", L"bulletKingKing/bullet1_16_16.png");
-	IMAGEMANAGER->addFrameImage("bulletKingBullet2", L"bulletKingKing/bullet2_23_12_8.png", 8, 1);
-	IMAGEMANAGER->addImage("bulletKingBullet3", L"bulletKingKing/bullet1_16_16.png");
+	IMAGEMANAGER->addImage("bulletKingBullet1", L"bulletKing/bullet1_16_16.png");
+	IMAGEMANAGER->addFrameImage("bulletKingBullet2", L"bulletKing/bullet2_23_12_8.png", 8, 1);
+	IMAGEMANAGER->addImage("bulletKingBullet3", L"bulletKing/bullet1_16_16.png");
 	//총탄킹 본체 초기화
 	_bulletKing.img = IMAGEMANAGER->findImage("bulletKingIdle");
 	_bulletKing.x = WINSIZEX / 2;
@@ -150,7 +133,7 @@ void bulletKing::setBoss()
 	_bulletKing.height = 40;
 	_bulletKing.speed = 2.0f;
 	_bulletKing.angle = PI / 2;
-	_bulletKing.maxHp = _bulletKing.currentHp = 100;
+	_bulletKing.maxHp = _bulletKing.currentHp = 1000;
 	_bulletKing.currentFrameX = 0;
 	_bulletKing.rc = RectMakeCenter(_bulletKing.x, _bulletKing.y, _bulletKing.img->getWidth() / _bulletKing.img->getMaxFrameX(), _bulletKing.img->getHeight());
 
@@ -163,6 +146,46 @@ void bulletKing::setBoss()
 	_bulletKingChair.speed = 2.0f;
 	_bulletKingChair.currentFrameX = 0;
 	_bulletKingChair.rc = RectMakeCenter(_bulletKingChair.x, _bulletKingChair.y, _bulletKingChair.img->getWidth() / _bulletKingChair.img->getMaxFrameX(), _bulletKingChair.img->getHeight());
+
+}
+
+void bulletKing::collision()
+{
+	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); ++i)
+	{
+		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBullet()[i].rc))
+		{
+			_bulletKing.currentHp--;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
+	{
+		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
+		{
+			_bulletKing.currentHp--;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+	{
+		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+		{
+			_bulletKing.currentHp--;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
+	{
+		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
+		{
+			_bulletKing.currentHp--;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
+	{
+		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
+		{
+			_bulletKing.currentHp--;
+		}
+	}
 
 }
 

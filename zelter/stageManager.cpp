@@ -43,5 +43,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
 
 
-	SCENEMANAGER->changeScene("mapmap");
+	SCENEMANAGER->changeScene("bulletKing");
 }

@@ -5,6 +5,8 @@
 #include "progressBar.h"
 
 class playerBullet;
+class bulletKing;
+class ammoconda;
 
 struct tagPlayer
 {
@@ -53,7 +55,8 @@ private:
 	tagEnemy _enemy;
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
-
+	bulletKing* _bulletKing;
+	ammoconda* _ammoconda;
 
 	int _count;
 	int _index;
@@ -120,6 +123,7 @@ public:
 
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
 
-
+	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
+	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
 
 };

@@ -3,6 +3,7 @@
 #include "bulletKing.h"
 #include "fishMan.h"
 #include "dinosaur.h"
+#include "player.h"
 
 class bulletKingBattle : public gameNode
 {
@@ -11,6 +12,7 @@ private:
 	fishMan* _fishMan;
 	dinosaur* _dinosaur;
 
+	player* _player;
 
 public:
 	bulletKingBattle();
