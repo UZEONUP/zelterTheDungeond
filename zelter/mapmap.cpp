@@ -91,7 +91,11 @@ void mapmap::clear()
 			_tile[i].terrainX = 4;
 			_tile[i].terrainY = 0;
 			break;
-		case DUNBOSS:
+		case EGGNYANG:
+			_tile[i].terrainX = 19;
+			_tile[i].terrainY = 0;
+			break;
+		case NIFLHEIM:
 			_tile[i].terrainX = 19;
 			_tile[i].terrainY = 0;
 			break;
@@ -374,7 +378,7 @@ void mapmap::sampleRender()
 void mapmap::changeSample()
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD4) && _changeCount > 0)_changeCount--;
-	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6) && _changeCount < 3)_changeCount++;
+	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6) && _changeCount < 4)_changeCount++;
 
 	switch (_changeCount)
 	{
@@ -398,8 +402,14 @@ void mapmap::changeSample()
 		break;
 	case 3:
 		_sampleImg = IMAGEMANAGER->findImage("dunBoss");
-		_tileInfo.name = "dunBoss";
-		_tileInfo.type = DUNBOSS;
+		_tileInfo.name = "niflheim";
+		_tileInfo.type = NIFLHEIM;
+		setCamera(WINSIZEX, WINSIZEY);
+		break;
+	case 4:
+		_sampleImg = IMAGEMANAGER->findImage("dunBoss");
+		_tileInfo.name = "eggNyang";
+		_tileInfo.type = EGGNYANG;
 		setCamera(WINSIZEX, WINSIZEY);
 		break;
 
@@ -663,7 +673,7 @@ OBJECT mapmap::objSelect(int frameX, int frameY)
 			return BLOCK_RTRIPLE;
 		}
 		break;
-	case DUNBOSS:
+	case NIFLHEIM:
 		if (frameY == 0 && (frameX == 0 || frameX == 1 || frameX == 2 || frameX == 3 ||
 			frameX == 4 || frameX == 5 || frameX == 6 || frameX == 7 || frameX == 8 ||
 			frameX == 9 || frameX == 10 || frameX == 11 || frameX == 12 || frameX == 13 ||
@@ -708,6 +718,53 @@ OBJECT mapmap::objSelect(int frameX, int frameY)
 		{
 			return BLOCK;
 		}
+		break;
+	case EGGNYANG:
+		if (frameY == 0 && (frameX == 0 || frameX == 1 || frameX == 2 || frameX == 3 ||
+			frameX == 4 || frameX == 5 || frameX == 6 || frameX == 7 || frameX == 8 ||
+			frameX == 9 || frameX == 10 || frameX == 11 || frameX == 12 || frameX == 13 ||
+			frameX == 14 || frameX == 15 || frameX == 16 || frameX == 17 || frameX == 18))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 1 && (frameX == 0 || frameX == 1 || frameX == 2 || frameX == 3 ||
+			frameX == 7 || frameX == 8 || frameX == 9 || frameX == 17 || frameX == 18))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 2 && (frameX == 0 || frameX == 1 || frameX == 2 || frameX == 3 ||
+			frameX == 4 || frameX == 5 || frameX == 6 || frameX == 7 || frameX == 8 ||
+			frameX == 9))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 3 && (frameX == 0 || frameX == 1 || frameX == 2 || frameX == 9))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 4 && (frameX == 0 || frameX == 1 || frameX == 2 || frameX == 9))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 5 && (frameX == 0 || frameX == 9 || frameX == 10 || frameX == 19))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 6 && (frameX == 0 || frameX == 9 || frameX == 10 || frameX == 19))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 7 && (frameX == 0 || frameX == 9 || frameX == 10 || frameX == 11 ||
+			frameX == 12 || frameX == 13 || frameX == 14 || frameX == 15 || frameX == 16 ||
+			frameX == 17 || frameX == 18 || frameX == 19))
+		{
+			return BLOCK;
+		}
+		else if (frameY == 8 && (frameX == 0 || frameX == 9))
+		{
+			return BLOCK;
+		}
+		break;
 	}
 	return OBJ_Be;
 }
@@ -795,7 +852,17 @@ void mapmap::setObjectRect(OBJECT obj, int num)
 				_tile[num].rc.bottom);
 		}
 		break;
-	case DUNBOSS:
+	case NIFLHEIM:
+		if (obj == BLOCK)
+		{
+			SetRect(&_tile[num].checkRect,
+				_tile[num].rc.left,
+				_tile[num].rc.top,
+				_tile[num].rc.right,
+				_tile[num].rc.bottom);
+		}
+		break;
+	case EGGNYANG:
 		if (obj == BLOCK)
 		{
 			SetRect(&_tile[num].checkRect,
