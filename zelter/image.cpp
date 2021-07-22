@@ -178,7 +178,7 @@ void image::cutRender(const float x, const float y,
 	int cutY = sourY * _imageInfo->frameHeight;
 
 	D2D1_RECT_F viewArea = D2D1::RectF(x, y, x + sourW, y + sourH);						//보이는 영역
-	D2D1_RECT_F sourArea = D2D1::RectF(cutX, cutY, cutX+ _imageInfo->frameWidth,cutY+ _imageInfo->frameHeight);				//자른 영역
+	D2D1_RECT_F sourArea = D2D1::RectF(cutX, cutY, cutX+sourW,cutY+ sourH);				//자른 영역
 
 	D2DRENDERTARGET->SetTransform(scaleMatrix * rotateMatrix * transMatrix);
 	D2DRENDERTARGET->DrawBitmap(_bitmap, viewArea, alpha,
