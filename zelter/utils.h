@@ -84,4 +84,28 @@ namespace UJN_UTIL
 	//stirng 에서 wstring 으로 형 변환 함수
 	wstring ConvertStoWS(string str);
 	string ConvertWStoS(wstring w_str);
+
+	// OBB충돌
+	// 실질적으로 사용해주는 건 SHAPE 와 OBB입니다.
+	// interSectRect를 위해 rect를 만들어주는 것처럼 SHAPE를 만들고
+	// OBB로 체크하면 됩니다.
+	typedef struct VECTOR
+	{
+		double x, y;
+	};
+
+	typedef struct SHAPE //회전충돌::실질적 사용
+	{
+		double left, top, width, height, degreeAngle;
+	};
+
+	VECTOR addVector(VECTOR& a, VECTOR& b);
+	float absDotVector(VECTOR& a, VECTOR& b);
+	float degreeToRadian(float degreeAngle);
+	float radianToDegree(float radianAngle);
+	VECTOR getDistanceVector(SHAPE& a, SHAPE& b);
+	VECTOR getHeightVector(SHAPE& a);
+	VECTOR getWidthVector(SHAPE& a);
+	VECTOR getUnitVector(VECTOR& a);
+	bool OBB(SHAPE& a, SHAPE& b); //회전충돌::실질적 사용
 }

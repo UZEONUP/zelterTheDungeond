@@ -136,7 +136,7 @@ void image::render(const float x, const float y,
 {
 
 	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scaleH, D2D1::Point2F(x, y));
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
 	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
 
@@ -171,7 +171,7 @@ void image::cutRender(const float x, const float y,
 	const float transX, const float transY)
 {
 	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scaleH, D2D1::Point2F(x, y));
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
 	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
 	int cutX = sourX * _imageInfo->frameWidth;
@@ -224,7 +224,7 @@ void image::frameRender(const float x, const float y,
 	int currentY = frameY * _imageInfo->frameHeight;
 
 	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scaleH, D2D1::Point2F(x, y));
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
 	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
 	//수정 필요
@@ -241,14 +241,17 @@ void image::frameRender(const float x, const float y,
 	if (_alpha <= 0)ResetRenderOption();
 }
 
-void image::frameRender2(const float x, const float y, const int frameX, const int frameY)
+void image::frameRender2(const float x, const float y, const int frameX, const int frameY,
+	const float scaleW, const float scaleH,
+	const float degreeAngle, const float rotateX, const float rotateY,
+	const float transX, const float transY)
 {
 	int currentFrameX = frameX * _imageInfo->frameWidth;
 	int currentFrameY = frameY * _imageInfo->frameHeight;
 
-	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(1.f, 1.f, D2D1::Point2F(x, y));
-	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(0.f, D2D1::Point2F(x + 0.f, y + 0.f));
-	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(0.f, 0.f);
+	D2D1::Matrix3x2F scaleMatrix = D2D1::Matrix3x2F::Scale(scaleW, scaleH, D2D1::Point2F(x, y));
+	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
+	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
 	D2D1_RECT_F viewArea = D2D1::RectF(x, y, x + _imageInfo->frameWidth, y + _imageInfo->frameHeight);
 	D2D1_RECT_F sourArea = D2D1::RectF(currentFrameX, currentFrameY,
@@ -260,6 +263,7 @@ void image::frameRender2(const float x, const float y, const int frameX, const i
 
 	if (_alpha <= 0)ResetRenderOption();
 }
+
 
 void image::mainRender(const float x, const float y)
 {
@@ -282,6 +286,21 @@ void image::miniRender(const float x, const float y, const float sourX, const fl
 
 }
 
+//추가했습니다
+void image::barRender(const float X, const float Y,const float sourX)
+{
+
+	D2D1_RECT_F sourArea = D2D1::RectF(X, Y, X + sourX, Y + _imageInfo->height);
+	D2D1_RECT_F backArea = D2D1::RectF(X, Y, X + _imageInfo->width, Y + _imageInfo->height);
+
+	D2DRENDER->GetBackBuffer()->GetBitmap(&_backBufferBitmap);
+
+	D2DRENDERTARGET->DrawBitmap(_backBufferBitmap, sourArea, _alpha,
+		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, backArea);
+
+	ResetRenderOption();
+}
+//================
 
 /********************************************************************************
 ## ResetRenderOption ##
