@@ -19,8 +19,8 @@ void mapmap::update()
 	if (KEYMANAGER->isStayKeyDown(VK_UP))CAMERAMANAGER->setY(CAMERAMANAGER->getY() - 25.f);
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))CAMERAMANAGER->setY(CAMERAMANAGER->getY() + 25.f);
 
-	cout << _mapMouse.x <<"X"<< endl;
-	cout << _mapMouse.y <<"Y"<< endl;
+	cout << _mapMouse.x << "X" << endl;
+	cout << _mapMouse.y << "Y" << endl;
 	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse, 10); // <--- 이 함수 플레이어 기준으로 움직이게 바꿔야 함
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
@@ -71,6 +71,43 @@ void mapmap::load()
 	CloseHandle(file);
 }
 
+void mapmap::clear()
+{
+	for (int i = 0; i < TILEX*TILEY; i++)
+	{
+		_tile[i].checkRect = { 0 };
+
+		switch (_tileInfo.type)
+		{
+		case OPENWORLD:
+			_tile[i].terrainX = 0;
+			_tile[i].terrainY = 2;
+			break;
+		case BULLETKING:
+			_tile[i].terrainX = 2;
+			_tile[i].terrainY = 0;
+			break;
+		case AMOCONDA:
+			_tile[i].terrainX = 4;
+			_tile[i].terrainY = 0;
+			break;
+		case DUNBOSS:
+			_tile[i].terrainX = 19;
+			_tile[i].terrainY = 0;
+			break;
+		}
+		_tile[i].objX = 0;
+		_tile[i].objY = 0;
+		_tile[i].terrain = CEMENT;
+		_tile[i].object = OBJ_NONE;
+		_tile[i].sizeX = TILESIZEX;
+		_tile[i].sizeY = TILESIZEY;
+		_tile[i].isMove = true;
+	}
+}
+
+
+
 void mapmap::setup()
 {
 	setImage();
@@ -107,10 +144,10 @@ void mapmap::setup()
 	_btnTerrain.rc = RectMake(_tool.rc.left + 50, 500, 100, 30);
 	_btnObject.rc = RectMake(_tool.rc.left + 150, 500, 100, 30);
 	_btnEraser.rc = RectMake(_tool.rc.left + 250, 500, 100, 30);
+	_btnClear.rc = RectMake(_tool.rc.left + 350, 500, 100, 30);
 	_btnEnter.rc = RectMake(_tool.rc.right - 150, _tool.rc.bottom - 80, 100, 30);
 	_btnPrevios.rc = RectMake(_tileInfo.rc.left - 100, _tileInfo.rc.top, 50, _tileInfo.height);
 	_btnNext.rc = RectMake(_tileInfo.rc.right + 50, _tileInfo.rc.top, 50, _tileInfo.height);
-
 
 	//처음 상태는 지형을 선택 한 것으로
 	_ctrlSelect = CTRL_TERRAINDRAW;
@@ -191,7 +228,7 @@ void mapmap::setMap()
 		int sizeY = (_dragMouse.currentEndY + 1 - _dragMouse.currentStartY);
 
 
-		
+
 
 		switch (_ctrlSelect)
 		{
@@ -345,21 +382,25 @@ void mapmap::changeSample()
 		_sampleImg = IMAGEMANAGER->findImage("openWorld");
 		_tileInfo.name = "openWorld";
 		_tileInfo.type = OPENWORLD;
+		setCamera(BACKGROUNDX, BACKGROUNDY);
 		break;
 	case 1:
 		_sampleImg = IMAGEMANAGER->findImage("bulletKing");
 		_tileInfo.name = "bulletKing";
 		_tileInfo.type = BULLETKING;
+		setCamera(2000, 1000);
 		break;
 	case 2:
 		_sampleImg = IMAGEMANAGER->findImage("amoconda");
 		_tileInfo.name = "amoconda";
 		_tileInfo.type = AMOCONDA;
+		setCamera(2000, 1000);
 		break;
 	case 3:
 		_sampleImg = IMAGEMANAGER->findImage("dunBoss");
 		_tileInfo.name = "dunBoss";
 		_tileInfo.type = DUNBOSS;
+		setCamera(WINSIZEX, WINSIZEY);
 		break;
 
 	}
@@ -461,6 +502,15 @@ void mapmap::buttonRender()
 		D2DDEFAULTBRUSH::Red,
 		DWRITE_TEXT_ALIGNMENT_CENTER);
 
+	D2DRENDER->DrawRectangle(_btnClear.rc, D2DDEFAULTBRUSH::Red);
+	D2DRENDER->RenderTextField(
+		_btnClear.rc.left, _btnClear.rc.top,
+		L"클리어",
+		20,
+		100, 30,
+		D2DDEFAULTBRUSH::Red,
+		DWRITE_TEXT_ALIGNMENT_CENTER);
+
 	D2DRENDER->DrawRectangle(_btnEnter.rc, D2DDEFAULTBRUSH::Red);
 	D2DRENDER->RenderTextField(
 		_btnEnter.rc.left, _btnEnter.rc.top,
@@ -506,6 +556,7 @@ void mapmap::dragField()
 		if (PtInRect(&_btnTerrain.rc, _ptMouse))_ctrlSelect = CTRL_TERRAINDRAW;
 		if (PtInRect(&_btnObject.rc, _ptMouse))_ctrlSelect = CTRL_OBJDRAW;
 		if (PtInRect(&_btnEraser.rc, _ptMouse))_ctrlSelect = CTRL_ERASER;
+		if (PtInRect(&_btnClear.rc, _ptMouse))clear();
 		if (PtInRect(&_btnSave.rc, _ptMouse))save();
 		if (PtInRect(&_btnLoad.rc, _ptMouse))load();
 		if (PtInRect(&_btnEnter.rc, _ptMouse))_tool.isOn = false;
@@ -559,7 +610,7 @@ OBJECT mapmap::objSelect(int frameX, int frameY)
 	switch (_tileInfo.type)
 	{
 	case OPENWORLD:
-		if ((frameY == 8 && (frameX == 1 || frameX == 4 || frameX == 7)) || (frameX == 11 && frameY == 8 ))
+		if ((frameY == 8 && (frameX == 1 || frameX == 4 || frameX == 7)) || (frameX == 11 && frameY == 8))
 		{
 			return BLOCK;
 		}
@@ -588,10 +639,10 @@ OBJECT mapmap::objSelect(int frameX, int frameY)
 		break;
 	case BULLETKING:
 		if ((frameX == 13 && frameY == 7) ||
-			(frameX == 13 && frameY == 8) ||
-			(frameX == 15 && frameY == 8) ||
-			(frameX == 17 && frameY == 8) ||
-			(frameX == 18 && frameY == 8))
+			(frameX == 14 && frameY == 7) ||
+			(frameX == 15 && frameY == 7) ||
+			(frameX == 17 && frameY == 7) ||
+			(frameX == 18 && frameY == 7))
 		{
 			return BLOCK;
 		}
