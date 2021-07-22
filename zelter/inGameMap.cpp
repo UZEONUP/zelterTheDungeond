@@ -18,9 +18,8 @@ void inGameMap::release()
 
 void inGameMap::update()
 {
-	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse, 10);
-	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
-	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+	//_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	//_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 	/*cout << _mapMouse.x << endl;
 	cout << _mapMouse.y << endl;*/
 
