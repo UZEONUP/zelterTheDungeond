@@ -91,6 +91,27 @@
     <Filter Include="playGround\boss\niflheim\niflheimState\state">
       <UniqueIdentifier>{1b51e0b1-6133-472f-806e-07aa40c3c77d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\boss\ammoconda">
+      <UniqueIdentifier>{ec1be372-cab8-4aa4-99bc-3fa18681e3b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\bulletKing">
+      <UniqueIdentifier>{0685ab08-df7d-4807-b674-d70f21595137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy">
+      <UniqueIdentifier>{95b42c3a-cf56-41a3-acd8-c50f595da0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\ammoconda\ammocondaState">
+      <UniqueIdentifier>{b55814b9-ceec-428c-a3c0-09258329cab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\ammoconda\ammocondaBullet">
+      <UniqueIdentifier>{dee1f0ec-4625-4e50-8c26-d8d31d5c919e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\bulletKing\bulletKingState">
+      <UniqueIdentifier>{a0b38bde-2e06-4a0e-899d-4f1cb0c2f777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\boss\bulletKing\bulletKingBullet">
+      <UniqueIdentifier>{48c29b85-9c9f-490a-83a5-acbd833603e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -279,6 +300,66 @@
     <ClInclude Include="state.h">
       <Filter>playGround\boss\niflheim\niflheimState\state</Filter>
     </ClInclude>
+    <ClInclude Include="ammoconda.h">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaBattle.h">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKing.h">
+      <Filter>playGround\boss\bulletKing</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingBattle.h">
+      <Filter>playGround\boss\bulletKing</Filter>
+    </ClInclude>
+    <ClInclude Include="dinosaur.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="fishMan.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaState.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaRecovery.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaIdle.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaAttack2.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaAttack1.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaBullet.h">
+      <Filter>playGround\boss\ammoconda\ammocondaBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingAttack1.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingAttack2.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingAttack3.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingDeath.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingHit.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingIdle.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingState.h">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingBullet.h">
+      <Filter>playGround\boss\bulletKing\bulletKingBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -464,6 +545,69 @@
     <ClCompile Include="state.cpp">
       <Filter>playGround\boss\niflheim\niflheimState\state</Filter>
     </ClCompile>
+    <ClCompile Include="ammoconda.cpp">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClCompile>
+    <ClCompile Include="ammoconda+pot.cpp">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaBattle.cpp">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKing.cpp">
+      <Filter>playGround\boss\bulletKing</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingBattle.cpp">
+      <Filter>playGround\boss\bulletKing</Filter>
+    </ClCompile>
+    <ClCompile Include="dinosaur.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="fishMan.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaState.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaRecovery.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaIdle.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaAttack2.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaAttack1.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaBullet.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingAttack1.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingAttack2.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingAttack3.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingDeath.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingHit.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingIdle.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingState.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingState</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingBullet.cpp">
+      <Filter>playGround\boss\bulletKing\bulletKingBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowsAPI.rc">
@@ -477,5 +621,8 @@
     <Image Include="windowsAPI.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bulletKing" />
   </ItemGroup>
 </Project>

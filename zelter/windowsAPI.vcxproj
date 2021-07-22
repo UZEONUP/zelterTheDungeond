@@ -147,11 +147,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ammoconda.h" />
+    <ClInclude Include="ammocondaAttack1.h" />
+    <ClInclude Include="ammocondaAttack2.h" />
+    <ClInclude Include="ammocondaBattle.h" />
+    <ClInclude Include="ammocondaBullet.h" />
+    <ClInclude Include="ammocondaIdle.h" />
+    <ClInclude Include="ammocondaRecovery.h" />
+    <ClInclude Include="ammocondaState.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="bulletKing.h" />
+    <ClInclude Include="bulletKingAttack1.h" />
+    <ClInclude Include="bulletKingAttack2.h" />
+    <ClInclude Include="bulletKingAttack3.h" />
+    <ClInclude Include="bulletKingBattle.h" />
+    <ClInclude Include="bulletKingBullet.h" />
+    <ClInclude Include="bulletKingDeath.h" />
+    <ClInclude Include="bulletKingHit.h" />
+    <ClInclude Include="bulletKingIdle.h" />
+    <ClInclude Include="bulletKingState.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="characterPick.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
+    <ClInclude Include="dinosaur.h" />
     <ClInclude Include="eggNyang.h" />
     <ClInclude Include="eggNyangAttack1.h" />
     <ClInclude Include="eggNyangAttack2.h" />
@@ -160,6 +179,7 @@
     <ClInclude Include="eggNyangDie.h" />
     <ClInclude Include="eggNyangIdle.h" />
     <ClInclude Include="eggNyangStateBase.h" />
+    <ClInclude Include="fishMan.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
@@ -211,11 +231,31 @@
     <ClInclude Include="windowsAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ammoconda+pot.cpp" />
+    <ClCompile Include="ammoconda.cpp" />
+    <ClCompile Include="ammocondaAttack1.cpp" />
+    <ClCompile Include="ammocondaAttack2.cpp" />
+    <ClCompile Include="ammocondaBattle.cpp" />
+    <ClCompile Include="ammocondaBullet.cpp" />
+    <ClCompile Include="ammocondaIdle.cpp" />
+    <ClCompile Include="ammocondaRecovery.cpp" />
+    <ClCompile Include="ammocondaState.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="bulletKing.cpp" />
+    <ClCompile Include="bulletKingAttack1.cpp" />
+    <ClCompile Include="bulletKingAttack2.cpp" />
+    <ClCompile Include="bulletKingAttack3.cpp" />
+    <ClCompile Include="bulletKingBattle.cpp" />
+    <ClCompile Include="bulletKingBullet.cpp" />
+    <ClCompile Include="bulletKingDeath.cpp" />
+    <ClCompile Include="bulletKingHit.cpp" />
+    <ClCompile Include="bulletKingIdle.cpp" />
+    <ClCompile Include="bulletKingState.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="characterPick.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
+    <ClCompile Include="dinosaur.cpp" />
     <ClCompile Include="eggNyang + Lazer.cpp" />
     <ClCompile Include="eggNyang + Sword.cpp" />
     <ClCompile Include="eggNyang.cpp" />
@@ -226,6 +266,7 @@
     <ClCompile Include="eggNyangDie.cpp" />
     <ClCompile Include="eggNyangIdle.cpp" />
     <ClCompile Include="eggNyangStateBase.cpp" />
+    <ClCompile Include="fishMan.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
@@ -284,6 +325,9 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="windowsAPI.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bulletKing" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
