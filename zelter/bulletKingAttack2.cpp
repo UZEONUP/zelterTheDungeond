@@ -5,6 +5,7 @@
 bulletKingState * bulletKingAttack2::InputHandle(bulletKing * bulletKing)
 {
 	if (_count >= 25) return new bulletKingIdle();
+	if (bulletKing->getBulletKing().currentHp <= 3) return new bulletKingDeath();
 	return nullptr;
 }
 

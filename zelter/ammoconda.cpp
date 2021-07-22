@@ -338,57 +338,48 @@ void ammoconda::bossRecoveryMove(int count, int division, string keyValue, float
 }
 void ammoconda::collision()
 {
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
+	if (_currentHp > 3) 
 	{
 		for (int j = 0; j < AMMOCONDAMAX; ++j)
 		{
-			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
+			for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
 			{
-				_currentHp--;
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
+				{
+					_currentHp--;
+				}
 			}
-		}
-
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
-	{
-		for (int j = 0; j < AMMOCONDAMAX; ++j)
-		{
-			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
+			for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
 			{
-				_currentHp--;
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
+				{
+					_currentHp--;
+				}
 			}
-		}
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
-	{
-		for (int j = 0; j < AMMOCONDAMAX; ++j)
-		{
-			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
 			{
-				_currentHp--;
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+				{
+					_currentHp--;
+				}
 			}
-		}
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
-	{
-		for (int j = 0; j < AMMOCONDAMAX; ++j)
-		{
-			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
+			for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
 			{
-				_currentHp--;
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
+				{
+					_currentHp--;
+				}
 			}
-		}
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
-	{
-		for (int j = 0; j < AMMOCONDAMAX; ++j)
-		{
-			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
+			for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
 			{
-				_currentHp--;
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
+				{
+					_currentHp--;
+				}
 			}
 		}
 	}
+	
 }
 
 

@@ -151,41 +151,45 @@ void bulletKing::setBoss()
 
 void bulletKing::collision()
 {
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
+	if (_bulletKing.currentHp > 3) 
 	{
-		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
 		{
-			_bulletKing.currentHp--;
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
+			{
+				_bulletKing.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
+		{
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
+			{
+				_bulletKing.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+		{
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			{
+				_bulletKing.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
+		{
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
+			{
+				_bulletKing.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
+		{
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
+			{
+				_bulletKing.currentHp--;
+			}
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
-	{
-		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
-		{
-			_bulletKing.currentHp--;
-		}
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
-	{
-		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
-		{
-			_bulletKing.currentHp--;
-		}
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
-	{
-		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
-		{
-			_bulletKing.currentHp--;
-		}
-	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
-	{
-		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
-		{
-			_bulletKing.currentHp--;
-		}
-	}
+	
 
 }
 

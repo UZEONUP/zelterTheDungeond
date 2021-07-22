@@ -21,6 +21,7 @@ bulletKingState * bulletKingIdle::InputHandle(bulletKing * bulletKing)
 			break;
 		}
 	}
+	if (bulletKing->getBulletKing().currentHp <= 3) return new bulletKingDeath();
 	return nullptr;
 }
 
