@@ -6,6 +6,7 @@ HRESULT inGameMap::init()
 	IMAGEMANAGER->addFrameImage("openWorld", L"tileImg/¿ÀÇÂ¿ùµå.png", 20, 9);
 	CAMERAMANAGER->setMapCamera(BACKGROUNDX * 2, BACKGROUNDY * 2);
 
+
 	load();
 
 	return S_OK;
@@ -22,6 +23,7 @@ void inGameMap::update()
 	//_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 	/*cout << _mapMouse.x << endl;
 	cout << _mapMouse.y << endl;*/
+	cout << _tile[0].rc.left << endl;
 
 }
 

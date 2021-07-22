@@ -45,7 +45,7 @@ using namespace UJN_UTIL;
 #define WINNAME (LPCTSTR)(TEXT("젤터 더 건전드"))
 #define WINSTARTX	100
 #define WINSTARTY	50
-#define WINSIZEX	1280			
+#define WINSIZEX	1400			
 #define WINSIZEY	720
 #define BACKGROUNDX 7200
 #define BACKGROUNDY 3840

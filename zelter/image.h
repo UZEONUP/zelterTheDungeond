@@ -14,6 +14,9 @@ public:
 		int				maxFrameY;		//최대 프레임 번호(세로)
 		int				frameWidth;		//1프레임 당 가로크기
 		int				frameHeight;	//1프레임 당 세로크기
+		float				x;
+		float				y;
+
 		tagImageInfo()
 		{
 			width = 0;
@@ -24,6 +27,8 @@ public:
 			maxFrameY = 0;
 			frameWidth = 0;
 			frameHeight = 0;
+			x = 0;
+			y = 0;
 		}
 		RECT rc;
 	}IMAGE_INFO, *LPIMAGE_INFO;
@@ -82,6 +87,11 @@ public:
 	void setAlpha(const float alpha) { _alpha = alpha; }
 	void setScale(const float scale) { _scale = scale; }
 	void setAngle(const float angle) { _angle = angle; }
+
+	float getX() { return _imageInfo->x; }
+	void setX(float x) { _imageInfo->x = x; }
+	float getY() { return _imageInfo->y; }
+	void setY(float y) { _imageInfo->y = y; }
 
 	const int getMaxFrameX()const { return _imageInfo->maxFrameX; }
 	const int getMaxFrameY()const { return _imageInfo->maxFrameY; }
