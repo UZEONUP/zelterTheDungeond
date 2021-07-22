@@ -35,5 +35,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("niflheim", new niflheim);
 
 
-	SCENEMANAGER->changeScene("pick");
+	SCENEMANAGER->changeScene("niflheim");
 }

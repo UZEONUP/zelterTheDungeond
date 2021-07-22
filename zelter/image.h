@@ -62,7 +62,10 @@ public:
 		const float scaleW = 1.f, const float scaleH = 1.f,
 		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
 		const float transX = 0.f, const float transY = 0.f);
-	void frameRender2(const float x, const float y, const int frameX, const int frameY);
+	void frameRender2(const float x, const float y, const int frameX, const int frameY,
+		const float scaleW = 1.f, const float scaleH = 1.f,
+		const float degreeAngle = 0.f, const float rotateX = 0.f, const float rotateY = 0.f,
+		const float transX = 0.f, const float transY = 0.f);
 	void mainRender(const float x, const float y);
 	void miniRender(const float x, const float y,const float sourX, const float sourY, const float sourW , const float sourH);
 	//추가했습니다
