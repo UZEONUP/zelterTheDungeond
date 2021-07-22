@@ -14,7 +14,9 @@
 class stageManager : public gameNode
 {
 private:
-
+	player*			_player;
+	eggNyang*		_eggNyang;
+	niflheim*		_niflheim;
 
 public:
 	virtual HRESULT init();

@@ -2,9 +2,13 @@
 #include "eggNyang.h"
 #include "eggNyangIdle.h"
 
+#include "player.h"
+
 HRESULT eggNyang::init()
 {
 	imageAdd();
+	_player = new player;
+	_player->init();
 
 	_eggNyang.bullet = new eggNyangBullet;
 	_eggNyang.lazer = new eggNyangLazer;
@@ -27,6 +31,8 @@ HRESULT eggNyang::init()
 
 	_eggNyang.rc = RectMake(_eggNyang.x, _eggNyang.y, _eggNyang.img->getFrameWidth(), _eggNyang.img->getFrameHeight());
 
+	_invincibility = false;
+
 	return S_OK;
 }
 
@@ -40,6 +46,7 @@ void eggNyang::update()
 	_eggNyang.progressBar->update();
 
 	//=========상태 확인용=============
+	_player->update();
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _eggNyang.currentHp = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD0)) _eggNyang.direction = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD1)) _eggNyang.direction = 1;
@@ -51,6 +58,7 @@ void eggNyang::update()
 
 	inPutHandle();
 	attackPatternSign();
+	hitEggNyang();
 
 	_eggNyangState->update(this);
 
@@ -67,6 +75,8 @@ void eggNyang::render()
 	else if (_eggNyang.lazer->getEggNyangVLazer().size() != 0) _eggNyang.lazer->render();
 	else if (_eggNyang.sword->getEggNyangVSword().size() != 0) _eggNyang.sword->render();
 
+	_player->render();
+
 	_eggNyang.progressBar->render();
 }
 
@@ -78,6 +88,76 @@ void eggNyang::inPutHandle()
 		SAFE_DELETE(_eggNyangState);
 		_eggNyangState = newState;
 		_eggNyangState->enter(this);
+	}
+}
+
+void eggNyang::hitEggNyang()
+{
+	RECT temp;
+	if (_invincibility)
+	{
+		_timeCount++;
+		if (_timeCount >= _timeCountEnd)
+		{
+			_invincibility = false;
+			_timeCount = 0;
+		}
+	}
+
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletF()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_eggNyang.currentHp -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBullet()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_eggNyang.currentHp -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletG()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_eggNyang.currentHp -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletH()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_eggNyang.currentHp -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletS()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_eggNyang.currentHp -= 35;
+		}
 	}
 }
 

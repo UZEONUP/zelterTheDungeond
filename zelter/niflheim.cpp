@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "niflheim.h"
+#include "player.h"
 
 #include "niflheimIdle.h"
 
 HRESULT niflheim::init()
 {
+	//===============
+	_player = new player;
+	_player->init();
+	//==============
+
 	imageAdd();
 
 	_state = new niflheimIdle;
@@ -48,6 +54,7 @@ void niflheim::update()
 		_niflheim.icePillar->setCurrentHP(0, 0);
 	}
 	//=========
+	_player->update();
 	//================
 
 	inPutHandle();
@@ -61,10 +68,15 @@ void niflheim::update()
 	bulletUpdate();
 
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
+	hitNifleheim();
 }
 
 void niflheim::render()
 {
+	//=============
+	_player->render();
+	//===============
+
 	_state->render(this);
 
 	bulletRender();
@@ -80,6 +92,76 @@ void niflheim::inPutHandle()
 		SAFE_DELETE(_state);
 		_state = newState;
 		_state->enter(this);
+	}
+}
+
+void niflheim::hitNifleheim()
+{
+	RECT temp;
+	if (_invincibility)
+	{
+		_timeCount++;
+		if (_timeCount >= _timeCountEnd)
+		{
+			_invincibility = false;
+			_timeCount = 0;
+		}
+	}
+
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletF()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_niflheim.currentHP -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBullet()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_niflheim.currentHP -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletG()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_niflheim.currentHP -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletH()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_niflheim.currentHP -= 35;
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
+	{
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletS()[i].rc))
+		{
+			_invincibility = true;
+			_timeCount = TIMEMANAGER->getWorldTime();
+			_timeCountEnd = _timeCount + 50;
+
+			_niflheim.currentHP -= 35;
+		}
 	}
 }
 

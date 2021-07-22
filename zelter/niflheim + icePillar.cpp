@@ -55,10 +55,10 @@ void niflheimIcePillar::render()
 	{
 		for (int i = 0; i < _vIcePillar.size(); i++)
 		{
-			/*_vIcePillar[i].img->frameRender2(_vIcePillar[i].rc.left, _vIcePillar[i].rc.top,
+			_vIcePillar[i].img->frameRender2(_vIcePillar[i].rc.left, _vIcePillar[i].rc.top,
 				_vIcePillar[i].currentFrameX, _vIcePillar[i].currentFrameY,
 				1.0f, 1.0f,
-				_vIcePillar[i].angle, _vIcePillar[i].radiusX, _vIcePillar[i].radiusY);*/
+				_vIcePillar[i].angle, _vIcePillar[i].radiusX, _vIcePillar[i].radiusY);
 
 			if (KEYMANAGER->isToggleKey(VK_F1))
 			{
