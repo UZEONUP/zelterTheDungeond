@@ -46,8 +46,8 @@ void bulletKingBattle::update()
 
 void bulletKingBattle::render()
 {
-	_bulletKing->render();
 	_fishMan->render();
 	_dinosaur->render();
 	_player->render();
+	_bulletKing->render();
 }

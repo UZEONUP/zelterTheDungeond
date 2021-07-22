@@ -3,10 +3,13 @@
 #include "playerStateIdle.h"
 #include "playerDie.h"
 #include "playerHit.h"
+#include "playerAttack.h"
 
 playerState * playerJump::inputHandle(player * player)
 {
-	if(player->getPlayer().y >= WINSIZEY-100)return new playerStateIdle;
+	if(player->getPlayer().y >= WINSIZEY-100)return new playerStateIdle();
+	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
+	if (player->getPlayer().isHit == true) return new playerHit();
 	if (player->getPlayer().currentHP <= 0) return new playerDie();
 	return nullptr;
 }

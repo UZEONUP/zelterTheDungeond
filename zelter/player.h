@@ -141,4 +141,5 @@ public:
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
 	void linkNiflHeim(niflheim* niflheim) { _niflheim = niflheim; }
+	void linkEggNyang(eggNyang* eggnyang) { _eggNyang = eggnyang; }
 };

@@ -20,8 +20,6 @@ void stageManager::update()
 void stageManager::render()
 {
 	SCENEMANAGER->render();
-
-	
 }
 
 void stageManager::sceneSet()
@@ -32,6 +30,9 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("pick", new characterPick);
 	SCENEMANAGER->addScene("bulletKing", new bulletKingBattle);
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
+	SCENEMANAGER->addScene("niflheim", new niflheim);
+	SCENEMANAGER->addScene("eggnyang", new eggNyang);
 
 	SCENEMANAGER->changeScene("bulletKing");
+	
 }

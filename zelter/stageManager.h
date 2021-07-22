@@ -6,6 +6,8 @@
 #include "inGame.h"
 #include "ammocondaBattle.h"
 #include "bulletKingBattle.h"
+#include "niflheim.h"
+#include "eggNyang.h"
 
 class stageManager : public gameNode
 {

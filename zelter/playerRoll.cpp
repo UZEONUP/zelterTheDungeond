@@ -18,6 +18,8 @@ playerState * playerRoll::inputHandle(player * player)
 	{
 		return new playerRun;
 	}
+
+
 	if (player->getPlayer().currentHP <= 0) return new playerDie();
 	return nullptr;
 }
