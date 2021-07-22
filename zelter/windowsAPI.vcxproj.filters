@@ -204,9 +204,6 @@
     <ClInclude Include="mapmap.h">
       <Filter>2DGameFramework\Manager\mapTool</Filter>
     </ClInclude>
-    <ClInclude Include="saveLoadManager.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="player.h">
       <Filter>playGround\player</Filter>
     </ClInclude>
@@ -360,6 +357,9 @@
     <ClInclude Include="bulletKingBullet.h">
       <Filter>playGround\boss\bulletKing\bulletKingBullet</Filter>
     </ClInclude>
+    <ClInclude Include="tileNode.h">
+      <Filter>playGround\test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -436,9 +436,6 @@
     </ClCompile>
     <ClCompile Include="mapmap.cpp">
       <Filter>2DGameFramework\Manager\mapTool</Filter>
-    </ClCompile>
-    <ClCompile Include="saveLoadManager.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>playGround\player</Filter>
@@ -607,6 +604,9 @@
     </ClCompile>
     <ClCompile Include="bulletKingBullet.cpp">
       <Filter>playGround\boss\bulletKing\bulletKingBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="tileNode.cpp">
+      <Filter>playGround\test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

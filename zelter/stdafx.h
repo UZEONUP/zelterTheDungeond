@@ -51,7 +51,6 @@ using namespace UJN_UTIL;
 #define BACKGROUNDY 3840
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
-#include "saveLoadManager.h" // 맵맵 인쿨르드 땜시 바꿔야 하긴 함 오류 있음
 
 #define RND randomFunction::getSingleton()
 #define KEYMANAGER keyManager::getSingleton()
@@ -62,7 +61,6 @@ using namespace UJN_UTIL;
 #define INIDATA	iniDataManager::getSingleton()
 #define CAMERAMANAGER cameraManager::getSingleton()
 #define IMAGEMANAGER imageManager::getSingleton()
-#define SAVELOAD saveLoadManager::getSingleton()
 
 #define SAFE_DELETE(p)		{if(p) {delete(p); (p) = NULL;}}
 #define SAFE_RELEASE(p)		{if(p) {(p)->release(); (p) = NULL;}}
