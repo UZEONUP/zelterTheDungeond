@@ -6,10 +6,12 @@
 #include "inGameMap.h"
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
+#include "eggNyangBullet.h"
 
 class bulletKing;
 class ammoconda;
 class niflheim;
+class eggNyang;
 class playerBullet;
 
 struct tagPlayer
@@ -77,6 +79,7 @@ private:
 	bulletKing* _bulletKing;
 	ammoconda* _ammoconda;
 	niflheim* _niflheim;
+	eggNyang* _eggNyang;
 
 public:
 	HRESULT init();
@@ -137,5 +140,6 @@ public:
 	void setKeyType(bool type) { _player.isDunGreed = type; }
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
-	void linkNiflHeim(niflheim* niflheim) { _niflheim = niflheim; }
+	void linkNiflheim(niflheim* niflheim) { _niflheim = niflheim; }
+	void linkEggNyang(eggNyang* eggNyang) { _eggNyang = eggNyang; }
 };

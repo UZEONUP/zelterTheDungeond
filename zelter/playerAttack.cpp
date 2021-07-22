@@ -3,6 +3,7 @@
 #include "playerStateIdle.h"
 #include "playerRun.h"
 #include "playerRoll.h"
+#include "playerDie.h"
 
 
 playerState * playerAttack::inputHandle(player * player)
@@ -33,12 +34,9 @@ playerState * playerAttack::inputHandle(player * player)
 			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON) && KEYMANAGER->isStayKeyDown('S')) return new playerRun();
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerRoll();
 		}
-	
-	
-	
 
+		if (player->getPlayer().currentHP <= 0) return new playerDie();
 	
-
 	return nullptr;
 }
 

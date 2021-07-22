@@ -9,9 +9,9 @@
 
 eggNyangStateBase * eggNyangIdle::inputHandle(eggNyang* eggNyang)
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_F2)) return new eggNyangAttack1();
-	else if (KEYMANAGER->isOnceKeyDown(VK_F3)) return new eggNyangAttack2();
-	else if (KEYMANAGER->isOnceKeyDown(VK_F4)) return new eggNyangAttack3();
+	if (_stateEnd && _rndPattern == 0) return new eggNyangAttack1();
+	else if (_stateEnd && _rndPattern == 1) return new eggNyangAttack2();
+	else if (_stateEnd && _rndPattern == 2) return new eggNyangAttack3();
 	else if (eggNyang->getEggNyang().currentHp <= 0) return new eggNyangDie();
 
 	return nullptr;
@@ -35,7 +35,7 @@ void eggNyangIdle::update(eggNyang* eggNyang)
 		}
 	}
 
-	_randomPatternCount++;
+	if (_count >= _randomPatternCount) _stateEnd = true;
 
 }
 
@@ -49,6 +49,7 @@ void eggNyangIdle::enter(eggNyang * eggNyang)
 	else _currentFrameX = 1;
 	eggNyang->getEggNyang().rc = RectMake(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, eggNyang->getEggNyang().img->getFrameWidth(), eggNyang->getEggNyang().img->getFrameHeight());
 	_randomPatternCount = RND->getFromIntTo(0, 100);
+	_rndPattern = RND->getFromIntTo(0, 3);
 	_isMove = false;
 
 	eggNyang->setBulletFireCount(0);
@@ -60,7 +61,7 @@ void eggNyangIdle::render(eggNyang * eggNyang)
 	{
 		D2DRENDER->DrawRectangle(eggNyang->getEggNyang().rc, D2DDEFAULTBRUSH::Red, 1.0f);
 	}
-	
+
 	eggNyang->getEggNyang().img->frameRender2(eggNyang->getEggNyang().rc.left, eggNyang->getEggNyang().rc.top, _currentFrameX, _currentFrameY);
 }
 

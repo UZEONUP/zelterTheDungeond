@@ -21,11 +21,11 @@ void niflheimAttack2::update(niflheim * niflheim)
 		if (_currentFrameY == 0)
 		{
 			_currentFrameX++;
-			
+
 			if (_currentFrameX >= niflheim->getNiflheim().img->getMaxFrameX())
 			{
 				_stateEnd = true;
-				niflheim->getNiflheim().iceSpear->iceSpearFire(_ptMouse.x, _ptMouse.y);
+				niflheim->getNiflheim().iceSpear->iceSpearFire(niflheim->getPlayer()->getPlayer().x, niflheim->getPlayer()->getPlayer().y);
 			}
 			_count = 0;
 		}
@@ -35,14 +35,14 @@ void niflheimAttack2::update(niflheim * niflheim)
 			if (_currentFrameX <= 0)
 			{
 				_stateEnd = true;
-				niflheim->getNiflheim().iceSpear->iceSpearFire(_ptMouse.x, _ptMouse.y);
+				niflheim->getNiflheim().iceSpear->iceSpearFire(niflheim->getPlayer()->getPlayer().x, niflheim->getPlayer()->getPlayer().y);
 			}
 			_count = 0;
 		}
 	}
 
 	startLine.x = 50;
-	startLine.y = _ptMouse.y;
+	startLine.y = niflheim->getPlayer()->getPlayer().y;
 	endLine.x = WINSIZEX - 100;
 	endLine.y = startLine.y;
 }

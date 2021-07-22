@@ -35,7 +35,7 @@ enum NIFLHEIMPATTERN
 	ICICLE,
 	ICESPEAR,
 };
-class niflheim	: public gameNode
+class niflheim : public gameNode
 {
 	player* _player;
 
@@ -48,7 +48,7 @@ class niflheim	: public gameNode
 	float _timeCount;
 	float _timeCountEnd;
 
-public :
+public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
@@ -62,6 +62,7 @@ public :
 	void imageAdd();
 
 	void linkPlayer(player* player) { _player = player; }
+	player* getPlayer() { return _player; }
 
 	tagNiflheim getNiflheim() { return _niflheim; }
 	void setImg(image* img) { _niflheim.img = img; }

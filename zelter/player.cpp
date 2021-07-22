@@ -19,13 +19,14 @@ HRESULT player::init()
 	_playerGun.img = IMAGEMANAGER->findImage("GUN1");
 	_player.x = WINSIZEX / 2;
 	_player.y = WINSIZEY / 2;
-	_player.rc = RectMakeCenter(_player.x,_player.y, _player.img->getFrameWidth(),_player.img->getFrameHeight());
+	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	_player.shadow = RectMakeCenter(_player.x, _player.y, 100, 10);
 	_playerGun.rc = RectMakeCenter(_player.x + 30, _player.y, _playerGun.img->getWidth(), _playerGun.img->getHeight());
 	_player.currentFrameX = _player.currentFrameY = 0;
 	_player.isDeath = false;
 	_player.isDunGreed = false;
 	_player.isHit = false;
+	_player.isEnd = true;
 
 	_player.maxHP = _player.currentHP = 100;
 	_playerGun.x = _player.x;
@@ -47,14 +48,8 @@ HRESULT player::init()
 	_quickSlot = new quickSlot;
 	_quickSlot->init();
 
-	/*_niflheim = new niflheim;
-	_niflheim->init();*/
-
-	//_bulletKing = new bulletKing();
-	//_bulletKing->init();
-
 	_progressBar = new progressBar();
-	_progressBar->init(170,25,100,30);
+	_progressBar->init(170, 25, 100, 30);
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
 	return S_OK;
 }
@@ -72,30 +67,30 @@ void player::update()
 	state->update(this);
 	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	_player.shadow = RectMakeCenter(_player.x, _player.rc.bottom, 50, 10);
-	
-	
+
+
 	//플레이어 마우스 방향으로 바라보기
 	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _ptMouse.x, _ptMouse.y) * (180 / PI);
 
-		if (_playerGun.angle < 340 && 0 < _playerGun.angle) _player.direction = 0;
-		if (_playerGun.angle < 110 && 70 < _playerGun.angle) _player.direction = 2;
-		if (_playerGun.angle < 200 && 160 < _playerGun.angle) _player.direction = 1;
-		if (_playerGun.angle < 290 && 250 < _playerGun.angle) _player.direction = 3;
-		if (_playerGun.angle < 70 && 20 < _playerGun.angle) _player.direction = 5;
-		if (_playerGun.angle < 160 && 110 < _playerGun.angle) _player.direction = 4;
-		if (_playerGun.angle < 250 && 200 < _playerGun.angle) _player.direction = 7;
-		if (_playerGun.angle < 310 && 290 < _playerGun.angle) _player.direction = 6;
+	if (_playerGun.angle < 340 && 0 < _playerGun.angle) _player.direction = 0;
+	if (_playerGun.angle < 110 && 70 < _playerGun.angle) _player.direction = 2;
+	if (_playerGun.angle < 200 && 160 < _playerGun.angle) _player.direction = 1;
+	if (_playerGun.angle < 290 && 250 < _playerGun.angle) _player.direction = 3;
+	if (_playerGun.angle < 70 && 20 < _playerGun.angle) _player.direction = 5;
+	if (_playerGun.angle < 160 && 110 < _playerGun.angle) _player.direction = 4;
+	if (_playerGun.angle < 250 && 200 < _playerGun.angle) _player.direction = 7;
+	if (_playerGun.angle < 310 && 290 < _playerGun.angle) _player.direction = 6;
 
-		if (_player.isDunGreed)
-		{
-			if (_ptMouse.x < _player.x) _player.direction = 1;
-			else _player.direction = 0;
-		}
-	
+	if (_player.isDunGreed)
+	{
+		if (_ptMouse.x < _player.x) _player.direction = 1;
+		else _player.direction = 0;
+	}
+
 	_enemy.rc = RectMakeCenter(_enemy.x, _enemy.y, 100, 100);
 	_playerGun.x = _player.x;
 	_playerGun.y = _player.y;
-	_playerBullet->move(_gunType,_enemy.x,_enemy.y);
+	_playerBullet->move(_gunType, _enemy.x, _enemy.y);
 	_playerBullet->update();
 
 	{
@@ -128,44 +123,50 @@ void player::update()
 	// 보스 총탄과 플레이어 충돌 시 데미지를 입어라!
 
 
-	////불렛 킹
+	//불렛 킹
 
-	//if (!_player.isHit)
-	//{
-	//	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
-	//	{
-	//		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
-	//		{
-	//			_player.isHit = true;
-	//			hitDamage(10.f);
-	//		}
-	//	}
-	//	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet2().size(); ++i)
-	//	{
-	//		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet2()[i].rc))
-	//		{
-	//			_player.isHit = true;
-	//			hitDamage(50.f);
-	//		}
-	//	}
-	//	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet3().size(); ++i)
-	//	{
-	//		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet3()[i].rc))
-	//		{
-	//			_player.isHit = true;
-	//			hitDamage(90.f);
-	//		}
-	//	}
-	//}
-
-	
-	/*for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
+	if (SCENEMANAGER->isCurrentScene("bulletKing"))
 	{
-		if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().icePillar->getVbullet()[i].rc))
+		if (!_player.isHit && _player.isEnd)
 		{
-			_player.isHit = true;
+			for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
+			{
+				if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
+				{
+					_player.isHit = true;
+					hitDamage(10.f);
+				}
+			}
+			for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet2().size(); ++i)
+			{
+				if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet2()[i].rc))
+				{
+					_player.isHit = true;
+					hitDamage(50.f);
+				}
+			}
+			for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet3().size(); ++i)
+			{
+				if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet3()[i].rc))
+				{
+					_player.isHit = true;
+					hitDamage(90.f);
+				}
+			}
 		}
-	}*/
+	}
+
+	if (SCENEMANAGER->isCurrentScene("niflheim"))
+	{
+		for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().icePillar->getVbullet()[i].rc))
+			{
+				_player.isHit = true;
+			}
+		}
+	}
+
 
 
 
@@ -195,14 +196,14 @@ void player::update()
 
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
 	_progressBar->update();
-	
+
 }
 
 void player::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		D2DRENDER->DrawRectangle(_player.rc, D2DRenderer::DefaultBrush::Red, 1.f);
+		D2DRENDER->DrawRectangle(_player.rc, D2DRenderer::DefaultBrush::White, 1.f);
 		D2DRENDER->DrawRectangle(_player.shadow, D2DRenderer::DefaultBrush::White, 1.f);
 		D2DRENDER->DrawRectangle(_playerGun.rc, D2DRenderer::DefaultBrush::White, 1.f, _playerGun.angle);
 	}
@@ -226,20 +227,20 @@ void player::render()
 	{
 		if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 		{
-			_player.img->frameRender2(_player.rc.left , _player.rc.top, _player.currentFrameX, 0);
+			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, -1.f, _playerGun.angle);
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 		{
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
-			if(!_player.isDeath)
-			_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, 1.f, _playerGun.angle);
+			if (!_player.isDeath)
+				_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, 1.f, _playerGun.angle);
 		}
 	}
 	_progressBar->render();
 	_quickSlot->render();
-	_mouse->render(_ptMouse.x - 7, _ptMouse.y-5);
-	
+	_mouse->render(_ptMouse.x - 7, _ptMouse.y - 5);
+
 }
 
 void player::addIMAGES()
@@ -283,7 +284,7 @@ void player::addIMAGES()
 	IMAGEMANAGER->addFrameImage("gunner_right_jump", L"STATE/JUMP/gunner_right_jump.png", 6, 1);
 	IMAGEMANAGER->addFrameImage("gunner_left_downjump", L"STATE/JUMP/gunner_left_downjump.png", 6, 1);
 	IMAGEMANAGER->addFrameImage("gunner_right_downjump", L"STATE/JUMP/gunner_right_downjump.png", 6, 1);
-	
+
 
 	IMAGEMANAGER->addFrameImage("gunner_death", L"STATE/DEATH/gunner_death.png", 15, 1);
 
@@ -294,7 +295,7 @@ void player::addIMAGES()
 	IMAGEMANAGER->addImage("quickslotback", L"UI/quickslotback.png");
 	IMAGEMANAGER->addImage("quickslotfront", L"UI/quickslotfront.png");
 	IMAGEMANAGER->addImage("quickslotbase", L"UI/quickslotbase.png");
-	
+
 	IMAGEMANAGER->addImage("hpback", L"UI/hpback.png");
 	IMAGEMANAGER->addImage("hpfront", L"UI/hpfront.png");
 

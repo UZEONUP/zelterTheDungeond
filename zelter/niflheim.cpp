@@ -7,9 +7,6 @@
 HRESULT niflheim::init()
 {
 	//===============
-	_player = new player;
-	_player->init();
-	_player->linkNiflHeim(this);
 	//==============
 
 	imageAdd();
@@ -55,7 +52,6 @@ void niflheim::update()
 		_niflheim.icePillar->setCurrentHP(0, 0);
 	}
 	//=========
-	_player->update();
 	//================
 
 	inPutHandle();
@@ -75,7 +71,6 @@ void niflheim::update()
 void niflheim::render()
 {
 	//=============
-	_player->render();
 	//===============
 
 	_state->render(this);
@@ -121,6 +116,16 @@ void niflheim::hitNifleheim()
 
 			_niflheim.currentHP -= 35;
 		}
+		/*if (!_invincibility && OBB(_niflheim.icePillar->getVIcePillar()[i].rotateCollsion, )
+		{ 회전충돌 체크 해야함...
+			_invincibility = true;
+				_timeCount = TIMEMANAGER->getWorldTime();
+				_timeCountEnd = _timeCount + 50;
+				_player->getPlayerBullet()->releaseF(i);
+
+
+			_niflheim.icePillar->setCurrentHP(i, _niflheim.icePillar->getVIcePillar()[i].currentHP - 30);
+		}*/
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); i++)
 	{

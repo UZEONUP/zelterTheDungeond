@@ -75,7 +75,7 @@ void niflheimAttack1::enter(niflheim * niflheim)
 			startPoint.x = 100 + (i / 2 * 200);
 			endPoint.x = startPoint.x;
 		}
-		
+
 		startPoint.y = 50;
 		endPoint.y = WINSIZEY - 50;
 

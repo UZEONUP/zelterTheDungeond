@@ -1,5 +1,6 @@
 #pragma once
 #include "state.h"
+#include "player.h"
 
 class niflheim;
 
@@ -10,7 +11,7 @@ class niflheimAttack3 : public state
 	float _targetX, _targetY;
 	int _icePillar1, _icePillar2;
 
-public :
+public:
 	virtual state* inputHandle(niflheim* niflheim);
 	virtual void update(niflheim* niflheim);
 	virtual void enter(niflheim* niflheim);
