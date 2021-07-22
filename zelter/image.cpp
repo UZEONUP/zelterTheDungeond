@@ -139,7 +139,6 @@ void image::render(const float x, const float y,
 	D2D1::Matrix3x2F rotateMatrix = D2D1::Matrix3x2F::Rotation(-degreeAngle, D2D1::Point2F(x + rotateX, y + rotateY));
 	D2D1::Matrix3x2F transMatrix = D2D1::Matrix3x2F::Translation(transX, transY);
 
-
 	D2D1_RECT_F viewArea = D2D1::RectF(x, y, x + _imageInfo->width, y + _imageInfo->height);
 
 	D2DRENDERTARGET->SetTransform(scaleMatrix * rotateMatrix * transMatrix);

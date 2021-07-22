@@ -36,6 +36,7 @@ public:
 	void updateCamera(POINT mouse);		
 	//그냥 이 함수 자체로 쓰는 용
 	void updateCamera(POINT mouse,POINT mouse2, int speed =1.f);	
+	void updateCamera(POINT mouse,POINT mouse2,float x,float y);	
 
 	//맵 중앙 기준
 	void updateCamera(RECT& player, float playerX, float playerY);

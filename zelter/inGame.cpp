@@ -24,8 +24,12 @@ void inGame::release()
 void inGame::update()
 {
 	_player->setKeyType(false);
-	//CAMERAMANAGER->updateCamera(_player->getPlayer().x, _player->getPlayer().y);
-	CAMERAMANAGER->updateCameraW(_player->getRect(),_player->getPlayer().x, _player->getPlayer().y,0.1,0.9);
+	CAMERAMANAGER->updateCamera(_player->getPlayer().x, _player->getPlayer().y);
+	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse,_player->getPlayer().x,_player->getPlayer().y);
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
+	//CAMERAMANAGER->updateCameraW(_player->getRect(),_player->getPlayer().x, _player->getPlayer().y,0.1,0.9);
 
 	for (int i = 0; i < TILEX*TILEY; i++)
 	{

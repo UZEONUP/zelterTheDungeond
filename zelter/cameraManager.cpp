@@ -116,6 +116,61 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2, int speed)
 	}
 }
 
+void cameraManager::updateCamera(POINT mouse, POINT mouse2,float x, float y)
+{
+	//마우스(절대 좌표)
+	if (mouse2.x - _camera.width / 8 < 0)
+	{
+		_x = 0;
+	}
+	else if (mouse2.x + _camera.width / 8 > _map.width)
+	{
+		_x = _map.width - _camera.width;
+	}
+	else
+	{
+		if (0 < mouse.x && mouse.x < WINSIZEX/2)
+		{
+			_x -= (WINSIZEX *0.5- mouse.x);
+			if (mouse.x < WINSIZEX*0.3)
+			{
+			_x = x - (_camera.width*0.7);
+			if (_x < 0)	_x = 0;
+			}
+			if (_x < 0)	_x = 0;
+		}
+		else if (WINSIZEX - (WINSIZEX/2) < mouse.x && mouse.x < WINSIZEX)
+		{
+			_x += (mouse.x - WINSIZEX*0.5);
+			if (mouse.x > WINSIZEX - WINSIZEX*0.3)_x = x - (_camera.width*0.3);
+			if (_x > _map.width)_x = _map.width - _camera.width;
+		}
+	}
+	if (mouse2.y - _camera.height / 8 < 0)
+	{
+		_y = 0;
+	}
+	else if (mouse2.y + _camera.height / 8 > _map.height)
+	{
+		_y = _map.height - _camera.height;
+	}
+	else
+	{
+		if (0 < mouse.y && mouse.y < WINSIZEY / 2)
+		{
+			_y -= (WINSIZEY *0.5 - mouse.y);
+			if (mouse.y < WINSIZEY*0.3)_y = y - (_camera.height*0.7);
+			if (_y < 0)	_y = 0;
+		}
+		else if (WINSIZEY - (WINSIZEY / 2) < mouse.y && mouse.y < WINSIZEY)
+		{
+			_y += (mouse.y - WINSIZEY * 0.5);
+			if (mouse.y > WINSIZEY - WINSIZEY * 0.3)_y = y - (_camera.height*0.3);
+			if (_y > _map.height)_y = _map.height- _camera.height;
+		}
+	}
+}
+
 void cameraManager::updateCamera(RECT& player, float playerX, float playerY)
 {
 	//==========================================
@@ -252,7 +307,6 @@ void cameraManager::updateCameraW(RECT player,float x, float y, float ratio1, fl
 		}
 		else if (x > (_camera.width * ratio2))
 		{
-			cout << "dlakjfd" << endl;
 			_x = x - (_camera.width*ratio2);
 		}
 		else
