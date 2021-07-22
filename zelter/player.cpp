@@ -2,7 +2,10 @@
 #include "player.h"
 #include "playerStateIdle.h"
 #include "playerBullet.h"
-
+#include "ammoconda.h"
+#include "eggNyang.h"
+#include "bulletKing.h"
+#include "niflheim.h"
 
 
 
@@ -44,6 +47,12 @@ HRESULT player::init()
 	_quickSlot = new quickSlot;
 	_quickSlot->init();
 
+	/*_niflheim = new niflheim;
+	_niflheim->init();*/
+
+	//_bulletKing = new bulletKing();
+	//_bulletKing->init();
+
 	_progressBar = new progressBar();
 	_progressBar->init(170,25,100,30);
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
@@ -56,6 +65,7 @@ void player::release()
 
 void player::update()
 {
+	RECT temp;
 	_count++;
 
 	inputHandle();
@@ -63,16 +73,7 @@ void player::update()
 	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	_player.shadow = RectMakeCenter(_player.x, _player.rc.bottom, 50, 10);
 	
-	/*RECT temp;
-	if (IntersectRect(&temp, &_player.rc, &_enemy.rc))
-	{
-		_player.isHit = true;
-	}
-	if (_count >= 30)
-	{
-		_player.isHit = false;
-		_count = 0;
-	}*/
+	
 	//플레이어 마우스 방향으로 바라보기
 	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _ptMouse.x, _ptMouse.y) * (180 / PI);
 
@@ -123,6 +124,51 @@ void player::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_F9))_player.currentHP -= 10;
 	if (KEYMANAGER->isOnceKeyDown(VK_DELETE)) _player.isDunGreed = true;
 
+
+	// 보스 총탄과 플레이어 충돌 시 데미지를 입어라!
+
+
+	//불렛 킹
+
+	if (!_player.isHit)
+	{
+		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+		}
+		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet2().size(); ++i)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet2()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(50.f);
+			}
+		}
+		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet3().size(); ++i)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet3()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(90.f);
+			}
+		}
+	}
+
+	
+	/*for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
+	{
+		if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().icePillar->getVbullet()[i].rc))
+		{
+			_player.isHit = true;
+		}
+	}*/
+
+
+
 	_quickSlot->update();
 
 	if (_quickSlot->getQuickslotisOn(0))
@@ -145,6 +191,8 @@ void player::update()
 	{
 		_gunType = FLAMETHROWER;
 	}
+
+
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
 	_progressBar->update();
 	
@@ -191,6 +239,7 @@ void player::render()
 	_progressBar->render();
 	_quickSlot->render();
 	_mouse->render(_ptMouse.x - 7, _ptMouse.y-5);
+	
 }
 
 void player::addIMAGES()
@@ -262,6 +311,11 @@ void player::inputHandle() //스테이트 호출
 		state = newState;
 		state->enter(this);
 	}
+}
+
+float player::hitDamage(float damage)
+{
+	return _player.currentHP -= damage;
 }
 
 

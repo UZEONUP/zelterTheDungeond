@@ -1,18 +1,38 @@
 #include "stdafx.h"
 #include "playerBullet.h"
-
 #include "player.h"
+
 
 HRESULT playerBullet::init()
 {
 	_player = new player;
 
-	
 	return S_OK;
 }
 
-void playerBullet::release()
+void playerBullet::releaseBullet(int index)
 {
+	_vBulletN.erase(_vBulletN.begin() + index);
+}
+
+void playerBullet::releaseS(int index)
+{
+	_vBulletS.erase(_vBulletS.begin() + index);
+}
+
+void playerBullet::releaseH(int index)
+{
+	_vBulletH.erase(_vBulletH.begin() + index);
+}
+
+void playerBullet::releaseG(int index)
+{
+	_vBulletG.erase(_vBulletG.begin() + index);
+}
+
+void playerBullet::releaseF(int index)
+{
+	_vBulletF.erase(_vBulletF.begin() + index);
 }
 
 void playerBullet::update()
@@ -31,11 +51,11 @@ void playerBullet::render()
 {
 	
 
-	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
+	for (_viBulletN = _vBulletN.begin(); _viBulletN != _vBulletN.end(); ++_viBulletN)
 	{
-		_viBullet->img->render(_viBullet->x, _viBullet->y, 1.f, 1.f, _viBullet->angle * 180 / PI, _viBullet->img->getWidth() / 2, _viBullet->img->getHeight() / 2);
+		_viBulletN->img->render(_viBulletN->x, _viBulletN->y, 1.f, 1.f, _viBulletN->angle * 180 / PI, _viBulletN->img->getWidth() / 2, _viBulletN->img->getHeight() / 2);
 		if(KEYMANAGER->isToggleKey(VK_TAB))
-		D2DRENDER->DrawRectangle(_viBullet->rc, D2DRenderer::DefaultBrush::White, 1.f);
+		D2DRENDER->DrawRectangle(_viBulletN->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
 	
@@ -85,7 +105,7 @@ void playerBullet::fire(float x, float y, float angle, float speed, int type, fl
 		bullet.img = IMAGEMANAGER->findImage("bullet2");
 		bullet.range = WINSIZEX;
 		bullet.bulletMax = 50;
-		if (bullet.bulletMax < _vBullet.size()) return;
+		if (bullet.bulletMax < _vBulletN.size()) return;
 		bullet.speed = speed;
 		bullet.radius = bullet.img->getWidth() / 2;
 		bullet.x = bullet.fireX = cosf(angle)* 30 + x;
@@ -93,7 +113,7 @@ void playerBullet::fire(float x, float y, float angle, float speed, int type, fl
 		bullet.angle = angle;
 		bullet.damage = 10;
 		bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.img->getWidth(), bullet.img->getHeight());
-		_vBullet.push_back(bullet);
+		_vBulletN.push_back(bullet);
 		break;
 
 	case SHOTGUN:
@@ -166,7 +186,7 @@ void playerBullet::fire(float x, float y, float angle, float speed, int type, fl
 
 
 void playerBullet::move(int type, float x, float y)
-{	
+{
 	if (_vBulletH.size() != 0)
 	{
 		for (_viBulletH = _vBulletH.begin(); _viBulletH != _vBulletH.end();)
@@ -191,6 +211,7 @@ void playerBullet::move(int type, float x, float y)
 					_viBulletH->img->getWidth(),
 					_viBulletH->img->getHeight());
 			}
+
 			if (_viBulletH->range < GetDistance(_viBulletH->fireX, _viBulletH->fireY, _viBulletH->x, _viBulletH->y))
 			{
 				_viBulletH = _vBulletH.erase(_viBulletH);
@@ -203,18 +224,6 @@ void playerBullet::move(int type, float x, float y)
 	{
 		for (_viBulletG = _vBulletG.begin(); _viBulletG != _vBulletG.end(); ++_viBulletG)
 		{
-
-			/*if (_ptMouse.y > _player->getPlayer().y)
-			{
-				_viBulletG->x += cosf(_viBulletG->angle) * _viBulletG->speed;
-				_viBulletG->y += -sinf(_viBulletG->angle) * (_viBulletG->speed + _viBulletG->power);
-				_viBulletG->power -= _viBulletG->gravity;
-				_viBulletG->gravity += 0.5;
-				_viBulletG->rc = RectMakeCenter(_viBulletG->x, _viBulletG->y,
-					_viBulletG->img->getWidth(),
-					_viBulletG->img->getHeight());
-			}
-			else*/
 			{ _viBulletG->x += cosf(_viBulletG->angle) * _viBulletG->speed;
 			_viBulletG->y -= -sinf(_viBulletG->angle) * (_viBulletG->speed + _viBulletG->power);
 			_viBulletG->power -= _viBulletG->gravity;
@@ -223,7 +232,6 @@ void playerBullet::move(int type, float x, float y)
 				_viBulletG->img->getWidth(),
 				_viBulletG->img->getHeight());
 			}
-			
 		
 			if (_viBulletG->range < GetDistance(_viBulletG->fireX, _viBulletG->fireY, _viBulletG->x, _viBulletG->y))
 			{
@@ -252,23 +260,21 @@ void playerBullet::move(int type, float x, float y)
 		}
 
 	}
-	if (_vBullet.size() != 0)
+	if (_vBulletN.size() != 0)
 	{
-		for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
+		for (_viBulletN = _vBulletN.begin(); _viBulletN != _vBulletN.end();)
 		{
-			_viBullet->x += cosf(_viBullet->angle) * _viBullet->speed;
-			_viBullet->y += -sinf(_viBullet->angle) * _viBullet->speed;
-			_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y,
-				_viBullet->img->getWidth(),
-				_viBullet->img->getHeight());
+			_viBulletN->x += cosf(_viBulletN->angle) * _viBulletN->speed;
+			_viBulletN->y += -sinf(_viBulletN->angle) * _viBulletN->speed;
+			_viBulletN->rc = RectMakeCenter(_viBulletN->x, _viBulletN->y,
+				_viBulletN->img->getWidth(),
+				_viBulletN->img->getHeight());
 
-			//_range += _viBullet->power;
-
-			if (_viBullet->range < GetDistance(_viBullet->fireX, _viBullet->fireY, _viBullet->x, _viBullet->y))
+			if (_viBulletN->range < GetDistance(_viBulletN->fireX, _viBulletN->fireY, _viBulletN->x, _viBulletN->y))
 			{
-				_viBullet = _vBullet.erase(_viBullet);
+				_viBulletN = _vBulletN.erase(_viBulletN);
 			}
-			else ++_viBullet;
+			else ++_viBulletN;
 		}
 
 	}
@@ -281,8 +287,6 @@ void playerBullet::move(int type, float x, float y)
 		_viBulletS->rc = RectMakeCenter(_viBulletS->x, _viBulletS->y,
 			_viBulletS->img->getWidth(),
 			_viBulletS->img->getHeight());
-
-		//_range += _viBullet->power;
 
 		if (_viBulletS->range < GetDistance(_viBulletS->fireX, _viBulletS->fireY, _viBulletS->x, _viBulletS->y))
 		{

@@ -230,7 +230,7 @@ void niflheimIcePillar::bulletMove()
 
 void niflheimIcePillar::releaseBullet(int index)
 {
-	_vIcePillar[index].img = IMAGEMANAGER->findImage("nullImg");
+	_vBullet.erase(_vBullet.begin() + index);
 }
 
 void niflheimIcePillar::bulletRender()

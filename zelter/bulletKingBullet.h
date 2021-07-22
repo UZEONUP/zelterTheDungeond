@@ -49,6 +49,13 @@ public:
 	void bulletFire3(float x, float y);
 	void bulletMove3();
 
+	vector<tagBulletKingBullet>			    getvBulletKingBullet1() { return _vBulletKingBullet1; }
+	vector<tagBulletKingBullet>::iterator   getviBulletKingBullet1() { return  _viBulletKingBullet1; }
 
+	vector<tagBulletKingBullet>				getvBulletKingBullet2() { return _vBulletKingBullet2; }
+	vector<tagBulletKingBullet>::iterator   getviBulletKingBullet2() { return _viBulletKingBullet2; }
+
+	vector<tagBulletKingBullet>				getvBulletKingBullet3() { return _vBulletKingBullet3; }
+	vector<tagBulletKingBullet>::iterator   getviBulletKingBullet3() { return _viBulletKingBullet3; }
 };
 

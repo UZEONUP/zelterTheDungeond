@@ -338,11 +338,11 @@ void ammoconda::bossRecoveryMove(int count, int division, string keyValue, float
 }
 void ammoconda::collision()
 {
-	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); ++i)
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
 	{
 		for (int j = 0; j < AMMOCONDAMAX; ++j)
 		{
-			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBullet()[i].rc))
+			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
 			{
 				_currentHp--;
 			}
