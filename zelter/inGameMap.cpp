@@ -84,7 +84,10 @@ void inGameMap::load()
 	file = CreateFile("openWorld.map", GENERIC_READ, NULL, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	ReadFile(file, _tile, sizeof(tagTile)*TILEX*TILEY, &read, NULL);
-	//ReadFile(file, _pos, sizeof(int)*2, &read, NULL);
+	ReadFile(file, _pos, sizeof(int) * 2, &read, NULL);
+
+	memset(_attribute, 0, sizeof(DWORD) * TILEX * TILEY);
+	memset(_pos, 0, sizeof(int) * 2);
 
 	////타일을 불러온 다음 타일이 어떤 지형인지 오브젝트인지 분별
 	////해당 타일에 속성 부여

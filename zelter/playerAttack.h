@@ -8,7 +8,8 @@ class playerAttack : public playerState
 	playerBullet* _playerBullet;
 
 	float _pressPower;
-
+	//========================
+	POINT _mapMouse;
 public :
 	virtual playerState* inputHandle(player* player);
 	virtual void update(player* player);
