@@ -8,7 +8,7 @@
 eggNyangStateBase * eggNyangAttack1::inputHandle(eggNyang * eggNyang)
 {
 	//나중에는 스테이트 엔드로 받아올 거예요
-	if (KEYMANAGER->isOnceKeyDown(VK_F5)) return new eggNyangIdle();
+	if (_stateEnd) return new eggNyangIdle();
 	else if (eggNyang->getEggNyang().currentHp <= 0) return new eggNyangDie();
 	return nullptr;
 }
@@ -22,12 +22,12 @@ void eggNyangAttack1::update(eggNyang * eggNyang)
 		if (_currentFrameY == 0)
 		{
 			_currentFrameX++;
-			if (_currentFrameX >= eggNyang->getEggNyang().img->getMaxFrameX()) _currentFrameX = 1;
+			if (_currentFrameX >= eggNyang->getEggNyang().img->getMaxFrameX()) _stateEnd = true;
 		}
 		else if (_currentFrameY == 1)
 		{
 			_currentFrameX--;
-			if (_currentFrameX <= 0) _currentFrameX = 0;
+			if (_currentFrameX <= 0)  _stateEnd = true;
 		}
 	}
 
@@ -51,8 +51,8 @@ void eggNyangAttack1::enter(eggNyang * eggNyang)
 
 	_eggNyangPositionPattern = RND->getFromIntTo(1, 5);
 	movePosition(eggNyang, _eggNyangPositionPattern);
-	
-	eggNyang->getEggNyang().sword->setSword(_ptMouse.x, _ptMouse.y);
+
+	eggNyang->getEggNyang().sword->setSword(eggNyang->getPlayer()->getPlayer().x, eggNyang->getPlayer()->getPlayer().y);
 }
 
 void eggNyangAttack1::render(eggNyang * eggNyang)
@@ -76,19 +76,19 @@ void eggNyangAttack1::movePosition(eggNyang* eggNyang, int eggNyangPositionPatte
 		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, 200, 200);
 		break;
 	case 2:
-		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, 
+		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y,
 			WINSIZEX - (200 + eggNyang->getEggNyang().img->getFrameWidth()), 200);
 		break;
 	case 3:
-		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, 
+		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y,
 			WINSIZEX / 2 - 50, WINSIZEY / 2 - 200);
 		break;
 	case 4:
-		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, 
+		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y,
 			200, WINSIZEY - (200 + eggNyang->getEggNyang().img->getFrameHeight()));
 		break;
 	case 5:
-		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, 
+		_angle = GetAngle(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y,
 			WINSIZEX - (200 + eggNyang->getEggNyang().img->getFrameWidth()), WINSIZEY - (200 + eggNyang->getEggNyang().img->getFrameHeight()));
 		break;
 	}

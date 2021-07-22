@@ -8,7 +8,7 @@
 
 eggNyangStateBase * eggNyangAttack2::inputHandle(eggNyang * eggNyang)
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_F5)) return new eggNyangIdle();
+	if (_stateEnd) return new eggNyangIdle();
 	else if (eggNyang->getEggNyang().currentHp <= 0) return new eggNyangDie();
 
 	return nullptr;
@@ -23,12 +23,12 @@ void eggNyangAttack2::update(eggNyang * eggNyang)
 		if (_currentFrameY == 0)
 		{
 			_currentFrameX++;
-			if (_currentFrameX >= eggNyang->getEggNyang().img->getMaxFrameX()) _currentFrameX = 1;
+			if (_currentFrameX >= eggNyang->getEggNyang().img->getMaxFrameX())  _stateEnd = true;
 		}
 		else if (_currentFrameY == 1)
 		{
 			_currentFrameX--;
-			if (_currentFrameX <= 0) _currentFrameX = 0;
+			if (_currentFrameX <= 0)  _stateEnd = true;
 		}
 	}
 
@@ -52,7 +52,7 @@ void eggNyangAttack2::enter(eggNyang * eggNyang)
 	_eggNyangPositionPattern = RND->getFromIntTo(1, 5);
 	movePosition(eggNyang, _eggNyangPositionPattern);
 
-	eggNyang->getEggNyang().lazer->lazerReady(eggNyang->getEggNyang().x, eggNyang->getEggNyang().y, eggNyang->getEggNyang().direction);
+	eggNyang->getEggNyang().lazer->lazerReady(eggNyang->getPlayer()->getPlayer().x, eggNyang->getPlayer()->getPlayer().y, eggNyang->getEggNyang().direction);
 }
 
 void eggNyangAttack2::render(eggNyang * eggNyang)

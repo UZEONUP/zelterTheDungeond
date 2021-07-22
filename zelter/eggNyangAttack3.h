@@ -1,5 +1,6 @@
 #pragma once
 #include "eggNyangStateBase.h"
+#include "player.h"
 
 class eggNyang;
 

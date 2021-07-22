@@ -366,6 +366,12 @@
     <ClInclude Include="inGameMap.h">
       <Filter>playGround\test\inGame</Filter>
     </ClInclude>
+    <ClInclude Include="eggNyangBattle.h">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimBattle.h">
+      <Filter>playGround\boss\niflheim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -616,6 +622,12 @@
     </ClCompile>
     <ClCompile Include="inGameMap.cpp">
       <Filter>playGround\test\inGame</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangBattle.cpp">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimBattle.cpp">
+      <Filter>playGround\boss\niflheim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

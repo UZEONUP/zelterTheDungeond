@@ -26,8 +26,8 @@ void niflheimAttack3::update(niflheim * niflheim)
 			{
 				_stateEnd = true;
 
-				_targetX = _ptMouse.x;
-				_targetY = _ptMouse.y;
+				_targetX = niflheim->getPlayer()->getPlayer().x;
+				_targetY = niflheim->getPlayer()->getPlayer().y;
 
 				niflheim->getNiflheim().icePillar->fireBullet1(_targetX, _targetY, _icePillar1);
 				niflheim->getNiflheim().icePillar->fireBullet2(_targetX, _targetY, _icePillar2);
@@ -40,8 +40,8 @@ void niflheimAttack3::update(niflheim * niflheim)
 			{
 				_stateEnd = true;
 
-				_targetX = _ptMouse.x;
-				_targetY = _ptMouse.y;
+				_targetX = niflheim->getPlayer()->getPlayer().x;
+				_targetY = niflheim->getPlayer()->getPlayer().y;
 
 				niflheim->getNiflheim().icePillar->fireBullet1(_targetX, _targetY, _icePillar1);
 				niflheim->getNiflheim().icePillar->fireBullet2(_targetX, _targetY, _icePillar2);
@@ -52,7 +52,7 @@ void niflheimAttack3::update(niflheim * niflheim)
 
 void niflheimAttack3::enter(niflheim * niflheim)
 {
-	_currentStateName  = "niflheimIcePillar";
+	_currentStateName = "niflheimIcePillar";
 	niflheim->setImg(IMAGEMANAGER->findImage("niflheimAttack"));
 	if (niflheim->getNiflheim().direction == 0)
 	{
@@ -66,7 +66,7 @@ void niflheimAttack3::enter(niflheim * niflheim)
 	}
 	_count = 0;
 	_stateEnd = false;
-	
+
 	_icePillar1 = RND->getFromIntTo(0, 3);
 	_icePillar2 = RND->getFromIntTo(0, 3);
 	if (_icePillar1 == _icePillar2) _icePillar2 = RND->getFromIntTo(0, 3);
@@ -89,19 +89,19 @@ void niflheimAttack3::render(niflheim * niflheim)
 
 void niflheimAttack3::iceBulletFire(niflheim* niflheim, float targetX, float targetY)
 {
-//	for (int i = 0; i < 100; i++)
-//	{
-//		/*_bulletCount++;
-//	if (_bulletCount % 10 == 0 && _fireBullet <= 20)
-//	{
-//*/		if (i % 5 == 0)
-//		{
-//			niflheim->getNiflheim().icePillar->fireBullet1(_targetX, _targetY, _icePillar1);
-//			niflheim->getNiflheim().icePillar->fireBullet2(_targetX, _targetY, _icePillar2);
-//		}
-//		
-//		/*_fireBullet++;
-//	}*/
-//	}
-	
+	//	for (int i = 0; i < 100; i++)
+	//	{
+	//		/*_bulletCount++;
+	//	if (_bulletCount % 10 == 0 && _fireBullet <= 20)
+	//	{
+	//*/		if (i % 5 == 0)
+	//		{
+	//			niflheim->getNiflheim().icePillar->fireBullet1(_targetX, _targetY, _icePillar1);
+	//			niflheim->getNiflheim().icePillar->fireBullet2(_targetX, _targetY, _icePillar2);
+	//		}
+	//		
+	//		/*_fireBullet++;
+	//	}*/
+	//	}
+
 }

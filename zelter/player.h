@@ -6,10 +6,12 @@
 #include "inGameMap.h"
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
+#include "eggNyangBullet.h"
 
 class bulletKing;
 class ammoconda;
 class niflheim;
+class eggNyang;
 class playerBullet;
 
 struct tagPlayer
@@ -77,6 +79,7 @@ private:
 	bulletKing* _bulletKing;
 	ammoconda* _ammoconda;
 	niflheim* _niflheim;
+	eggNyang* _eggNyang;
 
 public:
 	HRESULT init();

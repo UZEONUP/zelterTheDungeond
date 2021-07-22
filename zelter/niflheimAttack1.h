@@ -9,7 +9,7 @@ class niflheimAttack1 : public state
 	vector<POINT>		_vStartPoint;
 	vector<POINT>		_vEndPoint;
 
-public :
+public:
 	virtual state* inputHandle(niflheim* niflheim);
 	virtual void update(niflheim* niflheim);
 	virtual void enter(niflheim* niflheim);

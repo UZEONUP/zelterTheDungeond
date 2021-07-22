@@ -5,9 +5,9 @@ class eggNyang;
 
 class eggNyangIdle : public eggNyangStateBase
 {
-	
+	int	_rndPattern;
 
-public :
+public:
 	virtual eggNyangStateBase* inputHandle(eggNyang* eggNyang);
 	virtual void update(eggNyang* eggNyang);
 	virtual void enter(eggNyang* eggNyang);

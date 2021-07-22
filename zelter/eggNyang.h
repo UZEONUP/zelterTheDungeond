@@ -61,6 +61,7 @@ public:
 	void attackPatternSign();
 
 	void linkPlayer(player* player) { _player = player; }
+	player* getPlayer() { return _player; }
 
 	tagEggNyang getEggNyang() { return _eggNyang; }
 	void setImage(image* eggNyangImage) { _eggNyang.img = eggNyangImage; }

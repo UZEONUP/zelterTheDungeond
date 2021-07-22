@@ -7,8 +7,7 @@
 HRESULT eggNyang::init()
 {
 	imageAdd();
-	_player = new player;
-	_player->init();
+
 
 	_eggNyang.bullet = new eggNyangBullet;
 	_eggNyang.lazer = new eggNyangLazer;
@@ -46,13 +45,12 @@ void eggNyang::update()
 	_eggNyang.progressBar->update();
 
 	//=========상태 확인용=============
-	_player->update();
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _eggNyang.currentHp = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD0)) _eggNyang.direction = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD1)) _eggNyang.direction = 1;
 	//================================
 
-	float directAngle = GetAngle(_ptMouse.x, _ptMouse.y, _eggNyang.x, _eggNyang.y);
+	float directAngle = GetAngle(_player->getPlayer().x, _player->getPlayer().y, _eggNyang.x, _eggNyang.y);
 	if (directAngle > PI / 2 && directAngle < 3 * PI / 2) _eggNyang.direction = 0;
 	else _eggNyang.direction = 1;
 
@@ -74,8 +72,6 @@ void eggNyang::render()
 	if (_eggNyang.bullet->getEggNyangVBullet().size() != 0) _eggNyang.bullet->render();
 	else if (_eggNyang.lazer->getEggNyangVLazer().size() != 0) _eggNyang.lazer->render();
 	else if (_eggNyang.sword->getEggNyangVSword().size() != 0) _eggNyang.sword->render();
-
-	_player->render();
 
 	_eggNyang.progressBar->render();
 }
@@ -192,11 +188,11 @@ void eggNyang::attackPatternSign()
 	else if (_eggNyang.lazer->getEggNyangVLazer().size() != 0) _eggNyang.lazer->update();
 	else if (_eggNyang.sword->getEggNyangVSword().size() != 0)
 	{
-		_eggNyang.sword->moveSword(_ptMouse.x, _ptMouse.y, _eggNyangState->getIsMove()); //공격을 생성했다가 보스 움직임이 끝나면 발사
+		_eggNyang.sword->moveSword(_player->getPlayer().x, _player->getPlayer().y, _eggNyangState->getIsMove()); //공격을 생성했다가 보스 움직임이 끝나면 발사
 	}
 
 	if (_eggNyangState->getStateName() == "eggNyangAttack3" && !_eggNyangState->getIsMove()
-		&& _bulletFireCount < BULLETMAX )
+		&& _bulletFireCount < BULLETMAX)
 	{
 		_bulletFireCount++;
 		_eggNyang.bullet->bulletFire((_eggNyang.rc.left + _eggNyang.rc.right) / 2, (_eggNyang.rc.top + _eggNyang.rc.bottom) / 2, _bulletFireCount);

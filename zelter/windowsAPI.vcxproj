@@ -175,6 +175,7 @@
     <ClInclude Include="eggNyangAttack1.h" />
     <ClInclude Include="eggNyangAttack2.h" />
     <ClInclude Include="eggNyangAttack3.h" />
+    <ClInclude Include="eggNyangBattle.h" />
     <ClInclude Include="eggNyangBullet.h" />
     <ClInclude Include="eggNyangDie.h" />
     <ClInclude Include="eggNyangIdle.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="niflheimAttack1.h" />
     <ClInclude Include="niflheimAttack2.h" />
     <ClInclude Include="niflheimAttack3.h" />
+    <ClInclude Include="niflheimBattle.h" />
     <ClInclude Include="niflheimBullet.h" />
     <ClInclude Include="niflheimDie.h" />
     <ClInclude Include="niflheimEnter.h" />
@@ -263,6 +265,7 @@
     <ClCompile Include="eggNyangAttack1.cpp" />
     <ClCompile Include="eggNyangAttack2.cpp" />
     <ClCompile Include="eggNyangAttack3.cpp" />
+    <ClCompile Include="eggNyangBattle.cpp" />
     <ClCompile Include="eggNyangBullet.cpp" />
     <ClCompile Include="eggNyangDie.cpp" />
     <ClCompile Include="eggNyangIdle.cpp" />
@@ -284,6 +287,7 @@
     <ClCompile Include="niflheimAttack1.cpp" />
     <ClCompile Include="niflheimAttack2.cpp" />
     <ClCompile Include="niflheimAttack3.cpp" />
+    <ClCompile Include="niflheimBattle.cpp" />
     <ClCompile Include="niflheimDie.cpp" />
     <ClCompile Include="niflheimEnter.cpp" />
     <ClCompile Include="niflheimIdle.cpp" />
