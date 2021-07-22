@@ -9,9 +9,9 @@ HRESULT inGame::init()
 
 	_player = new player;
 	_player->init();
+
 	_player->setKeyType(false);
 	_player->linkOpenWorldMap(_inGameMap);
-
 
 	return S_OK;
 }
