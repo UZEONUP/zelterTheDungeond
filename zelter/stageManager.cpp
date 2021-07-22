@@ -33,7 +33,8 @@ void stageManager::render()
 void stageManager::sceneSet()
 {
 	SCENEMANAGER->addScene("title", new testScene);
-	SCENEMANAGER->addScene("mapmap", new mapmap);
+	//SCENEMANAGER->addScene("mapmap", new mapmap);
+	SCENEMANAGER->addScene("mapmap", new inGame);
 	SCENEMANAGER->addScene("player", new player);
 	SCENEMANAGER->addScene("pick", new characterPick);
 	SCENEMANAGER->addScene("eggNyang", new eggNyang);
@@ -42,5 +43,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
 
 
-	SCENEMANAGER->changeScene("eggNyang");
+	SCENEMANAGER->changeScene("mapmap");
 }
