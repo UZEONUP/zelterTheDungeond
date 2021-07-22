@@ -15,7 +15,7 @@ playerState * playerAttack::inputHandle(player * player)
 			if (player->getPlayerGuntype() == GRENADE)
 			{
 				player->getPlayerBullet()->fire(player->getPlayerGunX(), player->getPlayerGunY(),
-					GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y), 20.0f, player->getPlayerGuntype(), _pressPower);
+					GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 20.0f, player->getPlayerGuntype(), _pressPower);
 			}
 
 			return new playerStateIdle();
@@ -42,6 +42,9 @@ playerState * playerAttack::inputHandle(player * player)
 
 void playerAttack::update(player * player)
 {
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
@@ -117,8 +120,8 @@ void playerAttack::update(player * player)
 	if (player->getPlayerGuntype() == FLAMETHROWER)
 	{
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
-				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
+			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
 	}
 
 	
@@ -142,6 +145,8 @@ void playerAttack::update(player * player)
 
 void playerAttack::enter(player * player)
 {
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 	_pressPower = 0;
 
 	switch (player->getPlayerGuntype())
@@ -149,26 +154,26 @@ void playerAttack::enter(player * player)
 	case NORMAL:
 		
 		player->getPlayerBullet()->fire(player->getPlayerGunX(), player->getPlayerGunY(),
-			GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y), 10, player->getPlayerGuntype(),0);
+			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(),0);
 		break;
 	case SHOTGUN:
 		
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
-				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
+			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
 		break;
 	case HOMING:
 		
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y), 10, player->getPlayerGuntype(),0);
+			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(),0);
 		break;
 	case GRENADE:
 		
 		break;
 	case FLAMETHROWER:
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
-				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
+			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
 		break;
 	}
 }

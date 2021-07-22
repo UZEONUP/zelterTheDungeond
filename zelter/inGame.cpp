@@ -14,6 +14,7 @@ HRESULT inGame::init()
 	cout << _player->getPlayer().isDunGreed <<"tlqkkdjfas;lfjioajfe;kasndf;saji"<< endl;
 	_player->linkOpenWorldMap(_inGameMap);
 
+
 	return S_OK;
 }
 

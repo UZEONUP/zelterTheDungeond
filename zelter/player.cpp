@@ -60,6 +60,13 @@ void player::release()
 
 void player::update()
 {
+	_cameraX = CAMERAMANAGER->getX();
+	_cameraY = CAMERAMANAGER->getY();
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
+	//=================================================================
+
 	RECT temp;
 	_count++;
 
@@ -70,7 +77,7 @@ void player::update()
 
 
 	//플레이어 마우스 방향으로 바라보기
-	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _ptMouse.x, _ptMouse.y) * (180 / PI);
+	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _mapMouse.x, _mapMouse.y) * (180 / PI);
 
 	if (_playerGun.angle < 340 && 0 < _playerGun.angle) _player.direction = 0;
 	if (_playerGun.angle < 110 && 70 < _playerGun.angle) _player.direction = 2;
@@ -83,7 +90,7 @@ void player::update()
 
 	if (_player.isDunGreed)
 	{
-		if (_ptMouse.x < _player.x) _player.direction = 1;
+		if (_mapMouse.x < _player.x) _player.direction = 1;
 		else _player.direction = 0;
 	}
 
@@ -214,12 +221,12 @@ void player::render()
 	{
 		if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 		{
-			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, -1.f, _playerGun.angle);
+			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left-_cameraX, _playerGun.rc.top- _cameraY, 1.f, -1.f, _playerGun.angle);
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 		{
-			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, 1.f, _playerGun.angle);
+			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left- _cameraX, _playerGun.rc.top- _cameraY, 1.f, 1.f, _playerGun.angle);
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 		}
 	}
@@ -228,13 +235,13 @@ void player::render()
 		if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 		{
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
-			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, -1.f, _playerGun.angle);
+			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left- _cameraX, _playerGun.rc.top- _cameraY, 1.f, -1.f, _playerGun.angle);
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 		{
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 			if (!_player.isDeath)
-				_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, 1.f, _playerGun.angle);
+				_playerGun.img->render(_playerGun.rc.left- _cameraX, _playerGun.rc.top- _cameraY, 1.f, 1.f, _playerGun.angle);
 		}
 	}
 	_progressBar->render();
@@ -312,6 +319,101 @@ void player::inputHandle() //스테이트 호출
 		state = newState;
 		state->enter(this);
 	}
+}
+
+void player::tileDetect()
+{
+	//여기가 제일 중요한 부분이 아닌가 싶습니다
+	RECT rcCollision;	//가상의 충돌판정 렉트를 하나 생성해주자
+
+
+	int tileIndex[2];	//타일 검출에 필요한 인덱스
+	int tileX, tileY;	//플레이어가 밟고 있는 타일의 인덱스
+
+	//가상의 판정렉트에 현재 렉트를 대입해주자
+	rcCollision = _player.rc;
+
+	float elapsedTime = TIMEMANAGER->getElapsedTime();
+	float moveSpeed = elapsedTime * _player.speed;
+
+	rcCollision = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
+	
+	//STEP 3
+	//판정렉트를 사알짝 깍아주자
+	rcCollision.left += 2;
+	rcCollision.top += 2;
+	rcCollision.right -= 2;
+	rcCollision.bottom -= 2;
+
+	tileX = rcCollision.left / 64;
+	tileY = rcCollision.top / 64;
+
+
+	//STEP 04
+	//가장 메인이지 싶으요
+	//해당 방향일때 레프트 탑을 기준으로 앞타일과 그 옆타일을 계산해준다
+	switch (_player.direction)
+	{
+	case TANKDIRECTION_LEFT:
+		tileIndex[0] = tileX + (tileY * TILEX);
+		tileIndex[1] = tileX + (tileY + 1) * TILEX;
+		break;
+	case TANKDIRECTION_UP:
+		tileIndex[0] = tileX + (tileY * TILEX);
+		tileIndex[1] = (tileX + 1) + tileY * TILEX;
+		break;
+	case TANKDIRECTION_RIGHT:
+		tileIndex[0] = (tileX + tileY * TILEX) + 1;
+		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
+		break;
+	case TANKDIRECTION_DOWN:
+		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
+		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
+		break;
+	}
+
+	for (int i = 0; i < 2; ++i)
+	{
+		RECT rc;
+
+		if (((_tankMap->getTileAttribute()[tileIndex[i]] & ATTR_UNMOVE) == ATTR_UNMOVE) &&
+			IntersectRect(&rc, &_tankMap->getTile()[tileIndex[i]].rc, &rcCollision))
+		{
+			switch (_direction)
+			{
+			case TANKDIRECTION_LEFT:
+				_rc.left = _tankMap->getTile()[tileIndex[i]].rc.right;
+				_rc.right = _rc.left + 30;
+
+				_x = (_rc.left + _rc.right) / 2;
+				break;
+			case TANKDIRECTION_UP:
+				_rc.top = _tankMap->getTile()[tileIndex[i]].rc.bottom;
+				_rc.bottom = _rc.top + 30;
+
+				_y = (_rc.top + _rc.bottom) / 2;
+
+				break;
+			case TANKDIRECTION_RIGHT:
+				_rc.right = _tankMap->getTile()[tileIndex[i]].rc.left;
+				_rc.left = _rc.right - 30;
+
+				_x = (_rc.left + _rc.right) / 2;
+				break;
+			case TANKDIRECTION_DOWN:
+				_rc.bottom = _tankMap->getTile()[tileIndex[i]].rc.top;
+				_rc.top = _rc.bottom - 30;
+
+				_y = (_rc.top + _rc.bottom) / 2;
+				break;
+
+			}
+
+			return;
+		}
+	}
+	_rc = rcCollision;
+	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 }
 
 float player::hitDamage(float damage)

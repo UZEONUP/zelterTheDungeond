@@ -25,7 +25,7 @@ struct tagPlayerBullet
 {
 	RECT rc;
 	image* img;
-	
+
 	float x, y;
 	float fire;
 	float angle;
@@ -46,8 +46,10 @@ struct tagPlayerBullet
 
 
 class playerBullet : public gameNode
-{	
-
+{
+private:
+	int _cameraX;
+	int _cameraY;
 public:
 	vector<tagPlayerBullet> _vBulletN;
 	vector<tagPlayerBullet>::iterator _viBulletN;
@@ -71,10 +73,10 @@ public:
 	int _bulletMax;
 	int _count;
 	int _guntype;
-	float _disX, _disY;	
-	
+	float _disX, _disY;
+
 	player* _player;
-	
+
 
 
 	HRESULT init();
@@ -90,15 +92,15 @@ public:
 	void fire(float x, float y, float angle, float speed, int type, float power);
 	void move(int type, float x, float y);
 
-	
+
 	//float getDamage() { return _playerBullet.damage; }
 
-	
+
 
 	float getPower() { return _viBulletN->power; }
 	void setPower(float power) { _viBulletN->power = power; }
 
-	
+
 
 	vector<tagPlayerBullet> getVBulletN() { return _vBulletN; }
 	vector<tagPlayerBullet>::iterator getViBulletN() { return _viBulletN; }
@@ -116,7 +118,7 @@ public:
 	vector<tagPlayerBullet> getVBulletF() { return _vBulletF; }
 	vector<tagPlayerBullet>::iterator getViBulletF() { return _viBulletF; }
 
-	
+
 	void setPlayerLink(player* player) { _player = player; }
 
 };
