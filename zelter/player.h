@@ -4,10 +4,12 @@
 #include "quickSlot.h"
 #include "progressBar.h"
 #include "inGameMap.h"
+#include "niflheimBullet.h"
+#include "bulletKingBullet.h"
 
 class bulletKing;
 class ammoconda;
-
+class niflheim;
 class playerBullet;
 
 struct tagPlayer
@@ -67,7 +69,6 @@ private:
 	bool _imageON;
 
 	image* _mouse;
-
 	playerBullet* _playerBullet;
 
 	//======================다른 곳에서 불러온 변수=================
@@ -75,6 +76,7 @@ private:
 	//아모콘다맵* 맵;
 	bulletKing* _bulletKing;
 	ammoconda* _ammoconda;
+	niflheim* _niflheim;
 
 public:
 	HRESULT init();
@@ -100,7 +102,7 @@ public:
 	void setPlayerY(float y) { _player.y = y; }
 
 	void setHit(bool hit) { _player.isHit = hit; }
-
+	float hitDamage(float damage);
 	void setPlayerDirection(int direction) { _player.direction = direction; }
 
 	void setPlayerImage(image* img) { _player.img = img; }
@@ -135,4 +137,5 @@ public:
 	void setKeyType(bool type) { _player.isDunGreed = type; }
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
+	void linkNiflHeim(niflheim* niflheim) { _niflheim = niflheim; }
 };

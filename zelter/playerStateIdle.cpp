@@ -31,8 +31,6 @@ playerState * playerStateIdle::inputHandle(player * player)
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
-	
-	if (KEYMANAGER->isOnceKeyDown(VK_F10)) return new playerHit();
 
 	if (player->getPlayer().isHit == true) return new playerHit();
 

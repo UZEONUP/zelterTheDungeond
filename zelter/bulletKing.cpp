@@ -151,9 +151,9 @@ void bulletKing::setBoss()
 
 void bulletKing::collision()
 {
-	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); ++i)
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
 	{
-		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBullet()[i].rc))
+		if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
 		{
 			_bulletKing.currentHp--;
 		}

@@ -9,7 +9,7 @@ HRESULT niflheim::init()
 	//===============
 	_player = new player;
 	_player->init();
-	_player->setplayerNiflheimLink(this);
+	_player->linkNiflHeim(this);
 	//==============
 
 	imageAdd();
