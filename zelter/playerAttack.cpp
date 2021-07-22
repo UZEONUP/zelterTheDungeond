@@ -121,8 +121,6 @@ void playerAttack::update(player * player)
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
 				GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
-
-		
 	}
 
 	

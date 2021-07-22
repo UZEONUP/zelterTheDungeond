@@ -2,12 +2,10 @@
 #include "player.h"
 #include "playerStateIdle.h"
 #include "playerBullet.h"
-#include "niflheim.h"
 #include "ammoconda.h"
 #include "eggNyang.h"
 #include "bulletKing.h"
-#include "bulletKingBullet.h"
-
+#include "niflheim.h"
 
 
 
@@ -130,14 +128,37 @@ void player::update()
 	// 보스 총탄과 플레이어 충돌 시 데미지를 입어라!
 
 
-	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
+	//불렛 킹
+
+	if (!_player.isHit)
 	{
-		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
+		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
 		{
-			_player.isHit = true;
+			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+		}
+		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet2().size(); ++i)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet2()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(50.f);
+			}
+		}
+		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet3().size(); ++i)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet3()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(90.f);
+			}
 		}
 	}
 
+	
 	/*for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
 	{
 		if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().icePillar->getVbullet()[i].rc))
@@ -290,6 +311,11 @@ void player::inputHandle() //스테이트 호출
 		state = newState;
 		state->enter(this);
 	}
+}
+
+float player::hitDamage(float damage)
+{
+	return _player.currentHP -= damage;
 }
 
 

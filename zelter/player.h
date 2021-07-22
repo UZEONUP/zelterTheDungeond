@@ -3,6 +3,8 @@
 #include "playerState.h"
 #include "quickSlot.h"
 #include "progressBar.h"
+#include "niflheimBullet.h"
+#include "bulletKingBullet.h"
 
 class playerBullet;
 class niflheim;
@@ -57,6 +59,7 @@ private:
 	progressBar* _progressBar;
 	image* _mouse;
 	playerBullet* _playerBullet;
+
 	niflheim* _niflheim;
 	bulletKing* _bulletKing;
 
@@ -102,7 +105,9 @@ public:
 	void addIMAGES();
 
 	void inputHandle();
-	
+
+	void setPlayerHit(bool hit) { _player.isHit = hit;}
+	float hitDamage(float damage);
 	float getEnemyX() { return _enemy.x; }
 	float getEnemyY() { return _enemy.y; }
 

@@ -32,6 +32,7 @@ HRESULT bulletKing::init()
 	_enemyTest.rc = RectMakeCenter(_enemyTest.x, _enemyTest.y, 15, 15);
 	_player = new player;
 	_player->init();
+	_player->setplayerBulletKingLink(this);
 
 	return S_OK;
 }

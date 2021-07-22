@@ -4,12 +4,7 @@
 HRESULT stageManager::init()
 {
 	sceneSet();
-	_player = new player;
-	_eggNyang = new eggNyang;
-	_niflheim = new niflheim;
-
-	_niflheim->linkPlayer(_player);
-	_eggNyang->linkPlayer(_player);
+	
 
 	return S_OK;
 }
@@ -43,5 +38,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
 
 
-	SCENEMANAGER->changeScene("mapmap");
+	SCENEMANAGER->changeScene("bulletKing");
 }

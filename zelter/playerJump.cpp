@@ -18,7 +18,6 @@ void playerJump::update(player * player)
 		_gravity += 0.3;
 		player->setPlayerY(player->getPlayer().y - _jumpPower);
 		_jumpPower -= _gravity;
-
 	}
 
 	_count++;
