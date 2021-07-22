@@ -4,7 +4,6 @@
 
 #define PI 3.141592
 
-
 class player;
 
 //typedef struct SHAPE
@@ -50,8 +49,8 @@ class playerBullet : public gameNode
 {	
 
 public:
-	vector<tagPlayerBullet> _vBullet;
-	vector<tagPlayerBullet>::iterator _viBullet;
+	vector<tagPlayerBullet> _vBulletN;
+	vector<tagPlayerBullet>::iterator _viBulletN;
 
 
 	vector<tagPlayerBullet> _vBulletS;
@@ -75,9 +74,16 @@ public:
 	float _disX, _disY;	
 	
 	player* _player;
+	
+
 
 	HRESULT init();
-	void release();
+	void releaseBullet(int index);
+	void releaseS(int index);
+	void releaseH(int index);
+	void releaseG(int index);
+	void releaseF(int index);
+
 	void update();
 	void render();
 
@@ -89,25 +95,25 @@ public:
 
 	
 
-	float getPower() { return _viBullet->power; }
-	void setPower(float power) { _viBullet->power = power; }
+	float getPower() { return _viBulletN->power; }
+	void setPower(float power) { _viBulletN->power = power; }
 
 	
 
-	vector<tagPlayerBullet>& getVBullet() { return _vBullet; }
-	vector<tagPlayerBullet>::iterator getViBullet() { return _viBullet; }
+	vector<tagPlayerBullet> getVBulletN() { return _vBulletN; }
+	vector<tagPlayerBullet>::iterator getViBulletN() { return _viBulletN; }
 
 
-	vector<tagPlayerBullet>& getVBulletS() { return _vBulletS; }
+	vector<tagPlayerBullet> getVBulletS() { return _vBulletS; }
 	vector<tagPlayerBullet>::iterator getViBulletS() { return _viBulletS; }
 
-	vector<tagPlayerBullet>& getVBulletH() { return _vBulletH; }
+	vector<tagPlayerBullet> getVBulletH() { return _vBulletH; }
 	vector<tagPlayerBullet>::iterator getViBulletH() { return _viBulletH; }
 
-	vector<tagPlayerBullet>& getVBulletG() { return _vBulletG; }
+	vector<tagPlayerBullet> getVBulletG() { return _vBulletG; }
 	vector<tagPlayerBullet>::iterator getViBulletG() { return _viBulletG; }
 
-	vector<tagPlayerBullet>& getVBulletF() { return _vBulletF; }
+	vector<tagPlayerBullet> getVBulletF() { return _vBulletF; }
 	vector<tagPlayerBullet>::iterator getViBulletF() { return _viBulletF; }
 
 	

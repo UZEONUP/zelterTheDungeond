@@ -6,6 +6,10 @@ class playerHit : public playerState
 {
 	
 	int _blink;
+	
+	int _blinkTime;
+	int _blinkTimeEnd;
+	int _blinkCount;
 
 public:
 	virtual playerState* inputHandle(player* player);

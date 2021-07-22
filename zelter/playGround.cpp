@@ -24,10 +24,11 @@ HRESULT playGround::init()
 
 	_player = new player;
 	_playerBullet = new playerBullet;
+	
 
 	_player->init();
 	_playerBullet->init();
-
+	
 	_player->setplayerBulletLink(_playerBullet);
 	_playerBullet->setPlayerLink(_player);
 
@@ -58,6 +59,7 @@ void playGround::render()
 
 
 	_stageManager->render();
+	CAMERAMANAGER->render();
 
 	//백버퍼에 그린 내용들을 화면에 뿌려라~
 	D2DRENDER->EndRender();

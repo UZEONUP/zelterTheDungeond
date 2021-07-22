@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ammoconda.h"
+#include "player.h"
 
 
 void ammoconda::setPot(int x, int y)
@@ -42,7 +43,7 @@ void ammoconda::potState()
 			_pot.img = IMAGEMANAGER->findImage("potAttack");
 			if (_pot.currentFrameX >= _pot.img->getMaxFrameX())
 			{
-				_ammocondaBullet->bulletFirePot(_pot.x, _pot.y, _enemyTest.x, _enemyTest.y);
+				_ammocondaBullet->bulletFirePot(_pot.x, _pot.y, _player->getPlayer().x, _player->getPlayer().y);
 				_pot.state = POT_IDLE;
 				_pot.currentFrameX = 0;
 			}
@@ -84,3 +85,5 @@ void ammoconda::potRender()
 	}
 
 }
+
+

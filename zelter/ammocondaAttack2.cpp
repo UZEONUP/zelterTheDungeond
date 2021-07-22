@@ -3,6 +3,7 @@
 #include "ammocondaAttack1.h"
 #include "ammocondaIdle.h"
 #include "ammocondaRecovery.h"
+#include "player.h"
 
 ammocondaState * ammocondaAttack2::InputHandle(ammoconda * ammoconda)
 {
@@ -76,13 +77,13 @@ void ammocondaAttack2::attack(ammoconda * ammoconda, int bodyNum)
 		//프레임 예외처리
 		if (ammoconda->getAmmoconda(bodyNum).currentFrameX >= ammoconda->getAmmoconda(bodyNum).img->getMaxFrameX())
 		{
-			 
+
 			ammoconda->getAmmoconda(bodyNum).currentFrameX = 0;
 			ammoconda->getAmmoconda(bodyNum).isAttack = false;
 		}
 	}
 	//총알 발사(이미지 프레임과 카운트 값의 나머지 값이 일치할 경우)
 	if (ammoconda->getAmmoconda(bodyNum).currentFrameX == 3 && ammoconda->getAmmoconda(bodyNum).count % 3 == 0)
-		ammoconda->getBAmmocondaBullet()->bulletFire2(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getEnemyTest().x, ammoconda->getEnemyTest().y);
+		ammoconda->getBAmmocondaBullet()->bulletFire2(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getPlayer()->getPlayer().x, ammoconda->getPlayer()->getPlayer().y);
 
 }

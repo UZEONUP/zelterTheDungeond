@@ -14,7 +14,7 @@ void bulletKingAttack1::enter(bulletKing * bulletKing)
 	bulletKing->setBulletKingCurrentFrameX(0);
 	bulletKing->setBulletKingY(bulletKing->getBulletKing().y - 10);
 	_count = 0;
-	
+
 }
 
 void bulletKingAttack1::update(bulletKing * bulletKing)
@@ -22,7 +22,7 @@ void bulletKingAttack1::update(bulletKing * bulletKing)
 	_count++;
 	if (_count % 20 == 0)
 	{
-		
+
 		if (bulletKing->getBulletKing().currentFrameX == 0)
 		{
 			bulletKing->getBulletKingBullet()->bulletFire1(bulletKing->getBulletKing().x, bulletKing->getBulletKing().y);

@@ -78,6 +78,7 @@ public:
 
 	void ResetRenderOption();
 
+	float getAlpha() { return _alpha; }
 	void setAlpha(const float alpha) { _alpha = alpha; }
 	void setScale(const float scale) { _scale = scale; }
 	void setAngle(const float angle) { _angle = angle; }

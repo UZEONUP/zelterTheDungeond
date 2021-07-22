@@ -15,7 +15,13 @@ HRESULT bulletKingBattle::init()
 	_bulletKing->init();
 	_fishMan = new fishMan;
 	_dinosaur = new dinosaur;
-	
+
+	_player = new player;
+	_player->init();
+
+	_player->linkBulletKing(_bulletKing);
+	_bulletKing->linkPlayer(_player);
+
 	return S_OK;
 }
 
@@ -29,12 +35,13 @@ void bulletKingBattle::update()
 
 	_fishMan->setEnemy(RND->getFromIntTo(0, 600), RND->getFromIntTo(0, 600));
 	_fishMan->fishState();
-	_fishMan->fishMove(_bulletKing->getEnemyTest().x, _bulletKing->getEnemyTest().y);
+	_fishMan->fishMove(_player->getPlayer().x, _player->getPlayer().y);
 
 	_dinosaur->setEnemy(RND->getFromIntTo(600, 1200), RND->getFromIntTo(0, 600));
 	_dinosaur->dinoState();
-	_dinosaur->dinoMove(_bulletKing->getEnemyTest().x, _bulletKing->getEnemyTest().y);
+	_dinosaur->dinoMove(_player->getPlayer().x, _player->getPlayer().y);
 
+	_player->update();
 }
 
 void bulletKingBattle::render()
@@ -42,4 +49,5 @@ void bulletKingBattle::render()
 	_bulletKing->render();
 	_fishMan->render();
 	_dinosaur->render();
+	_player->render();
 }

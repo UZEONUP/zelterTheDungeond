@@ -3,6 +3,7 @@
 #include "ammocondaIdle.h"
 #include <vector>
 #include <algorithm>
+#include "player.h"
 
 ammoconda::ammoconda()
 {
@@ -30,11 +31,6 @@ HRESULT ammoconda::init()
 	_potCount = 0;
 	_isPotCreate = false;
 
-	//적 테스트
-	_enemyTest.x = WINSIZEX / 2;
-	_enemyTest.y = WINSIZEY / 2;
-	_enemyTest.speed = 3.0f;
-	_enemyTest.rc = RectMakeCenter(_enemyTest.x, _enemyTest.y, 15, 15);
 	return S_OK;
 }
 
@@ -47,9 +43,11 @@ bool compare(tagAmmoconda * begin, tagAmmoconda * end)
 }
 void ammoconda::update()
 {
+	collision();
 	//hp
 	_hp->update();
 	_hp->setGauge(_currentHp, _maxHp);
+	if (_currentHp <= 3) _currentHp = 3;
 	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
 	{
 		_currentHp--;
@@ -82,18 +80,7 @@ void ammoconda::update()
 	//총알 업데이트
 	_ammocondaBullet->update();
 
-	//적 테스트
-	if (!_isMove)
-	{
-		_enemyTest.x += 1;
-		if (_enemyTest.x >= WINSIZEX) _isMove = true;
-	}
-	if (_isMove)
-	{
-		_enemyTest.x -= 1;
-		if (_enemyTest.x <= 0) _isMove = false;
-	}
-	_enemyTest.rc = RectMakeCenter(_enemyTest.x, _enemyTest.y, 30, 30);
+
 
 }
 
@@ -120,8 +107,6 @@ void ammoconda::render()
 	//총알 렌더
 	_ammocondaBullet->render();
 
-	//적 테스트
-	D2DRENDER->DrawRectangle(_enemyTest.rc, D2DRenderer::DefaultBrush::Red);
 }
 
 void ammoconda::InputHandle()
@@ -350,6 +335,60 @@ void ammoconda::bossRecoveryMove(int count, int division, string keyValue, float
 	}
 
 
+}
+void ammoconda::collision()
+{
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
+	{
+		for (int j = 0; j < AMMOCONDAMAX; ++j)
+		{
+			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
+			{
+				_currentHp--;
+			}
+		}
+
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
+	{
+		for (int j = 0; j < AMMOCONDAMAX; ++j)
+		{
+			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
+			{
+				_currentHp--;
+			}
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+	{
+		for (int j = 0; j < AMMOCONDAMAX; ++j)
+		{
+			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			{
+				_currentHp--;
+			}
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
+	{
+		for (int j = 0; j < AMMOCONDAMAX; ++j)
+		{
+			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
+			{
+				_currentHp--;
+			}
+		}
+	}
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
+	{
+		for (int j = 0; j < AMMOCONDAMAX; ++j)
+		{
+			if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
+			{
+				_currentHp--;
+			}
+		}
+	}
 }
 
 

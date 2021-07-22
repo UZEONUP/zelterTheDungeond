@@ -9,6 +9,7 @@ HRESULT niflheim::init()
 	//===============
 	_player = new player;
 	_player->init();
+	_player->linkNiflHeim(this);
 	//==============
 
 	imageAdd();
@@ -115,17 +116,20 @@ void niflheim::hitNifleheim()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
+			_player->getPlayerBullet()->releaseF(i);
+
 
 			_niflheim.currentHP -= 35;
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); i++)
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); i++)
 	{
-		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBullet()[i].rc))
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletN()[i].rc))
 		{
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
+			_player->getPlayerBullet()->releaseBullet(i);
 
 			_niflheim.currentHP -= 35;
 		}
@@ -137,6 +141,7 @@ void niflheim::hitNifleheim()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
+			_player->getPlayerBullet()->releaseG(i);
 
 			_niflheim.currentHP -= 35;
 		}
@@ -148,6 +153,7 @@ void niflheim::hitNifleheim()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
+			_player->getPlayerBullet()->releaseH(i);
 
 			_niflheim.currentHP -= 35;
 		}
@@ -159,6 +165,7 @@ void niflheim::hitNifleheim()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
+			_player->getPlayerBullet()->releaseS(i);
 
 			_niflheim.currentHP -= 35;
 		}

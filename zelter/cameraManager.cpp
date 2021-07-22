@@ -26,6 +26,7 @@ void cameraManager::update()
 
 void cameraManager::render()
 {
+	D2DRENDER->DrawRectangle(_camera.rc, D2DDEFAULTBRUSH::Red, 5.f);
 }
 
 void cameraManager::setMapCamera(float x, float y)
@@ -226,6 +227,45 @@ void cameraManager::updateCameraH(float x, float y)
 	//갱신
 	_x = x;
 	_y = y;
+}
+
+void cameraManager::updateCameraH(RECT player, float ratio1, float ratio2)
+{
+	//가로
+	if (player.left - (_camera.width * ratio1) <= 0)
+	{
+		_x = 0;
+	}
+	else if (player.right + (_camera.width * ratio1) >= _map.width)
+	{
+		_x = _map.width - _camera.width;
+	}
+	else
+	{
+		
+	}
+
+	//가로
+	if (player.top - (_camera.height * ratio1) <= 0)
+	{
+		_y = 0;
+	}
+	else if (player.bottom + (_camera.height* ratio1) >= _map.height)
+	{
+		_y = _map.height - _camera.height;
+	}
+	else
+	{
+		if (player.top < _camera.rc.top)
+		{
+			_y += _camera.height * ratio1;
+		}
+		else if (player.bottom > _camera.rc.bottom)
+		{
+			_y -= _camera.height * ratio1;
+		}
+	}
+	_camera.rc = RectMake(_x, _y, _camera.width*ratio2, _camera.height*ratio2);
 }
 
 void cameraManager::updateCamera(bool a)

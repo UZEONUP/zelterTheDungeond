@@ -4,6 +4,9 @@
 #include "bulletKingIdle.h"
 #include "bulletKingBullet.h"
 #include "progressBar.h"
+#include "playerBullet.h"
+
+class player;
 
 struct tagBulletKing
 {
@@ -35,10 +38,9 @@ private:
 
 	//총탄킹 상태패턴
 	bulletKingState* _state;
-	
-	//적 테스트용
-	tagBulletKing _enemyTest;
-	bool _isMove;
+
+
+	player* _player;
 
 public:
 	bulletKing();
@@ -50,6 +52,7 @@ public:
 	void render();
 	void InputHandle();
 	void setBoss();
+	void collision();
 
 	tagBulletKing& getBulletKing() { return _bulletKing; }
 	void setBulletKingX(int x) { _bulletKing.x = x; }
@@ -67,7 +70,8 @@ public:
 	//총알 get
 	bulletKingBullet* getBulletKingBullet() { return _bullet; }
 
-	//적 테스트 get
-	tagBulletKing getEnemyTest() {return _enemyTest;}
+
+	void linkPlayer(player* player) { _player = player; }
+	player* getPlayer() { return _player; }
 };
 

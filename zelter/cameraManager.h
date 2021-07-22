@@ -41,6 +41,7 @@ public:
 	void updateCamera(RECT& player, float playerX, float playerY);
 	void updateCamera(float x, float y);
 	void updateCameraH(float x, float y);
+	void updateCameraH(RECT player , float ratio1, float ratio2);
 
 	//맵 ???? 어디 기준
 	void updateCamera(bool a);

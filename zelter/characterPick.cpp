@@ -6,7 +6,6 @@ HRESULT characterPick::init()
 	setImages();
 	_mouse = IMAGEMANAGER->findImage("mouse");
 
-
 	_characterPick.rc = RectMakeCenter(WINSIZEX / 2 -325, WINSIZEY / 2, WINSIZEX / 2, WINSIZEY);
 	_characterPick2.rc = RectMakeCenter(WINSIZEX / 2 + 325, WINSIZEY / 2, WINSIZEX / 2, WINSIZEY);
 
@@ -16,9 +15,7 @@ HRESULT characterPick::init()
 
 	_characterPick.on = false;
 	_characterPick2.on = false;
-
 	_character.pick = false;
-
 
 	_character.rc = RectMakeCenter(WINSIZEX / 2 - 300, WINSIZEY - 100, 100, 100);
 	_character.currentFrameX = 0;
@@ -85,11 +82,6 @@ void characterPick::update()
 			SCENEMANAGER->changeScene("player");
 		cout << _character.currentFrameX << endl;
 	}
-
-	
-
-	
-	
 }
 
 void characterPick::release()
@@ -98,21 +90,17 @@ void characterPick::release()
 
 void characterPick::render()
 {
-	D2DRENDER->DrawRectangle(_characterPick.rc, D2DRenderer::DefaultBrush::White, 1.f);
-	D2DRENDER->DrawRectangle(_characterPick2.rc, D2DRenderer::DefaultBrush::White, 1.f);
+	D2DRENDER->DrawRectangle(_characterPick.rc, D2DRenderer::DefaultBrush::Black, 1.f);
+	D2DRENDER->DrawRectangle(_characterPick2.rc, D2DRenderer::DefaultBrush::Black, 1.f);
 	if(KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		
-		D2DRENDER->DrawRectangle(_character.rc, D2DRenderer::DefaultBrush::White, 1.f);
-		D2DRENDER->DrawRectangle(_character2.rc, D2DRenderer::DefaultBrush::White, 1.f);
+		D2DRENDER->DrawRectangle(_character.rc, D2DRenderer::DefaultBrush::Black, 1.f);
+		D2DRENDER->DrawRectangle(_character2.rc, D2DRenderer::DefaultBrush::Black, 1.f);
 	}
 
 	_characterPick.img->frameRender2(_characterPick.rc.left, _characterPick.rc.top,_characterPick.currentFrameX,0);
 	_character.img->frameRender2(_character.rc.left, _character.rc.top, _character.currentFrameX, 0);
-
 	_characterPick2.img->render(_characterPick2.rc.left+150, _characterPick2.rc.top);
-
-
 
 	_mouse->render(_ptMouse.x - 7, _ptMouse.y - 5);
 }
@@ -125,4 +113,5 @@ void characterPick::setImages()
 	IMAGEMANAGER->addFrameImage("gunner_pick_frame_on", L"STATE/PICK/gunner_pick_on.png", 9, 1);
 	IMAGEMANAGER->addImage("wizard_illust_off", L"STATE/PICK/wizard_illust_off.png");
 	IMAGEMANAGER->addImage("wizard_illust_on", L"STATE/PICK/wizard_illust_on.png");
+	IMAGEMANAGER->addImage("mouse", L"무기/마우스.png");
 }

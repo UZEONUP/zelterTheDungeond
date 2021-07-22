@@ -27,6 +27,8 @@ playerState * playerRun::inputHandle(player * player)
 		if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerRoll;
 	}
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack;
+
+	if (player->getPlayer().isHit == true) return new playerHit;
 	if (player->getPlayer().currentHP <= 0) return new playerDie();
 	return nullptr;
 }

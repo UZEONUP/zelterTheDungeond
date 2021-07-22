@@ -31,8 +31,6 @@ playerState * playerStateIdle::inputHandle(player * player)
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
-	
-	if (KEYMANAGER->isOnceKeyDown(VK_F10)) return new playerHit();
 
 	if (player->getPlayer().isHit == true) return new playerHit();
 
@@ -43,14 +41,6 @@ playerState * playerStateIdle::inputHandle(player * player)
 
 void playerStateIdle::update(player * player)
 {
-	_count++;
-
-	if (_count % 7 == 0)
-	{
-		player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
-		if ( player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
-		_count = 0;
-	}
 	switch (player->getPlayer().direction)
 	{
 	case 0:
@@ -111,6 +101,14 @@ void playerStateIdle::enter(player * player)
 	}
 	
 
+	_count++;
+
+	if (_count % 7 == 0)
+	{
+		player->setPlayerCurrentFrameX(player->getPlayer().currentFrameX + 1);
+		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
+		_count = 0;
+	}
 	player->setPlayerCurrentFrameX(0);
 	_count = 0;
 

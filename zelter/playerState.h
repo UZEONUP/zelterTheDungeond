@@ -12,7 +12,7 @@ protected:
 	image* _img;
 	int _count;
 	int _currentFrameX, _currentFrameY;
-
+	int _blink;
 
 public:
 
