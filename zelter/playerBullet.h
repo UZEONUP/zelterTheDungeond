@@ -5,6 +5,7 @@
 #define PI 3.141592
 
 class player;
+class niflheim;
 
 //typedef struct SHAPE
 //{
@@ -74,7 +75,7 @@ public:
 	float _disX, _disY;	
 	
 	player* _player;
-	
+	niflheim* _niflheim;
 
 
 	HRESULT init();

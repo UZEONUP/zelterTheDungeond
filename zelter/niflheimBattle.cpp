@@ -8,7 +8,7 @@ HRESULT niflheimBattle::init()
 	_niflheim = new niflheim;
 	_niflheim->init();
 
-	_player->linkNiflHeim(_niflheim);
+	_player->linkNiflheim(_niflheim);
 	_niflheim->linkPlayer(_player);
 
 	return S_OK;

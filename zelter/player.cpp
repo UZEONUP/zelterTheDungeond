@@ -156,6 +156,7 @@ void player::update()
 		}
 	}
 
+	//니플헤임
 	if (SCENEMANAGER->isCurrentScene("niflheim"))
 	{
 		for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
@@ -167,6 +168,10 @@ void player::update()
 		}
 	}
 
+	//아모콘다
+
+
+	//에그냥
 
 
 

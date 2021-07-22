@@ -3,18 +3,21 @@
 
 HRESULT quickSlot::init()
 {
-	_quickSlotBack.rc = RectMake(0, WINSIZEY - 96, 480, 64);
+	_quickSlotBack.rc = RectMake(0, WINSIZEY - 91, 480, 64);
 	_quickSlotBack.img = IMAGEMANAGER->findImage("quickslotback");
 
-	_quickSlotFront.rc = RectMake(75, WINSIZEY - 40,358, 32);
+	_quickSlotFront.rc = RectMake(75, WINSIZEY - 35,358, 32);
 	_quickSlotFront.img = IMAGEMANAGER->findImage("quickslotfront");
 
 	for (int i = 0; i < QUICKSLOTBASEMAX; i++)
 	{
-		_quickSlotBase[i].rc = RectMake(65*(1+i) +16, WINSIZEY-72, 61, 55);
+		_quickSlotBase[i].rc = RectMake(65*(1+i) +16, WINSIZEY-78, 61, 55);
 		_quickSlotBase[i].img = IMAGEMANAGER->findImage("quickslotbase");
 		_quickSlotBase[i].isOn = false;
 	}
+	_quickSlotBase[0].isOn = true;
+
+
 	_quickSlotBase[0].gunimg = IMAGEMANAGER->findImage("GUN1");
 	_quickSlotBase[1].gunimg = IMAGEMANAGER->findImage("GUN2");
 	_quickSlotBase[2].gunimg = IMAGEMANAGER->findImage("GUN3");
@@ -36,7 +39,7 @@ void quickSlot::update()
 	{
 		if (_quickSlotBase[i].isOn)
 		{
-			if (_quickSlotBase[i].rc.top > WINSIZEY - 82)
+			if (_quickSlotBase[i].rc.top > WINSIZEY - 77)
 			{
 				_quickSlotBase[i].rc.bottom -= 5;
 				_quickSlotBase[i].rc.top -= 5;
@@ -45,7 +48,7 @@ void quickSlot::update()
 		}
 		else
 		{
-			_quickSlotBase[i].rc = RectMake(65 * (1 + i) + 16, WINSIZEY - 72, 61, 55);
+			_quickSlotBase[i].rc = RectMake(65 * (1 + i) + 16, WINSIZEY - 67, 61, 55);
 		
 		}
 	}

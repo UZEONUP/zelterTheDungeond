@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "playerBullet.h"
 #include "player.h"
-
+#include "niflheim.h"
 
 HRESULT playerBullet::init()
 {
