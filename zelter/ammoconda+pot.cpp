@@ -18,7 +18,7 @@ void ammoconda::setPot(int x, int y)
 	_pot.count = 0;
 	_pot.attackCount = 0;
 	_pot.rc = RectMakeCenter(_pot.x, _pot.y, _pot.width, _pot.height);
-	_pot.currentHp = _pot.maxHp = 100;
+	_pot.currentHp = _pot.maxHp = 50;
 	_pot.currentFrameX = 0;
 	_pot.state = POT_IDLE;
 }

@@ -378,8 +378,48 @@ void ammoconda::collision()
 				}
 			}
 		}
+		
 	}
-	
+	//항아리 충돌
+	if (_pot.currentHp > 3)
+	{		
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
+		{
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
+			{
+				_pot.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
+		{
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
+			{
+				_pot.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+		{
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			{
+				_pot.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
+		{
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
+			{
+				_pot.currentHp--;
+			}
+		}
+		for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
+		{
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
+			{
+				_pot.currentHp--;
+			}
+		}
+	}
+	if (_pot.currentHp <= 3) _isPotCreate = false;
 }
 
 
