@@ -51,6 +51,8 @@ HRESULT player::init()
 	_progressBar = new progressBar();
 	_progressBar->init(170, 25, 100, 30);
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
+
+	
 	return S_OK;
 }
 
@@ -60,6 +62,8 @@ void player::release()
 
 void player::update()
 {
+	cout << _player.direction <<"방향"<<endl;
+	tileDetect();
 	_cameraX = CAMERAMANAGER->getX();
 	_cameraY = CAMERAMANAGER->getY();
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
@@ -90,7 +94,7 @@ void player::update()
 
 	if (_player.isDunGreed)
 	{
-		if (_mapMouse.x < _player.x) _player.direction = 1;
+		if (_mapMouse.x < _player.x)_player.direction = 1;
 		else _player.direction = 0;
 	}
 
@@ -339,11 +343,11 @@ void player::tileDetect()
 	rcCollision = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	
 	//STEP 3
-	//판정렉트를 사알짝 깍아주자
-	rcCollision.left += 2;
-	rcCollision.top += 2;
-	rcCollision.right -= 2;
-	rcCollision.bottom -= 2;
+	////판정렉트를 사알짝 깍아주자
+	//rcCollision.left += 2;
+	//rcCollision.top += 2;
+	//rcCollision.right -= 2;
+	//rcCollision.bottom -= 2;
 
 	tileX = rcCollision.left / 64;
 	tileY = rcCollision.top / 64;
@@ -352,68 +356,82 @@ void player::tileDetect()
 	//STEP 04
 	//가장 메인이지 싶으요
 	//해당 방향일때 레프트 탑을 기준으로 앞타일과 그 옆타일을 계산해준다
+	/*
+	-----------------
+	4	|	2	|	5
+	-----------------
+	1	| player|	0
+	-----------------
+	7	|	3	|	6
+	*/
 	switch (_player.direction)
 	{
-	case TANKDIRECTION_LEFT:
+	case 1:
 		tileIndex[0] = tileX + (tileY * TILEX);
 		tileIndex[1] = tileX + (tileY + 1) * TILEX;
 		break;
-	case TANKDIRECTION_UP:
+	case 2:
 		tileIndex[0] = tileX + (tileY * TILEX);
 		tileIndex[1] = (tileX + 1) + tileY * TILEX;
 		break;
-	case TANKDIRECTION_RIGHT:
+	case 0:
 		tileIndex[0] = (tileX + tileY * TILEX) + 1;
 		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
 		break;
-	case TANKDIRECTION_DOWN:
+	case 3:
 		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
 		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
+		break;
+	default:
+		tileIndex[0] = (tileX + tileY * TILEX) + 1;
+		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
 		break;
 	}
 
 	for (int i = 0; i < 2; ++i)
 	{
+		if (_inGame->getTileAtt()[tileIndex[i]] != NONEMOVE)continue;
 		RECT rc;
 
-		if (((_tankMap->getTileAttribute()[tileIndex[i]] & ATTR_UNMOVE) == ATTR_UNMOVE) &&
-			IntersectRect(&rc, &_tankMap->getTile()[tileIndex[i]].rc, &rcCollision))
+		if (((_inGame->getTileAtt()[tileIndex[i]] == NONEMOVE)) &&
+			IntersectRect(&rc, &_inGame->getTile()[tileIndex[i]].checkRect, &rcCollision))
 		{
-			switch (_direction)
+			switch (_player.direction)
 			{
-			case TANKDIRECTION_LEFT:
-				_rc.left = _tankMap->getTile()[tileIndex[i]].rc.right;
-				_rc.right = _rc.left + 30;
+			case 1:
+				_player.rc.left = _inGame->getTile()[tileIndex[i]].checkRect.right;
+				_player.rc.right = _player.rc.left + 60;
 
-				_x = (_rc.left + _rc.right) / 2;
+				_player.x = (_player.rc.left + _player.rc.right) / 2;
 				break;
-			case TANKDIRECTION_UP:
-				_rc.top = _tankMap->getTile()[tileIndex[i]].rc.bottom;
-				_rc.bottom = _rc.top + 30;
+			case 2:
+				_player.rc.top = _inGame->getTile()[tileIndex[i]].checkRect.bottom;
+				_player.rc.bottom = _player.rc.top + 60;
 
-				_y = (_rc.top + _rc.bottom) / 2;
+				_player.y = (_player.rc.top + _player.rc.bottom) / 2;
 
 				break;
-			case TANKDIRECTION_RIGHT:
-				_rc.right = _tankMap->getTile()[tileIndex[i]].rc.left;
-				_rc.left = _rc.right - 30;
+			case 0:
+				_player.rc.right = _inGame->getTile()[tileIndex[i]].checkRect.left;
+				_player.rc.left = _player.rc.right - 60;
 
-				_x = (_rc.left + _rc.right) / 2;
+				_player.x = (_player.rc.left + _player.rc.right) / 2;
 				break;
-			case TANKDIRECTION_DOWN:
-				_rc.bottom = _tankMap->getTile()[tileIndex[i]].rc.top;
-				_rc.top = _rc.bottom - 30;
+			case 3:
+				_player.rc.bottom = _inGame->getTile()[tileIndex[i]].checkRect.top;
+				_player.rc.top = _player.rc.bottom - 60;
 
-				_y = (_rc.top + _rc.bottom) / 2;
+				_player.y = (_player.rc.top + _player.rc.bottom) / 2;
 				break;
 
 			}
 
 			return;
 		}
+
 	}
-	_rc = rcCollision;
-	_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
+	_player.rc = rcCollision;
+	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 }
 
 float player::hitDamage(float damage)

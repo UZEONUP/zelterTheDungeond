@@ -10,6 +10,7 @@
 #define TILEY 120
 
 #define ATTR_UNMOVE 0x00000001	//못가는 타일
+#define NONEMOVE 1
 //#define ATTR_SWAMP	0x00000002	//밟으면 느려지는 타일
 //#define ATTR_POISON	0x00000004	//유 아 마 포이즌~
 //#define ATTR_FROZEN 0x00000008	//레릿꼬~

@@ -78,6 +78,8 @@ private:
 	POINT			_mapMouse;
 	int				_cameraX;
 	int				_cameraY;
+	RECT rc1, rc2;
+
 	//¾Æ¸ðÄÜ´Ù¸Ê* ¸Ê;
 	bulletKing*		_bulletKing;
 	ammoconda*		_ammoconda;

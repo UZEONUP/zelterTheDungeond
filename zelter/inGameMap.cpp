@@ -89,7 +89,15 @@ void inGameMap::load()
 		//오브젝트(체크렉트)가 있을 경우 못가게 속성부여
 		if (_tile[i].object == (BLOCK || BLOCK_LHALF ||
 			BLOCK_RHALF || BLOCK_LTRIPLE || BLOCK_RTRIPLE))
+		{
 			_attribute[i] = ATTR_UNMOVE;
+			//_att[i] = NONEMOVE;
+		}
+		if (_tile[i].object == BLOCK)_att[i] = NONEMOVE;
+		if (_tile[i].object == BLOCK_LHALF)_att[i] = NONEMOVE;
+		if (_tile[i].object == BLOCK_RHALF)_att[i] = NONEMOVE;
+		if (_tile[i].object == BLOCK_LTRIPLE)_att[i] = NONEMOVE;
+		if (_tile[i].object == BLOCK_RTRIPLE)_att[i] = NONEMOVE;
 	}
 
 	CloseHandle(file);
