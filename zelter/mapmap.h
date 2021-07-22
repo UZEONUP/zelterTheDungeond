@@ -15,7 +15,7 @@ enum TILETYPE
 	OPENWORLD,
 	BULLETKING,
 	AMOCONDA,
-	DUNBOSS
+	EGGNYANG,NIFLHEIM
 };
 
 enum TERRAIN
@@ -29,8 +29,8 @@ enum TERRAIN
 enum OBJECT
 {
 	BLOCK,
-	BLOCK_LHALF,BLOCK_RHALF,
-	BLOCK_LTRIPLE,BLOCK_RTRIPLE,
+	BLOCK_LHALF, BLOCK_RHALF,
+	BLOCK_LTRIPLE, BLOCK_RTRIPLE,
 	OBJ_Be,
 	OBJ_NONE
 };
@@ -82,7 +82,7 @@ struct tagMapTool
 };
 
 struct tagMouseDrag
-{ 
+{
 	RECT rc;
 	POINT start;
 	POINT end;
@@ -92,7 +92,6 @@ struct tagMouseDrag
 	int currentEndY;
 	bool isDrag;
 };
-
 
 
 class mapmap : public gameNode
@@ -106,7 +105,7 @@ private:
 
 	POINT			_currentTile;
 	POINT			_mapMouse;
-	
+
 
 	tagMapTool		_tool;
 
@@ -118,11 +117,12 @@ private:
 	tagButton		_btnEnter;
 	tagButton		_btnPrevios;
 	tagButton		_btnNext;
+	tagButton		_btnClear;
 
 	tagMouseDrag	_dragMouse;
 
 	RECT			_message;
-	
+
 	bool			_dragStart;
 
 	int				_changeCount; //샘플이미지 바꾸기 위한 카운트용
@@ -155,6 +155,7 @@ public:
 	//세이브 로드
 	void save();
 	void load();
+	void clear();
 
 	//버튼 관련
 	void buttonRender();

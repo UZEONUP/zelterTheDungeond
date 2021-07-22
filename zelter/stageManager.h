@@ -4,6 +4,7 @@
 #include "mapmap.h"
 #include "player.h"
 #include "characterPick.h"
+#include "inGame.h"
 
 #include"eggNyang.h"
 #include"niflheim.h"
