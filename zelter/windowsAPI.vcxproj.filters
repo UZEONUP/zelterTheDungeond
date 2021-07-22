@@ -115,6 +115,9 @@
     <Filter Include="playGround\test\inGame">
       <UniqueIdentifier>{1914be6b-f240-484d-9f66-5621e2514ce2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\loading">
+      <UniqueIdentifier>{82460b8e-0145-4785-b988-c869b808af19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -372,6 +375,21 @@
     <ClInclude Include="niflheimBattle.h">
       <Filter>playGround\boss\niflheim</Filter>
     </ClInclude>
+    <ClInclude Include="ammocondaMap.h">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClInclude>
+    <ClInclude Include="bulletKingMap.h">
+      <Filter>playGround\boss\bulletKing</Filter>
+    </ClInclude>
+    <ClInclude Include="loading.h">
+      <Filter>playGround\loading</Filter>
+    </ClInclude>
+    <ClInclude Include="eggNyangMap.h">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClInclude>
+    <ClInclude Include="niflheimMap.h">
+      <Filter>playGround\boss\niflheim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -627,6 +645,21 @@
       <Filter>playGround\boss\eggNyang</Filter>
     </ClCompile>
     <ClCompile Include="niflheimBattle.cpp">
+      <Filter>playGround\boss\niflheim</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaMap.cpp">
+      <Filter>playGround\boss\ammoconda</Filter>
+    </ClCompile>
+    <ClCompile Include="bulletKingMap.cpp">
+      <Filter>playGround\boss\bulletKing</Filter>
+    </ClCompile>
+    <ClCompile Include="loading.cpp">
+      <Filter>playGround\loading</Filter>
+    </ClCompile>
+    <ClCompile Include="eggNyangMap.cpp">
+      <Filter>playGround\boss\eggNyang</Filter>
+    </ClCompile>
+    <ClCompile Include="niflheimMap.cpp">
       <Filter>playGround\boss\niflheim</Filter>
     </ClCompile>
   </ItemGroup>

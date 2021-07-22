@@ -4,16 +4,20 @@
 #include "fishMan.h"
 #include "dinosaur.h"
 #include "player.h"
+#include "bulletKingMap.h"
 
 class bulletKingBattle : public gameNode
 {
 private:
 	bulletKing* _bulletKing;
+	player* _player;
+
 	fishMan* _fishMan;
 	dinosaur* _dinosaur;
 
-	player* _player;
-
+	//¸Ê°ü·Ã
+	bulletKingMap* _bulletKingMap;
+	POINT _mapMouse;
 public:
 	bulletKingBattle();
 	~bulletKingBattle();
