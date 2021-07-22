@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "bulletKingAttack2.h"
-
+#include "player.h"
 
 bulletKingState * bulletKingAttack2::InputHandle(bulletKing * bulletKing)
 {
@@ -15,7 +15,7 @@ void bulletKingAttack2::enter(bulletKing * bulletKing)
 	bulletKing->setBulletKingCurrentFrameX(0);
 
 	//ÃÑ¾Ë ¹ß»ç1
-	bulletKing->getBulletKingBullet()->bulletFire2(bulletKing->getBulletKing().x, bulletKing->getBulletKing().y, bulletKing->getEnemyTest().x, bulletKing->getEnemyTest().y);
+	bulletKing->getBulletKingBullet()->bulletFire2(bulletKing->getBulletKing().x, bulletKing->getBulletKing().y, bulletKing->getPlayer()->getPlayer().x, bulletKing->getPlayer()->getPlayer().y);
 	_count = 0;
 }
 
@@ -23,10 +23,10 @@ void bulletKingAttack2::update(bulletKing * bulletKing)
 {
 	_count++;
 	if (_count % 15 == 0)
-	{		
+	{
 		//ÃÑ¾Ë ¹ß»ç2
-		bulletKing->getBulletKingBullet()->bulletFire2(bulletKing->getBulletKing().x, bulletKing->getBulletKing().y, bulletKing->getEnemyTest().x, bulletKing->getEnemyTest().y);
-		
+		bulletKing->getBulletKingBullet()->bulletFire2(bulletKing->getBulletKing().x, bulletKing->getBulletKing().y, bulletKing->getPlayer()->getPlayer().x, bulletKing->getPlayer()->getPlayer().y);
+
 		bulletKing->setBulletKingCurrentFrameX(bulletKing->getBulletKing().currentFrameX + 1);
 		if (bulletKing->getBulletKing().currentFrameX >= bulletKing->getBulletKing().img->getMaxFrameX()) bulletKing->setBulletKingCurrentFrameX(0);
 	}

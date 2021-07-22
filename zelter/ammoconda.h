@@ -3,9 +3,12 @@
 #include "ammocondaState.h"
 #include "ammocondaBullet.h"
 #include "progressBar.h"
+#include "playerBullet.h"
 
 #define AMMOCONDAMAX 11
 #define PIDIVISION8		float(PI / 8.0f)
+
+class player;
 
 enum POTSTATE
 {
@@ -60,10 +63,8 @@ private:
 	bool _isPotCreate;
 	int _potCount;
 
-	//적 테스트용
-	tagAmmoconda _enemyTest;
-	bool _isMove;
 
+	player* _player;
 
 public:
 	ammoconda();
@@ -81,7 +82,8 @@ public:
 	void potMove();
 	void potState();
 	void potRender();
-	
+	void collision();
+
 
 	//아모콘다 참조자
 	tagAmmoconda& getAmmoconda(int index) { return _ammoconda[index]; }
@@ -90,11 +92,12 @@ public:
 	tagAmmoconda& getPot() { return _pot; }
 	bool getIsPotCreate() { return _isPotCreate; }
 
-	//적 테스트 get
-	tagAmmoconda getEnemyTest() { return _enemyTest; }
 
 	//총알 get
 	ammocondaBullet* getBAmmocondaBullet() { return _ammocondaBullet; }
 
+	void linkPlayer(player* player) { _player = player; }
+
+	player* getPlayer() { return _player; }
 };
 
