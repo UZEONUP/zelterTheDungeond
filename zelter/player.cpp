@@ -128,35 +128,35 @@ void player::update()
 	// 보스 총탄과 플레이어 충돌 시 데미지를 입어라!
 
 
-	//불렛 킹
+	////불렛 킹
 
-	if (!_player.isHit)
-	{
-		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
-		{
-			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
-			{
-				_player.isHit = true;
-				hitDamage(10.f);
-			}
-		}
-		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet2().size(); ++i)
-		{
-			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet2()[i].rc))
-			{
-				_player.isHit = true;
-				hitDamage(50.f);
-			}
-		}
-		for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet3().size(); ++i)
-		{
-			if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet3()[i].rc))
-			{
-				_player.isHit = true;
-				hitDamage(90.f);
-			}
-		}
-	}
+	//if (!_player.isHit)
+	//{
+	//	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
+	//	{
+	//		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet1()[i].rc))
+	//		{
+	//			_player.isHit = true;
+	//			hitDamage(10.f);
+	//		}
+	//	}
+	//	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet2().size(); ++i)
+	//	{
+	//		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet2()[i].rc))
+	//		{
+	//			_player.isHit = true;
+	//			hitDamage(50.f);
+	//		}
+	//	}
+	//	for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet3().size(); ++i)
+	//	{
+	//		if (IntersectRect(&temp, &_player.rc, &_bulletKing->getBulletKingBullet()->getvBulletKingBullet3()[i].rc))
+	//		{
+	//			_player.isHit = true;
+	//			hitDamage(90.f);
+	//		}
+	//	}
+	//}
 
 	
 	/*for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
@@ -202,7 +202,7 @@ void player::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		D2DRENDER->DrawRectangle(_player.rc, D2DRenderer::DefaultBrush::White, 1.f);
+		D2DRENDER->DrawRectangle(_player.rc, D2DRenderer::DefaultBrush::Red, 1.f);
 		D2DRENDER->DrawRectangle(_player.shadow, D2DRenderer::DefaultBrush::White, 1.f);
 		D2DRENDER->DrawRectangle(_playerGun.rc, D2DRenderer::DefaultBrush::White, 1.f, _playerGun.angle);
 	}

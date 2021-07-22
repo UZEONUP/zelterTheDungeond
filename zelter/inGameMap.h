@@ -5,6 +5,7 @@
 class inGameMap : public gameNode
 {
 private:
+
 	tagTile _tile[TILEX*TILEY];
 	DWORD _attribute[TILEX*TILEY];
 	POINT _mapMouse;
@@ -28,5 +29,6 @@ public:
 
 	int getPosFirst() { return _pos[0]; }
 	int getPosSecond() { return _pos[1]; }
+
 };
 
