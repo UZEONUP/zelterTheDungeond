@@ -33,8 +33,8 @@ void stageManager::render()
 void stageManager::sceneSet()
 {
 	SCENEMANAGER->addScene("title", new testScene);
-	//SCENEMANAGER->addScene("mapmap", new mapmap);
-	SCENEMANAGER->addScene("mapmap", new inGame);
+	SCENEMANAGER->addScene("mapmap", new mapmap);
+	//SCENEMANAGER->addScene("mapmap", new inGame);
 	SCENEMANAGER->addScene("player", new player);
 	SCENEMANAGER->addScene("pick", new characterPick);
 	SCENEMANAGER->addScene("eggNyang", new eggNyang);
