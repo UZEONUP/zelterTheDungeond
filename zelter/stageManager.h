@@ -2,23 +2,14 @@
 #include "gameNode.h"
 #include "testScene.h"
 #include "mapmap.h"
-#include "player.h"
 #include "characterPick.h"
 #include "inGame.h"
-
-#include"eggNyang.h"
-#include"niflheim.h"
-#include "playerBullet.h"
 #include "ammocondaBattle.h"
 #include "bulletKingBattle.h"
 
 class stageManager : public gameNode
 {
 private:
-	player*			_player;
-	eggNyang*		_eggNyang;
-	niflheim*		_niflheim;
-	bulletKing*		_bulletKing;
 
 public:
 	virtual HRESULT init();

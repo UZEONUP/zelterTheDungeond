@@ -4,7 +4,6 @@
 HRESULT stageManager::init()
 {
 	sceneSet();
-	
 
 	return S_OK;
 }
@@ -28,15 +27,11 @@ void stageManager::render()
 void stageManager::sceneSet()
 {
 	SCENEMANAGER->addScene("title", new testScene);
-	SCENEMANAGER->addScene("mapmap", new mapmap);
-	//SCENEMANAGER->addScene("mapmap", new inGame);
-	SCENEMANAGER->addScene("player", new player);
+	//SCENEMANAGER->addScene("mapmap", new mapmap);
+	SCENEMANAGER->addScene("mapmap", new inGame);
 	SCENEMANAGER->addScene("pick", new characterPick);
-	SCENEMANAGER->addScene("eggNyang", new eggNyang);
-	SCENEMANAGER->addScene("niflheim", new niflheim);
 	SCENEMANAGER->addScene("bulletKing", new bulletKingBattle);
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
 
-
-	SCENEMANAGER->changeScene("bulletKing");
+	SCENEMANAGER->changeScene("mapmap");
 }

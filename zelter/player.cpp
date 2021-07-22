@@ -226,7 +226,7 @@ void player::render()
 	{
 		if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 		{
-			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
+			_player.img->frameRender2(_player.rc.left , _player.rc.top, _player.currentFrameX, 0);
 			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, -1.f, _playerGun.angle);
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)

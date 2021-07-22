@@ -6,7 +6,7 @@ class ammocondaBattle : public gameNode
 {
 private:
 	ammoconda* _ammoconda;
-
+	player* _player;
 public:
 	ammocondaBattle();
 	~ammocondaBattle();

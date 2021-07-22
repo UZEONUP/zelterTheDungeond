@@ -3,12 +3,12 @@
 #include "playerState.h"
 #include "quickSlot.h"
 #include "progressBar.h"
-#include "niflheimBullet.h"
-#include "bulletKingBullet.h"
+#include "inGameMap.h"
+
+class bulletKing;
+class ammoconda;
 
 class playerBullet;
-class niflheim;
-class bulletKing;
 
 struct tagPlayer
 {
@@ -57,11 +57,7 @@ private:
 	tagEnemy _enemy;
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
-	image* _mouse;
-	playerBullet* _playerBullet;
 
-	niflheim* _niflheim;
-	bulletKing* _bulletKing;
 
 	int _count;
 	int _index;
@@ -70,7 +66,16 @@ private:
 	int _gunType;
 	bool _imageON;
 
-	
+	image* _mouse;
+
+	playerBullet* _playerBullet;
+
+	//======================다른 곳에서 불러온 변수=================
+	inGameMap* _inGame;
+	//아모콘다맵* 맵;
+	bulletKing* _bulletKing;
+	ammoconda* _ammoconda;
+
 public:
 	HRESULT init();
 	virtual void release();
@@ -97,17 +102,13 @@ public:
 	void setHit(bool hit) { _player.isHit = hit; }
 
 	void setPlayerDirection(int direction) { _player.direction = direction; }
-	
-
 
 	void setPlayerImage(image* img) { _player.img = img; }
 
 	void addIMAGES();
 
 	void inputHandle();
-
-	void setPlayerHit(bool hit) { _player.isHit = hit;}
-	float hitDamage(float damage);
+	
 	float getEnemyX() { return _enemy.x; }
 	float getEnemyY() { return _enemy.y; }
 
@@ -128,9 +129,10 @@ public:
 
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
 
-	void setplayerNiflheimLink(niflheim* niflheim) { _niflheim = niflheim; }
 
-	void setplayerBulletKingLink(bulletKing* bulletking) { _bulletKing = bulletking; }
-
-
+	//==================맵 링크 관련====================================
+	void linkOpenWorldMap(inGameMap* map) {  _inGame = map; }
+	void setKeyType(bool type) { _player.isDunGreed = type; }
+	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
+	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
 };

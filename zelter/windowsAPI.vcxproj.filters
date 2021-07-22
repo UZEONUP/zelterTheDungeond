@@ -112,6 +112,9 @@
     <Filter Include="playGround\boss\bulletKing\bulletKingBullet">
       <UniqueIdentifier>{48c29b85-9c9f-490a-83a5-acbd833603e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\test\inGame">
+      <UniqueIdentifier>{1914be6b-f240-484d-9f66-5621e2514ce2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -197,9 +200,6 @@
     </ClInclude>
     <ClInclude Include="stageManager.h">
       <Filter>playGround\stageManager</Filter>
-    </ClInclude>
-    <ClInclude Include="inGame.h">
-      <Filter>playGround\test</Filter>
     </ClInclude>
     <ClInclude Include="mapmap.h">
       <Filter>2DGameFramework\Manager\mapTool</Filter>
@@ -360,6 +360,12 @@
     <ClInclude Include="tileNode.h">
       <Filter>playGround\test</Filter>
     </ClInclude>
+    <ClInclude Include="inGame.h">
+      <Filter>playGround\test\inGame</Filter>
+    </ClInclude>
+    <ClInclude Include="inGameMap.h">
+      <Filter>playGround\test\inGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -430,9 +436,6 @@
     </ClCompile>
     <ClCompile Include="stageManager.cpp">
       <Filter>playGround\stageManager</Filter>
-    </ClCompile>
-    <ClCompile Include="inGame.cpp">
-      <Filter>playGround\test</Filter>
     </ClCompile>
     <ClCompile Include="mapmap.cpp">
       <Filter>2DGameFramework\Manager\mapTool</Filter>
@@ -607,6 +610,12 @@
     </ClCompile>
     <ClCompile Include="tileNode.cpp">
       <Filter>playGround\test</Filter>
+    </ClCompile>
+    <ClCompile Include="inGame.cpp">
+      <Filter>playGround\test\inGame</Filter>
+    </ClCompile>
+    <ClCompile Include="inGameMap.cpp">
+      <Filter>playGround\test\inGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

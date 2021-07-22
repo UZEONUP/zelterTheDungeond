@@ -3,6 +3,7 @@
 #include "ammocondaAttack2.h"
 #include "ammocondaIdle.h"
 #include "ammocondaRecovery.h"
+#include "player.h"
 
 ammocondaState * ammocondaAttack1::InputHandle(ammoconda * ammoconda)
 {
@@ -53,7 +54,7 @@ void ammocondaAttack1::update(ammoconda * ammoconda)
 	//1 ~100까지의 랜덤값 중 몸통의 인덱스와 일치하면 isAttack라는 bool값 true
 	if (_attackRand < AMMOCONDAMAX - 1) ammoconda->getAmmoconda(_attackRand + 1).isAttack = true;
 	//각 몸통의 isAttack이라는 bool값 이 true면 공격 실행
-	for (int i = 1; i < AMMOCONDAMAX; i++) 
+	for (int i = 1; i < AMMOCONDAMAX; i++)
 	{
 		if (!ammoconda->getAmmoconda(i).isAttack) continue;
 		attack(ammoconda, i);
@@ -77,10 +78,10 @@ void ammocondaAttack1::attack(ammoconda* ammoconda, int bodyNum)
 	{
 		ammoconda->getAmmoconda(bodyNum).currentFrameX++;
 		//총알 발사(이미지 프레임이 일치할 경우)
-		if(ammoconda->getAmmoconda(bodyNum).currentFrameX == 3)ammoconda->getBAmmocondaBullet()->bulletFire1(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getEnemyTest().x, ammoconda->getEnemyTest().y);
+		if (ammoconda->getAmmoconda(bodyNum).currentFrameX == 3)ammoconda->getBAmmocondaBullet()->bulletFire1(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getPlayer()->getPlayer().x, ammoconda->getPlayer()->getPlayer().y);
 		//프레임 예외처리
 		if (ammoconda->getAmmoconda(bodyNum).currentFrameX >= ammoconda->getAmmoconda(bodyNum).img->getMaxFrameX())
-		{			
+		{
 			ammoconda->getAmmoconda(bodyNum).currentFrameX = 0;
 			ammoconda->getAmmoconda(bodyNum).isAttack = false;
 		}
