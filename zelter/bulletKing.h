@@ -4,6 +4,7 @@
 #include "bulletKingIdle.h"
 #include "bulletKingBullet.h"
 #include "progressBar.h"
+#include "player.h"
 
 struct tagBulletKing
 {
@@ -40,6 +41,8 @@ private:
 	tagBulletKing _enemyTest;
 	bool _isMove;
 
+
+	player* _player;
 public:
 	bulletKing();
 	~bulletKing();

@@ -115,9 +115,9 @@ void eggNyang::hitEggNyang()
 			_eggNyang.currentHp -= 35;
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBullet().size(); i++)
+	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); i++)
 	{
-		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBullet()[i].rc))
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletN()[i].rc))
 		{
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();

@@ -3,6 +3,8 @@
 #include "stageManager.h"
 #include "player.h"
 #include "playerBullet.h"
+#include "niflheim.h"
+#include "bulletKing.h"
 
 
 
@@ -12,6 +14,8 @@ private:
 	stageManager* _stageManager;
 	player* _player;
 	playerBullet* _playerBullet;
+	niflheim* _niflheim;
+	bulletKing* _bulletKing;
 
 public:
 	playGround();

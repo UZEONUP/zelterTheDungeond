@@ -30,6 +30,8 @@ HRESULT bulletKing::init()
 	_enemyTest.y = WINSIZEY / 2;
 	_enemyTest.speed = 3.0f;
 	_enemyTest.rc = RectMakeCenter(_enemyTest.x, _enemyTest.y, 15, 15);
+	_player = new player;
+	_player->init();
 
 	return S_OK;
 }
@@ -40,12 +42,14 @@ void bulletKing::release()
 
 void bulletKing::update()
 {
+	
 	//상태패턴
 	InputHandle();
 	_state->update(this);
 	//hp
 	_hp->update();
 	_hp->setGauge(_bulletKing.currentHp, _bulletKing.maxHp);
+	_player->update();
 	if (_bulletKing.currentHp <= 0) _bulletKing.currentHp = 0;
 
 	if (KEYMANAGER->isStayKeyDown(VK_SPACE)) 
@@ -114,6 +118,7 @@ void bulletKing::render()
 		D2DRENDER->DrawRectangle(_bulletKingChair.rc, D2DRenderer::DefaultBrush::White);
 	}
 
+	_player->render();
 	//적 테스트
 	D2DRENDER->DrawRectangle(_enemyTest.rc, D2DRenderer::DefaultBrush::Red);
 }

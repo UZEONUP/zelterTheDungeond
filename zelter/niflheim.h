@@ -63,7 +63,7 @@ public :
 
 	void linkPlayer(player* player) { _player = player; }
 
-	tagNiflheim getNiflheim() { return _niflheim; }
+	tagNiflheim getNiflheim() { return _niflheim; } 
 	void setImg(image* img) { _niflheim.img = img; }
 
 	void setX(float x) { _niflheim.x = x; }

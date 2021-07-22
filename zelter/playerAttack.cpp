@@ -89,30 +89,29 @@ void playerAttack::update(player * player)
 
 		switch (player->getPlayer().direction)
 		{
-
 		case 0:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_run"));
 			break;
 		case 1:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_run"));
 			break;
 		case 2:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_back_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_back_run"));
 			break;
 		case 3:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_run"));
 			break;
 		case 4:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left-up_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left-up_run"));
 			break;
 		case 5:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right-up_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right-up_run"));
 			break;
 		case 6:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_run"));
 			break;
 		case 7:
-			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_idle"));
+			player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_run"));
 			break;
 		}
 	}
@@ -129,7 +128,7 @@ void playerAttack::update(player * player)
 	
 
 	_count++;
-	if (_count % 3 == 0)
+	if (_count % 5 == 0)
 	{
 		if(player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
 		cout << _pressPower << endl;

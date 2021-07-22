@@ -7,7 +7,7 @@
 
 #include"eggNyang.h"
 #include"niflheim.h"
-
+#include "playerBullet.h"
 #include "ammocondaBattle.h"
 #include "bulletKingBattle.h"
 

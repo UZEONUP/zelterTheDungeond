@@ -5,6 +5,8 @@
 #include "progressBar.h"
 
 class playerBullet;
+class niflheim;
+class bulletKing;
 
 struct tagPlayer
 {
@@ -53,7 +55,10 @@ private:
 	tagEnemy _enemy;
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
-
+	image* _mouse;
+	playerBullet* _playerBullet;
+	niflheim* _niflheim;
+	bulletKing* _bulletKing;
 
 	int _count;
 	int _index;
@@ -62,9 +67,7 @@ private:
 	int _gunType;
 	bool _imageON;
 
-	image* _mouse;
-
-	playerBullet* _playerBullet;
+	
 public:
 	HRESULT init();
 	virtual void release();
@@ -120,6 +123,9 @@ public:
 
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
 
+	void setplayerNiflheimLink(niflheim* niflheim) { _niflheim = niflheim; }
+
+	void setplayerBulletKingLink(bulletKing* bulletking) { _bulletKing = bulletking; }
 
 
 };

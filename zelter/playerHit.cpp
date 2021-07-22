@@ -12,7 +12,7 @@ void playerHit::update(player * player)
 	_count++;
 	if (player->getPlayer().isHit)
 	{
-		if (_count < 30)
+		if (_count <= 30)
 		{
 			player->getPlayer().img->setAlpha(0);
 		}

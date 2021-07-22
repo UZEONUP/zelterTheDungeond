@@ -24,11 +24,17 @@ HRESULT playGround::init()
 
 	_player = new player;
 	_playerBullet = new playerBullet;
+	_niflheim = new niflheim;
+	_bulletKing = new bulletKing;
 
 	_player->init();
 	_playerBullet->init();
+	_niflheim->init();
+	_bulletKing->init();
 
 	_player->setplayerBulletLink(_playerBullet);
+	_player->setplayerNiflheimLink(_niflheim);
+	_player->setplayerBulletKingLink(_bulletKing);
 	_playerBullet->setPlayerLink(_player);
 
 	return S_OK;
