@@ -42,5 +42,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("ammoconda", new ammocondaBattle);
 
 
-	SCENEMANAGER->changeScene("niflheim");
+	SCENEMANAGER->changeScene("eggNyang");
 }
