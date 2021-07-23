@@ -56,19 +56,42 @@ void playerRun::update(player * player)
 		if (KEYMANAGER->isStayKeyDown('D'))
 		{
 			player->setPlayerX(player->getPlayer().x + player->getPlayer().speed);
+			player->setPlayerMovingDirection(0);
 		}
 
 		if (KEYMANAGER->isStayKeyDown('A'))
 		{
 			player->setPlayerX(player->getPlayer().x - player->getPlayer().speed);
+			player->setPlayerMovingDirection(1);
 		}
 		if (KEYMANAGER->isStayKeyDown('W'))
 		{
 			player->setPlayerY(player->getPlayer().y - player->getPlayer().speed);
+			player->setPlayerMovingDirection(2);
 		}
 		if (KEYMANAGER->isStayKeyDown('S'))
 		{
 			player->setPlayerY(player->getPlayer().y + player->getPlayer().speed);
+			player->setPlayerMovingDirection(3);
+		}
+
+
+		if (KEYMANAGER->isStayKeyDown('D') && KEYMANAGER->isStayKeyDown('W'))
+		{
+			player->setPlayerMovingDirection(5);
+		}
+
+		if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isStayKeyDown('D'))
+		{
+			player->setPlayerMovingDirection(6);
+		}
+		if (KEYMANAGER->isStayKeyDown('A') && KEYMANAGER->isStayKeyDown('S'))
+		{
+			player->setPlayerMovingDirection(7);
+		}
+		if (KEYMANAGER->isStayKeyDown('A') && KEYMANAGER->isStayKeyDown('W'))
+		{
+			player->setPlayerMovingDirection(4);
 		}
 
 		switch (player->getPlayer().direction)
@@ -99,12 +122,12 @@ void playerRun::update(player * player)
 			break;
 		}
 	}
-	
+	cout << player->getPlayer().movingDirection << endl;
 	_count++;
 	if (_count % 7 == 0)
 	{
-		player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
-		if ( player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
+		player->setPlayerCurrentFrameX(player->getPlayer().currentFrameX + 1);
+		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
 		_count = 0;
 	}
 	return;
@@ -114,7 +137,7 @@ void playerRun::enter(player * player)
 {
 	player->setPlayerCurrentFrameX(0);
 	_count = 0;
-	
+
 	return;
 }
 

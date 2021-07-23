@@ -29,9 +29,9 @@ HRESULT player::init()
 	_player.isEnd = true;
 
 	_player.maxHP = _player.currentHP = 100;
-	_playerGun.x = _player.x;
-	_playerGun.y = _player.y;
-	_player.speed = 30.0f;
+	_playerGun.x = _player.x + 27;
+	_playerGun.y = _player.y + 15;
+	_player.speed = 3.0f;
 	_gunType = 0;
 
 	_playerBullet = new playerBullet;
@@ -51,8 +51,6 @@ HRESULT player::init()
 	_progressBar = new progressBar();
 	_progressBar->init(170, 25, 100, 30);
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
-
-	
 	return S_OK;
 }
 
@@ -62,15 +60,6 @@ void player::release()
 
 void player::update()
 {
-	cout << _player.direction <<"방향"<<endl;
-	tileDetect();
-	_cameraX = CAMERAMANAGER->getX();
-	_cameraY = CAMERAMANAGER->getY();
-	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
-	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
-
-	//=================================================================
-
 	RECT temp;
 	_count++;
 
@@ -81,7 +70,7 @@ void player::update()
 
 
 	//플레이어 마우스 방향으로 바라보기
-	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _mapMouse.x, _mapMouse.y) * (180 / PI);
+	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _ptMouse.x, _ptMouse.y) * (180 / PI);
 
 	if (_playerGun.angle < 340 && 0 < _playerGun.angle) _player.direction = 0;
 	if (_playerGun.angle < 110 && 70 < _playerGun.angle) _player.direction = 2;
@@ -94,18 +83,19 @@ void player::update()
 
 	if (_player.isDunGreed)
 	{
-		if (_mapMouse.x < _player.x)_player.direction = 1;
+		if (_ptMouse.x < _player.x) _player.direction = 1;
 		else _player.direction = 0;
 	}
 
 	_enemy.rc = RectMakeCenter(_enemy.x, _enemy.y, 100, 100);
-	_playerGun.x = _player.x;
-	_playerGun.y = _player.y;
-	_playerBullet->move(_gunType, _enemy.x, _enemy.y);
+	_playerGun.x = _player.x + 27;
+	_playerGun.y = _player.y + 15;
+	if (SCENEMANAGER->isCurrentScene("bulletKing"))_playerBullet->move(_gunType, _bulletKing->getBulletKing().x, _bulletKing->getBulletKing().y);
+	else if (SCENEMANAGER->isCurrentScene("niflheim"))_playerBullet->move(_gunType, _niflheim->getNiflheim().x, _niflheim->getNiflheim().y);
 	_playerBullet->update();
 
 	{
-		_playerGun.rc = RectMakeCenter(_player.x + 27, _player.y + 15, _playerGun.img->getWidth(), _playerGun.img->getHeight());
+		_playerGun.rc = RectMakeCenter(_playerGun.x, _playerGun.y, _playerGun.img->getWidth(), _playerGun.img->getHeight());
 		switch (_gunType)
 		{
 
@@ -167,6 +157,7 @@ void player::update()
 		}
 	}
 
+	//니플헤임
 	if (SCENEMANAGER->isCurrentScene("niflheim"))
 	{
 		for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
@@ -178,6 +169,10 @@ void player::update()
 		}
 	}
 
+	//아모콘다
+
+
+	//에그냥
 
 
 
@@ -225,12 +220,12 @@ void player::render()
 	{
 		if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 		{
-			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left-_cameraX, _playerGun.rc.top- _cameraY, 1.f, -1.f, _playerGun.angle);
+			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, -1.f, _playerGun.angle);
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 		{
-			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left- _cameraX, _playerGun.rc.top- _cameraY, 1.f, 1.f, _playerGun.angle);
+			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, 1.f, _playerGun.angle);
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 		}
 	}
@@ -239,13 +234,13 @@ void player::render()
 		if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 		{
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
-			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left- _cameraX, _playerGun.rc.top- _cameraY, 1.f, -1.f, _playerGun.angle);
+			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, -1.f, _playerGun.angle);
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 		{
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
 			if (!_player.isDeath)
-				_playerGun.img->render(_playerGun.rc.left- _cameraX, _playerGun.rc.top- _cameraY, 1.f, 1.f, _playerGun.angle);
+				_playerGun.img->render(_playerGun.rc.left, _playerGun.rc.top, 1.f, 1.f, _playerGun.angle);
 		}
 	}
 	_progressBar->render();
@@ -323,115 +318,6 @@ void player::inputHandle() //스테이트 호출
 		state = newState;
 		state->enter(this);
 	}
-}
-
-void player::tileDetect()
-{
-	//여기가 제일 중요한 부분이 아닌가 싶습니다
-	RECT rcCollision;	//가상의 충돌판정 렉트를 하나 생성해주자
-
-
-	int tileIndex[2];	//타일 검출에 필요한 인덱스
-	int tileX, tileY;	//플레이어가 밟고 있는 타일의 인덱스
-
-	//가상의 판정렉트에 현재 렉트를 대입해주자
-	rcCollision = _player.rc;
-
-	float elapsedTime = TIMEMANAGER->getElapsedTime();
-	float moveSpeed = elapsedTime * _player.speed;
-
-	rcCollision = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
-	
-	//STEP 3
-	////판정렉트를 사알짝 깍아주자
-	//rcCollision.left += 2;
-	//rcCollision.top += 2;
-	//rcCollision.right -= 2;
-	//rcCollision.bottom -= 2;
-
-	tileX = rcCollision.left / 64;
-	tileY = rcCollision.top / 64;
-
-
-	//STEP 04
-	//가장 메인이지 싶으요
-	//해당 방향일때 레프트 탑을 기준으로 앞타일과 그 옆타일을 계산해준다
-	/*
-	-----------------
-	4	|	2	|	5
-	-----------------
-	1	| player|	0
-	-----------------
-	7	|	3	|	6
-	*/
-	switch (_player.direction)
-	{
-	case 1:
-		tileIndex[0] = tileX + (tileY * TILEX);
-		tileIndex[1] = tileX + (tileY + 1) * TILEX;
-		break;
-	case 2:
-		tileIndex[0] = tileX + (tileY * TILEX);
-		tileIndex[1] = (tileX + 1) + tileY * TILEX;
-		break;
-	case 0:
-		tileIndex[0] = (tileX + tileY * TILEX) + 1;
-		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
-		break;
-	case 3:
-		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
-		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
-		break;
-	default:
-		tileIndex[0] = (tileX + tileY * TILEX) + 1;
-		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
-		break;
-	}
-
-	for (int i = 0; i < 2; ++i)
-	{
-		if (_inGame->getTileAtt()[tileIndex[i]] != NONEMOVE)continue;
-		RECT rc;
-
-		if (((_inGame->getTileAtt()[tileIndex[i]] == NONEMOVE)) &&
-			IntersectRect(&rc, &_inGame->getTile()[tileIndex[i]].checkRect, &rcCollision))
-		{
-			switch (_player.direction)
-			{
-			case 1:
-				_player.rc.left = _inGame->getTile()[tileIndex[i]].checkRect.right;
-				_player.rc.right = _player.rc.left + 60;
-
-				_player.x = (_player.rc.left + _player.rc.right) / 2;
-				break;
-			case 2:
-				_player.rc.top = _inGame->getTile()[tileIndex[i]].checkRect.bottom;
-				_player.rc.bottom = _player.rc.top + 60;
-
-				_player.y = (_player.rc.top + _player.rc.bottom) / 2;
-
-				break;
-			case 0:
-				_player.rc.right = _inGame->getTile()[tileIndex[i]].checkRect.left;
-				_player.rc.left = _player.rc.right - 60;
-
-				_player.x = (_player.rc.left + _player.rc.right) / 2;
-				break;
-			case 3:
-				_player.rc.bottom = _inGame->getTile()[tileIndex[i]].checkRect.top;
-				_player.rc.top = _player.rc.bottom - 60;
-
-				_player.y = (_player.rc.top + _player.rc.bottom) / 2;
-				break;
-
-			}
-
-			return;
-		}
-
-	}
-	_player.rc = rcCollision;
-	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 }
 
 float player::hitDamage(float damage)
