@@ -221,5 +221,5 @@ void niflheim::imageAdd()
 	IMAGEMANAGER->addFrameImage("icicleDestroy", L"effect/icicleDestroy.png", 3, 1);
 	IMAGEMANAGER->addFrameImage("nullImg", L"niflheimBullet/nullImg.png", 5, 1);
 	//¸Ê ÀÌ¹ÌÁö
-	IMAGEMANAGER->addImage("niflheimBackGround", L"niflheim/niflheimBackGround.png")
+	IMAGEMANAGER->addImage("niflheimBackGround", L"niflheim/niflheimBackGround.png");
 }
