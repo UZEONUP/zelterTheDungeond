@@ -20,7 +20,9 @@ HRESULT bulletKingBattle::init()
 	_player->init();
 
 	_fishMan = new fishMan;
+	_fishMan->init();
 	_dinosaur = new dinosaur;
+	_dinosaur->init();
 	
 	_player->linkBulletKing(_bulletKing);
 	_bulletKing->linkPlayer(_player);

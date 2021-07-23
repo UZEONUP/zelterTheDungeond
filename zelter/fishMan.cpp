@@ -11,8 +11,7 @@ fishMan::~fishMan()
 
 HRESULT fishMan::init()
 {
-
-
+	_dialogue = new dialogue;
 
 	return S_OK;
 }
@@ -38,6 +37,7 @@ void fishMan::render()
 		_viFishMan->img->frameRender2(_viFishMan->rc.left, _viFishMan->rc.top, _viFishMan->currentFrameX, _viFishMan->currentFrameY);
 	}
 
+	_dialogue->render();
 }
 
 
@@ -141,6 +141,8 @@ void fishMan::fishMove(float x, float y)
 		//렉트 
 		_viFishMan->rc = RectMakeCenter(_viFishMan->x, _viFishMan->y, _viFishMan->img->getWidth() / _viFishMan->img->getMaxFrameX(), _viFishMan->img->getHeight() / _viFishMan->img->getMaxFrameY());
 	}
+
+	_dialogue->update();
 }
 //피쉬맨 상태
 void fishMan::fishState()
@@ -213,10 +215,20 @@ void fishMan::fishState()
 			switch (_viFishMan->direction)
 			{
 			case FISHMAN_RIGHT:
-				if (_viFishMan->currentFrameX > 2)_viFishMan->currentFrameX = 0;
+				if (_viFishMan->currentFrameX > 2)
+				{
+					_dialogue->speechCreate(FISHMAN, _viFishMan->x - 60, _viFishMan->y - 60);
+
+					_viFishMan->currentFrameX = 0;
+				}
 				break;
 			case FISHMAN_LEFT:
-				if (_viFishMan->currentFrameX < 0) _viFishMan->currentFrameX = 2;
+				if (_viFishMan->currentFrameX < 0)
+				{
+					_dialogue->speechCreate(FISHMAN, _viFishMan->x - 60, _viFishMan->y - 60);
+
+					_viFishMan->currentFrameX = 2;
+				}
 				break;
 			}
 			break;

@@ -172,6 +172,7 @@
     <ClInclude Include="characterPick.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="D2DRenderer.h" />
+    <ClInclude Include="dialogue.h" />
     <ClInclude Include="dinosaur.h" />
     <ClInclude Include="eggNyang.h" />
     <ClInclude Include="eggNyangAttack1.h" />
@@ -265,6 +266,7 @@
     <ClCompile Include="characterPick.cpp" />
     <ClCompile Include="D2DRenderer+Draw.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
+    <ClCompile Include="dialogue.cpp" />
     <ClCompile Include="dinosaur.cpp" />
     <ClCompile Include="eggNyang + Lazer.cpp" />
     <ClCompile Include="eggNyang + Sword.cpp" />

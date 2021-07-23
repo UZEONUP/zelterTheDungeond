@@ -11,6 +11,8 @@ dinosaur::~dinosaur()
 
 HRESULT dinosaur::init()
 {
+	_dialogue = new dialogue;
+
 	return S_OK;
 }
 
@@ -32,6 +34,8 @@ void dinosaur::render()
 		}
 		_viDinosaur->img->frameRender2(_viDinosaur->rc.left, _viDinosaur->rc.top, _viDinosaur->currentFrameX, _viDinosaur->currentFrameY);
 	}
+
+	_dialogue->render();
 }
 
 void dinosaur::setEnemy(float x, float y)
@@ -131,6 +135,8 @@ void dinosaur::dinoMove(float x, float y)
 		//렉트 
 		_viDinosaur->rc = RectMakeCenter(_viDinosaur->x, _viDinosaur->y, _viDinosaur->img->getWidth() / _viDinosaur->img->getMaxFrameX(), _viDinosaur->img->getHeight() / _viDinosaur->img->getMaxFrameY());
 	}
+
+	_dialogue->update();
 }
 
 void dinosaur::dinoState()
@@ -168,7 +174,13 @@ void dinosaur::dinoState()
 			//ATTACK 상태일 경우
 		case DINOSAUR_ATTACK:
 			_viDinosaur->img = IMAGEMANAGER->findImage("dinosaurAttack");
-			if (_viDinosaur->currentFrameX > 1)_viDinosaur->currentFrameX = 0;
+			if (_viDinosaur->currentFrameX > 1)
+			{
+				//공격할 때 대사 출력신호 보내줍니다
+				_dialogue->speechCreate(DINOSAUR, _viDinosaur->x - 60, _viDinosaur->y - 60);
+
+				_viDinosaur->currentFrameX = 0;
+			}
 			break;
 			//DEATH 상태일 경우
 		case DINOSAUR_DEATH:

@@ -2,6 +2,7 @@
 #include <vector>
 #include "bulletKing.h"
 #include "gameNode.h"
+#include "dialogue.h"
 
 enum DINOSAURDIRECTION
 {
@@ -37,6 +38,9 @@ struct tagDinosaur
 class dinosaur : public gameNode
 {
 private:
+	//다이얼로그
+	dialogue*	_dialogue;
+
 	//피쉬맨 구조체
 	tagDinosaur _dinosaur;
 

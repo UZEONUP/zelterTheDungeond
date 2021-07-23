@@ -174,6 +174,8 @@ void eggNyang::imageAdd()	//이미지 추가
 	IMAGEMANAGER->addFrameImage("eggNyangBullet", L"eggNyangBullet/eggNyangBullet.png", 10, 1);
 	//효과 이미지
 	IMAGEMANAGER->addFrameImage("boom", L"effect/boom.png", 4, 1);
+	//배경 이미지
+	IMAGEMANAGER->addImage("eggNynagBackGround", L"eggNyang/eggNyangBackGround.png");
 }
 
 void eggNyang::move()

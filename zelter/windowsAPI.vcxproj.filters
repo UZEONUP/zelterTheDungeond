@@ -118,6 +118,9 @@
     <Filter Include="playGround\loading">
       <UniqueIdentifier>{82460b8e-0145-4785-b988-c869b808af19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\dialogue">
+      <UniqueIdentifier>{d7caf8d2-2d82-4f33-8116-b647590a73fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -390,6 +393,9 @@
     <ClInclude Include="niflheimMap.h">
       <Filter>playGround\boss\niflheim</Filter>
     </ClInclude>
+    <ClInclude Include="dialogue.h">
+      <Filter>playGround\enemy\dialogue</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -661,6 +667,9 @@
     </ClCompile>
     <ClCompile Include="niflheimMap.cpp">
       <Filter>playGround\boss\niflheim</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogue.cpp">
+      <Filter>playGround\enemy\dialogue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

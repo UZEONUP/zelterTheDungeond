@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include <vector>
 #include "bulletKing.h"
+#include "dialogue.h"
 
 enum FISHMANDIRECTION
 {
@@ -38,6 +39,9 @@ struct tagFishMan
 class fishMan : public gameNode
 {
 private:
+	//다이얼로그
+	dialogue* _dialogue;
+
 	//피쉬맨 구조체
 	tagFishMan _fishMan;
 
