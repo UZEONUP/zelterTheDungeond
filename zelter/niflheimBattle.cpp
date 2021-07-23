@@ -3,6 +3,8 @@
 
 HRESULT niflheimBattle::init()
 {
+	_niflheimMap = new niflheimMap;
+	_niflheimMap->init();
 	_player = new player;
 	_player->init();
 	_niflheim = new niflheim;
@@ -21,12 +23,14 @@ void niflheimBattle::release()
 
 void niflheimBattle::update()
 {
+	_niflheimMap->update();
 	_niflheim->update();
 	_player->update();
 }
 
 void niflheimBattle::render()
 {
+	_niflheimMap->render();
 	_niflheim->render();
 	_player->render();
 }

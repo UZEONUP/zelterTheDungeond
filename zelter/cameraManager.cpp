@@ -116,7 +116,7 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2, int speed)
 	}
 }
 
-void cameraManager::updateCamera(POINT mouse, POINT mouse2,float x, float y)
+void cameraManager::updateCamera(POINT mouse, POINT mouse2, float x, float y)
 {
 	//마우스(절대 좌표)
 	if (mouse2.x - _camera.width / 8 < 0)
@@ -129,21 +129,25 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2,float x, float y)
 	}
 	else
 	{
-		if (0 < mouse.x && mouse.x < WINSIZEX/2)
+		if (x - _camera.width *0.5 < 0)
 		{
-			_x -= (WINSIZEX *0.5- mouse.x);
-			if (mouse.x < WINSIZEX*0.3)
-			{
-			_x = x - (_camera.width*0.7);
-			if (_x < 0)	_x = 0;
-			}
-			if (_x < 0)	_x = 0;
+			_x = 0;
 		}
-		else if (WINSIZEX - (WINSIZEX/2) < mouse.x && mouse.x < WINSIZEX)
+		else
 		{
-			_x += (mouse.x - WINSIZEX*0.5);
-			if (mouse.x > WINSIZEX - WINSIZEX*0.3)_x = x - (_camera.width*0.3);
-			if (_x > _map.width)_x = _map.width - _camera.width;
+			if (0 < mouse.x && mouse.x < WINSIZEX / 2)
+			{
+				_x -= (WINSIZEX *0.5 - mouse.x);
+				if (mouse.x < WINSIZEX*0.3)_x = x - (_camera.width*0.7);
+				if (_x < 0)	_x = 0;
+			}
+			else if (WINSIZEX - (WINSIZEX / 2) < mouse.x && mouse.x < WINSIZEX)
+			{
+				_x += (mouse.x - WINSIZEX * 0.5);
+				if (mouse.x > WINSIZEX - WINSIZEX * 0.3)_x = x - (_camera.width*0.3);
+				if (_x > _map.width)_x = _map.width - _camera.width;
+				if (_x < 0)_x = 0;
+			}
 		}
 	}
 	if (mouse2.y - _camera.height / 8 < 0)
@@ -156,17 +160,25 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2,float x, float y)
 	}
 	else
 	{
-		if (0 < mouse.y && mouse.y < WINSIZEY / 2)
+		if (y - _camera.height *0.5< 0)
 		{
-			_y -= (WINSIZEY *0.5 - mouse.y);
-			if (mouse.y < WINSIZEY*0.3)_y = y - (_camera.height*0.7);
-			if (_y < 0)	_y = 0;
+			_y = 0;
 		}
-		else if (WINSIZEY - (WINSIZEY / 2) < mouse.y && mouse.y < WINSIZEY)
+		else
 		{
-			_y += (mouse.y - WINSIZEY * 0.5);
-			if (mouse.y > WINSIZEY - WINSIZEY * 0.3)_y = y - (_camera.height*0.3);
-			if (_y > _map.height)_y = _map.height- _camera.height;
+			if (0 < mouse.y && mouse.y < WINSIZEY / 2)
+			{
+				_y -= (WINSIZEY *0.5 - mouse.y);
+				if (mouse.y < WINSIZEY*0.3)_y = y - (_camera.height*0.7);
+				if (_y < 0)	_y = 0;
+			}
+			else if (WINSIZEY - (WINSIZEY / 2) < mouse.y && mouse.y < WINSIZEY)
+			{
+				_y += (mouse.y - WINSIZEY * 0.5);
+				if (mouse.y > WINSIZEY - WINSIZEY * 0.3)_y = y - (_camera.height*0.3);
+				if (_y > _map.height)_y = _map.height - _camera.height;
+				if (_y < 0)_y = 0;
+			}
 		}
 	}
 }
@@ -287,7 +299,7 @@ void cameraManager::updateCameraH(float x, float y)
 	_y = y;
 }
 
-void cameraManager::updateCameraW(RECT player,float x, float y, float ratio1, float ratio2)
+void cameraManager::updateCameraW(RECT player, float x, float y, float ratio1, float ratio2)
 {
 	//플레이어가 맵 왼쪽 끝에 오면
 	if (x - (_camera.width*ratio1) < 0)
@@ -312,7 +324,7 @@ void cameraManager::updateCameraW(RECT player,float x, float y, float ratio1, fl
 		else
 		{
 
-		_x = x - _camera.width*0.5;
+			_x = x - _camera.width*0.5;
 		}
 	}
 

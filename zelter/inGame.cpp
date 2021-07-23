@@ -13,7 +13,7 @@ HRESULT inGame::init()
 	_player->setKeyType(false);
 	cout << _player->getPlayer().isDunGreed <<"tlqkkdjfas;lfjioajfe;kasndf;saji"<< endl;
 	_player->linkOpenWorldMap(_inGameMap);
-
+	
 	return S_OK;
 }
 
@@ -40,10 +40,42 @@ void inGame::update()
 	}
 	_inGameMap->update();
 	_player->update();
+
+	collisionDoor();
+
+
 }
 
 void inGame::render()
 {
 	_inGameMap->render();
 	_player->render();
+	
 }
+
+void inGame::collisionDoor()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if(IsCollision(_inGameMap->getBossDoor(i).rc, _player->getPlayer().rc)) 
+		{
+			switch (i)
+			{
+			case 0:
+				SCENEMANAGER->changeScene("eggNyang");
+				break;
+			case 1:
+				SCENEMANAGER->changeScene("niflheim");
+				break;
+			case 2:
+				SCENEMANAGER->changeScene("bulletKing");
+				break;
+			case 3:
+				SCENEMANAGER->changeScene("ammoconda");
+				break;
+			}
+		}
+	}
+}
+
+

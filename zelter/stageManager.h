@@ -8,6 +8,7 @@
 #include "bulletKingBattle.h"
 #include "eggNyangBattle.h"
 #include "niflheimBattle.h"
+#include "loading.h"
 
 class stageManager : public gameNode
 {

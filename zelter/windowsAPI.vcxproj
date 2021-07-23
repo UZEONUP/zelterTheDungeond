@@ -153,6 +153,7 @@
     <ClInclude Include="ammocondaBattle.h" />
     <ClInclude Include="ammocondaBullet.h" />
     <ClInclude Include="ammocondaIdle.h" />
+    <ClInclude Include="ammocondaMap.h" />
     <ClInclude Include="ammocondaRecovery.h" />
     <ClInclude Include="ammocondaState.h" />
     <ClInclude Include="animation.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="bulletKingDeath.h" />
     <ClInclude Include="bulletKingHit.h" />
     <ClInclude Include="bulletKingIdle.h" />
+    <ClInclude Include="bulletKingMap.h" />
     <ClInclude Include="bulletKingState.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="characterPick.h" />
@@ -179,6 +181,7 @@
     <ClInclude Include="eggNyangBullet.h" />
     <ClInclude Include="eggNyangDie.h" />
     <ClInclude Include="eggNyangIdle.h" />
+    <ClInclude Include="eggNyangMap.h" />
     <ClInclude Include="eggNyangStateBase.h" />
     <ClInclude Include="fishMan.h" />
     <ClInclude Include="gameNode.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="LibraryHeader.h" />
     <ClInclude Include="line.h" />
+    <ClInclude Include="loading.h" />
     <ClInclude Include="mapmap.h" />
     <ClInclude Include="niflheim.h" />
     <ClInclude Include="niflheimAttack1.h" />
@@ -200,6 +204,7 @@
     <ClInclude Include="niflheimDie.h" />
     <ClInclude Include="niflheimEnter.h" />
     <ClInclude Include="niflheimIdle.h" />
+    <ClInclude Include="niflheimMap.h" />
     <ClInclude Include="pause.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerAttack.h" />
@@ -241,6 +246,7 @@
     <ClCompile Include="ammocondaBattle.cpp" />
     <ClCompile Include="ammocondaBullet.cpp" />
     <ClCompile Include="ammocondaIdle.cpp" />
+    <ClCompile Include="ammocondaMap.cpp" />
     <ClCompile Include="ammocondaRecovery.cpp" />
     <ClCompile Include="ammocondaState.cpp" />
     <ClCompile Include="animation.cpp" />
@@ -253,6 +259,7 @@
     <ClCompile Include="bulletKingDeath.cpp" />
     <ClCompile Include="bulletKingHit.cpp" />
     <ClCompile Include="bulletKingIdle.cpp" />
+    <ClCompile Include="bulletKingMap.cpp" />
     <ClCompile Include="bulletKingState.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="characterPick.cpp" />
@@ -269,6 +276,7 @@
     <ClCompile Include="eggNyangBullet.cpp" />
     <ClCompile Include="eggNyangDie.cpp" />
     <ClCompile Include="eggNyangIdle.cpp" />
+    <ClCompile Include="eggNyangMap.cpp" />
     <ClCompile Include="eggNyangStateBase.cpp" />
     <ClCompile Include="fishMan.cpp" />
     <ClCompile Include="gameNode.cpp" />
@@ -279,6 +287,7 @@
     <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="line.cpp" />
+    <ClCompile Include="loading.cpp" />
     <ClCompile Include="mapmap.cpp" />
     <ClCompile Include="niflheim + icePillar.cpp" />
     <ClCompile Include="niflheim + iceSpear.cpp" />
@@ -291,6 +300,7 @@
     <ClCompile Include="niflheimDie.cpp" />
     <ClCompile Include="niflheimEnter.cpp" />
     <ClCompile Include="niflheimIdle.cpp" />
+    <ClCompile Include="niflheimMap.cpp" />
     <ClCompile Include="pause.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerAttack.cpp" />

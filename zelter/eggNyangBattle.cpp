@@ -3,6 +3,8 @@
 
 HRESULT eggNyangBattle::init()
 {
+	_eggNyangMap = new eggNyangMap;
+	_eggNyangMap->init();
 	_eggNyang = new eggNyang;
 	_eggNyang->init();
 	_player = new player;
@@ -20,12 +22,14 @@ void eggNyangBattle::release()
 
 void eggNyangBattle::update()
 {
+	_eggNyangMap->update();
 	_eggNyang->update();
 	_player->update();
 }
 
 void eggNyangBattle::render()
 {
+	_eggNyangMap->render();
 	_eggNyang->render();
 	_player->render();
 }

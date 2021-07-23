@@ -11,14 +11,17 @@ bulletKingBattle::~bulletKingBattle()
 
 HRESULT bulletKingBattle::init()
 {
+	_bulletKingMap = new bulletKingMap;
+	_bulletKingMap->init();
+
 	_bulletKing = new bulletKing;
 	_bulletKing->init();
-	_fishMan = new fishMan;
-	_dinosaur = new dinosaur;
-
 	_player = new player;
 	_player->init();
 
+	_fishMan = new fishMan;
+	_dinosaur = new dinosaur;
+	
 	_player->linkBulletKing(_bulletKing);
 	_bulletKing->linkPlayer(_player);
 
@@ -42,6 +45,8 @@ void bulletKingBattle::update()
 	_dinosaur->dinoMove(_player->getPlayer().x, _player->getPlayer().y);
 
 	_player->update();
+
+	_bulletKingMap->update();
 }
 
 void bulletKingBattle::render()
@@ -50,4 +55,6 @@ void bulletKingBattle::render()
 	_dinosaur->render();
 	_player->render();
 	_bulletKing->render();
+
+	_bulletKingMap->render();
 }
