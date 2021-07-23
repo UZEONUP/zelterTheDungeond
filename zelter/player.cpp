@@ -29,8 +29,8 @@ HRESULT player::init()
 	_player.isEnd = true;
 
 	_player.maxHP = _player.currentHP = 100;
-	_playerGun.x = _player.x;
-	_playerGun.y = _player.y;
+	_playerGun.x = _player.x + 27;
+	_playerGun.y = _player.y + 15;
 	_player.speed = 3.0f;
 	_gunType = 0;
 
@@ -88,14 +88,14 @@ void player::update()
 	}
 
 	_enemy.rc = RectMakeCenter(_enemy.x, _enemy.y, 100, 100);
-	_playerGun.x = _player.x;
-	_playerGun.y = _player.y;
+	_playerGun.x = _player.x+27;
+	_playerGun.y = _player.y+15;
 	if(SCENEMANAGER->isCurrentScene("bulletKing"))_playerBullet->move(_gunType, _bulletKing->getBulletKing().x, _bulletKing->getBulletKing().y);
 	else if (SCENEMANAGER->isCurrentScene("niflheim"))_playerBullet->move(_gunType, _niflheim->getNiflheim().x,_niflheim->getNiflheim().y);
 	_playerBullet->update();
 
 	{
-		_playerGun.rc = RectMakeCenter(_player.x + 27, _player.y + 15, _playerGun.img->getWidth(), _playerGun.img->getHeight());
+		_playerGun.rc = RectMakeCenter(_playerGun.x, _playerGun.y, _playerGun.img->getWidth(), _playerGun.img->getHeight());
 		switch (_gunType)
 		{
 

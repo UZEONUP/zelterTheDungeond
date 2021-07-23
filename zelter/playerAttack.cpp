@@ -16,6 +16,12 @@ playerState * playerAttack::inputHandle(player * player)
 			{
 				player->getPlayerBullet()->fire(player->getPlayerGunX(), player->getPlayerGunY(),
 					GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y), 20.0f, player->getPlayerGuntype(), _pressPower);
+				
+				if (player->getPlayerBullet()->getViBulletBomb()->count >= 5)
+				{
+					//player->getPlayerBullet()->getVBulletBomb()->setplayerBulletCount(player->getPlayerBullet()->getViBulletBomb()->count - 1);
+					player->getPlayerBullet()->setplayerBulletCount(player->getPlayerBullet()->getViBulletBomb()->count - 1);
+				}
 			}
 
 			return new playerStateIdle();
@@ -129,9 +135,7 @@ void playerAttack::update(player * player)
 	}
 	if (player->getPlayerGuntype() == GRENADE)
 	{
-		if (player->getPlayerBullet()->getViBulletBomb()->count >= 5) player->getPlayerBullet()->setplayerBulletCount(player->getPlayerBullet()->getViBulletBomb()->count - 1);
-
-		if (player->getPlayerBullet()->getViBulletBomb()->count <=0)player->getPlayerBullet()->release();
+		if (player->getPlayerBullet()->getViBulletBomb()->count <= 0)player->getPlayerBullet()->getViBulletBomb.releaseBomb();
 	}
 
 	_count++;
@@ -173,6 +177,12 @@ void playerAttack::enter(player * player)
 	case GRENADE:
 		
 		break;
+	case GRENADEBULLET:
+		for (int i = 0; i < player->getPlayerBullet()->getVBulletBomb().size(); i++)
+		{
+			player->getPlayerBullet()->fire(player->getPlayerBullet()->getViBulletBomb()[i].x, player->getPlayerBullet()->getViBulletBomb()[i].y,
+				GetAngle(player->getPlayerBullet()->getViBulletBomb()[i].x, player->getPlayerBullet()->getViBulletBomb()[i].y, _ptMouse.x, _ptMouse.y), 10, player->getPlayerGuntype(), 0);
+		}
 	case FLAMETHROWER:
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _ptMouse.x, _ptMouse.y) + 0.15,
