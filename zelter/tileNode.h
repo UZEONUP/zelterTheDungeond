@@ -55,6 +55,7 @@ struct tagTile
 	OBJECT object;
 	image* img;
 	RECT rc;
+	//RECT obj;
 	RECT checkRect;
 	int terrainX;
 	int terrainY;

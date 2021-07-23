@@ -99,7 +99,6 @@ void inGameMap::load()
 			BLOCK_RHALF || BLOCK_LTRIPLE || BLOCK_RTRIPLE))
 		{
 			_attribute[i] = ATTR_UNMOVE;
-			//_att[i] = NONEMOVE;
 		}
 		if (_tile[i].object == BLOCK)_att[i] = NONEMOVE;
 		if (_tile[i].object == BLOCK_LHALF)_att[i] = NONEMOVE;

@@ -78,7 +78,7 @@ private:
 	POINT			_mapMouse;
 	int				_cameraX;
 	int				_cameraY;
-	RECT rc1, rc2;
+	RECT			_tileIdx[8];
 
 	//¾Æ¸ðÄÜ´Ù¸Ê* ¸Ê;
 	bulletKing*		_bulletKing;
