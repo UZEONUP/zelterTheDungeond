@@ -382,8 +382,8 @@ void player::tileDetect()
 	{
 	case 4 :
 		tileIndex[0] = (tileX - 1) + (tileY*TILEY);
-		tileIndex[1] = (tileX - 1) + (tileY*TILEY);
-		tileIndex[2] = (tileX - 1) + (tileY*TILEY);
+		tileIndex[1] = tileX + (tileY*TILEY);
+		tileIndex[2] = (tileX - 1) + (tileY+1*TILEY);
 		break;
 	case 1:
 		tileIndex[0] = tileX + (tileY * TILEX);
