@@ -87,7 +87,11 @@ void bulletKing::render()
 	_bullet->render();
 
 	//본체, 의자 렌더(3번쨰 패턴 시 의자 사라짐)
-	if (!_bulletKingChair.isAttack3) _bulletKingChair.img->frameRender2(_bulletKingChair.rc.left, _bulletKingChair.rc.top, _bulletKingChair.currentFrameX, 0);
+	if (!_bulletKingChair.isAttack3) _bulletKingChair.img->
+		frameRender2(
+			_bulletKingChair.rc.left - CAMERAMANAGER->getX(),
+			_bulletKingChair.rc.top - CAMERAMANAGER->getY(),
+			_bulletKingChair.currentFrameX, 0);
 	_bulletKing.img->frameRender2(_bulletKing.rc.left, _bulletKing.rc.top, _bulletKing.currentFrameX, 0);
 
 
@@ -151,7 +155,7 @@ void bulletKing::setBoss()
 
 void bulletKing::collision()
 {
-	if (_bulletKing.currentHp > 3) 
+	if (_bulletKing.currentHp > 3)
 	{
 		for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); ++i)
 		{
@@ -189,7 +193,7 @@ void bulletKing::collision()
 			}
 		}
 	}
-	
+
 
 }
 

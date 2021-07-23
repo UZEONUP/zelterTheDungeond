@@ -8,6 +8,7 @@ class niflheimBattle : public gameNode
 {
 	niflheim*	_niflheim;
 	player*		_player;
+
 	niflheimMap* _niflheimMap;
 
 public :
