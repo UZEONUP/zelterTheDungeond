@@ -19,15 +19,16 @@ struct tagPlayer
 	image* img;
 	RECT rc;
 	RECT shadow;
-	
+
 	int currentHP;
 	int maxHP;
 	int direction;
+	int movingDirection;
 	float x, y;
 	float speed;
 	float angle;
 	float jumpPower; // 던그리드 보스 씬에서 사용
-	
+
 	int currentFrameX;
 	int currentFrameY;
 
@@ -74,34 +75,29 @@ private:
 	playerBullet* _playerBullet;
 
 	//======================다른 곳에서 불러온 변수=================
-	inGameMap*		_inGame;
-	POINT			_mapMouse;
-	int				_cameraX;
-	int				_cameraY;
-	RECT			_tileIdx[8];
-
+	inGameMap* _inGame;
 	//아모콘다맵* 맵;
-	bulletKing*		_bulletKing;
-	ammoconda*		_ammoconda;
-	niflheim*		_niflheim;
-	eggNyang*		_eggNyang;
+	bulletKing* _bulletKing;
+	ammoconda* _ammoconda;
+	niflheim* _niflheim;
+	eggNyang* _eggNyang;
 
 public:
 	HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
-	
+
 	//플레이어 참조자
 	//tagPlayer& getPlayer() { return _player; }
 
 	RECT getRect() { return _player.rc; }
 	RECT getShadowRect() { return _player.shadow; }
 	playerState* getState() { return state; }
-	playerBullet* getPlayerBullet() {return _playerBullet;}
+	playerBullet* getPlayerBullet() { return _playerBullet; }
 
 	tagPlayer getPlayer() { return _player; }
-	
+
 	float getPlayerGunAngle() { return _playerGun.angle; }
 
 	int getPlayerGuntype() { return _gunType; }
@@ -118,7 +114,7 @@ public:
 	void addIMAGES();
 
 	void inputHandle();
-	
+
 	float getEnemyX() { return _enemy.x; }
 	float getEnemyY() { return _enemy.y; }
 
@@ -139,12 +135,11 @@ public:
 
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
 
+	void setPlayerMovingDirection(int movingdirection) { _player.movingDirection = movingdirection; }
 
 	//==================맵 링크 관련====================================
-	void linkOpenWorldMap(inGameMap* map) {  _inGame = map; }
+	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
 	void setKeyType(bool type) { _player.isDunGreed = type; }
-	void tileDetect();
-
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
 	void linkNiflheim(niflheim* niflheim) { _niflheim = niflheim; }

@@ -25,6 +25,11 @@ void playerBullet::releaseH(int index)
 	_vBulletH.erase(_vBulletH.begin() + index);
 }
 
+void playerBullet::releaseBomb(int index)
+{
+	_vBulletBomb.erase(_vBulletBomb.begin() + index);
+}
+
 void playerBullet::releaseG(int index)
 {
 	_vBulletG.erase(_vBulletG.begin() + index);
@@ -42,26 +47,19 @@ void playerBullet::update()
 
 	for (_viBulletG = _vBulletG.begin(); _viBulletG != _vBulletG.end(); ++_viBulletG)
 	{
-
 		_viBulletG->gravity += 0.03;
 		break;
 	}
-
-	
 }
 
 void playerBullet::render()
 {
-	
-
 	for (_viBulletN = _vBulletN.begin(); _viBulletN != _vBulletN.end(); ++_viBulletN)
 	{
 		_viBulletN->img->render(_viBulletN->x- _cameraX, _viBulletN->y- _cameraY, 1.f, 1.f, _viBulletN->angle * 180 / PI, _viBulletN->img->getWidth() / 2, _viBulletN->img->getHeight() / 2);
 		if(KEYMANAGER->isToggleKey(VK_TAB))
 		D2DRENDER->DrawRectangle(_viBulletN->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
-
-	
 
 	for (_viBulletS = _vBulletS.begin(); _viBulletS != _vBulletS.end(); ++_viBulletS)
 	{
@@ -70,8 +68,6 @@ void playerBullet::render()
 			D2DRENDER->DrawRectangle(_viBulletS->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
-
-
 	for (_viBulletH = _vBulletH.begin(); _viBulletH != _vBulletH.end(); ++_viBulletH)
 	{
 		_viBulletH->img->render(_viBulletH->x- _cameraX, _viBulletH->y- _cameraY,1.f, 1.f, _viBulletH->angle * 180 / PI, _viBulletH->img->getWidth() / 2, _viBulletH->img->getHeight() / 2);
@@ -79,6 +75,12 @@ void playerBullet::render()
 			D2DRENDER->DrawRectangle(_viBulletH->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
+	for (_viBulletBomb = _vBulletBomb.begin(); _viBulletBomb != _vBulletBomb.end(); ++_viBulletBomb)
+	{
+		_viBulletBomb->img->render(_viBulletBomb->x, _viBulletBomb->y);
+		if (KEYMANAGER->isToggleKey(VK_TAB))
+			D2DRENDER->DrawRectangle(_viBulletBomb->rc, D2DRenderer::DefaultBrush::White, 1.f);
+	}
 
 	for (_viBulletG = _vBulletG.begin(); _viBulletG != _vBulletG.end(); ++_viBulletG)
 	{
@@ -87,15 +89,12 @@ void playerBullet::render()
 			D2DRENDER->DrawRectangle(_viBulletG->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
-
 	for (_viBulletF = _vBulletF.begin(); _viBulletF != _vBulletF.end(); ++_viBulletF)
 	{
 		_viBulletF->img->render(_viBulletF->x- _cameraX, _viBulletF->y- _cameraY);
 		if (KEYMANAGER->isToggleKey(VK_TAB))
 			D2DRENDER->DrawRectangle(_viBulletF->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
-
-
 }
 
 void playerBullet::fire(float x, float y, float angle, float speed, int type, float power)
@@ -152,22 +151,40 @@ void playerBullet::fire(float x, float y, float angle, float speed, int type, fl
 		_vBulletH.push_back(bullet);
 		break;
 
-
 	case GRENADE:
 		bullet.img = IMAGEMANAGER->findImage("GUN4");
 		bullet.range = 250;
 		bullet.bulletMax = 50;
-		if (bullet.bulletMax < _vBulletG.size()) return;
+		if (bullet.bulletMax < _vBulletBomb.size()) return;
 		bullet.speed = speed;
 		bullet.radius = bullet.img->getWidth() / 2;
 		bullet.x = bullet.fireX = cosf(angle) * 20 + x;
 		bullet.y = bullet.fireY = -sinf(angle) * 100 + y;
 		bullet.angle = angle;
-		bullet.damage = 10;
+		bullet.damage = 1;
 		bullet.power = power;
 		bullet.gravity = 0;
+		bullet.count = 5;
 		bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.img->getWidth(), bullet.img->getHeight());
-		_vBulletG.push_back(bullet);
+		_vBulletBomb.push_back(bullet);
+		break;
+
+	case GRENADEBULLET:
+		for (int i = 0; i < 4; i++)
+		{
+			bullet.img = IMAGEMANAGER->findImage("bullet1");
+			bullet.range = WINSIZEX;
+			bullet.bulletMax = 50;
+			if (bullet.bulletMax < _vBulletS.size()) return;
+			bullet.speed = speed;
+			bullet.radius = bullet.img->getWidth() / 2;
+			bullet.x = bullet.fireX = cosf(angle) * 50 + x;
+			bullet.y = bullet.fireY = -sinf(angle) * 50 + y;
+			bullet.angle = angle + (i * 0.1f);
+			bullet.damage = 10;
+			bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.img->getWidth(), bullet.img->getHeight());
+			_vBulletS.push_back(bullet);
+		}
 		break;
 
 	case FLAMETHROWER:
@@ -225,22 +242,40 @@ void playerBullet::move(int type, float x, float y)
 
 	if (_vBulletG.size() != 0)
 	{
-		for (_viBulletG = _vBulletG.begin(); _viBulletG != _vBulletG.end(); ++_viBulletG)
+		for (_viBulletG = _vBulletG.begin(); _viBulletG != _vBulletG.end();)
 		{
-			{ _viBulletG->x += cosf(_viBulletG->angle) * _viBulletG->speed;
-			_viBulletG->y -= -sinf(_viBulletG->angle) * (_viBulletG->speed + _viBulletG->power);
-			_viBulletG->power -= _viBulletG->gravity;
-			_viBulletG->gravity += 0.5;
+			_viBulletG->x += cosf(_viBulletG->angle) * _viBulletG->speed;
+			_viBulletG->y += -sinf(_viBulletG->angle) * _viBulletG->speed;
 			_viBulletG->rc = RectMakeCenter(_viBulletG->x, _viBulletG->y,
 				_viBulletG->img->getWidth(),
 				_viBulletG->img->getHeight());
-			}
-		
+
 			if (_viBulletG->range < GetDistance(_viBulletG->fireX, _viBulletG->fireY, _viBulletG->x, _viBulletG->y))
 			{
-				_viBulletG->gravity = 0;
-				_viBulletG->speed = 0;
-				_viBulletG->power = 0;
+				_viBulletG = _vBulletG.erase(_viBulletG);
+			}
+			else ++_viBulletG;
+		}
+	}
+
+	if (_vBulletBomb.size() != 0)
+	{
+		for (_viBulletBomb = _vBulletBomb.begin(); _viBulletBomb != _vBulletBomb.end(); ++_viBulletBomb)
+		{
+			{ _viBulletBomb->x += cosf(_viBulletBomb->angle) * _viBulletBomb->speed;
+			_viBulletBomb->y -= -sinf(_viBulletBomb->angle) * (_viBulletBomb->speed + _viBulletBomb->power);
+			_viBulletBomb->power -= _viBulletBomb->gravity;
+			_viBulletBomb->gravity += 0.5;
+			_viBulletBomb->rc = RectMakeCenter(_viBulletBomb->x, _viBulletBomb->y,
+				_viBulletBomb->img->getWidth(),
+				_viBulletBomb->img->getHeight());
+			}
+
+			if (_viBulletBomb->range < GetDistance(_viBulletBomb->fireX, _viBulletBomb->fireY, _viBulletBomb->x, _viBulletBomb->y))
+			{
+				_viBulletBomb->gravity = 0;
+				_viBulletBomb->speed = 0;
+				_viBulletBomb->power = 0;
 			}
 		}
 	}
