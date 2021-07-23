@@ -332,125 +332,126 @@ void player::inputHandle() //스테이트 호출
 
 void player::tileDetect()
 {
-	//여기가 제일 중요한 부분이 아닌가 싶습니다
-	RECT rcCollision;	//가상의 충돌판정 렉트를 하나 생성해주자
-
-
-	int	tileIndex[3];	//타일 검출에 필요한 인덱스
-	int tileX, tileY;	//플레이어가 밟고 있는 타일의 인덱스
-
-	//가상의 판정렉트에 현재 렉트를 대입해주자
-	rcCollision = _player.rc;
-
-	rcCollision = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
-
-	//STEP 3
-	////판정렉트를 사알짝 깍아주자
-	rcCollision.left += 2;
-	rcCollision.top += 2;
-	rcCollision.right -= 2;
-	rcCollision.bottom -= 2;
-
-	tileX = rcCollision.left / 64;
-	tileY = rcCollision.top / 64;
-
-
-	//STEP 04
-	//가장 메인이지 싶으요
-	//해당 방향일때 레프트 탑을 기준으로 앞타일과 그 옆타일을 계산해준다
-
-	/*tileIndex[0] = (tileX - 1) + ((tileY-1)*TILEX);
-	tileIndex[1] = tileX + ((tileY-1)*TILEX);
-	tileIndex[2] = (tileX - 1) + ((tileY-1)*TILEX);
-
-	tileIndex[3] = (tileX - 1) + tileY*TILEX;
-	tileIndex[4] = (tileX + 1 ) + tileY*TILEX;
-
-	tileIndex[5] = (tileX - 1) + (tileY + 1)*TILEX;
-	tileIndex[6] = tileX + (tileY + 1)*TILEX;
-	tileIndex[7] = (tileX + 1) + (tileY + 1)*TILEX;*/
-
-	/*
-	-----------------
-	4	|	2	|	5
-	-----------------
-	1	| player|	0
-	-----------------
-	7	|	3	|	6
-	*/
-	switch (_player.direction)
+	if (SCENEMANAGER->getSceneName() == "openWorld")
 	{
-	case 4 :
-		tileIndex[0] = (tileX - 1) + (tileY*TILEY);
-		tileIndex[1] = tileX + (tileY*TILEY);
-		tileIndex[2] = (tileX - 1) + (tileY+1*TILEY);
-		break;
-	case 1:
-		tileIndex[0] = tileX + (tileY * TILEX);
-		tileIndex[1] = tileX + (tileY + 1) * TILEX;
-		break;
-	case 2:
-		tileIndex[0] = tileX + (tileY * TILEX);
-		tileIndex[1] = (tileX + 1) + tileY * TILEX;
-		break;
-	case 0:
-		tileIndex[0] = (tileX + tileY * TILEX) + 1;
-		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
-		break;
-	case 3:
-		tileIndex[0] = (tileX + tileY * TILEX) + TILEX;
-		tileIndex[1] = (tileX + 1 + tileY * TILEX) + TILEX;
-		break;
-	default:
-		tileIndex[0] = (tileX + tileY * TILEX) + 1;
-		tileIndex[1] = (tileX + (tileY + 1) * TILEX) + 1;
-		break;
-	}
 
-	for (int i = 0; i < 3; ++i)
-	{
-		if (_inGame->getTileAtt()[tileIndex[i]] != NONEMOVE)continue;
-		RECT rc;
+		RECT rcCollision;	//가상의 충돌판정 렉트를 하나 생성해주자
 
-		if (((_inGame->getTileAtt()[tileIndex[i]] == NONEMOVE)) &&
-			IntersectRect(&rc, &_inGame->getTile()[tileIndex[i]].checkRect, &rcCollision))
+
+		int	tileIndex[2];	//타일 검출에 필요한 인덱스
+		int tileX, tileY;	//플레이어가 밟고 있는 타일의 인덱스
+
+		//가상의 판정렉트에 현재 렉트를 대입해주자
+		rcCollision = _player.rc;
+
+		rcCollision = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
+
+		//STEP 3
+		////판정렉트를 사알짝 깍아주자
+		/*rcCollision.left += 4;
+		rcCollision.top += 4;
+		rcCollision.right -= 4;
+		rcCollision.bottom -= 4;*/
+
+		tileX = rcCollision.left / 64;
+		tileY = rcCollision.top / 64;
+
+
+		//STEP 04
+		//가장 메인이지 싶으요
+		//해당 방향일때 레프트 탑을 기준으로 앞타일과 그 옆타일을 계산해준다
+
+		/*
+		-----------------
+		4	|	2	|	5
+		-----------------
+		1	| player|	0
+		-----------------
+		7	|	3	|	6
+		*/
+		switch (_player.movingDirection)
 		{
-			switch (_player.direction)
+		case 4:
+			tileIndex[0] = (tileX - 1) + (tileY*TILEY);
+			tileIndex[1] = tileX + (tileY*TILEY);
+			break;
+		case 2:
+			tileIndex[0] = tileX + (tileY * TILEX);
+			tileIndex[1] = (tileX + 1) + (tileY * TILEX);
+			break;
+		case 5:
+			tileIndex[0] = (tileX)+(tileY * TILEX);
+			tileIndex[1] = tileX + 1 + (tileY * TILEX);
+			break;
+		case 1:
+			tileIndex[0] = tileX + tileY * TILEX;
+			tileIndex[1] = tileX + (tileY + 1)*TILEX;
+			break;
+		case 0:
+			tileIndex[0] = tileX + 1 + tileY * TILEX;
+			tileIndex[1] = tileX + 1 + (tileY + 1) * TILEX;
+			break;
+		case 7:
+			tileIndex[0] = (tileX - 1) + (tileY*TILEY);
+			tileIndex[1] = tileX - 1 + (tileY + 1 * TILEY);
+			break;
+		case 3:
+			tileIndex[0] = tileX + (tileY + 1) * TILEX;
+			tileIndex[1] = tileX + 1 + (tileY + 1)*TILEX;
+			break;
+		case 6:
+			tileIndex[0] = tileX + 1 + (tileY * TILEX);
+			tileIndex[1] = (tileX + 1 + (tileY + 1) * TILEX);
+			break;
+		}
+
+		for (int i = 0; i < 2; ++i)
+		{
+			//if (_inGame->getTileAtt()[tileIndex[i]] != NONEMOVE)continue;
+			RECT rc;
+
+			if (((_inGame->getTileAtt()[tileIndex[i]] == NONEMOVE)) &&
+				IntersectRect(&rc, &_inGame->getTile()[tileIndex[i]].checkRect, &rcCollision))
 			{
-			case 1:
-				_player.rc.left = _inGame->getTile()[tileIndex[i]].checkRect.right;
-				_player.rc.right = _player.rc.left + 60;
+				switch (_player.movingDirection)
+				{
+				case 1:
+					_player.rc.left = _inGame->getTile()[tileIndex[i]].checkRect.right;
+					_player.rc.right = _player.rc.left + _player.img->getFrameWidth();
 
-				_player.x = (_player.rc.left + _player.rc.right) / 2;
-				break;
-			case 2:
-				_player.rc.top = _inGame->getTile()[tileIndex[i]].checkRect.bottom;
-				_player.rc.bottom = _player.rc.top + 60;
+					_player.x = (_player.rc.left + _player.rc.right) / 2;
 
-				_player.y = (_player.rc.top + _player.rc.bottom) / 2;
+					break;
+				case 2:
+					_player.rc.top = _inGame->getTile()[tileIndex[i]].checkRect.bottom;
+					_player.rc.bottom = _player.rc.top + _player.img->getFrameHeight();
 
-				break;
-			case 0:
-				_player.rc.right = _inGame->getTile()[tileIndex[i]].checkRect.left;
-				_player.rc.left = _player.rc.right - 60;
+					_player.y = (_player.rc.top + _player.rc.bottom) / 2;
+					break;
+				case 0:
+					_player.rc.right = _inGame->getTile()[tileIndex[i]].checkRect.left;
+					_player.rc.left = _player.rc.right - _player.img->getFrameWidth();
 
-				_player.x = (_player.rc.left + _player.rc.right) / 2;
-				break;
-			case 3:
-				_player.rc.bottom = _inGame->getTile()[tileIndex[i]].checkRect.top;
-				_player.rc.top = _player.rc.bottom - 60;
+					_player.x = (_player.rc.left + _player.rc.right) / 2;
+					break;
+				case 3:
+					_player.rc.bottom = _inGame->getTile()[tileIndex[i]].checkRect.top;
+					_player.rc.top = _player.rc.bottom - _player.img->getFrameHeight();
 
-				_player.y = (_player.rc.top + _player.rc.bottom) / 2;
-				break;
+					_player.y = (_player.rc.top + _player.rc.bottom) / 2;
+					break;
+				}
 			}
 		}
+		for (int i = 0; i < 2; ++i)
+		{
+			_tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 64, 64);
+		}
+		//_player.rc = rcCollision;
+		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	}
-	for (int i = 0; i < 3; ++i)
-	{
-		_tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 64, 64);
-	}
-	_player.rc = rcCollision;
-	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
+
+	//여기가 제일 중요한 부분이 아닌가 싶습니다
 }
 
 float player::hitDamage(float damage)

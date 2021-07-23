@@ -76,6 +76,12 @@ private:
 
 	//======================다른 곳에서 불러온 변수=================
 	inGameMap* _inGame;
+	int _cameraX;
+	int _cameraY;
+	POINT _mapMouse;
+	RECT _tileIdx[2];
+
+
 	//아모콘다맵* 맵;
 	bulletKing* _bulletKing;
 	ammoconda* _ammoconda;
@@ -140,6 +146,8 @@ public:
 	//==================맵 링크 관련====================================
 	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
 	void setKeyType(bool type) { _player.isDunGreed = type; }
+	void tileDetect();
+
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }
 	void linkNiflheim(niflheim* niflheim) { _niflheim = niflheim; }

@@ -46,8 +46,8 @@ void inGameMap::render()
 				_tile[i].terrainX, _tile[i].terrainY,
 				_tile[i].sizeX, _tile[i].sizeY
 			);
+		D2DRENDER->DrawRectangle(_tile[i].rc, D2DDEFAULTBRUSH::White);
 		}
-
 	}
 
 	//오브젝트 그리기

@@ -11,7 +11,6 @@ HRESULT inGame::init()
 	_player->init();
 
 	_player->setKeyType(false);
-	cout << _player->getPlayer().isDunGreed <<"tlqkkdjfas;lfjioajfe;kasndf;saji"<< endl;
 	_player->linkOpenWorldMap(_inGameMap);
 	
 	return S_OK;
