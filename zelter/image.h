@@ -93,6 +93,11 @@ public:
 	float getY() { return _imageInfo->y; }
 	void setY(float y) { _imageInfo->y = y; }
 
+	const int getFrameX() { return _imageInfo->currentFrameX; }
+	void setFrameX(int frameX) { _imageInfo->currentFrameX = frameX; }
+	const int getFrameY() { return _imageInfo->currentFrameY; }
+	void setFrameY(int frameY) { _imageInfo->currentFrameY = frameY; }
+
 	const int getMaxFrameX()const { return _imageInfo->maxFrameX; }
 	const int getMaxFrameY()const { return _imageInfo->maxFrameY; }
 	const UINT getWidth() const { return _bitmap->GetPixelSize().width;; }		//원본 이미지 사이즈 크기 가져오기

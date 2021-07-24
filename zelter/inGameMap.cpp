@@ -4,7 +4,7 @@
 HRESULT inGameMap::init()
 {
 	IMAGEMANAGER->addFrameImage("openWorld", L"tileImg/¿ÀÇÂ¿ùµå.png", 20, 9);
-	CAMERAMANAGER->setMapCamera(BACKGROUNDX * 2, BACKGROUNDY * 2);
+	CAMERAMANAGER->setMapCamera(BACKGROUNDX * 1.5, BACKGROUNDY * 1.5);
 
 
 	load();
@@ -101,16 +101,16 @@ void inGameMap::load()
 
 	for (int i = 0; i < TILEX*TILEY; i++)
 	{
-		_tile[i].sizeX = TILESIZEX * 2;
-		_tile[i].sizeY = TILESIZEY * 2;
-		_tile[i].rc.left *= 2;
-		_tile[i].rc.top *= 2;
-		_tile[i].rc.right *= 2;
-		_tile[i].rc.bottom *= 2;
-		_tile[i].checkRect.left *= 2;
-		_tile[i].checkRect.top *= 2;
-		_tile[i].checkRect.right *= 2;
-		_tile[i].checkRect.bottom *= 2;
+		_tile[i].sizeX = TILESIZEX * 1.5;
+		_tile[i].sizeY = TILESIZEY * 1.5;
+		_tile[i].rc.left *= 1.5;
+		_tile[i].rc.top *= 1.5;
+		_tile[i].rc.right *= 1.5;
+		_tile[i].rc.bottom *= 1.5;
+		_tile[i].checkRect.left *= 1.5;
+		_tile[i].checkRect.top *= 1.5;
+		_tile[i].checkRect.right *= 1.5;
+		_tile[i].checkRect.bottom *= 1.5;
 	}
 }
 

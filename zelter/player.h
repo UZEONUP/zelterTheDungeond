@@ -3,7 +3,13 @@
 #include "playerState.h"
 #include "quickSlot.h"
 #include "progressBar.h"
+
 #include "inGameMap.h"
+#include "bulletKingMap.h"
+#include "ammocondaMap.h"
+#include "niflheimMap.h"
+#include "eggNyangMap.h"
+
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
 #include "eggNyangBullet.h"
@@ -146,7 +152,9 @@ public:
 	//==================¸Ê ¸µÅ© °ü·Ã====================================
 	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
 	void setKeyType(bool type) { _player.isDunGreed = type; }
-	void tileDetect();
+	void tileDetect(string sceneName);
+
+	//¸ÊÃß°¡ÇÏÀÚ
 
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }

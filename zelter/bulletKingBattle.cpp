@@ -39,7 +39,6 @@ void bulletKingBattle::update()
 {
 	_player->setKeyType(false);
 	CAMERAMANAGER->updateCamera(_player->getPlayer().x, _player->getPlayer().y);
-	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse, _player->getPlayer().x, _player->getPlayer().y);
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 

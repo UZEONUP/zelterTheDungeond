@@ -336,6 +336,7 @@
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="windowsAPI.cpp" />
+    <ClCompile Include="player + tileDetect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowsAPI.rc" />

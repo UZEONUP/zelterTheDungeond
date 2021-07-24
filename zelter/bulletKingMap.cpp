@@ -55,7 +55,7 @@ void bulletKingMap::render()
 				_tile[i].sizeX, _tile[i].sizeY
 			);
 		}
-		D2DRENDER->DrawRectangle(_tile[i].checkRect, D2DDEFAULTBRUSH::Red);
+		//D2DRENDER->DrawRectangle(_tile[i].checkRect, D2DDEFAULTBRUSH::Red);
 	}
 }
 

@@ -671,6 +671,9 @@
     <ClCompile Include="dialogue.cpp">
       <Filter>playGround\enemy\dialogue</Filter>
     </ClCompile>
+    <ClCompile Include="player + tileDetect.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowsAPI.rc">
