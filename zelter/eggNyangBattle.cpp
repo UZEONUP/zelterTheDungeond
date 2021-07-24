@@ -3,6 +3,9 @@
 
 HRESULT eggNyangBattle::init()
 {
+	IMAGEMANAGER->addImage("eggNyangBackGround", L"eggNyang/eggNyangBackGround.png");
+	_backGround = IMAGEMANAGER->findImage("eggNyangBackGround");
+	
 	_eggNyangMap = new eggNyangMap;
 	_eggNyangMap->init();
 	_eggNyang = new eggNyang;
@@ -29,6 +32,8 @@ void eggNyangBattle::update()
 
 void eggNyangBattle::render()
 {
+	_backGround->render(0, 0);
+
 	_eggNyangMap->render();
 	_eggNyang->render();
 	_player->render();
