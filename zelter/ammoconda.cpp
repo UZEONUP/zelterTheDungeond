@@ -48,10 +48,7 @@ void ammoconda::update()
 	_hp->update();
 	_hp->setGauge(_currentHp, _maxHp);
 	if (_currentHp <= 3) _currentHp = 3;
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
-	{
-		_currentHp--;
-	}
+	
 	//항아리 생성
 	if (!_isPotCreate)
 	{
@@ -357,9 +354,9 @@ void ammoconda::collision()
 					_currentHp--;
 				}
 			}
-			for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+			for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
 			{
-				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 				{
 					_currentHp--;
 				}
@@ -398,9 +395,9 @@ void ammoconda::collision()
 				_pot.currentHp--;
 			}
 		}
-		for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+		for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
 		{
-			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 			{
 				_pot.currentHp--;
 			}

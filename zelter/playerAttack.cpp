@@ -49,12 +49,12 @@ void playerAttack::update(player * player)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
 		{
-			player->setPlayerX(player->getPlayer().x + 3);
+			player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
 		}
 
 		if (KEYMANAGER->isStayKeyDown('A'))
 		{
-			player->setPlayerX(player->getPlayer().x - 3);
+			player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*2);
 		}
 		switch (player->getPlayer().direction)
 		{
@@ -72,20 +72,20 @@ void playerAttack::update(player * player)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
 		{
-			player->setPlayerX(player->getPlayer().x + 3);
+			player->setPlayerX(player->getPlayer().x + player->getPlayer().speed);
 		}
 
 		if (KEYMANAGER->isStayKeyDown('A'))
 		{
-			player->setPlayerX(player->getPlayer().x - 3);
+			player->setPlayerX(player->getPlayer().x - player->getPlayer().speed);
 		}
 		if (KEYMANAGER->isStayKeyDown('W'))
 		{
-			player->setPlayerY(player->getPlayer().y - 3);
+			player->setPlayerY(player->getPlayer().y - player->getPlayer().speed);
 		}
 		if (KEYMANAGER->isStayKeyDown('S'))
 		{
-			player->setPlayerY(player->getPlayer().y + 3);
+			player->setPlayerY(player->getPlayer().y + player->getPlayer().speed);
 		}
 
 		switch (player->getPlayer().direction)
@@ -125,16 +125,20 @@ void playerAttack::update(player * player)
 	}
 
 	
+	_pressTime++;
+	if (_pressTime % 5 == 0)
+	{
+		if (player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
+		cout << _pressPower << endl;
+	}
+
 
 	_count++;
-	if (_count % 5 == 0)
+	if (_count % 7 == 0)
 	{
-		if(player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
-		cout << _pressPower << endl;
-		
-		player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
-	
-		if ( player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX())
+		player->setPlayerCurrentFrameX(player->getPlayer().currentFrameX + 1);
+
+		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX())
 		{
 			player->setPlayerCurrentFrameX(0);
 			player->setPlayerisEnd(true);
@@ -142,7 +146,7 @@ void playerAttack::update(player * player)
 		}
 	}
 }
-
+	
 void playerAttack::enter(player * player)
 {
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
@@ -167,9 +171,7 @@ void playerAttack::enter(player * player)
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(),0);
 		break;
-	case GRENADE:
-		
-		break;
+
 	case FLAMETHROWER:
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,

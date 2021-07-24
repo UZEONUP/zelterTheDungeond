@@ -43,14 +43,14 @@ void niflheim::update()
 	_niflheim.progressBar->update();
 	_niflheim.progressBar->setGauge(_niflheim.currentHP, _niflheim.maxHP);
 	//상태 확인용======
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _niflheim.currentHP = 0;
+	//if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _niflheim.currentHP = 0;
 	if (_state->getStateNamge() == "niflheimDie") _niflheim.currentHP = 50;
 
 	//확인용===
-	if (KEYMANAGER->isToggleKey(VK_SPACE))
+	/*if (KEYMANAGER->isToggleKey(VK_SPACE))
 	{
 		_niflheim.icePillar->setCurrentHP(0, 0);
-	}
+	}*/
 	//=========
 	//================
 
@@ -139,14 +139,14 @@ void niflheim::hitNifleheim()
 			_niflheim.currentHP -= 35;
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
+	for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); i++)
 	{
-		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletG()[i].rc))
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 		{
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-			_player->getPlayerBullet()->releaseG(i);
+			_player->getPlayerBullet()->releaseGrenadeBullet(i);
 
 			_niflheim.currentHP -= 35;
 		}

@@ -63,13 +63,16 @@ private:
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
 
-
 	int _count;
 	int _index;
 	int _timer;
 	int _blink;
 	int _gunType;
 	bool _imageON;
+	float _bulletKingSize = 0.7;
+	float _ammoCondaSize = 0.7;
+	float _openWorldSize = 0.8;
+
 
 	image* _mouse;
 	playerBullet* _playerBullet;

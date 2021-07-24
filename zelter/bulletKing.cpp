@@ -44,10 +44,7 @@ void bulletKing::update()
 	_hp->setGauge(_bulletKing.currentHp, _bulletKing.maxHp);
 	if (_bulletKing.currentHp <= 3) _bulletKing.currentHp = 3;
 
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
-	{
-		_bulletKing.currentHp--;
-	}
+	
 	//본체 렉트
 	_bulletKing.rc = RectMakeCenter(_bulletKing.x, _bulletKing.y, _bulletKing.img->getWidth() / _bulletKing.img->getMaxFrameX(), _bulletKing.img->getHeight());
 	_bulletKingChair.rc = RectMakeCenter(_bulletKingChair.x, _bulletKingChair.y, _bulletKingChair.img->getWidth() / _bulletKingChair.img->getMaxFrameX(), _bulletKingChair.img->getHeight());
@@ -171,9 +168,9 @@ void bulletKing::collision()
 				_bulletKing.currentHp--;
 			}
 		}
-		for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+		for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
 		{
-			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 			{
 				_bulletKing.currentHp--;
 			}

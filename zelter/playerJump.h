@@ -8,6 +8,8 @@ class playerJump : public playerState
 
 	float _jumpPower = 12.f;
 	float _gravity;
+
+	float _tempX, _tempY;
 public :
 
 	virtual playerState* inputHandle(player* player);

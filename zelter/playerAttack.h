@@ -8,6 +8,7 @@ class playerAttack : public playerState
 	playerBullet* _playerBullet;
 
 	float _pressPower;
+	int _pressTime;
 	//========================
 	POINT _mapMouse;
 public :

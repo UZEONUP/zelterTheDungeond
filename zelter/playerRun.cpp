@@ -14,7 +14,7 @@
 playerState * playerRun::inputHandle(player * player)
 {
 
-	if (player->getPlayer().isDunGreed == true)
+	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isOnceKeyUp('A') || KEYMANAGER->isOnceKeyUp('D')) return new playerStateIdle;
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
@@ -37,8 +37,8 @@ void playerRun::update(player * player)
 {
 	if (player->getPlayer().isDunGreed)
 	{
-		if (KEYMANAGER->isStayKeyDown('D'))player->setPlayerX(player->getPlayer().x + player->getPlayer().speed);
-		if (KEYMANAGER->isStayKeyDown('A'))player->setPlayerX(player->getPlayer().x - player->getPlayer().speed);
+		if (KEYMANAGER->isStayKeyDown('D'))player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
+		if (KEYMANAGER->isStayKeyDown('A'))player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*2);
 
 		switch (player->getPlayer().direction)
 		{

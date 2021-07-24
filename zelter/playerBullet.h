@@ -14,8 +14,7 @@ enum GUNTYPE
 	SHOTGUN,
 	HOMING,
 	GRENADE,
-	FLAMETHROWER,
-	GRENADEBULLET
+	FLAMETHROWER
 };
 
 struct tagPlayerBullet
@@ -37,7 +36,7 @@ struct tagPlayerBullet
 	float radius;
 	float fireX, fireY;
 	bool isFire;
-	int count;
+	int count; // ¼ö·ùÅº Æø¹ß Ä«¿îÆ®
 	int currentFrameX;
 	int currentFrameY;
 	int index;
@@ -65,11 +64,11 @@ public:
 	vector<tagPlayerBullet> _vBulletH;
 	vector<tagPlayerBullet>::iterator _viBulletH;
 
-	vector<tagPlayerBullet> _vBulletBomb;
-	vector<tagPlayerBullet>::iterator _viBulletBomb;
-
 	vector<tagPlayerBullet> _vBulletG;
 	vector<tagPlayerBullet>::iterator _viBulletG;
+
+	vector<tagPlayerBullet> _vGrenadeBullet;
+	vector<tagPlayerBullet>::iterator _viGrenadeBullet;
 
 	vector<tagPlayerBullet> _vBulletF;
 	vector<tagPlayerBullet>::iterator _viBulletF;
@@ -89,8 +88,8 @@ public:
 	void releaseBullet(int index);
 	void releaseS(int index);
 	void releaseH(int index);
-	void releaseBomb(int index);
 	void releaseG(int index);
+	void releaseGrenadeBullet(int index);
 	void releaseF(int index);
 
 	void update();
@@ -99,14 +98,16 @@ public:
 	void fire(float x, float y, float angle, float speed, int type, float power);
 	void move(int type, float x, float y);
 
+	// ¼ö·ùÅº ÃÑ¾Ë Àü¿ë
+	void fireGrenadeBullet(float x, float y, float angle, float speed);
+	void moveGrenadeBullet();
 
-	//float getDamage() { return _playerBullet.damage; }
 
 
 
 	float getPower() { return _viBulletN->power; }
 	void setPower(float power) { _viBulletN->power = power; }
-	void setplayerBulletCount(int count) { _viBulletBomb->count = count; }
+	void setplayerBulletCount(int count) { _viBulletG->count = count; }
 
 
 	vector<tagPlayerBullet> getVBulletN() { return _vBulletN; }
@@ -119,11 +120,11 @@ public:
 	vector<tagPlayerBullet> getVBulletH() { return _vBulletH; }
 	vector<tagPlayerBullet>::iterator getViBulletH() { return _viBulletH; }
 
-	vector<tagPlayerBullet> getVBulletBomb() { return _vBulletBomb; }
-	vector<tagPlayerBullet>::iterator getViBulletBomb() { return _viBulletBomb; }
+	vector<tagPlayerBullet> getvBulletG() { return _vBulletG; }
+	vector<tagPlayerBullet>::iterator getviBulletG() { return _viBulletG; }
 
-	vector<tagPlayerBullet> getVBulletG() { return _vBulletG; }
-	vector<tagPlayerBullet>::iterator getViBulletG() { return _viBulletG; }
+	vector<tagPlayerBullet> getvGrenadeBullet() { return _vGrenadeBullet; }
+	vector<tagPlayerBullet>::iterator getviGrenadeBullet() { return _viGrenadeBullet; }
 
 	vector<tagPlayerBullet> getVBulletF() { return _vBulletF; }
 	vector<tagPlayerBullet>::iterator getViBulletF() { return _viBulletF; }

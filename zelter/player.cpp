@@ -33,7 +33,6 @@ HRESULT player::init()
 	_playerGun.y = _player.y;
 	_player.speed = 3.0f;
 	_gunType = 0;
-
 	_playerBullet = new playerBullet;
 	_playerBullet->init();
 
@@ -79,23 +78,28 @@ void player::update()
 	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	_player.shadow = RectMakeCenter(_player.x, _player.rc.bottom, 50, 10);
 
+	
 
 	//플레이어 마우스 방향으로 바라보기
 	_playerGun.angle = GetAngle(_playerGun.x, _playerGun.y, _mapMouse.x, _mapMouse.y) * (180 / PI);
 
-	if (_playerGun.angle < 340 && 0 < _playerGun.angle) _player.direction = 0;
-	if (_playerGun.angle < 110 && 70 < _playerGun.angle) _player.direction = 2;
-	if (_playerGun.angle < 200 && 160 < _playerGun.angle) _player.direction = 1;
-	if (_playerGun.angle < 290 && 250 < _playerGun.angle) _player.direction = 3;
-	if (_playerGun.angle < 70 && 20 < _playerGun.angle) _player.direction = 5;
-	if (_playerGun.angle < 160 && 110 < _playerGun.angle) _player.direction = 4;
-	if (_playerGun.angle < 250 && 200 < _playerGun.angle) _player.direction = 7;
-	if (_playerGun.angle < 310 && 290 < _playerGun.angle) _player.direction = 6;
-
-	if (_player.isDunGreed)
+	
+	if (!_player.isDeath)
 	{
-		if (_mapMouse.x < _player.x)_player.direction = 1;
-		else _player.direction = 0;
+		if (_playerGun.angle < 340 && 0 < _playerGun.angle) _player.direction = 0;
+		if (_playerGun.angle < 110 && 70 < _playerGun.angle) _player.direction = 2;
+		if (_playerGun.angle < 200 && 160 < _playerGun.angle) _player.direction = 1;
+		if (_playerGun.angle < 290 && 250 < _playerGun.angle) _player.direction = 3;
+		if (_playerGun.angle < 70 && 20 < _playerGun.angle) _player.direction = 5;
+		if (_playerGun.angle < 160 && 110 < _playerGun.angle) _player.direction = 4;
+		if (_playerGun.angle < 250 && 200 < _playerGun.angle) _player.direction = 7;
+		if (_playerGun.angle < 310 && 290 < _playerGun.angle) _player.direction = 6;
+
+		if (_player.isDunGreed)
+		{
+			if (_mapMouse.x < _player.x)_player.direction = 1;
+			else _player.direction = 0;
+		}
 	}
 
 	_enemy.rc = RectMakeCenter(_enemy.x, _enemy.y, 100, 100);
@@ -103,6 +107,7 @@ void player::update()
 	_playerGun.y = _player.y;
 	_playerBullet->move(_gunType, _enemy.x, _enemy.y);
 	_playerBullet->update();
+	_playerBullet->moveGrenadeBullet();
 
 	{
 		_playerGun.rc = RectMakeCenter(_player.x + 27, _player.y + 15, _playerGun.img->getWidth(), _playerGun.img->getHeight());
@@ -130,14 +135,16 @@ void player::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_F9))_player.currentHP -= 10;
 	if (KEYMANAGER->isOnceKeyDown(VK_DELETE)) _player.isDunGreed = true;
 
+	if (SCENEMANAGER->isCurrentScene("openWorld"))
+	{
+		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth()*_openWorldSize, _player.img->getFrameHeight()*_openWorldSize);
+	}
 
-	// 보스 총탄과 플레이어 충돌 시 데미지를 입어라!
-
-
-	//불렛 킹
-
+	//불렛 킹 총알 충돌
 	if (SCENEMANAGER->isCurrentScene("bulletKing"))
 	{
+	
+		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
 		if (!_player.isHit && _player.isEnd)
 		{
 			for (int i = 0; i < _bulletKing->getBulletKingBullet()->getvBulletKingBullet1().size(); ++i)
@@ -166,7 +173,33 @@ void player::update()
 			}
 		}
 	}
+	
+	//아모콘다 총알 충돌
+	if (SCENEMANAGER->isCurrentScene("ammoconda"))
+	{
+		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth()*_ammoCondaSize, _player.img->getFrameHeight()*_ammoCondaSize);
+		
+		for (int i = 0; i < _ammoconda->getBAmmocondaBullet()->getVammoCondaBullet1().size(); i++)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_ammoconda->getBAmmocondaBullet()->getVammoCondaBullet1()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+			if (IntersectRect(&temp, &_player.rc, &_ammoconda->getBAmmocondaBullet()->getVammoCondaBullet2()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+			if (IntersectRect(&temp, &_player.rc, &_ammoconda->getBAmmocondaBullet()->getVipotBullet()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+		}
+	}
 
+	//니플헤임 총알 충돌
 	if (SCENEMANAGER->isCurrentScene("niflheim"))
 	{
 		for (int i = 0; i < _niflheim->getNiflheim().icePillar->getVbullet().size(); i++)
@@ -174,11 +207,51 @@ void player::update()
 			if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().icePillar->getVbullet()[i].rc))
 			{
 				_player.isHit = true;
+				hitDamage(10.f);
+			}
+		}
+		for (int i = 0; i < _niflheim->getNiflheim().iceSpear->getVIceSpear().size(); i++)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().iceSpear->getVIceSpear()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+		}
+		for (int i = 0; i < _niflheim->getNiflheim().iceicle->getVIcicle().size(); i++)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_niflheim->getNiflheim().iceicle->getVIcicle()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
 			}
 		}
 	}
 
 
+	//에그냥 총알 충돌
+	if (SCENEMANAGER->isCurrentScene("eggNyang"))
+	{
+		for (int i = 0; i < _eggNyang->getEggNyang().bullet->getEggNyangVBullet().size(); i++)
+		{
+			if (IntersectRect(&temp, &_player.rc, &_eggNyang->getEggNyang().bullet->getEggNyangVBullet()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+			if (IntersectRect(&temp, &_player.rc, &_eggNyang->getEggNyang().lazer->getEggNyangVLazer()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+			if (IntersectRect(&temp, &_player.rc, &_eggNyang->getEggNyang().sword->getEggNyangVSword()[i].rc))
+			{
+				_player.isHit = true;
+				hitDamage(10.f);
+			}
+			
+		}
+	}
 
 
 	_quickSlot->update();
@@ -227,6 +300,7 @@ void player::render()
 		{
 			if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left - _cameraX, _playerGun.rc.top - _cameraY, 1.f, -1.f, _playerGun.angle);
 			_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, 0);
+			
 		}
 		else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 		{

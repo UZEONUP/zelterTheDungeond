@@ -45,7 +45,7 @@ void eggNyang::update()
 	_eggNyang.progressBar->update();
 
 	//=========상태 확인용=============
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _eggNyang.currentHp = 0;
+//	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _eggNyang.currentHp = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD0)) _eggNyang.direction = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD1)) _eggNyang.direction = 1;
 	//================================
@@ -122,9 +122,9 @@ void eggNyang::hitEggNyang()
 			_eggNyang.currentHp -= 35;
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
+	for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); i++)
 	{
-		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletG()[i].rc))
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 		{
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
