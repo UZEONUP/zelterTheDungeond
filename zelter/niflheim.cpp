@@ -43,14 +43,14 @@ void niflheim::update()
 	_niflheim.progressBar->update();
 	_niflheim.progressBar->setGauge(_niflheim.currentHP, _niflheim.maxHP);
 	//상태 확인용======
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _niflheim.currentHP = 0;
+	//if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _niflheim.currentHP = 0;
 	if (_state->getStateNamge() == "niflheimDie") _niflheim.currentHP = 50;
 
 	//확인용===
-	if (KEYMANAGER->isToggleKey(VK_SPACE))
+	/*if (KEYMANAGER->isToggleKey(VK_SPACE))
 	{
 		_niflheim.icePillar->setCurrentHP(0, 0);
-	}
+	}*/
 	//=========
 	//================
 
