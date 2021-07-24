@@ -396,6 +396,9 @@
     <ClInclude Include="dialogue.h">
       <Filter>playGround\enemy\dialogue</Filter>
     </ClInclude>
+    <ClInclude Include="aStar.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -673,6 +676,9 @@
     </ClCompile>
     <ClCompile Include="player + tileDetect.cpp">
       <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="aStar.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
