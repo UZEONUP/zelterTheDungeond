@@ -8,8 +8,8 @@ class eggNyangBattle : public gameNode
 {
 	eggNyang*	_eggNyang;
 	player*		_player;
-	eggNyangMap* _eggNyangMap;
 
+	eggNyangMap* _eggNyangMap;
 public :
 	eggNyangBattle() {};
 	~eggNyangBattle() {};

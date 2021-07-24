@@ -28,15 +28,6 @@ void inGame::update()
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 
-	//CAMERAMANAGER->updateCameraW(_player->getRect(),_player->getPlayer().x, _player->getPlayer().y,0.1,0.9);
-
-	for (int i = 0; i < TILEX*TILEY; i++)
-	{
-		if (IsCollision(_player->getRect(), _inGameMap->getTile()[i].checkRect))
-		{
-			cout<<"�߿쵿"	<<endl;
-		}
-	}
 	_inGameMap->update();
 	_player->update();
 

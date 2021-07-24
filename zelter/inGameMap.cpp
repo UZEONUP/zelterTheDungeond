@@ -21,13 +21,6 @@ void inGameMap::release()
 
 void inGameMap::update()
 {
-	//_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
-	//_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
-	/*cout << _mapMouse.x << endl;
-	cout << _mapMouse.y << endl;*/
-	cout << _tile[0].rc.left << endl;
-
-
 }
 
 void inGameMap::render()
@@ -94,17 +87,14 @@ void inGameMap::load()
 
 	for (int i = 0; i < TILEX*TILEY; ++i)
 	{
-		//오브젝트(체크렉트)가 있을 경우 못가게 속성부여
-		if (_tile[i].object == (BLOCK || BLOCK_LHALF ||
-			BLOCK_RHALF || BLOCK_LTRIPLE || BLOCK_RTRIPLE))
+		if (_tile[i].object == BLOCK ||
+			_tile[i].object == BLOCK_LHALF ||
+			_tile[i].object == BLOCK_RHALF ||
+			_tile[i].object == BLOCK_LTRIPLE ||
+			_tile[i].object == BLOCK_RTRIPLE)
 		{
-			_attribute[i] = ATTR_UNMOVE;
+			_att[i] = NONEMOVE;
 		}
-		if (_tile[i].object == BLOCK)_att[i] = NONEMOVE;
-		if (_tile[i].object == BLOCK_LHALF)_att[i] = NONEMOVE;
-		if (_tile[i].object == BLOCK_RHALF)_att[i] = NONEMOVE;
-		if (_tile[i].object == BLOCK_LTRIPLE)_att[i] = NONEMOVE;
-		if (_tile[i].object == BLOCK_RTRIPLE)_att[i] = NONEMOVE;
 	}
 
 	CloseHandle(file);

@@ -18,6 +18,7 @@ HRESULT bulletKingBattle::init()
 	_bulletKing->init();
 	_player = new player;
 	_player->init();
+	_player->setKeyType(false);
 
 	_fishMan = new fishMan;
 	_fishMan->init();
@@ -36,6 +37,12 @@ void bulletKingBattle::release()
 
 void bulletKingBattle::update()
 {
+	_player->setKeyType(false);
+	CAMERAMANAGER->updateCamera(_player->getPlayer().x, _player->getPlayer().y);
+	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse, _player->getPlayer().x, _player->getPlayer().y);
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
 	_bulletKing->update();
 
 	_fishMan->setEnemy(RND->getFromIntTo(0, 600), RND->getFromIntTo(0, 600));
@@ -53,10 +60,11 @@ void bulletKingBattle::update()
 
 void bulletKingBattle::render()
 {
+	_bulletKingMap->render();
+
 	_fishMan->render();
 	_dinosaur->render();
 	_player->render();
 	_bulletKing->render();
 
-	_bulletKingMap->render();
 }

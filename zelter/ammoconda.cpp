@@ -95,7 +95,8 @@ void ammoconda::render()
 	//본체 렌더
 	for (int i = 0; i < _vAmmoconda.size(); i++)
 	{
-		_vAmmoconda[i]->img->frameRender2(_vAmmoconda[i]->rc.left, _vAmmoconda[i]->rc.top - _vAmmoconda[i]->differenceHeight, _vAmmoconda[i]->currentFrameX, _vAmmoconda[i]->currentFrameY);
+		_vAmmoconda[i]->img->
+			frameRender2(_vAmmoconda[i]->rc.left, _vAmmoconda[i]->rc.top - _vAmmoconda[i]->differenceHeight, _vAmmoconda[i]->currentFrameX, _vAmmoconda[i]->currentFrameY);
 
 		//렉트 확인용
 		if (KEYMANAGER->isToggleKey(VK_TAB))
