@@ -51,7 +51,7 @@ void loading::update()
 	//로딩 후 씬 변경
 	if (_currentCount == LOADINGMAX)
 	{
-		SCENEMANAGER->changeScene("openWorld");
+		SCENEMANAGER->changeScene("pick");
 	}
 }
 

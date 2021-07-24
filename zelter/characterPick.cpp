@@ -79,7 +79,7 @@ void characterPick::update()
 
 		if (_count % 7 == 0)_character.currentFrameX+=1;
 		if (_character.currentFrameX >= _character.img->getMaxFrameX())
-			SCENEMANAGER->changeScene("player");
+			SCENEMANAGER->changeScene("niflheim");
 		cout << _character.currentFrameX << endl;
 	}
 }
