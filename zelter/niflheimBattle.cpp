@@ -5,6 +5,8 @@ HRESULT niflheimBattle::init()
 {
 	_niflheimMap = new niflheimMap;
 	_niflheimMap->init();
+	CAMERAMANAGER->setX(0);
+	CAMERAMANAGER->setY(0);
 
 	_player = new player;
 	_player->init();
@@ -13,6 +15,7 @@ HRESULT niflheimBattle::init()
 	_niflheim = new niflheim;
 	_niflheim->init();
 
+	_player->linkNiflheimMap(_niflheimMap);
 	_player->linkNiflheim(_niflheim);
 	_niflheim->linkPlayer(_player);
 

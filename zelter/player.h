@@ -3,7 +3,13 @@
 #include "playerState.h"
 #include "quickSlot.h"
 #include "progressBar.h"
+
 #include "inGameMap.h"
+#include "bulletKingMap.h"
+#include "ammocondaMap.h"
+#include "niflheimMap.h"
+#include "eggNyangMap.h"
+
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
 #include "eggNyangBullet.h"
@@ -79,13 +85,16 @@ private:
 
 	//======================다른 곳에서 불러온 변수=================
 	inGameMap* _inGame;
+	bulletKingMap* _bulletKingMap;
+	ammocondaMap* _ammocondaMap;
+	eggNyangMap* _eggNyangMap;
+	niflheimMap* _niflheimMap;
+
 	int _cameraX;
 	int _cameraY;
 	POINT _mapMouse;
 	RECT _tileIdx[2];
 
-
-	//아모콘다맵* 맵;
 	bulletKing* _bulletKing;
 	ammoconda* _ammoconda;
 	niflheim* _niflheim;
@@ -148,8 +157,14 @@ public:
 
 	//==================맵 링크 관련====================================
 	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
+	void linkBulletKingMap(bulletKingMap* map) { _bulletKingMap = map; }
+	void linkAmmocondaMap(ammocondaMap* map) { _ammocondaMap = map; }
+	void linkEggNyangMap(eggNyangMap* map) { _eggNyangMap = map; }
+	void linkNiflheimMap(niflheimMap* map) { _niflheimMap = map; }
 	void setKeyType(bool type) { _player.isDunGreed = type; }
-	void tileDetect();
+	void tileDetect(string sceneName);
+
+	//맵추가하자
 
 	void linkBulletKing(bulletKing* bulletKing) { _bulletKing = bulletKing; }
 	void linkAmmoconda(ammoconda* ammoconda) { _ammoconda = ammoconda; }

@@ -4,6 +4,14 @@
 
 HRESULT inGame::init()
 {
+	IMAGEMANAGER->addFrameImage("NPC", L"STATE/DEATH/gunner_death.png", 15, 1);
+
+	_npc.img = IMAGEMANAGER->findImage("NPC");
+	_npc.x = WINSIZEX / 2;
+	_npc.y = WINSIZEY / 2;
+
+	_npc.rc = RectMakeCenter(_npc.x, _npc.y, _npc.img->getFrameWidth(), _npc.img->getFrameHeight());
+
 	_inGameMap = new inGameMap;
 	_inGameMap->init();
 
@@ -12,7 +20,8 @@ HRESULT inGame::init()
 
 	_player->setKeyType(false);
 	_player->linkOpenWorldMap(_inGameMap);
-	
+
+	count = 0;
 	return S_OK;
 }
 
@@ -33,6 +42,14 @@ void inGame::update()
 
 	collisionDoor();
 
+	count++;
+	if (count % 10 == 0)
+	{
+		_npc.img->setFrameX(_npc.img->getFrameX() + 1);
+		if (_npc.img->getFrameX() >= _npc.img->getMaxFrameX())_npc.img->setFrameX(0);
+		count = 0;
+	}
+
 
 }
 
@@ -40,7 +57,11 @@ void inGame::render()
 {
 	_inGameMap->render();
 	_player->render();
-	
+
+	_npc.img->cutRender(_npc.rc.left, _npc.rc.top, _npc.img->getFrameX(), _npc.img->getFrameY(),
+		_npc.img->getFrameWidth()*0.8, _npc.img->getFrameHeight()*0.8);
+	D2DRENDER->DrawRectangle(_npc.rc, D2DDEFAULTBRUSH::Red, 5.f);
+
 }
 
 void inGame::collisionDoor()

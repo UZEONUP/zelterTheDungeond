@@ -3,6 +3,13 @@
 #include "inGameMap.h"
 #include "player.h"
 
+struct tagNPC
+{
+	image* img;
+	RECT rc;
+	float x, y;
+};
+
 
 class inGame : public gameNode
 {
@@ -11,6 +18,9 @@ private:
 	player* _player;
 	POINT _mapMouse;
 
+	//==================
+	tagNPC _npc;
+	int count;
 public:
 	inGame() {};
 	~inGame() {};
