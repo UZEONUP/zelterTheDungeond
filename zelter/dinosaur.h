@@ -66,11 +66,14 @@ public:
 	void release();
 	void update();
 	void render();
-	void setEnemy(float x, float y);
+	void setEnemy();
 	void dinoMove(float x, float y);
 	void dinoState();
 	void tileCheck();
 
 	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
+
+	vector<tagDinosaur>& getVDinosaur() { return _vDinosaur; }
+	vector<tagDinosaur>::iterator& getViDinosaur() { return _viDinosaur; }
 };
 

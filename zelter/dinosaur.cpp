@@ -48,19 +48,19 @@ void dinosaur::render()
 	_dialogue->render();
 }
 
-void dinosaur::setEnemy(float x, float y)
+void dinosaur::setEnemy()
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		if (1 <= _vDinosaur.size()) return;
+		
 
 		tagDinosaur dinosaur;
 		ZeroMemory(&dinosaur, sizeof(tagDinosaur));
 		dinosaur.img = IMAGEMANAGER->findImage("dinosaurIdle");
 		dinosaur.speed = 2.0f;
 		dinosaur.angle = RND->getFromFloatTo(0, PI2);
-		dinosaur.x = x;
-		dinosaur.y = y;
+		dinosaur.x = RND->getFromIntTo(0, TILEX * TILESIZEX);
+		dinosaur.y = RND->getFromIntTo(0, TILEY * TILESIZEY);
 		dinosaur.currentHp = dinosaur.maxHp = 100;
 		dinosaur.currentFrameX = dinosaur.currentFrameY = 0;
 		dinosaur.count = dinosaur.changeCount = 0;
@@ -82,6 +82,7 @@ void dinosaur::dinoMove(float x, float y)
 
 	for (_viDinosaur = _vDinosaur.begin(); _viDinosaur != _vDinosaur.end(); ++_viDinosaur)
 	{
+		
 		//공룡 앵글값에 따른 방향
 		//오른쪽 정면
 		if (_viDinosaur->angle < PI / 8 && _viDinosaur->angle > 0 ||
@@ -101,8 +102,6 @@ void dinosaur::dinoMove(float x, float y)
 		//오른쪽 대각선 아래
 		if (_viDinosaur->angle < PI + (PI / 8) * 7 && PI + (PI / 8) * 5 < _viDinosaur->angle)		_viDinosaur->direction = 6;
 
-		cout << _viDinosaur->direction << endl;
-		cout << _viDinosaur->angle << endl;
 		//랜덤값에 따라 IDLE 혹은 WALK 상태로 변경
 		_viDinosaur->changeCount++;
 		if (_viDinosaur->changeCount >= RND->getFromIntTo(100, 200))
@@ -157,9 +156,9 @@ void dinosaur::dinoMove(float x, float y)
 		if (_viDinosaur->angle <= 0) _viDinosaur->angle += PI2;
 		//화면 밖 예외처리
 		if (_viDinosaur->rc.left < 0) _viDinosaur->x = (_viDinosaur->img->getWidth() / _viDinosaur->img->getMaxFrameX()) / 2;
-		if (_viDinosaur->rc.right > WINSIZEX) _viDinosaur->x = WINSIZEX - (_viDinosaur->img->getWidth() / _viDinosaur->img->getMaxFrameX()) / 2;
+		if (_viDinosaur->rc.right > TILEX * TILESIZEX) _viDinosaur->x = TILEX * TILESIZEX - (_viDinosaur->img->getWidth() / _viDinosaur->img->getMaxFrameX()) / 2;
 		if (_viDinosaur->rc.top < 0) _viDinosaur->y = (_viDinosaur->img->getHeight() / _viDinosaur->img->getMaxFrameY()) / 2;
-		if (_viDinosaur->rc.bottom > WINSIZEY) _viDinosaur->y = WINSIZEY - (_viDinosaur->img->getHeight() / _viDinosaur->img->getMaxFrameY()) / 2;
+		if (_viDinosaur->rc.bottom > TILEY * TILESIZEY) _viDinosaur->y = TILEY * TILESIZEY - (_viDinosaur->img->getHeight() / _viDinosaur->img->getMaxFrameY()) / 2;
 		//렉트 
 		_viDinosaur->rc = RectMakeCenter(_viDinosaur->x, _viDinosaur->y, _viDinosaur->img->getWidth() / _viDinosaur->img->getMaxFrameX(), _viDinosaur->img->getHeight() / _viDinosaur->img->getMaxFrameY());
 	}
@@ -214,7 +213,11 @@ void dinosaur::dinoState()
 			//DEATH 상태일 경우
 		case DINOSAUR_DEATH:
 			_viDinosaur->img = IMAGEMANAGER->findImage("dinosaurDeath");
-			if (_viDinosaur->currentFrameX > 1)_viDinosaur->currentFrameX = 0;
+			if (_viDinosaur->currentFrameX > 1)
+			{
+				_viDinosaur->currentFrameX = 0;
+				_viDinosaur = _vDinosaur.erase(_viDinosaur);
+			}
 			break;
 		}
 	}
@@ -234,22 +237,22 @@ void dinosaur::tileCheck()
 
 		rcCollision = RectMakeCenter(_viDinosaur->x, _viDinosaur->y, _viDinosaur->img->getFrameWidth(), _viDinosaur->img->getFrameHeight());
 
-		tileX = rcCollision.left / 64;
-		tileY = rcCollision.top / 64;
+		tileX = rcCollision.left / 48;
+		tileY = rcCollision.top / 48;
 
 		switch (_viDinosaur->direction)
 		{
 		case 4:
-			tileIndex[0] = (tileX - 1) + (tileY*TILEY);
-			tileIndex[1] = tileX + (tileY*TILEY);
+			tileIndex[0] = (tileX - 1) + (tileY*TILEX);
+			tileIndex[1] = tileX + (tileY*TILEX);
 			break;
 		case 2:
 			tileIndex[0] = tileX + (tileY * TILEX);
 			tileIndex[1] = (tileX + 1) + (tileY * TILEX);
 			break;
 		case 5:
-			tileIndex[0] = (tileX)+(tileY * TILEX);
-			tileIndex[1] = tileX + 1 + (tileY * TILEX);
+			tileIndex[0] = tileX + (tileY * TILEX);
+			tileIndex[1] = (tileX + 1) + (tileY * TILEX);
 			break;
 		case 1:
 			tileIndex[0] = tileX + tileY * TILEX;
@@ -257,15 +260,15 @@ void dinosaur::tileCheck()
 			break;
 		case 0:
 			tileIndex[0] = tileX + 1 + tileY * TILEX;
-			tileIndex[1] = tileX + 1 + (tileY + 1) * TILEX;
+			tileIndex[1] = (tileX + 1) + (tileY + 1) * TILEX;
 			break;
 		case 7:
 			tileIndex[0] = (tileX - 1) + (tileY * TILEX);
-			tileIndex[1] = tileX - 1 + (tileY + 1 * TILEX);
+			tileIndex[1] = (tileX - 1) + (tileY + 1) * TILEX;
 			break;
 		case 3:
 			tileIndex[0] = tileX + (tileY + 1) * TILEX;
-			tileIndex[1] = tileX + 1 + (tileY + 1)*TILEX;
+			tileIndex[1] = (tileX + 1) + (tileY + 1) * TILEX;
 			break;
 		case 6:
 			tileIndex[0] = tileX + 1 + (tileY * TILEX);
@@ -312,7 +315,7 @@ void dinosaur::tileCheck()
 		}
 		for (int i = 0; i < 2; ++i)
 		{
-			_viDinosaur->tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 64, 64);
+			_viDinosaur->tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 48, 48);
 		}
 
 		_viDinosaur->rc = RectMakeCenter(_viDinosaur->x, _viDinosaur->y, _viDinosaur->img->getFrameWidth(), _viDinosaur->img->getFrameHeight());
