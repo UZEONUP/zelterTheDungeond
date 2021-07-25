@@ -24,8 +24,8 @@ void player::tileDetect(string sceneName)
 		rcCollision.right -= 4;
 		rcCollision.bottom -= 4;*/
 
-		tileX = rcCollision.left / 64;
-		tileY = rcCollision.top / 64;
+		tileX = rcCollision.left / 48;
+		tileY = rcCollision.top / 48;
 
 
 		//STEP 04

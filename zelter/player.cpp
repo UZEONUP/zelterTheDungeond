@@ -59,7 +59,7 @@ void player::release()
 void player::update()
 {
 	//cout << _player.direction << "방향" << endl;
-	//tileDetect(SCENEMANAGER->getSceneName());
+	tileDetect(SCENEMANAGER->getSceneName());
 	_cameraX = CAMERAMANAGER->getX();
 	_cameraY = CAMERAMANAGER->getY();
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
@@ -74,7 +74,7 @@ void player::update()
 	state->update(this);
 	_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	_player.shadow = RectMakeCenter(_player.x, _player.rc.bottom, 50, 10);
-
+	
 	
 
 	//플레이어 마우스 방향으로 바라보기
@@ -460,13 +460,13 @@ void player::render()
 			{
 				if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left - CAMERAMANAGER->getX(), _playerGun.rc.top - CAMERAMANAGER->getY(), 1.f, -1.f, _playerGun.angle);
 				//if (!_player.isDeath)_playerGun.img->cutRender(_playerGun.rc.left - _cameraX, _playerGun.rc.top - _cameraY, _playerGun.img->getX(), _playerGun.img->getY(), _playerGun.img->getWidth()*_bulletKingSize, _playerGun.img->getHeight()*_bulletKingSize);
-				if (!_player.isDeath)_player.img->cutRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
+				if (!_player.isDeath)_player.img->cutRender(_player.rc.left - _cameraX, _player.rc.top - _cameraY, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
 				//if (!_player.isDeath)_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 			}
 			else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 			{
 				if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left - CAMERAMANAGER->getX(), _playerGun.rc.top - CAMERAMANAGER->getY(), 1.f, 1.f, _playerGun.angle);
-				if (!_player.isDeath)_player.img->cutRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
+				if (!_player.isDeath)_player.img->cutRender(_player.rc.left- _cameraX, _player.rc.top- _cameraY, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
 				//if (!_player.isDeath)_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 			}
 		}
@@ -474,13 +474,13 @@ void player::render()
 		{
 			if (_player.direction == 1 || _player.direction == 3 || _player.direction == 4 || _player.direction == 7)
 			{
-				if (!_player.isDeath)_player.img->cutRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
+				if (!_player.isDeath)_player.img->cutRender(_player.rc.left-_cameraX, _player.rc.top-_cameraY, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
 				//if (!_player.isDeath)_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 				if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left - CAMERAMANAGER->getX(), _playerGun.rc.top - CAMERAMANAGER->getY(), 1.f, -1.f, _playerGun.angle);
 			}
 			else if (_player.direction == 0 || _player.direction == 2 || _player.direction == 5 || _player.direction == 6)
 			{
-				if (!_player.isDeath)_player.img->cutRender(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
+				if (!_player.isDeath)_player.img->cutRender(_player.rc.left- _cameraX, _player.rc.top-_cameraY, _player.currentFrameX, _player.currentFrameY, _player.img->getFrameWidth()*_bulletKingSize, _player.img->getFrameHeight()*_bulletKingSize);
 				//if (!_player.isDeath)_player.img->frameRender2(_player.rc.left, _player.rc.top, _player.currentFrameX, _player.currentFrameY);
 				if (!_player.isDeath)_playerGun.img->render(_playerGun.rc.left - CAMERAMANAGER->getX(), _playerGun.rc.top - CAMERAMANAGER->getY(), 1.f, 1.f, _playerGun.angle);
 			}
