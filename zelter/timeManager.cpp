@@ -45,14 +45,18 @@ void timeManager::render(HDC hdc)
 
 #ifdef _DEBUG
 	{
+		string strL;
 		sprintf_s(str, "framePerSecond(FPS) : %d", _timer->getFrameRate());
-		TextOut(hdc, 0, 0, str, strlen(str));
+		strL = str;
+		D2DRENDER->RenderText(10, 40, ConvertStoWS(strL), 20);
 
 		sprintf_s(str, "worldTime : %f", _timer->getWorldTime());
-		TextOut(hdc, 0, 20, str, strlen(str));
+		strL = str;
+		D2DRENDER->RenderText(10, 60, ConvertStoWS(strL), 20);
 
 		sprintf_s(str, "elapsedTime : %f", _timer->getElapsedTime());
-		TextOut(hdc, 0, 40, str, strlen(str));
+		strL = str;
+		D2DRENDER->RenderText(10, 80, ConvertStoWS(strL), 20);
 
 	}
 #else

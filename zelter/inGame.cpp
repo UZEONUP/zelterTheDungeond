@@ -32,6 +32,8 @@ HRESULT inGame::init()
 
 void inGame::release()
 {
+	_inGameMap->release();
+	_player->release();
 }
 
 void inGame::update()
