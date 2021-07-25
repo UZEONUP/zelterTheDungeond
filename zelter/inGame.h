@@ -4,14 +4,6 @@
 #include "niflheimMap.h"
 #include "player.h"
 
-struct tagNPC
-{
-	image* img;
-	RECT rc;
-	float x, y;
-};
-
-
 class inGame : public gameNode
 {
 private:
@@ -19,10 +11,6 @@ private:
 	niflheimMap* _niflheimMap;
 	player* _player;
 	POINT _mapMouse;
-
-	//==================
-	tagNPC _npc;
-	int count;
 public:
 	inGame() {};
 	~inGame() {};

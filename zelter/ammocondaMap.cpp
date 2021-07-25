@@ -6,6 +6,7 @@ HRESULT ammocondaMap::init()
 	IMAGEMANAGER->addFrameImage("amoconda", L"tileImg/아모콘다.png", 20, 9);
 	CAMERAMANAGER->setMapCamera(2000, 1000);
 
+
 	load();
 
 	return S_OK;
