@@ -405,6 +405,9 @@
     <ClInclude Include="startTitle.h">
       <Filter>playGround\startTitle</Filter>
     </ClInclude>
+    <ClInclude Include="ammocondaDeath.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -688,6 +691,9 @@
     </ClCompile>
     <ClCompile Include="startTitle.cpp">
       <Filter>playGround\startTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaDeath.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

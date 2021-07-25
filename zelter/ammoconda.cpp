@@ -89,8 +89,7 @@ void ammoconda::render()
 	//Ç×¾Æ¸® ·»´õ
 	if (_isPotCreate) potRender();
 
-	//»óÅÂÆÐÅÏ ·»´õ
-	_state->render(this);
+	
 	_hp->render();
 	//º»Ã¼ ·»´õ
 	for (int i = 0; i < _vAmmoconda.size(); i++)
@@ -107,6 +106,8 @@ void ammoconda::render()
 
 	//ÃÑ¾Ë ·»´õ
 	_ammocondaBullet->render();
+	//»óÅÂÆÐÅÏ ·»´õ
+	_state->render(this);
 
 }
 
@@ -133,7 +134,8 @@ void ammoconda::setBoss()
 	IMAGEMANAGER->addImage("ammocondaBullet1", L"ammoconda/¾Æ¸ðÄÜ´ÙÃÑ¾Ë1_18_18.png");
 	IMAGEMANAGER->addFrameImage("ammocondaBullet2", L"ammoconda/¾Æ¸ðÄÜ´ÙÃÑ¾Ë2_22_22_10.png", 10, 1);
 	IMAGEMANAGER->addImage("potBullet", L"ammoconda/Ç×¾Æ¸®ÃÑ¾Ë_18_18.png");
-
+	//È¿°ú ÀÌ¹ÌÁö
+	IMAGEMANAGER->addFrameImage("boom", L"effect/boom.png", 4, 1);
 	_currentHp = _maxHp = 100;
 	for (int i = 0; i < AMMOCONDAMAX; i++)
 	{

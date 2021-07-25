@@ -83,7 +83,7 @@ void bulletKing::render()
 {
 	_hp->render();
 	//상태패턴 렌더
-	_state->render(this);
+	
 	_bullet->render();
 
 	//본체, 의자 렌더(3번쨰 패턴 시 의자 사라짐)
@@ -102,7 +102,7 @@ void bulletKing::render()
 		D2DRENDER->DrawRectangle(_bulletKingChair.rc, D2DRenderer::DefaultBrush::White);
 	}
 
-
+	_state->render(this);
 }
 
 void bulletKing::InputHandle()
@@ -129,6 +129,8 @@ void bulletKing::setBoss()
 	IMAGEMANAGER->addImage("bulletKingBullet1", L"bulletKing/bullet1_16_16.png");
 	IMAGEMANAGER->addFrameImage("bulletKingBullet2", L"bulletKing/bullet2_23_12_8.png", 8, 1);
 	IMAGEMANAGER->addImage("bulletKingBullet3", L"bulletKing/bullet1_16_16.png");
+	//효과 이미지
+	IMAGEMANAGER->addFrameImage("boom", L"effect/boom.png", 4, 1);
 	//총탄킹 본체 초기화
 	_bulletKing.img = IMAGEMANAGER->findImage("bulletKingIdle");
 	_bulletKing.x = WINSIZEX / 2;
