@@ -74,7 +74,7 @@ private:
 	bool _imageON;
 	float _bulletKingSize = 0.9;
 	float _ammoCondaSize = 0.7;
-	float _openWorldSize = 0.6;
+	float _openWorldSize = 0.7;
 
 
 	image* _mouse;
