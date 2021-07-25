@@ -12,6 +12,8 @@ ammocondaBattle::~ammocondaBattle()
 
 HRESULT ammocondaBattle::init()
 {
+	SOUNDMANAGER->addSound("ammocondaBGM", "sound/아모콘다 보스 배경음악.wav", true, true);
+
 	_ammocondaMap = new ammocondaMap;
 	_ammocondaMap->init();
 
@@ -25,6 +27,8 @@ HRESULT ammocondaBattle::init()
 	_ammoconda->linkPlayer(_player);
 
 	_player->setKeyType(false);
+
+	SOUNDMANAGER->play("ammocondaBGM");
 
 	return S_OK;
 }

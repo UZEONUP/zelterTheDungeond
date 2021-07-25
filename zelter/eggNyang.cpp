@@ -107,7 +107,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); i++)
@@ -118,7 +118,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
@@ -129,7 +129,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
@@ -140,7 +140,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
@@ -151,7 +151,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 }

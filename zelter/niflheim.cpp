@@ -117,7 +117,7 @@ void niflheim::hitNifleheim()
 			_player->getPlayerBullet()->releaseF(i);
 
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 		/*if (!_invincibility && OBB(_niflheim.icePillar->getVIcePillar()[i].rotateCollsion, )
 		{ 회전충돌 체크 해야함...
@@ -139,7 +139,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseBullet(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
@@ -151,7 +151,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseG(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
@@ -163,7 +163,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseH(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
@@ -175,7 +175,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseS(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 }

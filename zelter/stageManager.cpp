@@ -36,5 +36,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("niflheim", new niflheimBattle);
 	SCENEMANAGER->addScene("loading", new loading);
 
-	SCENEMANAGER->changeScene("niflheim");
+	SCENEMANAGER->changeScene("ammoconda");
 }
