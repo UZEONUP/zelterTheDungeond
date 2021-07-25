@@ -15,6 +15,7 @@ HRESULT characterPick::init()
 
 	_characterPick.on = false;
 	_characterPick2.on = false;
+
 	_character.pick = false;
 	_character2.pick = false;
 
@@ -40,7 +41,6 @@ void characterPick::update()
 {
 	_count++;
 
-	
 	if (PtInRect(&_characterPick.rc, _ptMouse))_characterPick.on = true;
 	else _characterPick.on = false;
 
@@ -62,27 +62,14 @@ void characterPick::update()
 			}
 
 		}
-	}
-	
-	else if (!_characterPick.on)
-	{
-		_characterPick.img = IMAGEMANAGER->findImage("gunner_illust_off");
-		_character.img = IMAGEMANAGER->findImage("gunner_pick_frame_off");
-		_characterPick.currentFrameX = 0;
-		if(!_character.pick)_character.currentFrameX = 0;
-	}
-	if (_characterPick2.on)
-	{
-		_characterPick2.img = IMAGEMANAGER->findImage("wizard_illust_on");
-	}
-	else if (!_characterPick2.on)
-	{
-		_characterPick2.img = IMAGEMANAGER->findImage("wizard_illust_off");
-	}
+		else if (!_characterPick.on)
+		{
+			_characterPick.img = IMAGEMANAGER->findImage("gunner_illust_off");
+			_character.img = IMAGEMANAGER->findImage("gunner_pick_frame_off");
+			_characterPick.currentFrameX = 0;
+			if (!_character.pick)_character.currentFrameX = 0;
+		}
 
-
-	if (!_character2.pick)
-	{
 		if (PtInRect(&_characterPick.rc, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 		{
 			_character.pick = true;
@@ -95,16 +82,42 @@ void characterPick::update()
 
 			if (_count % 7 == 0)_character.currentFrameX += 1;
 			if (_character.currentFrameX >= _character.img->getMaxFrameX())
-				SCENEMANAGER->changeScene("niflheim");
+				SCENEMANAGER->changeScene("openWorld");
 
 		}
 	}
+	
+	if (_characterPick2.on)
+	{
+		_characterPick2.img = IMAGEMANAGER->findImage("wizard_illust_on");
+	}
+	else if (!_characterPick2.on)
+	{
+		_characterPick2.img = IMAGEMANAGER->findImage("wizard_illust_off");
+	}
+
+
+	
 
 	if (PtInRect(&_characterPick2.rc, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
 		_character2.pick = true;
 		
+		if (_character2.pick)
+		{
+			_yes = RectMakeCenter(WINSIZEX / 2 - 195, WINSIZEY / 2 - 15, 160, 60);
+			_no = RectMakeCenter(WINSIZEX / 2 + 155, WINSIZEY / 2 - 15, 160, 60);
+		}
 	}
+
+
+	if (PtInRect(&_no, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		_character2.pick = false;
+	}
+
+
+
 	//@=============다이얼로그
 
 	_rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 600, 400);
@@ -138,6 +151,9 @@ void characterPick::render()
 		_img->render(_rc.left, _rc.top);
 		D2DRENDER->RenderTextField(_rc.left + 20, _rc.top - 100, ConvertCtoWC(_pickTextCut), D2D1::ColorF::White, 20, 500, 400);
 	}
+	D2DRENDER->DrawRectangle(_yes, D2DRenderer::DefaultBrush::Black, 1.f);
+	D2DRENDER->DrawRectangle(_no, D2DRenderer::DefaultBrush::Black, 1.f);
+
 	_mouse->render(_ptMouse.x - 7, _ptMouse.y - 5);
 }
 
