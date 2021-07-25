@@ -108,7 +108,7 @@ void eggNyang::hitEggNyang()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-
+			_player->getPlayerBullet()->releaseF(i);
 			_eggNyang.currentHp -= 15;
 		}
 	}
@@ -119,7 +119,7 @@ void eggNyang::hitEggNyang()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-
+			_player->getPlayerBullet()->releaseBullet(i);
 			_eggNyang.currentHp -= 15;
 		}
 	}
@@ -130,7 +130,7 @@ void eggNyang::hitEggNyang()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-
+			_player->getPlayerBullet()->releaseGrenadeBullet(i);
 			_eggNyang.currentHp -= 15;
 		}
 	}
@@ -141,7 +141,7 @@ void eggNyang::hitEggNyang()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-
+			_player->getPlayerBullet()->releaseH(i);
 			_eggNyang.currentHp -= 15;
 		}
 	}
@@ -152,7 +152,7 @@ void eggNyang::hitEggNyang()
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-
+			_player->getPlayerBullet()->releaseS(i);
 			_eggNyang.currentHp -= 15;
 		}
 	}

@@ -2,7 +2,6 @@
 #include "gameNode.h"
 
 
-
 struct tagCharacterPick
 {
 	RECT rc;
@@ -13,6 +12,8 @@ struct tagCharacterPick
 
 	bool on;
 	bool pick;
+
+	
 };
 class characterPick :public gameNode 
 {
@@ -23,6 +24,14 @@ private:
 	tagCharacterPick _character2;
 
 	image* _mouse;
+	//=============================== 다이얼로그
+	RECT _rc;
+	RECT _yes;
+	RECT _no;
+	image* _img;
+	const char* _pickText;
+	char _pickTextCut[128];
+	int _pickTextCount;
 
 public:
 

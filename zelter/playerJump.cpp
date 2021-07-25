@@ -11,7 +11,12 @@
 playerState * playerJump::inputHandle(player * player)
 {
 	
-	if (_jumpPower <= 0) return new playerFall;
+	if (_jumpPower <= 0)
+	{
+		player->setPlayerisEnd(true);
+		return new playerFall;
+	}
+
 	if (player->getPlayer().y >= WINSIZEY - 100)
 	{
 		player->setIsjump(false);
@@ -69,8 +74,8 @@ void playerJump::enter(player * player)
 	if (player->getPlayer().direction == 0) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_jump"));
 	if (player->getPlayer().direction == 1) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_jump"));
 	player->setIsjump(true);
+	player->setPlayerisEnd(false);
 	player->setPlayerIscollde(false);
-	
 }
 
 void playerJump::exit(player * player)

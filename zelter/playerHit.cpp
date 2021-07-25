@@ -12,11 +12,12 @@
 playerState * playerHit::inputHandle(player * player)
 {
 	if (player->getPlayer().isHit == false )return new playerStateIdle();
-	if (!player->getPlayer().isCollide) return new playerFall;
+	
 	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isOnceKeyUp('A') || KEYMANAGER->isOnceKeyUp('D')) return new playerStateIdle;
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
+		if (!player->getPlayer().isCollide) return new playerFall;
 	}
 	else
 	{
@@ -39,8 +40,6 @@ void playerHit::update(player * player)
 {
 	if (player->getPlayer().isHit)
 	{
-		_blinkTime = TIMEMANAGER->getWorldTime();
-		_blinkTimeEnd = _blinkTime + 4;
 		_blinkCount++;
 
 		if (_blinkCount <= 10 )player->getPlayer().img->setAlpha(0);

@@ -48,6 +48,18 @@ void bulletKingBattle::update()
 	_player->update();
 
 	_bulletKingMap->update();
+
+	for (int i = 0; i < WINSIZEY / 32; i++)
+	{
+		for (int j = 0; j < WINSIZEX / 32; j++)
+		{
+			if (!_player->getPlayer().isEnd)
+			{
+				if (_bulletKingMap->getTileAttribute()[i * TILEX + j] == NONEMOVE &&
+					IsCollision(_bulletKingMap->getTile()[i * TILEX + j].rc, _player->getPlayer().rc))_player->setPlayerIscollde(true);
+			}
+		}
+	}
 }
 
 void bulletKingBattle::render()

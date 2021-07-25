@@ -13,7 +13,8 @@
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
 #include "eggNyangBullet.h"
-#include "niflheimMap.h"
+#include "ammocondaBullet.h"
+
 
 class bulletKing;
 class ammoconda;
@@ -21,7 +22,8 @@ class niflheim;
 class eggNyang;
 class playerBullet;
 class stageManager;
-
+class fishMan;
+class dinosaur;
 
 
 struct tagPlayer
@@ -64,7 +66,8 @@ private:
 	playerState* state;
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
-	niflheimMap* _nfm;
+	
+	
 
 	int _count;
 	int _index;
@@ -87,6 +90,7 @@ private:
 	eggNyangMap* _eggNyangMap;
 	niflheimMap* _niflheimMap;
 
+
 	int _cameraX;
 	int _cameraY;
 	POINT _mapMouse;
@@ -96,6 +100,8 @@ private:
 	ammoconda* _ammoconda;
 	niflheim* _niflheim;
 	eggNyang* _eggNyang;
+	fishMan* _fishMan;
+	dinosaur* _dinosaur;
 
 public:
 	HRESULT init();

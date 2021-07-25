@@ -24,9 +24,9 @@ void dialogue::render()
 {
 	for (int i = 0; i < _vSpeech.size(); i++)
 	{
-		_vSpeech[i].img->render(_vSpeech[i].x, _vSpeech[i].y);
+		_vSpeech[i].img->render(_vSpeech[i].x - CAMERAMANAGER->getX(), _vSpeech[i].y - CAMERAMANAGER->getY());
 
-		D2DRENDER->RenderTextField(_vSpeech[i].x, _vSpeech[i].y, ConvertCtoWC(_vSpeech[i].speech),
+		D2DRENDER->RenderTextField(_vSpeech[i].x - CAMERAMANAGER->getX(), _vSpeech[i].y - CAMERAMANAGER->getY(), ConvertCtoWC(_vSpeech[i].speech),
 			D2D1::ColorF::Black, 10, 94, 34, 1,
 			DWRITE_TEXT_ALIGNMENT_CENTER);
 	}

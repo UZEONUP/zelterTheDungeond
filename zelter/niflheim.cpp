@@ -114,9 +114,8 @@ void niflheim::hitNifleheim()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseF(i);
-
-
 			_niflheim.currentHP -= 15;
+
 		}
 		/*if (!_invincibility && OBB(_niflheim.icePillar->getVIcePillar()[i].rotateCollsion, )
 		{ 회전충돌 체크 해야함...
