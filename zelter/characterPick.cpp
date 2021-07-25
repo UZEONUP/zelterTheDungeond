@@ -32,7 +32,7 @@ HRESULT characterPick::init()
 	_pickTextCount = 0;
 	_pickText = "위자드  캐릭터를  사용하시려면  구매하셔야  합니다.   구매하시겠습니까?";
 	_img = IMAGEMANAGER->findImage("확인창");
-
+	_noMoneyimg = IMAGEMANAGER->findImage("확인창2");
 
 	return S_OK;
 }
@@ -116,7 +116,15 @@ void characterPick::update()
 		_character2.pick = false;
 	}
 
-
+	if (PtInRect(&_yes, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		_noMoney = TIMEMANAGER->getWorldTime();
+		
+		if (_noMoney + 5 < _noMoney)
+		{
+			_noMoneyrc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 600, 400);
+		}
+	}
 
 	//@=============다이얼로그
 
@@ -145,14 +153,18 @@ void characterPick::render()
 	_characterPick.img->frameRender2(_characterPick.rc.left, _characterPick.rc.top,_characterPick.currentFrameX,0);
 	_character.img->frameRender2(_character.rc.left, _character.rc.top, _character.currentFrameX, 0);
 	_characterPick2.img->render(_characterPick2.rc.left+150, _characterPick2.rc.top);
-
+	if (_noMoney + 5 < _noMoney)_noMoneyimg->render(_noMoneyrc.left, _noMoneyrc.top);
 	if (_character2.pick)
 	{
 		_img->render(_rc.left, _rc.top);
 		D2DRENDER->RenderTextField(_rc.left + 20, _rc.top - 100, ConvertCtoWC(_pickTextCut), D2D1::ColorF::White, 20, 500, 400);
 	}
-	D2DRENDER->DrawRectangle(_yes, D2DRenderer::DefaultBrush::Black, 1.f);
-	D2DRENDER->DrawRectangle(_no, D2DRenderer::DefaultBrush::Black, 1.f);
+	//D2DRENDER->DrawRectangle(_yes, D2DRenderer::DefaultBrush::Black, 1.f);
+	D2DRENDER->FillRectangle(_yes, D2DRenderer::DefaultBrush::Black);
+	D2DRENDER->FillRectangle(_no, D2DRenderer::DefaultBrush::Black);
+	//D2DRENDER->DrawRectangle(_no, D2DRenderer::DefaultBrush::Black, 1.f);
+	//D2DRENDER->DrawRectangle(_noMoneyrc, D2DRenderer::DefaultBrush::Black, 1.f);
+	D2DRENDER->FillRectangle(_noMoneyrc, D2DRenderer::DefaultBrush::Black);
 
 	_mouse->render(_ptMouse.x - 7, _ptMouse.y - 5);
 }
