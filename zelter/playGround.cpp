@@ -51,6 +51,7 @@ void playGround::render()
 
 	_stageManager->render();
 	CAMERAMANAGER->render();
+	TIMEMANAGER->render(_hdc);
 
 	//백버퍼에 그린 내용들을 화면에 뿌려라~
 	D2DRENDER->EndRender();

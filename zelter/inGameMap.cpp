@@ -16,7 +16,6 @@ HRESULT inGameMap::init()
 
 void inGameMap::release()
 {
-
 }
 
 void inGameMap::update()

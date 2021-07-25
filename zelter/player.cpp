@@ -48,6 +48,7 @@ HRESULT player::init()
 	_progressBar->init(170, 25, 100, 30);
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
 
+
 	
 	return S_OK;
 }
