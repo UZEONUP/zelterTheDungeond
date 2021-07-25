@@ -157,6 +157,7 @@
     <ClInclude Include="ammocondaRecovery.h" />
     <ClInclude Include="ammocondaState.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="aStar.h" />
     <ClInclude Include="bulletKing.h" />
     <ClInclude Include="bulletKingAttack1.h" />
     <ClInclude Include="bulletKingAttack2.h" />
@@ -253,6 +254,7 @@
     <ClCompile Include="ammocondaRecovery.cpp" />
     <ClCompile Include="ammocondaState.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="aStar.cpp" />
     <ClCompile Include="bulletKing.cpp" />
     <ClCompile Include="bulletKingAttack1.cpp" />
     <ClCompile Include="bulletKingAttack2.cpp" />

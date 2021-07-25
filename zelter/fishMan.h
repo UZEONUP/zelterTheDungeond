@@ -3,13 +3,14 @@
 #include <vector>
 #include "bulletKing.h"
 #include "dialogue.h"
+#include "inGameMap.h"
 
 enum FISHMANDIRECTION
 {
 	FISHMAN_RIGHT,
 	FISHMAN_LEFT
 };
-enum FISHMANSTATE 
+enum FISHMANSTATE
 {
 	FISHMAN_IDLE,
 	FISHMAN_WALK,
@@ -31,7 +32,9 @@ struct tagFishMan
 	int maxHp, currentHp;				//피쉬맨 최대 체력, 현재 체력
 	int count;							//이미지 프레임 카운트
 	int changeCount;					//상태변환용 카운트
-	FISHMANDIRECTION direction;
+	int direction;
+	RECT tileIdx[2];
+	FISHMANDIRECTION direction_img;
 	FISHMANSTATE state;
 };
 
@@ -52,6 +55,8 @@ private:
 	//테스트 플레이어
 	bulletKing* _bulletKing;
 
+	////타일관련
+	inGameMap* _inGame;
 public:
 	fishMan();
 	~fishMan();
@@ -63,12 +68,9 @@ public:
 	void setEnemy(float x, float y);
 	void fishMove(float x, float y);
 	void fishState();
+	void tileCheck();
 
 	tagFishMan getFishMan() { return _fishMan; }
-	void setFishManImage(image* img) { _fishMan.img = img; }
-	void setFishManCurrentFrameX(int currentFrameX) { _fishMan.currentFrameX = currentFrameX; }
-	void setFishManCurrentFrameY(int currentFrameY) { _fishMan.currentFrameY = currentFrameY; }
-	void setFishManAngle(float angle) { _fishMan.angle = angle; }
 
 
 };

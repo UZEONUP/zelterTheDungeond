@@ -11,6 +11,8 @@ class niflheimBattle : public gameNode
 
 	niflheimMap* _niflheimMap;
 
+	image*	_backGround;
+
 public :
 	niflheimBattle() {};
 	~niflheimBattle() {};

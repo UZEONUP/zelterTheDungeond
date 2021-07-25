@@ -3,6 +3,9 @@
 
 HRESULT niflheimBattle::init()
 {
+	IMAGEMANAGER->addImage("niflheimBackGround", L"niflheim/niflheimBackGround.png");
+	_backGround = IMAGEMANAGER->findImage("niflheimBackGround");
+
 	_niflheimMap = new niflheimMap;
 	_niflheimMap->init();
 	CAMERAMANAGER->setX(0);
@@ -38,6 +41,8 @@ void niflheimBattle::update()
 
 void niflheimBattle::render()
 {
+	_backGround->render(0, 0);
+
 	_niflheimMap->render();
 	_niflheim->render();
 	_player->render();
