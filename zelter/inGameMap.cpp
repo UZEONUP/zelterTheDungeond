@@ -87,6 +87,7 @@ void inGameMap::load()
 	for (int i = 0; i < TILEX*TILEY; ++i)
 	{
 		if (_tile[i].object == BLOCK ||
+			_tile[i].object == BLOCK_BHALF||
 			_tile[i].object == BLOCK_LHALF ||
 			_tile[i].object == BLOCK_RHALF ||
 			_tile[i].object == BLOCK_LTRIPLE ||
@@ -125,14 +126,14 @@ void inGameMap::setDoor()
 	_bossDoorRect[2].img = IMAGEMANAGER->findImage("bulletKingDoor");
 	_bossDoorRect[3].img = IMAGEMANAGER->findImage("ammocondaDoor");
 
-	_bossDoorRect[0].x = BACKGROUNDX * 2 - 610;
-	_bossDoorRect[0].y = 950;
-	_bossDoorRect[1].x = 600;
-	_bossDoorRect[1].y = 950;
-	_bossDoorRect[2].x = 600;
-	_bossDoorRect[2].y = BACKGROUNDY * 2 - 600;
-	_bossDoorRect[3].x = BACKGROUNDX * 2 - 600;
-	_bossDoorRect[3].y = BACKGROUNDY * 2 - 600;
+	_bossDoorRect[0].x = 6900;
+	_bossDoorRect[0].y = 350;
+	_bossDoorRect[1].x = 450;
+	_bossDoorRect[1].y = 2600;
+	_bossDoorRect[2].x = 6180;
+	_bossDoorRect[2].y = 5500;
+	_bossDoorRect[3].x = 10450;
+	_bossDoorRect[3].y = 200;
 
 	for (int i = 0; i < 4; i++)
 	{

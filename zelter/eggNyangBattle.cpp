@@ -7,6 +7,9 @@ HRESULT eggNyangBattle::init()
 
 	IMAGEMANAGER->addImage("eggNyangBackGround", L"eggNyang/eggNyangBackGround.png");
 	_backGround = IMAGEMANAGER->findImage("eggNyangBackGround");
+	CAMERAMANAGER->setX(0);
+	CAMERAMANAGER->setY(0);
+
 	
 	_eggNyangMap = new eggNyangMap;
 	_eggNyangMap->init();
@@ -17,6 +20,7 @@ HRESULT eggNyangBattle::init()
 
 	_eggNyang->linkPlayer(_player);
 	_player->linkEggNyang(_eggNyang);
+	_player->linkEggNyangMap(_eggNyangMap);
 
 	SOUNDMANAGER->play("eggNyangBGM");
 
