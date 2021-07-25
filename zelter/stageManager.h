@@ -9,6 +9,7 @@
 #include "eggNyangBattle.h"
 #include "niflheimBattle.h"
 #include "loading.h"
+#include "startTitle.h"
 
 class stageManager : public gameNode
 {
