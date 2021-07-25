@@ -31,6 +31,7 @@ void niflheimAttack3::update(niflheim * niflheim)
 
 				niflheim->getNiflheim().icePillar->fireBullet1(_targetX, _targetY, _icePillar1);
 				niflheim->getNiflheim().icePillar->fireBullet2(_targetX, _targetY, _icePillar2);
+				SOUNDMANAGER->play("니플헤임공격2");
 			}
 		}
 		else
@@ -45,6 +46,7 @@ void niflheimAttack3::update(niflheim * niflheim)
 
 				niflheim->getNiflheim().icePillar->fireBullet1(_targetX, _targetY, _icePillar1);
 				niflheim->getNiflheim().icePillar->fireBullet2(_targetX, _targetY, _icePillar2);
+				SOUNDMANAGER->play("니플헤임공격2");
 			}
 		}
 	}
@@ -52,6 +54,7 @@ void niflheimAttack3::update(niflheim * niflheim)
 
 void niflheimAttack3::enter(niflheim * niflheim)
 {
+	SOUNDMANAGER->addSound("니플헤임공격2", "sound/니플헤임공격2.wav", false, false);
 	_currentStateName = "niflheimIcePillar";
 	niflheim->setImg(IMAGEMANAGER->findImage("niflheimAttack"));
 	if (niflheim->getNiflheim().direction == 0)

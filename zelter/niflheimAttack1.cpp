@@ -26,6 +26,7 @@ void niflheimAttack1::update(niflheim * niflheim)
 			{
 				_stateEnd = true;
 				niflheim->getNiflheim().iceicle->firstIcicleFire();
+				SOUNDMANAGER->play("니플헤임공격3");
 			}
 
 			_count = 0;
@@ -37,6 +38,7 @@ void niflheimAttack1::update(niflheim * niflheim)
 			{
 				_stateEnd = true;
 				niflheim->getNiflheim().iceicle->firstIcicleFire();
+				SOUNDMANAGER->play("니플헤임공격3");
 			}
 
 			_count = 0;
@@ -46,6 +48,7 @@ void niflheimAttack1::update(niflheim * niflheim)
 
 void niflheimAttack1::enter(niflheim * niflheim)
 {
+	SOUNDMANAGER->addSound("니플헤임공격3", "sound/니플헤임공격3.wav", false, false);
 	_currentStateName = "niflheimIcicle";
 	niflheim->setImg(IMAGEMANAGER->findImage("niflheimAttack"));
 	if (niflheim->getNiflheim().direction == 0)

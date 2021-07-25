@@ -26,6 +26,7 @@ void niflheimAttack2::update(niflheim * niflheim)
 			{
 				_stateEnd = true;
 				niflheim->getNiflheim().iceSpear->iceSpearFire(niflheim->getPlayer()->getPlayer().x, niflheim->getPlayer()->getPlayer().y);
+				SOUNDMANAGER->play("니플헤임공격1");
 			}
 			_count = 0;
 		}
@@ -36,6 +37,7 @@ void niflheimAttack2::update(niflheim * niflheim)
 			{
 				_stateEnd = true;
 				niflheim->getNiflheim().iceSpear->iceSpearFire(niflheim->getPlayer()->getPlayer().x, niflheim->getPlayer()->getPlayer().y);
+				SOUNDMANAGER->play("니플헤임공격1");
 			}
 			_count = 0;
 		}
@@ -49,6 +51,8 @@ void niflheimAttack2::update(niflheim * niflheim)
 
 void niflheimAttack2::enter(niflheim * niflheim)
 {
+	SOUNDMANAGER->addSound("니플헤임공격1", "sound/니플헤임공격1.wav", false, false);
+
 	_currentStateName = "niflheimIceSpear";
 	niflheim->setImg(IMAGEMANAGER->findImage("niflheimAttack"));
 	if (niflheim->getNiflheim().direction == 0)
