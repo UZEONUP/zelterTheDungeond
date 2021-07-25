@@ -114,10 +114,7 @@ void player::tileDetect(string sceneName)
 				}
 			}
 		}
-		for (int i = 0; i < 2; ++i)
-		{
-			_tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 64, 64);
-		}
+		
 		//_player.rc = rcCollision;
 		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth(), _player.img->getFrameHeight());
 	}

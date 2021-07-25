@@ -24,6 +24,7 @@ HRESULT bulletKingBattle::init()
 
 	
 	_player->linkBulletKing(_bulletKing);
+	_player->linkBulletKingMap(_bulletKingMap);
 	_bulletKing->linkPlayer(_player);
 
 	SOUNDMANAGER->play("bulletKingBGM");

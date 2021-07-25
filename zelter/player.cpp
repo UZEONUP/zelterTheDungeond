@@ -32,7 +32,7 @@ HRESULT player::init()
 	_player.maxHP = _player.currentHP = 100;
 	_playerGun.x = _player.x;
 	_playerGun.y = _player.y;
-	_player.speed = 50.0f;
+	_player.speed = 5.f;
 	_gunType = 0;
 	_playerBullet = new playerBullet;
 	_playerBullet->init();

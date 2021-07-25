@@ -16,6 +16,8 @@ HRESULT ammocondaBattle::init()
 
 	_ammocondaMap = new ammocondaMap;
 	_ammocondaMap->init();
+	CAMERAMANAGER->setX(0);
+	CAMERAMANAGER->setY(0);
 
 	_ammoconda = new ammoconda;
 	_ammoconda->init();
@@ -24,6 +26,7 @@ HRESULT ammocondaBattle::init()
 	_player->init();
 	
 	_player->linkAmmoconda(_ammoconda);
+	_player->linkAmmocondaMap(_ammocondaMap);
 	_ammoconda->linkPlayer(_player);
 
 	_player->setKeyType(false);

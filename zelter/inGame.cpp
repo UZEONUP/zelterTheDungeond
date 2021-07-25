@@ -36,7 +36,8 @@ void inGame::update()
 	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse,_player->getPlayer().x,_player->getPlayer().y);
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
-
+	cout << _mapMouse.x << endl;
+	cout << _mapMouse.y << "YÃà" << endl;
 	_inGameMap->update();
 	_player->update();
 
