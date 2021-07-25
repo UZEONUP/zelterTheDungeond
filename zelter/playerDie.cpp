@@ -12,12 +12,11 @@ void playerDie::update(player * player)
 
 	if (_count % 10 == 0)
 	{
-		if(!player->getPlayer().isDeath)player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
+		if(player->getPlayer().isDeath)player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
 
 		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX())
 		{
 			player->setPlayerCurrentFrameX(player->getPlayer().img->getMaxFrameX()-1);
-			player->setPlayerisDeath(true);
 		_count = 0;
 		}
 	}
@@ -27,13 +26,10 @@ void playerDie::update(player * player)
 void playerDie::enter(player * player)
 {
 	player->setPlayerImage(IMAGEMANAGER->findImage("gunner_death"));
-	
+	player->setIsjump(false);
 }
 
 void playerDie::exit(player * player)
 {
 }
 
-void playerDie::getCurrentState(player * player)
-{
-}

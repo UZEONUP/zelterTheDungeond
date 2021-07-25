@@ -44,7 +44,7 @@ void bulletKing::update()
 	_hp->setGauge(_bulletKing.currentHp, _bulletKing.maxHp);
 	if (_bulletKing.currentHp <= 3) _bulletKing.currentHp = 3;
 
-	
+
 	//본체 렉트
 	_bulletKing.rc = RectMakeCenter(_bulletKing.x, _bulletKing.y, _bulletKing.img->getWidth() / _bulletKing.img->getMaxFrameX(), _bulletKing.img->getHeight());
 	_bulletKingChair.rc = RectMakeCenter(_bulletKingChair.x, _bulletKingChair.y, _bulletKingChair.img->getWidth() / _bulletKingChair.img->getMaxFrameX(), _bulletKingChair.img->getHeight());
@@ -86,12 +86,16 @@ void bulletKing::render()
 	//본체, 의자 렌더(3번쨰 패턴 시 의자 사라짐)
 	if (!_bulletKingChair.isAttack3) _bulletKingChair.img->
 		frameRender2(
-			_bulletKingChair.rc.left - CAMERAMANAGER->getX(),
-			_bulletKingChair.rc.top - CAMERAMANAGER->getY(),
+			_bulletKingChair.rc.left ,
+			_bulletKingChair.rc.top ,
 			_bulletKingChair.currentFrameX, 0);
-	_bulletKing.img->frameRender2(_bulletKing.rc.left, _bulletKing.rc.top, _bulletKing.currentFrameX, 0);
+	_bulletKing.img->
+		frameRender2(
+			_bulletKing.rc.left,
+			_bulletKing.rc.top ,
+			_bulletKing.currentFrameX, 0);
 
-
+	
 	//렉탱글 확인
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{

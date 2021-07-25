@@ -27,14 +27,14 @@ void eggNyangDie::update(eggNyang * eggNyang)
 	}
 
 	_randomEffect = RND->getFromIntTo(0, 100);
-	cout << _randomEffect << endl;
+
 
 	if (_randomEffect % 13 == 0)
 	{
 		produceEffect(eggNyang);
 	}
 
-	cout << _vBoom.size() << endl;
+	
 
 	if (_vBoom.size() != 0) playEffect(eggNyang);
 }

@@ -82,7 +82,7 @@ void niflheimAttack1::enter(niflheim * niflheim)
 		_vStartPoint.push_back(startPoint);
 		_vEndPoint.push_back(endPoint);
 	}
-	cout << _currentStateName << endl;
+	
 }
 
 void niflheimAttack1::exit(niflheim * niflheim)

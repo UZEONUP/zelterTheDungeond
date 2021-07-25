@@ -5,19 +5,34 @@
 #include "playerHit.h"
 #include "playerAttack.h"
 #include "playerRun.h"
+#include "playerDash.h"
+#include "playerFall.h"
 
 playerState * playerJump::inputHandle(player * player)
 {
 	
-	if(player->getPlayer().y >= WINSIZEY-100)return new playerStateIdle();
+	if (_jumpPower >= 0) return new playerFall;
+	if (player->getPlayer().y >= WINSIZEY - 100)
+	{
+		player->setIsjump(false);
+		return new playerStateIdle();
+	}
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
 	if (player->getPlayer().isHit == true) return new playerHit();
-	if (player->getPlayer().currentHP <= 0) return new playerDie();
+	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
+	if (player->getPlayer().currentHP <= 0)
+	{
+		player->setPlayerisDeath(true);
+		return new playerDie();
+	}
 	return nullptr;
 }
 
 void playerJump::update(player * player)
 {
+	_jumpPower -= _gravity;
+
+	player->setPlayerY(player->getPlayer().y - _jumpPower);
 	if (KEYMANAGER->isStayKeyDown('D'))
 	{
 		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
@@ -28,12 +43,9 @@ void playerJump::update(player * player)
 		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*2);
 	}
 
-	if (_tempY-50 <_tempY)
-	{
-		_gravity += 0.05;
-		player->setPlayerY(player->getPlayer().y - _jumpPower);
-		_jumpPower -= _gravity;
-	}
+
+
+
 	
 	_count++;
 	if (_count % 7 == 0)
@@ -43,20 +55,23 @@ void playerJump::update(player * player)
 		_count = 0;
 	}
 
+	
+
+	return;
+	
 }
 
 void playerJump::enter(player * player)
 {
 	if (player->getPlayer().direction == 0) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_jump"));
 	if (player->getPlayer().direction == 1) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_jump"));
-
-	_tempY = player->getPlayer().y;
+	player->setIsjump(true);
+	player->setPlayerIscollde(false);
+	_jumpPower = 15.0f;
+	_gravity = 0.4f;
 }
 
 void playerJump::exit(player * player)
 {
 }
 
-void playerJump::getCurrentState(player * player)
-{
-}

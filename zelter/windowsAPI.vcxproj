@@ -210,8 +210,10 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="playerAttack.h" />
     <ClInclude Include="playerBullet.h" />
+    <ClInclude Include="playerDash.h" />
     <ClInclude Include="playerDie.h" />
     <ClInclude Include="playerDonwJump.h" />
+    <ClInclude Include="playerFall.h" />
     <ClInclude Include="playerHit.h" />
     <ClInclude Include="playerJump.h" />
     <ClInclude Include="playerRoll.h" />
@@ -307,8 +309,10 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerAttack.cpp" />
     <ClCompile Include="playerBullet.cpp" />
+    <ClCompile Include="playerDash.cpp" />
     <ClCompile Include="playerDie.cpp" />
     <ClCompile Include="playerDonwJump.cpp" />
+    <ClCompile Include="playerFall.cpp" />
     <ClCompile Include="playerHit.cpp" />
     <ClCompile Include="playerJump.cpp" />
     <ClCompile Include="playerRoll.cpp" />

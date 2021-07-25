@@ -396,6 +396,12 @@
     <ClInclude Include="dialogue.h">
       <Filter>playGround\enemy\dialogue</Filter>
     </ClInclude>
+    <ClInclude Include="playerDash.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerFall.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -673,6 +679,12 @@
     </ClCompile>
     <ClCompile Include="player + tileDetect.cpp">
       <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDash.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerFall.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

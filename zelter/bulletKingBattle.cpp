@@ -63,7 +63,7 @@ void bulletKingBattle::render()
 
 	_fishMan->render();
 	_dinosaur->render();
-	_player->render();
 	_bulletKing->render();
+	_player->render();
 
 }

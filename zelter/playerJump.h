@@ -6,7 +6,8 @@ class player;
 class playerJump : public playerState
 {
 
-	float _jumpPower = 12.f;
+	
+	float _jumpPower;
 	float _gravity;
 
 	float _tempX, _tempY;
@@ -16,7 +17,6 @@ public :
 	virtual void update(player* player);
 	virtual void enter(player* player);
 	virtual void exit(player* player);
-	virtual void getCurrentState(player* player);
 
 	virtual int getCurrentFrame() { return _count; }
 	virtual int getFrameX() { return _currentFrameX; }
