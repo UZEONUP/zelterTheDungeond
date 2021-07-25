@@ -54,13 +54,27 @@ void playerBullet::update()
 	for (int i = 0; i < _vBulletG.size(); i++)
 	{
 		_vBulletG[i].count -= 1;
-		if (_vBulletG[i].count <= 0) releaseG(i);
+		if (_vBulletG[i].count <= 0)
+		{
+			produceEffect(_vBulletG[i].x,_vBulletG[i].y);
+			releaseG(i);
+		}
+
 		break;
 	}
+
+	if (_vBoom.size() != 0) playEffect();
+
 }
 
 void playerBullet::render()
 {
+
+	for (int i = 0; i < _vBoom.size(); i++)
+	{
+		_vBoom[i].img->frameRender2(_vBoom[i].x, _vBoom[i].y, _vBoom[i].effectFrameX, 0);
+	}
+
 	for (_viBulletN = _vBulletN.begin(); _viBulletN != _vBulletN.end(); ++_viBulletN)
 	{
 		_viBulletN->img->render(_viBulletN->x- _cameraX, _viBulletN->y- _cameraY, 1.f, 1.f, _viBulletN->angle * 180 / PI, _viBulletN->img->getWidth() / 2, _viBulletN->img->getHeight() / 2);
@@ -320,7 +334,7 @@ void playerBullet::fireGrenadeBullet(float x, float y, float angle, float speed)
 		if (bullet.bulletMax < _vGrenadeBullet.size()) return;
 		bullet.speed = speed;
 		bullet.radius = bullet.img->getWidth() / 2;
-		bullet.x = bullet.fireX = cosf(angle) * 50 + x;
+		bullet.x = bullet.fireX = cosf(angle) * 10 + x;
 		bullet.y = bullet.fireY = -sinf(angle) * 50 + y;
 		bullet.angle = angle + (i * 0.4f);
 		bullet.damage = 10;
@@ -353,5 +367,42 @@ void playerBullet::moveGrenadeBullet()
 	{
 		if (_vBulletG[i].count <= 1)
 			fireGrenadeBullet(_vBulletG[i].x, _vBulletG[i].y, 0, 10);
+	}
+}
+
+void playerBullet::produceEffect(float x, float y)
+{
+			tagBoom2 boom;
+			boom.img = IMAGEMANAGER->findImage("boom2");
+			boom.effectFrameX = 0;
+			boom.x = x;
+			boom.y = y;
+			boom.playeEffectEnd = false;
+			_vBoom.push_back(boom);
+}
+
+void playerBullet::playEffect()
+{
+	_effectFrameCount++;
+
+	for (int i = 0; i < _vBoom.size(); i++)
+	{
+		if (_effectFrameCount % 3 == 0)
+		{
+			//이펙트 프레임 재생
+			_vBoom[i].effectFrameX++;
+			if (_vBoom[i].effectFrameX >= _vBoom[i].img->getMaxFrameX())
+			{
+				_vBoom[i].playeEffectEnd = true;
+			}
+
+			//재생이 끝나면 해당 이펙트 지워줌
+			if (_vBoom[i].playeEffectEnd)
+			{
+				_vBoom.erase(_vBoom.begin() + i);
+			}
+
+			_effectFrameCount = 0;
+		}
 	}
 }

@@ -21,7 +21,7 @@ playerState * playerStateIdle::inputHandle(player * player)
 		if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerDonwJump();
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerJump();
 		if (KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D'))return new playerRun();
-		if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
+		if (!player->getPlayer().isEnd&&KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
 		if (!player->getPlayer().isCollide) return new playerFall;
 	}
 	else

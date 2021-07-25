@@ -17,6 +17,16 @@ enum GUNTYPE
 	FLAMETHROWER
 };
 
+
+struct tagBoom2
+{
+	image* img;					//이미지
+	float x, y;						//좌표
+	int effectFrameX;				//이펙트 프레임
+	bool playeEffectEnd;			//이펙트 재생이 끝났는지
+};
+
+
 struct tagPlayerBullet
 {
 	typedef struct SHAPE
@@ -52,6 +62,12 @@ class playerBullet : public gameNode
 private:
 	int _cameraX;
 	int _cameraY;
+
+
+	vector<tagBoom2> _vBoom;
+	int _effectFrameCount;
+	int _playEffectNum;
+
 
 public:
 	vector<tagPlayerBullet> _vBulletN;
@@ -131,6 +147,9 @@ public:
 
 
 	void setPlayerLink(player* player) { _player = player; }
+
+	void produceEffect(float x, float y);
+	void playEffect();
 
 };
 

@@ -11,7 +11,7 @@
 playerState * playerJump::inputHandle(player * player)
 {
 	
-	if (_jumpPower >= 0) return new playerFall;
+	if (_jumpPower <= 0) return new playerFall;
 	if (player->getPlayer().y >= WINSIZEY - 100)
 	{
 		player->setIsjump(false);
@@ -30,9 +30,10 @@ playerState * playerJump::inputHandle(player * player)
 
 void playerJump::update(player * player)
 {
+	player->setPlayerY(player->getPlayer().y - _jumpPower);
 	_jumpPower -= _gravity;
 
-	player->setPlayerY(player->getPlayer().y - _jumpPower);
+
 	if (KEYMANAGER->isStayKeyDown('D'))
 	{
 		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
@@ -63,12 +64,13 @@ void playerJump::update(player * player)
 
 void playerJump::enter(player * player)
 {
+	_jumpPower = 13.0f;
+	_gravity = 0.4f;
 	if (player->getPlayer().direction == 0) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_jump"));
 	if (player->getPlayer().direction == 1) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_jump"));
 	player->setIsjump(true);
 	player->setPlayerIscollde(false);
-	_jumpPower = 15.0f;
-	_gravity = 0.4f;
+	
 }
 
 void playerJump::exit(player * player)

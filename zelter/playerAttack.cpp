@@ -153,6 +153,12 @@ void playerAttack::update(player * player)
 		}
 	}
 
+	if (!player->getPlayer().isCollide)
+	{
+		_jumpPower -= _gravity;
+
+		player->setPlayerY(player->getPlayer().y - _jumpPower);
+	}
 }
 	
 void playerAttack::enter(player * player)
@@ -185,6 +191,12 @@ void playerAttack::enter(player * player)
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
 				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
 		break;
+	}
+
+	if (!player->getPlayer().isCollide)
+	{
+		_jumpPower = 0.0f;
+		_gravity = 0.4f;
 	}
 }
 

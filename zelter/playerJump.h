@@ -7,8 +7,7 @@ class playerJump : public playerState
 {
 
 	
-	float _jumpPower;
-	float _gravity;
+
 
 	float _tempX, _tempY;
 public :

@@ -553,6 +553,7 @@ void player::addIMAGES()
 	IMAGEMANAGER->addImage("hpback", L"UI/hpback.png");
 	IMAGEMANAGER->addImage("hpfront", L"UI/hpfront.png");
 
+	IMAGEMANAGER->addFrameImage("boom2", L"effect/boom2.png",13,1);
 
 }
 
