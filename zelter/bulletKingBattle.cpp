@@ -53,8 +53,11 @@ void bulletKingBattle::update()
 	{
 		for (int j = 0; j < WINSIZEX / 32; j++)
 		{
-			if (_bulletKingMap->getTileAttribute()[i * TILEX + j] == NONEMOVE &&
-				IsCollision(_bulletKingMap->getTile()[i * TILEX + j].rc, _player->getPlayer().rc))_player->setPlayerIscollde(true);
+			if (!_player->getPlayer().isEnd)
+			{
+				if (_bulletKingMap->getTileAttribute()[i * TILEX + j] == NONEMOVE &&
+					IsCollision(_bulletKingMap->getTile()[i * TILEX + j].rc, _player->getPlayer().rc))_player->setPlayerIscollde(true);
+			}
 		}
 	}
 }

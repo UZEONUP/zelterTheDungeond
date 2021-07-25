@@ -15,24 +15,26 @@
 
 playerState * playerStateIdle::inputHandle(player * player)
 {
-	
-	if (player->getPlayer().isDunGreed == true)
+	if ((player->getPlayer().x < WINSIZEX - CAMERAMANAGER->getX()|| player->getPlayer().x>0 - CAMERAMANAGER->getX() ) && (player->getPlayer().y < WINSIZEY - CAMERAMANAGER->getY() || player->getPlayer().y>0 - CAMERAMANAGER->getY()))
 	{
-		if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerDonwJump();
-		if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerJump();
-		if (KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D'))return new playerRun();
-		if (!player->getPlayer().isEnd&&KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
-		if (!player->getPlayer().isCollide) return new playerFall;
-	}
-	else
-	{
-		if (KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D') ||
-			KEYMANAGER->isStayKeyDown('W') || KEYMANAGER->isStayKeyDown('S'))
+		if (player->getPlayer().isDunGreed == true)
 		{
-			return new playerRun();
+			if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerDonwJump();
+			if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerJump();
+			if (KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D'))return new playerRun();
+			if (!player->getPlayer().isEnd&&KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
+			if (!player->getPlayer().isCollide) return new playerFall;
 		}
-	}
+		else
+		{
+			if (KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D') ||
+				KEYMANAGER->isStayKeyDown('W') || KEYMANAGER->isStayKeyDown('S'))
+			{
+				return new playerRun();
+			}
+		}
 
+	}
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
 
 	if (player->getPlayer().isHit == true) return new playerHit();
