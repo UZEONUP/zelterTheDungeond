@@ -145,7 +145,7 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2, float x, float y)
 			{
 				_x += (mouse.x - WINSIZEX * 0.5);
 				if (mouse.x > WINSIZEX - WINSIZEX * 0.3)_x = x - (_camera.width*0.3);
-				if (_x > _map.width)_x = _map.width - _camera.width;
+				if (_x > _map.width- _camera.width)_x = _map.width - _camera.width;
 				if (_x < 0)_x = 0;
 			}
 		}
@@ -176,7 +176,7 @@ void cameraManager::updateCamera(POINT mouse, POINT mouse2, float x, float y)
 			{
 				_y += (mouse.y - WINSIZEY * 0.5);
 				if (mouse.y > WINSIZEY - WINSIZEY * 0.3)_y = y - (_camera.height*0.3);
-				if (_y > _map.height)_y = _map.height - _camera.height;
+				if (_y > _map.height- _camera.height)_y = _map.height - _camera.height;
 				if (_y < 0)_y = 0;
 			}
 		}
