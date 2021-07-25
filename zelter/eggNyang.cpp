@@ -8,7 +8,6 @@ HRESULT eggNyang::init()
 {
 	imageAdd();
 
-
 	_eggNyang.bullet = new eggNyangBullet;
 	_eggNyang.lazer = new eggNyangLazer;
 	_eggNyang.sword = new eggNyangSword;

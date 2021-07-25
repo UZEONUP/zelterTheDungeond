@@ -37,6 +37,7 @@ void niflheimDie::update(niflheim * niflheim)
 		niflheim->getNiflheim().icePillar->dieRelease(i);
 	}
 	
+	if (_stateEnd) SCENEMANAGER->changeScene("openWorld");
 }
 
 void niflheimDie::enter(niflheim * niflheim)

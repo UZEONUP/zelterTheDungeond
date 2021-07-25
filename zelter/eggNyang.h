@@ -47,6 +47,8 @@ class eggNyang : public gameNode
 	float _timeCount;
 	float _timeCountEnd;
 
+	
+
 public:
 	virtual HRESULT init();
 	virtual void release();
