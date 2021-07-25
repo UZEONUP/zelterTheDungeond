@@ -4,9 +4,7 @@
 
 HRESULT inGame::init()
 {
-	IMAGEMANAGER->addFrameImage("NPC", L"STATE/DEATH/gunner_death.png", 15, 1);
-
-	_inGameMap = new inGameMap;
+	
 	_inGameMap->init();
 
 	_player = new player;
@@ -14,6 +12,8 @@ HRESULT inGame::init()
 
 	_player->setKeyType(false);
 	_player->linkOpenWorldMap(_inGameMap);
+	_player->linkNiflheimMap(_niflheimMap);
+
 
 	_dinosaur = new dinosaur;
 	_dinosaur->init();
@@ -39,8 +39,7 @@ void inGame::update()
 	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse, _player->getPlayer().x, _player->getPlayer().y);
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
-	cout << _mapMouse.x << endl;
-	cout << _mapMouse.y << "YÃà" << endl;
+
 	_inGameMap->update();
 	_player->update();
 
@@ -55,6 +54,9 @@ void inGame::update()
 	_fishMan->fishState();
 	_fishMan->fishMove(_player->getPlayer().x, _player->getPlayer().y);
 
+
+	
+	
 }
 
 void inGame::render()
@@ -83,8 +85,8 @@ void inGame::render()
 			);
 			//}
 		}
+		D2DRENDER->DrawRectangle(_inGameMap->getTile()[i].checkRect, D2DDEFAULTBRUSH::Red);
 	}
-
 
 }
 

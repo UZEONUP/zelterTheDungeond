@@ -64,7 +64,7 @@ void playerJump::update(player * player)
 
 void playerJump::enter(player * player)
 {
-	_jumpPower = 13.0f;
+	_jumpPower = 10.0f;
 	_gravity = 0.4f;
 	if (player->getPlayer().direction == 0) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_jump"));
 	if (player->getPlayer().direction == 1) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_jump"));

@@ -120,8 +120,7 @@ void playerStateIdle::update(player * player)
 		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
 		_count = 0;
 	}
-	player->setPlayerCurrentFrameX(0);
-	_count = 0;
+	
 
 	return;
 }

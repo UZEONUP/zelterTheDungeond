@@ -209,6 +209,7 @@
     <ClInclude Include="niflheimIdle.h" />
     <ClInclude Include="niflheimMap.h" />
     <ClInclude Include="pause.h" />
+    <ClInclude Include="pickDialogue.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerAttack.h" />
     <ClInclude Include="playerBullet.h" />
@@ -311,6 +312,7 @@
     <ClCompile Include="niflheimIdle.cpp" />
     <ClCompile Include="niflheimMap.cpp" />
     <ClCompile Include="pause.cpp" />
+    <ClCompile Include="pickDialogue.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerAttack.cpp" />
     <ClCompile Include="playerBullet.cpp" />

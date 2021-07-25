@@ -13,6 +13,7 @@ playerState * playerFall::inputHandle(player * player)
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
+	if (player->getPlayer().isCollide) return new playerStateIdle();
 
 	if (player->getPlayer().isHit == true) return new playerHit();
 
