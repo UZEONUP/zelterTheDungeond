@@ -59,7 +59,7 @@ void niflheim::update()
 
 	_state->update(this);
 
-	float directAngle = GetAngle(_ptMouse.x, _ptMouse.y, _niflheim.x, _niflheim.y);
+	float directAngle = GetAngle(_player->getPlayer().x, _player->getPlayer().y, _niflheim.x, _niflheim.y);
 	if (directAngle > PI / 2 && directAngle < 3 * PI / 2) _niflheim.direction = 0;
 	else _niflheim.direction = 1;
 
