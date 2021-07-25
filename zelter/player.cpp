@@ -63,7 +63,7 @@ void player::release()
 void player::update()
 {
 	cout << _player.direction << "¹æÇâ" << endl;
-	tileDetect(SCENEMANAGER->getSceneName());
+	//tileDetect(SCENEMANAGER->getSceneName());
 	_cameraX = CAMERAMANAGER->getX();
 	_cameraY = CAMERAMANAGER->getY();
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();

@@ -17,8 +17,8 @@ HRESULT niflheim::init()
 	_niflheim.x = WINSIZEX / 2;
 	_niflheim.y = WINSIZEY / 2;
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
-	_niflheim.currentHP = 100;
 	_niflheim.maxHP = 100;
+	_niflheim.currentHP = 100;
 	_niflheim.direction = 0;
 	_niflheim.isDie = false;
 
@@ -27,7 +27,7 @@ HRESULT niflheim::init()
 	_niflheim.iceSpear = new niflheimIceSpear;
 	_niflheim.iceicle = new niflheimIcicle;
 	_niflheim.progressBar = new progressBar;
-	_niflheim.progressBar->init(650, WINSIZEY - 100, 600, 50);
+	_niflheim.progressBar->init(650, WINSIZEY - 100, 50, 600);
 
 	_bulletFireCount = 0;
 
@@ -40,11 +40,12 @@ void niflheim::release()
 
 void niflheim::update()
 {
-	_niflheim.progressBar->update();
 	_niflheim.progressBar->setGauge(_niflheim.currentHP, _niflheim.maxHP);
+	_niflheim.progressBar->update();
+
 	//상태 확인용======
 	//if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _niflheim.currentHP = 0;
-	if (_state->getStateNamge() == "niflheimDie") _niflheim.currentHP = 50;
+	//if (_state->getStateNamge() == "niflheimDie") _niflheim.currentHP = 50;
 
 	//확인용===
 	/*if (KEYMANAGER->isToggleKey(VK_SPACE))
@@ -66,6 +67,8 @@ void niflheim::update()
 
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
 	hitNifleheim();
+
+	
 }
 
 void niflheim::render()

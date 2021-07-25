@@ -11,6 +11,11 @@ void niflheimIcePillar::release(int index)
 	_vIcePillar[index].img = IMAGEMANAGER->findImage("nullImg");
 }
 
+void niflheimIcePillar::dieRelease(int index)
+{
+	_vIcePillar.erase(_vIcePillar.begin() + index);
+}
+
 void niflheimIcePillar::update(float niflheimX, float niflheimY)
 {
 	icePillarMove(niflheimX, niflheimY);

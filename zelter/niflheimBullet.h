@@ -34,6 +34,7 @@ class niflheimIcePillar : public gameNode
 public :
 	virtual HRESULT init();
 	virtual void release(int index);
+	void dieRelease(int index);
 	virtual void update(float niflheimX, float niflheimY);
 	virtual void render();
 
