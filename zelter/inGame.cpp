@@ -4,6 +4,8 @@
 
 HRESULT inGame::init()
 {
+	SOUNDMANAGER->addSound("openWorldBGM", "sound/¿ÀÇÂ¿ùµå ¹è°æÀ½¾Ç.wav", true, true);
+	SOUNDMANAGER->play("openWorldBGM");
 	_inGameMap = new inGameMap;
 	_inGameMap->init();
 
@@ -96,6 +98,7 @@ void inGame::collisionDoor()
 	{
 		if (IsCollision(_inGameMap->getBossDoor(i).rc, _player->getPlayer().rc))
 		{
+			SOUNDMANAGER->stop("openWorldBGM");
 			switch (i)
 			{
 			case 0:

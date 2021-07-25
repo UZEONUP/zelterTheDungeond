@@ -11,6 +11,8 @@ bulletKingState * bulletKingAttack2::InputHandle(bulletKing * bulletKing)
 
 void bulletKingAttack2::enter(bulletKing * bulletKing)
 {
+	SOUNDMANAGER->addSound("ºí·¿Å·°ø°Ý1", "sound/ºí·¿Å·°ø°Ý1.wav", false, false);
+	SOUNDMANAGER->play("ºí·¿Å·°ø°Ý1");
 	bulletKing->setBulletKingImg(IMAGEMANAGER->findImage("bulletKingAttack2"));
 	bulletKing->setBulletKingIsAttack3(false);
 	bulletKing->setBulletKingCurrentFrameX(0);
@@ -27,7 +29,7 @@ void bulletKingAttack2::update(bulletKing * bulletKing)
 	{
 		//ÃÑ¾Ë ¹ß»ç2
 		bulletKing->getBulletKingBullet()->bulletFire2(bulletKing->getBulletKing().x, bulletKing->getBulletKing().y, bulletKing->getPlayer()->getPlayer().x, bulletKing->getPlayer()->getPlayer().y);
-
+		SOUNDMANAGER->play("ºí·¿Å·°ø°Ý1");
 		bulletKing->setBulletKingCurrentFrameX(bulletKing->getBulletKing().currentFrameX + 1);
 		if (bulletKing->getBulletKing().currentFrameX >= bulletKing->getBulletKing().img->getMaxFrameX()) bulletKing->setBulletKingCurrentFrameX(0);
 	}
