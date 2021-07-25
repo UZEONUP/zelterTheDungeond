@@ -17,7 +17,7 @@ void ammocondaDeath::enter(ammoconda * ammoconda)
 		ammoconda->getAmmoconda(i).isAttack = false;
 		
 	}
-
+	_alphaNum = 1;
 	SOUNDMANAGER->stop("ammocondaBGM");
 }
 
@@ -32,6 +32,8 @@ void ammocondaDeath::update(ammoconda * ammoconda)
 
 
 	if (_vBoom.size() != 0) playEffect(ammoconda);
+
+	_alphaNum -= 0.005f;
 }
 
 void ammocondaDeath::render(ammoconda * ammoconda)
@@ -40,6 +42,11 @@ void ammocondaDeath::render(ammoconda * ammoconda)
 	{
 		_vBoom[i].img->frameRender2(_vBoom[i].x, _vBoom[i].y, _vBoom[i].effectFrameX, 0);
 	}
+	for (int i = 0; i < AMMOCONDAMAX; i++)
+	{
+		ammoconda->getAmmoconda(i).img->setAlpha(_alphaNum);
+	}
+
 }
 
 void ammocondaDeath::exit(ammoconda * ammoconda)

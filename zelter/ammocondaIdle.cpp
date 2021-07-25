@@ -44,6 +44,7 @@ void ammocondaIdle::enter(ammoconda * ammoconda)
 		ammoconda->getAmmoconda(i).isAttack = false;
 		ammoconda->getAmmoconda(i).currentFrameX = 0;
 	}
+	
 }
 
 void ammocondaIdle::update(ammoconda * ammoconda)
