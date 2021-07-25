@@ -66,9 +66,8 @@ private:
 	playerState* state;
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
-	niflheimMap* _nfm;
-	fishMan* _fishMan;
-	dinosaur* _dinosaur;
+	
+	
 
 	int _count;
 	int _index;
@@ -91,6 +90,7 @@ private:
 	eggNyangMap* _eggNyangMap;
 	niflheimMap* _niflheimMap;
 
+
 	int _cameraX;
 	int _cameraY;
 	POINT _mapMouse;
@@ -100,6 +100,8 @@ private:
 	ammoconda* _ammoconda;
 	niflheim* _niflheim;
 	eggNyang* _eggNyang;
+	fishMan* _fishMan;
+	dinosaur* _dinosaur;
 
 public:
 	HRESULT init();

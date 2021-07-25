@@ -46,8 +46,11 @@ void niflheimBattle::update()
 	{
 		for (int j = 0; j < WINSIZEX / 32; j++)
 		{
-				if (_niflheimMap->getTileAttribute()[i * TILEX + j] == NONEMOVE && 
+			if (_player->getPlayer().isEnd)
+			{
+				if (_niflheimMap->getTileAttribute()[i * TILEX + j] == NONEMOVE &&
 					IsCollision(_niflheimMap->getTile()[i * TILEX + j].rc, _player->getPlayer().rc))_player->setPlayerIscollde(true);
+			}
 		}
 	}
 

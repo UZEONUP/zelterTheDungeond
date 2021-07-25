@@ -10,7 +10,7 @@
 playerState * playerAttack::inputHandle(player * player)
 {
 
-		if (!player->getPlayer().isCollide)return new playerFall;
+		
 
 		if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
 		{
@@ -28,6 +28,7 @@ playerState * playerAttack::inputHandle(player * player)
 			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON) && KEYMANAGER->isStayKeyDown('A')) return new playerRun();
 			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON) && KEYMANAGER->isStayKeyDown('D')) return new playerRun();
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
+			if (!player->getPlayer().isCollide)return new playerFall;
 		}
 		else
 		{
@@ -152,12 +153,14 @@ void playerAttack::update(player * player)
 			_count = 0;
 		}
 	}
-
-	if (!player->getPlayer().isCollide)
+	if (player->getPlayer().isDunGreed)
 	{
-		_jumpPower -= _gravity;
+		if (!player->getPlayer().isCollide)
+		{
+			_jumpPower -= _gravity;
 
-		player->setPlayerY(player->getPlayer().y - _jumpPower);
+			player->setPlayerY(player->getPlayer().y - _jumpPower);
+		}
 	}
 }
 	
@@ -193,10 +196,13 @@ void playerAttack::enter(player * player)
 		break;
 	}
 
-	if (!player->getPlayer().isCollide)
+	if (player->getPlayer().isDunGreed)
 	{
-		_jumpPower = 0.0f;
-		_gravity = 0.4f;
+		if (!player->getPlayer().isCollide)
+		{
+			_jumpPower = 0.0f;
+			_gravity = 0.4f;
+		}
 	}
 }
 
