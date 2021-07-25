@@ -8,6 +8,10 @@ private:
 	int _count;
 	int _currentFrameX;
 	int _currentFrameY;
+
+
+	RECT _gameStartRc;
+	RECT _gameQuitRc;
 public:
 	startTitle();
 	~startTitle();
