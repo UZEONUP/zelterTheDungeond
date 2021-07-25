@@ -40,6 +40,7 @@ void niflheim::release()
 
 void niflheim::update()
 {
+	if (_niflheim.currentHP <= 0) _niflheim.currentHP = 0;
 	_niflheim.progressBar->setGauge(_niflheim.currentHP, _niflheim.maxHP);
 	_niflheim.progressBar->update();
 
@@ -67,8 +68,6 @@ void niflheim::update()
 
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
 	hitNifleheim();
-
-	
 }
 
 void niflheim::render()
