@@ -17,6 +17,8 @@ void ammocondaDeath::enter(ammoconda * ammoconda)
 		ammoconda->getAmmoconda(i).isAttack = false;
 		
 	}
+
+	SOUNDMANAGER->stop("ammocondaBGM");
 }
 
 void ammocondaDeath::update(ammoconda * ammoconda)
