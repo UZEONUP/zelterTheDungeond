@@ -44,7 +44,7 @@ void ammocondaIdle::enter(ammoconda * ammoconda)
 		ammoconda->getAmmoconda(i).isAttack = false;
 		ammoconda->getAmmoconda(i).currentFrameX = 0;
 	}
-	SOUNDMANAGER->stop("ammocondaBGM");
+	
 }
 
 void ammocondaIdle::update(ammoconda * ammoconda)
