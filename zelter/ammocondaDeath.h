@@ -22,6 +22,8 @@ private:
 	int _randomEffect;
 	int	_countEffect;
 
+	float _alphaNum;
+
 public:
 	virtual ammocondaState* InputHandle(ammoconda* ammoconda);
 	virtual void enter(ammoconda* ammoconda);

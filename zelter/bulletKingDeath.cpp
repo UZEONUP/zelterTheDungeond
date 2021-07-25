@@ -13,7 +13,6 @@ void bulletKingDeath::enter(bulletKing * bulletKing)
 	bulletKing->setBulletKingCurrentFrameX(0);
 
 	_count = 0;
-
 	SOUNDMANAGER->stop("bulletKingBGM");
 }
 
