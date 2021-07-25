@@ -42,7 +42,7 @@ void ammocondaMap::render()
 	//오브젝트 그리기
 	for (int i = 0; i < TILEX * TILEY; ++i)
 	{
-		if (_tile[i].object == OBJ_NONE)continue;
+		if (_tile[i].object == OBJ_NONE || _tile[i].object == OBJ_Be)continue;
 
 		if (0 <= _tile[i].rc.right - CAMERAMANAGER->getX() &&
 			_tile[i].rc.left - CAMERAMANAGER->getX() <= WINSIZEX &&
@@ -56,7 +56,7 @@ void ammocondaMap::render()
 				_tile[i].sizeX, _tile[i].sizeY
 			);
 		}
-		D2DRENDER->DrawRectangle(_tile[i].checkRect, D2DDEFAULTBRUSH::Red);
+
 	}
 }
 
