@@ -4,7 +4,7 @@
 
 HRESULT inGame::init()
 {
-	
+	_inGameMap = new inGameMap;
 	_inGameMap->init();
 
 	_player = new player;
