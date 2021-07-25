@@ -68,7 +68,7 @@ void niflheim::update()
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
 	hitNifleheim();
 
-	
+	if (_niflheim.currentHP <= 0) _niflheim.currentHP = 0;
 }
 
 void niflheim::render()

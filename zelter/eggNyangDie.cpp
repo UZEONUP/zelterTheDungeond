@@ -110,5 +110,9 @@ void eggNyangDie::playEffect(eggNyang * eggNyang)
 		}
 	}
 
-	if (_countEffect >= 15) SCENEMANAGER->changeScene("openWorld");
+	if (_countEffect >= 15)
+	{
+		SOUNDMANAGER->stop("eggNyangBGM");
+		SCENEMANAGER->changeScene("openWorld");
+	}
 }
