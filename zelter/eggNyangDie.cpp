@@ -27,16 +27,17 @@ void eggNyangDie::update(eggNyang * eggNyang)
 	}
 
 	_randomEffect = RND->getFromIntTo(0, 100);
-	cout << _randomEffect << endl;
+
 
 	if (_randomEffect % 13 == 0)
 	{
 		produceEffect(eggNyang);
 	}
 
-	cout << _vBoom.size() << endl;
+	
 
 	if (_vBoom.size() != 0) playEffect(eggNyang);
+
 }
 
 void eggNyangDie::enter(eggNyang * eggNyang)
@@ -48,6 +49,7 @@ void eggNyangDie::enter(eggNyang * eggNyang)
 	else _currentFrameX = 1;
 	
 	_playEffectNum = 0;
+	_countEffect = 0;
 }
 
 void eggNyangDie::render(eggNyang * eggNyang)
@@ -100,9 +102,17 @@ void eggNyangDie::playEffect(eggNyang * eggNyang)
 			if (_vBoom[i].playeEffectEnd)
 			{
 				_vBoom.erase(_vBoom.begin() + i);
+
+				_countEffect++;
 			}
 
 			_effectFrameCount = 0;
 		}
+	}
+
+	if (_countEffect >= 15)
+	{
+		SOUNDMANAGER->stop("eggNyangBGM");
+		SCENEMANAGER->changeScene("openWorld");
 	}
 }

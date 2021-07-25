@@ -152,11 +152,13 @@
     <ClInclude Include="ammocondaAttack2.h" />
     <ClInclude Include="ammocondaBattle.h" />
     <ClInclude Include="ammocondaBullet.h" />
+    <ClInclude Include="ammocondaDeath.h" />
     <ClInclude Include="ammocondaIdle.h" />
     <ClInclude Include="ammocondaMap.h" />
     <ClInclude Include="ammocondaRecovery.h" />
     <ClInclude Include="ammocondaState.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="aStar.h" />
     <ClInclude Include="bulletKing.h" />
     <ClInclude Include="bulletKingAttack1.h" />
     <ClInclude Include="bulletKingAttack2.h" />
@@ -210,8 +212,10 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="playerAttack.h" />
     <ClInclude Include="playerBullet.h" />
+    <ClInclude Include="playerDash.h" />
     <ClInclude Include="playerDie.h" />
     <ClInclude Include="playerDonwJump.h" />
+    <ClInclude Include="playerFall.h" />
     <ClInclude Include="playerHit.h" />
     <ClInclude Include="playerJump.h" />
     <ClInclude Include="playerRoll.h" />
@@ -227,6 +231,7 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stageManager.h" />
+    <ClInclude Include="startTitle.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -246,11 +251,13 @@
     <ClCompile Include="ammocondaAttack2.cpp" />
     <ClCompile Include="ammocondaBattle.cpp" />
     <ClCompile Include="ammocondaBullet.cpp" />
+    <ClCompile Include="ammocondaDeath.cpp" />
     <ClCompile Include="ammocondaIdle.cpp" />
     <ClCompile Include="ammocondaMap.cpp" />
     <ClCompile Include="ammocondaRecovery.cpp" />
     <ClCompile Include="ammocondaState.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="aStar.cpp" />
     <ClCompile Include="bulletKing.cpp" />
     <ClCompile Include="bulletKingAttack1.cpp" />
     <ClCompile Include="bulletKingAttack2.cpp" />
@@ -307,8 +314,10 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerAttack.cpp" />
     <ClCompile Include="playerBullet.cpp" />
+    <ClCompile Include="playerDash.cpp" />
     <ClCompile Include="playerDie.cpp" />
     <ClCompile Include="playerDonwJump.cpp" />
+    <ClCompile Include="playerFall.cpp" />
     <ClCompile Include="playerHit.cpp" />
     <ClCompile Include="playerJump.cpp" />
     <ClCompile Include="playerRoll.cpp" />
@@ -321,6 +330,7 @@
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stageManager.cpp" />
+    <ClCompile Include="startTitle.cpp" />
     <ClCompile Include="state.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

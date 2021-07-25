@@ -3,6 +3,7 @@
 #include "bulletKing.h"
 #include "gameNode.h"
 #include "dialogue.h"
+#include "inGameMap.h"
 
 enum DINOSAURDIRECTION
 {
@@ -31,7 +32,9 @@ struct tagDinosaur
 	int maxHp, currentHp;				//공룡 최대 체력, 현재 체력
 	int count;							//이미지 프레임 카운트
 	int changeCount;					//상태변환용 카운트
-	DINOSAURDIRECTION direction;
+	int direction;
+	RECT tileIdx[2];
+	DINOSAURDIRECTION direction_img;
 	DINOSAURSTATE state;
 };
 
@@ -51,6 +54,10 @@ private:
 	//테스트 플레이어
 	bulletKing* _bulletKing;
 
+	////타일관련
+	inGameMap* _inGame;
+
+
 public:
 	dinosaur();
 	~dinosaur();
@@ -62,11 +69,8 @@ public:
 	void setEnemy(float x, float y);
 	void dinoMove(float x, float y);
 	void dinoState();
+	void tileCheck();
 
-	tagDinosaur getFishMan() { return _dinosaur; }
-	void setFishManImage(image* img) { _dinosaur.img = img; }
-	void setFishManCurrentFrameX(int currentFrameX) { _dinosaur.currentFrameX = currentFrameX; }
-	void setFishManCurrentFrameY(int currentFrameY) { _dinosaur.currentFrameY = currentFrameY; }
-	void setFishManAngle(float angle) { _dinosaur.angle = angle; }
+	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
 };
 

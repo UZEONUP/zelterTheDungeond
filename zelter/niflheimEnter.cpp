@@ -58,8 +58,6 @@ void niflheimEnter::enter(niflheim * niflheim)
 
 	_randomPatternCount = RND->getFromIntTo(0, 100);
 	enterPosition(niflheim, _randomPatternCount % 5);
-
-	cout << _randomPatternCount << endl;
 }
 
 void niflheimEnter::exit(niflheim * niflheim)

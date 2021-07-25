@@ -121,6 +121,9 @@
     <Filter Include="playGround\enemy\dialogue">
       <UniqueIdentifier>{d7caf8d2-2d82-4f33-8116-b647590a73fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\startTitle">
+      <UniqueIdentifier>{1b37411a-03ee-43b9-97c4-6439ceb084ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -395,6 +398,18 @@
     </ClInclude>
     <ClInclude Include="dialogue.h">
       <Filter>playGround\enemy\dialogue</Filter>
+    </ClInclude>
+    <ClInclude Include="playerDash.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="playerFall.h">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClInclude>
+    <ClInclude Include="startTitle.h">
+      <Filter>playGround\startTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="ammocondaDeath.h">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -673,6 +688,18 @@
     </ClCompile>
     <ClCompile Include="player + tileDetect.cpp">
       <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDash.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="playerFall.cpp">
+      <Filter>playGround\player\playerSTATE</Filter>
+    </ClCompile>
+    <ClCompile Include="startTitle.cpp">
+      <Filter>playGround\startTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="ammocondaDeath.cpp">
+      <Filter>playGround\boss\ammoconda\ammocondaState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

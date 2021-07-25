@@ -3,6 +3,11 @@
 
 HRESULT niflheimBattle::init()
 {
+	SOUNDMANAGER->addSound("niflheimBGM", "sound/니플헤임 보스 배경음악.wav", true, true);
+
+	IMAGEMANAGER->addImage("niflheimBackGround", L"niflheim/niflheimBackGround.png");
+	_backGround = IMAGEMANAGER->findImage("niflheimBackGround");
+
 	_niflheimMap = new niflheimMap;
 	_niflheimMap->init();
 	CAMERAMANAGER->setX(0);
@@ -18,6 +23,8 @@ HRESULT niflheimBattle::init()
 	_player->linkNiflheimMap(_niflheimMap);
 	_player->linkNiflheim(_niflheim);
 	_niflheim->linkPlayer(_player);
+
+	SOUNDMANAGER->play("niflheimBGM");
 
 	return S_OK;
 }
@@ -38,6 +45,8 @@ void niflheimBattle::update()
 
 void niflheimBattle::render()
 {
+	_backGround->render(0, 0);
+
 	_niflheimMap->render();
 	_niflheim->render();
 	_player->render();

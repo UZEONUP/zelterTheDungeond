@@ -28,5 +28,8 @@ public:
 
 	int getPosFirst() { return _pos[0]; }
 	int getPosSecond() { return _pos[1]; }
+
+	tagTile getTile(int index) { return _tile[index]; }
+	
 };
 

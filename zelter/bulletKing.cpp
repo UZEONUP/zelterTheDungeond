@@ -44,10 +44,7 @@ void bulletKing::update()
 	_hp->setGauge(_bulletKing.currentHp, _bulletKing.maxHp);
 	if (_bulletKing.currentHp <= 3) _bulletKing.currentHp = 3;
 
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
-	{
-		_bulletKing.currentHp--;
-	}
+
 	//본체 렉트
 	_bulletKing.rc = RectMakeCenter(_bulletKing.x, _bulletKing.y, _bulletKing.img->getWidth() / _bulletKing.img->getMaxFrameX(), _bulletKing.img->getHeight());
 	_bulletKingChair.rc = RectMakeCenter(_bulletKingChair.x, _bulletKingChair.y, _bulletKingChair.img->getWidth() / _bulletKingChair.img->getMaxFrameX(), _bulletKingChair.img->getHeight());
@@ -83,18 +80,22 @@ void bulletKing::render()
 {
 	_hp->render();
 	//상태패턴 렌더
-	_state->render(this);
+	
 	_bullet->render();
 
 	//본체, 의자 렌더(3번쨰 패턴 시 의자 사라짐)
 	if (!_bulletKingChair.isAttack3) _bulletKingChair.img->
 		frameRender2(
-			_bulletKingChair.rc.left - CAMERAMANAGER->getX(),
-			_bulletKingChair.rc.top - CAMERAMANAGER->getY(),
+			_bulletKingChair.rc.left ,
+			_bulletKingChair.rc.top ,
 			_bulletKingChair.currentFrameX, 0);
-	_bulletKing.img->frameRender2(_bulletKing.rc.left, _bulletKing.rc.top, _bulletKing.currentFrameX, 0);
+	_bulletKing.img->
+		frameRender2(
+			_bulletKing.rc.left,
+			_bulletKing.rc.top ,
+			_bulletKing.currentFrameX, 0);
 
-
+	
 	//렉탱글 확인
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -102,7 +103,7 @@ void bulletKing::render()
 		D2DRENDER->DrawRectangle(_bulletKingChair.rc, D2DRenderer::DefaultBrush::White);
 	}
 
-
+	_state->render(this);
 }
 
 void bulletKing::InputHandle()
@@ -129,6 +130,8 @@ void bulletKing::setBoss()
 	IMAGEMANAGER->addImage("bulletKingBullet1", L"bulletKing/bullet1_16_16.png");
 	IMAGEMANAGER->addFrameImage("bulletKingBullet2", L"bulletKing/bullet2_23_12_8.png", 8, 1);
 	IMAGEMANAGER->addImage("bulletKingBullet3", L"bulletKing/bullet1_16_16.png");
+	//효과 이미지
+	IMAGEMANAGER->addFrameImage("boom", L"effect/boom.png", 4, 1);
 	//총탄킹 본체 초기화
 	_bulletKing.img = IMAGEMANAGER->findImage("bulletKingIdle");
 	_bulletKing.x = WINSIZEX / 2;
@@ -171,9 +174,9 @@ void bulletKing::collision()
 				_bulletKing.currentHp--;
 			}
 		}
-		for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+		for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
 		{
-			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 			{
 				_bulletKing.currentHp--;
 			}

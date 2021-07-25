@@ -23,10 +23,12 @@ void bulletKingBullet::update()
 
 void bulletKingBullet::render()
 {
+	int cameraX = CAMERAMANAGER->getX();
+	int cameraY = CAMERAMANAGER->getY();
 	//°ø°ÝÆÐÅÏ1 ÃÑ¾Ë ·»´õ
 	for (_viBulletKingBullet1 = _vBulletKingBullet1.begin(); _viBulletKingBullet1 != _vBulletKingBullet1.end(); ++_viBulletKingBullet1)
 	{
-		_viBulletKingBullet1->img->render(_viBulletKingBullet1->rc.left, _viBulletKingBullet1->rc.top);
+		_viBulletKingBullet1->img->render(_viBulletKingBullet1->rc.left- cameraX, _viBulletKingBullet1->rc.top- cameraY);
 	}
 	//°ø°ÝÆÐÅÏ2 ÃÑ¾Ë ·»´õ
 	for (_viBulletKingBullet2 = _vBulletKingBullet2.begin(); _viBulletKingBullet2 != _vBulletKingBullet2.end(); ++_viBulletKingBullet2)
@@ -37,7 +39,7 @@ void bulletKingBullet::render()
 	//°ø°ÝÆÐÅÏ3 ÃÑ¾Ë ·»´õ
 	for (_viBulletKingBullet3 = _vBulletKingBullet3.begin(); _viBulletKingBullet3 != _vBulletKingBullet3.end(); ++_viBulletKingBullet3)
 	{
-		_viBulletKingBullet3->img->render(_viBulletKingBullet3->rc.left, _viBulletKingBullet3->rc.top);
+		_viBulletKingBullet3->img->render(_viBulletKingBullet3->rc.left- cameraX, _viBulletKingBullet3->rc.top- cameraY);
 	}
 	//·ºÅÊ±Û È®ÀÎ
 	if (KEYMANAGER->isToggleKey(VK_TAB))

@@ -8,6 +8,7 @@ class playerAttack : public playerState
 	playerBullet* _playerBullet;
 
 	float _pressPower;
+	int _pressTime;
 	//========================
 	POINT _mapMouse;
 public :
@@ -15,7 +16,6 @@ public :
 	virtual void update(player* player);
 	virtual void enter(player* player);
 	virtual void exit(player* player);
-	virtual void getCurrentState(player* player);
 
 	virtual int getFrameCount() { return _count; }
 	virtual int getFrameX() { return _currentFrameX; }

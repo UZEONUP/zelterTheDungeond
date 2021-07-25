@@ -10,6 +10,9 @@ class eggNyangBattle : public gameNode
 	player*		_player;
 
 	eggNyangMap* _eggNyangMap;
+
+	image*	_backGround;
+
 public :
 	eggNyangBattle() {};
 	~eggNyangBattle() {};

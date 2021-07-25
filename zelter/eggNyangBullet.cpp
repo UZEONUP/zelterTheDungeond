@@ -51,7 +51,7 @@ void eggNyangBullet::render()
 
 void eggNyangBullet::bulletFire(float x, float y, int bulletCount)
 {
-	if (BULLETMAX <= bulletCount) return;
+	if (EGGNYANGBULLETMAX <= bulletCount) return;
 	
 	tagEggNyangBullet bullet;
 	ZeroMemory(&bullet, sizeof(tagEggNyangBullet));

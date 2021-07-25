@@ -4,12 +4,14 @@
 #include "playerRun.h"
 #include "playerRoll.h"
 #include "playerDie.h"
-
+#include "playerDash.h"
+#include "playerFall.h"
 
 playerState * playerAttack::inputHandle(player * player)
 {
 
-	
+		if (!player->getPlayer().isCollide)return new playerFall;
+
 		if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
 		{
 			if (player->getPlayerGuntype() == GRENADE)
@@ -25,6 +27,7 @@ playerState * playerAttack::inputHandle(player * player)
 		{
 			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON) && KEYMANAGER->isStayKeyDown('A')) return new playerRun();
 			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON) && KEYMANAGER->isStayKeyDown('D')) return new playerRun();
+			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
 		}
 		else
 		{
@@ -35,8 +38,10 @@ playerState * playerAttack::inputHandle(player * player)
 			if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerRoll();
 		}
 
-		if (player->getPlayer().currentHP <= 0) return new playerDie();
-	
+		if (player->getPlayer().currentHP <= 0)
+		{player->setPlayerisDeath(true);
+			return new playerDie();
+		}
 	return nullptr;
 }
 
@@ -49,12 +54,12 @@ void playerAttack::update(player * player)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
 		{
-			player->setPlayerX(player->getPlayer().x + 3);
+			player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
 		}
 
 		if (KEYMANAGER->isStayKeyDown('A'))
 		{
-			player->setPlayerX(player->getPlayer().x - 3);
+			player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*2);
 		}
 		switch (player->getPlayer().direction)
 		{
@@ -72,20 +77,20 @@ void playerAttack::update(player * player)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
 		{
-			player->setPlayerX(player->getPlayer().x + 3);
+			player->setPlayerX(player->getPlayer().x + player->getPlayer().speed);
 		}
 
 		if (KEYMANAGER->isStayKeyDown('A'))
 		{
-			player->setPlayerX(player->getPlayer().x - 3);
+			player->setPlayerX(player->getPlayer().x - player->getPlayer().speed);
 		}
 		if (KEYMANAGER->isStayKeyDown('W'))
 		{
-			player->setPlayerY(player->getPlayer().y - 3);
+			player->setPlayerY(player->getPlayer().y - player->getPlayer().speed);
 		}
 		if (KEYMANAGER->isStayKeyDown('S'))
 		{
-			player->setPlayerY(player->getPlayer().y + 3);
+			player->setPlayerY(player->getPlayer().y + player->getPlayer().speed);
 		}
 
 		switch (player->getPlayer().direction)
@@ -117,6 +122,8 @@ void playerAttack::update(player * player)
 		}
 	}
 	
+
+
 	if (player->getPlayerGuntype() == FLAMETHROWER)
 	{
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
@@ -125,24 +132,35 @@ void playerAttack::update(player * player)
 	}
 
 	
+	_pressTime++;
+	if (_pressTime % 5 == 0)
+	{
+		if (player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
+		
+	}
+
 
 	_count++;
-	if (_count % 5 == 0)
+	if (_count % 7 == 0)
 	{
-		if(player->getPlayerGuntype() == GRENADE)_pressPower += 0.5;
-		cout << _pressPower << endl;
-		
-		player->setPlayerCurrentFrameX( player->getPlayer().currentFrameX + 1);
-	
-		if ( player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX())
+		player->setPlayerCurrentFrameX(player->getPlayer().currentFrameX + 1);
+
+		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX())
 		{
 			player->setPlayerCurrentFrameX(0);
 			player->setPlayerisEnd(true);
 			_count = 0;
 		}
 	}
-}
 
+	if (!player->getPlayer().isCollide)
+	{
+		_jumpPower -= _gravity;
+
+		player->setPlayerY(player->getPlayer().y - _jumpPower);
+	}
+}
+	
 void playerAttack::enter(player * player)
 {
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
@@ -152,36 +170,36 @@ void playerAttack::enter(player * player)
 	switch (player->getPlayerGuntype())
 	{
 	case NORMAL:
-		
+
 		player->getPlayerBullet()->fire(player->getPlayerGunX(), player->getPlayerGunY(),
-			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(),0);
+			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(), 0);
 		break;
 	case SHOTGUN:
-		
+
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
-				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
 		break;
 	case HOMING:
-		
+
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
-			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(),0);
+			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(), 0);
 		break;
-	case GRENADE:
-		
-		break;
+
 	case FLAMETHROWER:
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
-				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(),0);
+				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
 		break;
+	}
+
+	if (!player->getPlayer().isCollide)
+	{
+		_jumpPower = 0.0f;
+		_gravity = 0.4f;
 	}
 }
 
 void playerAttack::exit(player * player)
-{
-}
-
-void playerAttack::getCurrentState(player * player)
 {
 }

@@ -418,9 +418,9 @@ void cameraManager::updateCamera(bool a)
 
 void cameraManager::mousePoint()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	/*if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
 		cout << _ptMouse.x << "마우스 X" << endl;
 		cout << _ptMouse.y << "마우스 Y" << endl;
-	}
+	}*/
 }

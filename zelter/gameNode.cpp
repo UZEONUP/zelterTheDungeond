@@ -109,11 +109,11 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	case WM_LBUTTONDOWN:
 
 		_leftButtonDown = true;
-		cout << "Å¬¸¯" << endl;
+		//cout << "Å¬¸¯" << endl;
 		break;
 	case WM_LBUTTONUP:
 		_leftButtonDown = false;
-		cout << "¶À" << endl;
+		//cout << "¶À" << endl;
 		break;
 	case WM_KEYDOWN:
 	{

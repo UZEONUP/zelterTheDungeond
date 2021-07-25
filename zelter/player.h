@@ -13,12 +13,16 @@
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
 #include "eggNyangBullet.h"
+#include "niflheimMap.h"
 
 class bulletKing;
 class ammoconda;
 class niflheim;
 class eggNyang;
 class playerBullet;
+class stageManager;
+
+
 
 struct tagPlayer
 {
@@ -34,7 +38,6 @@ struct tagPlayer
 	float speed;
 	float angle;
 	float jumpPower; // 던그리드 보스 씬에서 사용
-
 	int currentFrameX;
 	int currentFrameY;
 
@@ -42,6 +45,8 @@ struct tagPlayer
 	bool isEnd;
 	bool isDeath;
 	bool isDunGreed; // 던그리드 보스씬 구분용
+	bool isJump; // 점프체크
+	bool isCollide;
 };
 struct tagPlayerGun
 {
@@ -51,24 +56,15 @@ struct tagPlayerGun
 	float angle;
 };
 
-struct tagEnemy
-{
-	RECT rc;
-	float x, y;
-};
-
-class stageManager;
-
 class player : public gameNode
 {
 private:
 	tagPlayer _player;
 	tagPlayerGun _playerGun;
 	playerState* state;
-	tagEnemy _enemy;
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
-
+	niflheimMap* _nfm;
 
 	int _count;
 	int _index;
@@ -76,6 +72,10 @@ private:
 	int _blink;
 	int _gunType;
 	bool _imageON;
+	float _bulletKingSize = 0.9;
+	float _ammoCondaSize = 0.7;
+	float _openWorldSize = 0.8;
+
 
 	image* _mouse;
 	playerBullet* _playerBullet;
@@ -130,9 +130,6 @@ public:
 
 	void inputHandle();
 
-	float getEnemyX() { return _enemy.x; }
-	float getEnemyY() { return _enemy.y; }
-
 	void setGuntype(int type) { _gunType = type; }
 	void setGunRECT(RECT rc) { _playerGun.rc = rc; }
 
@@ -151,6 +148,10 @@ public:
 	void setplayerBulletLink(playerBullet* playerBullet) { _playerBullet = playerBullet; }
 
 	void setPlayerMovingDirection(int movingdirection) { _player.movingDirection = movingdirection; }
+
+	void setIsjump(bool jump) { _player.isJump = jump; }
+
+	void setPlayerIscollde(bool collision) { _player.isCollide = collision; }
 
 	//==================맵 링크 관련====================================
 	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }

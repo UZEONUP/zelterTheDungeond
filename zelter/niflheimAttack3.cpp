@@ -71,7 +71,7 @@ void niflheimAttack3::enter(niflheim * niflheim)
 	_icePillar2 = RND->getFromIntTo(0, 3);
 	if (_icePillar1 == _icePillar2) _icePillar2 = RND->getFromIntTo(0, 3);
 
-	cout << _currentStateName << endl;
+
 }
 
 void niflheimAttack3::exit(niflheim * niflheim)

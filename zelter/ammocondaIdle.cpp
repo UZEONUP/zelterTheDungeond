@@ -3,6 +3,7 @@
 #include "ammocondaAttack1.h"
 #include "ammocondaAttack2.h"
 #include "ammocondaRecovery.h"
+#include "ammocondaDeath.h"
 
 ammocondaState * ammocondaIdle::InputHandle(ammoconda * ammoconda)
 {
@@ -24,6 +25,10 @@ ammocondaState * ammocondaIdle::InputHandle(ammoconda * ammoconda)
 			break;
 		}
 	}
+	if (ammoconda->getCurrentHp() <= 3) 
+	{
+		return new ammocondaDeath();
+	}
 	return nullptr;
 }
 
@@ -39,6 +44,7 @@ void ammocondaIdle::enter(ammoconda * ammoconda)
 		ammoconda->getAmmoconda(i).isAttack = false;
 		ammoconda->getAmmoconda(i).currentFrameX = 0;
 	}
+	
 }
 
 void ammocondaIdle::update(ammoconda * ammoconda)

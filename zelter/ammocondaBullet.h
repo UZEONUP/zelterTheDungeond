@@ -49,5 +49,15 @@ public:
 	void bulletFirePot(float x, float y, float playerX, float playerY);
 	void bulletMovePot();
 
+	//ÆÐÅÏ1 ÃÑ¾Ë
+	vector<tagAmmocondaBullet>				getVammoCondaBullet1() {return _vAmmocondaBullet1;}
+	vector<tagAmmocondaBullet>::iterator	getVIammoCondaBullet1() { return _viAmmocondaBullet1; }
+	//ÆÐÅÏ2 ÃÑ¾Ë
+	vector<tagAmmocondaBullet>				getVammoCondaBullet2() {return _vAmmocondaBullet2;}
+	vector<tagAmmocondaBullet>::iterator	getViammoCondaBullet2() {return _viAmmocondaBullet2;}
+	//Ç×¾Æ¸® ÃÑ¾Ë
+	vector<tagAmmocondaBullet>				getVpotBullet() { return _vPotBullet;}
+	vector<tagAmmocondaBullet>::iterator	getVipotBullet() { return _viPotBullet; }
+	
 };
 

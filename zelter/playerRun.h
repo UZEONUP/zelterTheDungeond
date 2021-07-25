@@ -12,7 +12,6 @@ public:
 	virtual void update(player* player);
 	virtual void enter(player* player);
 	virtual void exit(player* player);
-	virtual void getCurrentPlayerState(player* player);
 
 	virtual int getFrameCount() { return _count; }
 	virtual int getFrameX() { return _currentFrameX; }

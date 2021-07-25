@@ -14,6 +14,9 @@ protected:
 	int _currentFrameX, _currentFrameY;
 	int _blink;
 
+	float _jumpPower;
+	float _gravity;
+
 public:
 
 	virtual playerState* inputHandle(player* player) = 0;

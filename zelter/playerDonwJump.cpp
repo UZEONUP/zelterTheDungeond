@@ -3,14 +3,20 @@
 #include "playerAttack.h"
 #include "playerHit.h"
 #include "playerDie.h"
+#include "playerDash.h"
 
 playerState * playerDonwJump::inputHandle(player * player)
 {
 	if (player->getPlayer().y >= WINSIZEY - 100)return new playerStateIdle;
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack;
-
+	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
 	if (player->getPlayer().isHit == true) return new playerHit;
-	if (player->getPlayer().currentHP <= 0) return new playerDie();
+
+	if (player->getPlayer().currentHP <= 0)
+	{
+		player->setPlayerisDeath(true);
+		return new playerDie();
+	}
 
 	return nullptr;
 }
@@ -34,12 +40,9 @@ void playerDonwJump::enter(player * player)
 {
 	if (player->getPlayer().direction == 0) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_downjump"));
 	if (player->getPlayer().direction == 1) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_downjump"));
+	_jumpPower = 15.0f;
 }
 
 void playerDonwJump::exit(player * player)
-{
-}
-
-void playerDonwJump::getCurrentState(player * player)
 {
 }

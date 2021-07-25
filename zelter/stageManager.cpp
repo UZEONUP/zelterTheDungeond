@@ -35,6 +35,7 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("eggNyang", new eggNyangBattle);
 	SCENEMANAGER->addScene("niflheim", new niflheimBattle);
 	SCENEMANAGER->addScene("loading", new loading);
+	SCENEMANAGER->addScene("startTitle", new startTitle);
 
-	SCENEMANAGER->changeScene("openWorld");
+	SCENEMANAGER->changeScene("startTitle");
 }

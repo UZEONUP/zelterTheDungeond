@@ -16,7 +16,7 @@ void testScene::update()
 {
 	if (PtInRect(&_mapmap.rc, _ptMouse))
 	{
-		cout << "?" << endl;
+		//cout << "?" << endl;
 		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 		{
 			SCENEMANAGER->changeScene("mapTool");
@@ -39,7 +39,7 @@ void testScene::uiSet()
 	_title.height = _title.rc.bottom - _title.rc.top;
 
 	_mapmap.x = WINSIZEX / 2 - 200;
-	cout << _mapmap.x;
+	//cout << _mapmap.x;
 
 	_mapmap.y = WINSIZEY / 2 + 200;
 	_mapmap.rc = RectMakeCenter(_mapmap.x, _mapmap.y, 100, 30);

@@ -3,11 +3,16 @@
 #include "ammocondaAttack1.h"
 #include "ammocondaAttack2.h"
 #include "ammocondaIdle.h"
+#include "ammocondaDeath.h"
 
 ammocondaState * ammocondaRecovery::InputHandle(ammoconda * ammoconda)
 {
 	if (_isYum) _changeCount++;
 	if(_changeCount >= 40) return new ammocondaIdle();
+	if (ammoconda->getCurrentHp() <= 3)
+	{
+		return new ammocondaDeath();
+	}
 	return nullptr;
 }
 

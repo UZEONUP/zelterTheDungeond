@@ -8,7 +8,7 @@
 
 eggNyangStateBase * eggNyangAttack3::inputHandle(eggNyang * eggNyang)
 {
-	if (eggNyang->getBulletFireCount() >= BULLETMAX) return new eggNyangIdle();
+	if (eggNyang->getBulletFireCount() >= EGGNYANGBULLETMAX) return new eggNyangIdle();
 	else if (eggNyang->getEggNyang().currentHp <= 0) return new eggNyangDie();
 
 	return nullptr;

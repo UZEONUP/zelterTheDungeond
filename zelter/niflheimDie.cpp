@@ -7,7 +7,7 @@
 
 state * niflheimDie::inputHandle(niflheim * niflheim)
 {
-	if (_stateEnd) return new niflheimIdle();
+	//if (_stateEnd) return new niflheimIdle();
 	return nullptr;
 }
 
@@ -31,6 +31,17 @@ void niflheimDie::update(niflheim * niflheim)
 			_count = 0;
 		}
 	}
+
+	for (int i = 0; i < niflheim->getNiflheim().icePillar->getVIcePillar().size(); i++)
+	{
+		niflheim->getNiflheim().icePillar->dieRelease(i);
+	}
+	
+	if (_stateEnd)
+	{
+		SOUNDMANAGER->stop("niflheimBGM");
+		SCENEMANAGER->changeScene("openWorld");
+	}
 }
 
 void niflheimDie::enter(niflheim * niflheim)
@@ -48,7 +59,7 @@ void niflheimDie::enter(niflheim * niflheim)
 		_currentFrameY = 1;
 		_currentFrameX = 29;
 	}
-
+	
 	_stateEnd = false;
 }
 

@@ -9,15 +9,17 @@
 #include "playerRoll.h"
 #include "playerAttack.h"
 #include "playerDie.h"
+#include "playerDash.h"
 
 
 playerState * playerRun::inputHandle(player * player)
 {
 
-	if (player->getPlayer().isDunGreed == true)
+	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isOnceKeyUp('A') || KEYMANAGER->isOnceKeyUp('D')) return new playerStateIdle;
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
+		if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
 	}
 	else
 	{
@@ -29,7 +31,12 @@ playerState * playerRun::inputHandle(player * player)
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack;
 
 	if (player->getPlayer().isHit == true) return new playerHit;
-	if (player->getPlayer().currentHP <= 0) return new playerDie();
+
+	if (player->getPlayer().currentHP <= 0)
+	{
+		player->setPlayerisDeath(true);
+		return new playerDie();
+	}
 	return nullptr;
 }
 
@@ -37,8 +44,8 @@ void playerRun::update(player * player)
 {
 	if (player->getPlayer().isDunGreed)
 	{
-		if (KEYMANAGER->isStayKeyDown('D'))player->setPlayerX(player->getPlayer().x + player->getPlayer().speed);
-		if (KEYMANAGER->isStayKeyDown('A'))player->setPlayerX(player->getPlayer().x - player->getPlayer().speed);
+		if (KEYMANAGER->isStayKeyDown('D'))player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
+		if (KEYMANAGER->isStayKeyDown('A'))player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*2);
 
 		switch (player->getPlayer().direction)
 		{
@@ -122,7 +129,6 @@ void playerRun::update(player * player)
 			break;
 		}
 	}
-	cout << player->getPlayer().movingDirection << endl;
 	_count++;
 	if (_count % 7 == 0)
 	{
@@ -145,6 +151,3 @@ void playerRun::exit(player * player)
 {
 }
 
-void playerRun::getCurrentPlayerState(player * player)
-{
-}

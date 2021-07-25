@@ -64,7 +64,7 @@ void niflheimAttack2::enter(niflheim * niflheim)
 	_count = 0;
 	_stateEnd = false;
 
-	cout << _currentStateName << endl;
+	
 }
 
 void niflheimAttack2::exit(niflheim * niflheim)

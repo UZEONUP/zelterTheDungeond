@@ -8,7 +8,6 @@ HRESULT eggNyang::init()
 {
 	imageAdd();
 
-
 	_eggNyang.bullet = new eggNyangBullet;
 	_eggNyang.lazer = new eggNyangLazer;
 	_eggNyang.sword = new eggNyangSword;
@@ -41,11 +40,13 @@ void eggNyang::release()
 
 void eggNyang::update()
 {
+	cout << _eggNyangState->getStateName() << endl;
+	if (_eggNyang.currentHp <= 0) _eggNyang.currentHp = 0;
 	_eggNyang.progressBar->setGauge(_eggNyang.currentHp, _eggNyang.maxHp);
 	_eggNyang.progressBar->update();
 
 	//=========상태 확인용=============
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _eggNyang.currentHp = 0;
+//	if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _eggNyang.currentHp = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD0)) _eggNyang.direction = 0;
 	if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD1)) _eggNyang.direction = 1;
 	//================================
@@ -108,7 +109,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); i++)
@@ -119,18 +120,18 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
+	for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); i++)
 	{
-		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getVBulletG()[i].rc))
+		if (!_invincibility && IntersectRect(&temp, &_eggNyang.rc, &_player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 		{
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
@@ -141,7 +142,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
@@ -152,7 +153,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 }
@@ -194,7 +195,7 @@ void eggNyang::attackPatternSign()
 	}
 
 	if (_eggNyangState->getStateName() == "eggNyangAttack3" && !_eggNyangState->getIsMove()
-		&& _bulletFireCount < BULLETMAX)
+		&& _bulletFireCount < EGGNYANGBULLETMAX)
 	{
 		_bulletFireCount++;
 		_eggNyang.bullet->bulletFire((_eggNyang.rc.left + _eggNyang.rc.right) / 2, (_eggNyang.rc.top + _eggNyang.rc.bottom) / 2, _bulletFireCount);

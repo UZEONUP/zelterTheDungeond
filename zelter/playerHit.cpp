@@ -6,13 +6,14 @@
 #include "playerRoll.h"
 #include "playerStateIdle.h"
 #include "playerDie.h"
-
+#include "playerFall.h"
 
 
 playerState * playerHit::inputHandle(player * player)
 {
 	if (player->getPlayer().isHit == false )return new playerStateIdle();
-	if (player->getPlayer().isDunGreed == true)
+	if (!player->getPlayer().isCollide) return new playerFall;
+	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isOnceKeyUp('A') || KEYMANAGER->isOnceKeyUp('D')) return new playerStateIdle;
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
@@ -25,7 +26,11 @@ playerState * playerHit::inputHandle(player * player)
 		if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerRoll;
 	}
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack;
-	if (player->getPlayer().currentHP <= 0) return new playerDie();
+	if (player->getPlayer().currentHP <= 0)
+	{
+		player->setPlayerisDeath(true);
+		return new playerDie();
+	}
 
 	return nullptr;
 }
@@ -125,6 +130,3 @@ void playerHit::exit(player * player)
 {
 }
 
-void playerHit::getCurrentState(player * player)
-{
-}

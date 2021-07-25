@@ -48,10 +48,7 @@ void ammoconda::update()
 	_hp->update();
 	_hp->setGauge(_currentHp, _maxHp);
 	if (_currentHp <= 3) _currentHp = 3;
-	if (KEYMANAGER->isStayKeyDown(VK_SPACE))
-	{
-		_currentHp--;
-	}
+	
 	//항아리 생성
 	if (!_isPotCreate)
 	{
@@ -89,8 +86,7 @@ void ammoconda::render()
 	//항아리 렌더
 	if (_isPotCreate) potRender();
 
-	//상태패턴 렌더
-	_state->render(this);
+	
 	_hp->render();
 	//본체 렌더
 	for (int i = 0; i < _vAmmoconda.size(); i++)
@@ -107,6 +103,8 @@ void ammoconda::render()
 
 	//총알 렌더
 	_ammocondaBullet->render();
+	//상태패턴 렌더
+	_state->render(this);
 
 }
 
@@ -133,7 +131,8 @@ void ammoconda::setBoss()
 	IMAGEMANAGER->addImage("ammocondaBullet1", L"ammoconda/아모콘다총알1_18_18.png");
 	IMAGEMANAGER->addFrameImage("ammocondaBullet2", L"ammoconda/아모콘다총알2_22_22_10.png", 10, 1);
 	IMAGEMANAGER->addImage("potBullet", L"ammoconda/항아리총알_18_18.png");
-
+	//효과 이미지
+	IMAGEMANAGER->addFrameImage("boom", L"effect/boom.png", 4, 1);
 	_currentHp = _maxHp = 100;
 	for (int i = 0; i < AMMOCONDAMAX; i++)
 	{
@@ -357,9 +356,9 @@ void ammoconda::collision()
 					_currentHp--;
 				}
 			}
-			for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+			for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
 			{
-				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+				if (IsCollision(_ammoconda[j].rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 				{
 					_currentHp--;
 				}
@@ -398,9 +397,9 @@ void ammoconda::collision()
 				_pot.currentHp--;
 			}
 		}
-		for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); ++i)
+		for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
 		{
-			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getVBulletG()[i].rc))
+			if (IsCollision(_pot.rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 			{
 				_pot.currentHp--;
 			}

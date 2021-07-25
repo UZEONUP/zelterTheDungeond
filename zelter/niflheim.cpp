@@ -17,8 +17,8 @@ HRESULT niflheim::init()
 	_niflheim.x = WINSIZEX / 2;
 	_niflheim.y = WINSIZEY / 2;
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
-	_niflheim.currentHP = 100;
 	_niflheim.maxHP = 100;
+	_niflheim.currentHP = 100;
 	_niflheim.direction = 0;
 	_niflheim.isDie = false;
 
@@ -27,7 +27,7 @@ HRESULT niflheim::init()
 	_niflheim.iceSpear = new niflheimIceSpear;
 	_niflheim.iceicle = new niflheimIcicle;
 	_niflheim.progressBar = new progressBar;
-	_niflheim.progressBar->init(650, WINSIZEY - 100, 600, 50);
+	_niflheim.progressBar->init(650, WINSIZEY - 100, 50, 600);
 
 	_bulletFireCount = 0;
 
@@ -40,11 +40,13 @@ void niflheim::release()
 
 void niflheim::update()
 {
-	_niflheim.progressBar->update();
+	if (_niflheim.currentHP <= 0) _niflheim.currentHP = 0;
 	_niflheim.progressBar->setGauge(_niflheim.currentHP, _niflheim.maxHP);
+	_niflheim.progressBar->update();
+
 	//상태 확인용======
 	//if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) _niflheim.currentHP = 0;
-	if (_state->getStateNamge() == "niflheimDie") _niflheim.currentHP = 50;
+	//if (_state->getStateNamge() == "niflheimDie") _niflheim.currentHP = 50;
 
 	//확인용===
 	/*if (KEYMANAGER->isToggleKey(VK_SPACE))
@@ -58,7 +60,7 @@ void niflheim::update()
 
 	_state->update(this);
 
-	float directAngle = GetAngle(_ptMouse.x, _ptMouse.y, _niflheim.x, _niflheim.y);
+	float directAngle = GetAngle(_player->getPlayer().x, _player->getPlayer().y, _niflheim.x, _niflheim.y);
 	if (directAngle > PI / 2 && directAngle < 3 * PI / 2) _niflheim.direction = 0;
 	else _niflheim.direction = 1;
 
@@ -114,7 +116,7 @@ void niflheim::hitNifleheim()
 			_player->getPlayerBullet()->releaseF(i);
 
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 		/*if (!_invincibility && OBB(_niflheim.icePillar->getVIcePillar()[i].rotateCollsion, )
 		{ 회전충돌 체크 해야함...
@@ -136,19 +138,19 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseBullet(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
-	for (int i = 0; i < _player->getPlayerBullet()->getVBulletG().size(); i++)
+	for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); i++)
 	{
-		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getVBulletG()[i].rc))
+		if (!_invincibility && IntersectRect(&temp, &_niflheim.rc, &_player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 		{
 			_invincibility = true;
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
-			_player->getPlayerBullet()->releaseG(i);
+			_player->getPlayerBullet()->releaseGrenadeBullet(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
@@ -160,7 +162,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseH(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
@@ -172,7 +174,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseS(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 }
