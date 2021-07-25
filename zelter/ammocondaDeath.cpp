@@ -18,6 +18,7 @@ void ammocondaDeath::enter(ammoconda * ammoconda)
 		
 	}
 	_alphaNum = 1;
+	SOUNDMANAGER->stop("ammocondaBGM");
 }
 
 void ammocondaDeath::update(ammoconda * ammoconda)
