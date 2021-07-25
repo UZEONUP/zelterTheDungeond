@@ -18,7 +18,7 @@ struct tagEggNyangBullet
 	int		currentFrameY;
 };
 
-#define BULLETMAX 100
+#define EGGNYANGBULLETMAX 100
 class eggNyangBullet : public gameNode
 {
 	vector<tagEggNyangBullet>	_vBullet;

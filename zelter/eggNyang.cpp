@@ -40,6 +40,7 @@ void eggNyang::release()
 
 void eggNyang::update()
 {
+	cout << _eggNyangState->getStateName() << endl;
 	if (_eggNyang.currentHp <= 0) _eggNyang.currentHp = 0;
 	_eggNyang.progressBar->setGauge(_eggNyang.currentHp, _eggNyang.maxHp);
 	_eggNyang.progressBar->update();
@@ -194,7 +195,7 @@ void eggNyang::attackPatternSign()
 	}
 
 	if (_eggNyangState->getStateName() == "eggNyangAttack3" && !_eggNyangState->getIsMove()
-		&& _bulletFireCount < BULLETMAX)
+		&& _bulletFireCount < EGGNYANGBULLETMAX)
 	{
 		_bulletFireCount++;
 		_eggNyang.bullet->bulletFire((_eggNyang.rc.left + _eggNyang.rc.right) / 2, (_eggNyang.rc.top + _eggNyang.rc.bottom) / 2, _bulletFireCount);
