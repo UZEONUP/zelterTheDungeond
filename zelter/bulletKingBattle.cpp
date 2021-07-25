@@ -11,6 +11,8 @@ bulletKingBattle::~bulletKingBattle()
 
 HRESULT bulletKingBattle::init()
 {
+	SOUNDMANAGER->addSound("bulletKingBGM", "sound/ÃÑÅºÅ· º¸½º ¹è°æÀ½¾Ç.wav", true, true);
+
 	_bulletKingMap = new bulletKingMap;
 	_bulletKingMap->init();
 
@@ -23,6 +25,8 @@ HRESULT bulletKingBattle::init()
 	
 	_player->linkBulletKing(_bulletKing);
 	_bulletKing->linkPlayer(_player);
+
+	SOUNDMANAGER->play("bulletKingBGM");
 
 	return S_OK;
 }

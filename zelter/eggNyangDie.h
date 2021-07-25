@@ -18,7 +18,7 @@ class eggNyangDie : public eggNyangStateBase
 	int _effectFrameCount;			//이펙트 프레임
 	int _playEffectNum;				//이펙트 재생된 횟수
 	int _randomEffect;				//이펙트 랜덤생성 값
-
+	int	_countEffect;
 public :
 	virtual eggNyangStateBase* inputHandle(eggNyang* eggNyang);
 	virtual void update(eggNyang* eggNyang);

@@ -8,7 +8,6 @@ HRESULT eggNyang::init()
 {
 	imageAdd();
 
-
 	_eggNyang.bullet = new eggNyangBullet;
 	_eggNyang.lazer = new eggNyangLazer;
 	_eggNyang.sword = new eggNyangSword;
@@ -41,6 +40,7 @@ void eggNyang::release()
 
 void eggNyang::update()
 {
+	if (_eggNyang.currentHp <= 0) _eggNyang.currentHp = 0;
 	_eggNyang.progressBar->setGauge(_eggNyang.currentHp, _eggNyang.maxHp);
 	_eggNyang.progressBar->update();
 
@@ -108,7 +108,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletN().size(); i++)
@@ -119,7 +119,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); i++)
@@ -130,7 +130,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
@@ -141,7 +141,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
@@ -152,7 +152,7 @@ void eggNyang::hitEggNyang()
 			_timeCount = TIMEMANAGER->getWorldTime();
 			_timeCountEnd = _timeCount + 50;
 
-			_eggNyang.currentHp -= 35;
+			_eggNyang.currentHp -= 15;
 		}
 	}
 }

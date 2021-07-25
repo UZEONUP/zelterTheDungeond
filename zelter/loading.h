@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
-#define LOADINGMAX 5000
+#define LOADINGMAX 300
 
 class loading : public gameNode
 {

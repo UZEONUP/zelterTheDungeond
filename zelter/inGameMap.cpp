@@ -44,7 +44,7 @@ void inGameMap::render()
 	}
 
 	//오브젝트 그리기
-	for (int i = 0; i < TILEX * TILEY; ++i)
+	/*for (int i = 0; i < TILEX * TILEY; ++i)
 	{
 		if (_tile[i].object == OBJ_NONE)continue;
 
@@ -61,7 +61,7 @@ void inGameMap::render()
 			);
 		}
 		D2DRENDER->DrawRectangle(_tile[i].checkRect, D2DDEFAULTBRUSH::Red);
-	}
+	}*/
 	//보스 진입문 렌더
 	for (int i = 0; i < 4; i++)
 	{

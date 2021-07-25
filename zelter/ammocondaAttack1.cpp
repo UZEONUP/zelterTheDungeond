@@ -4,6 +4,7 @@
 #include "ammocondaIdle.h"
 #include "ammocondaRecovery.h"
 #include "player.h"
+#include "ammocondaDeath.h"
 
 ammocondaState * ammocondaAttack1::InputHandle(ammoconda * ammoconda)
 {
@@ -24,6 +25,10 @@ ammocondaState * ammocondaAttack1::InputHandle(ammoconda * ammoconda)
 			return new ammocondaRecovery();
 			break;
 		}
+	}
+	if (ammoconda->getCurrentHp() <= 3)
+	{
+		return new ammocondaDeath();
 	}
 	return nullptr;
 }

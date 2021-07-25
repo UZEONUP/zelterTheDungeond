@@ -40,6 +40,7 @@ void niflheim::release()
 
 void niflheim::update()
 {
+	if (_niflheim.currentHP <= 0) _niflheim.currentHP = 0;
 	_niflheim.progressBar->setGauge(_niflheim.currentHP, _niflheim.maxHP);
 	_niflheim.progressBar->update();
 
@@ -59,7 +60,7 @@ void niflheim::update()
 
 	_state->update(this);
 
-	float directAngle = GetAngle(_ptMouse.x, _ptMouse.y, _niflheim.x, _niflheim.y);
+	float directAngle = GetAngle(_player->getPlayer().x, _player->getPlayer().y, _niflheim.x, _niflheim.y);
 	if (directAngle > PI / 2 && directAngle < 3 * PI / 2) _niflheim.direction = 0;
 	else _niflheim.direction = 1;
 
@@ -67,8 +68,6 @@ void niflheim::update()
 
 	_niflheim.rc = RectMake(_niflheim.x, _niflheim.y, _niflheim.img->getFrameWidth(), _niflheim.img->getFrameHeight());
 	hitNifleheim();
-
-	
 }
 
 void niflheim::render()
@@ -117,7 +116,7 @@ void niflheim::hitNifleheim()
 			_player->getPlayerBullet()->releaseF(i);
 
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 		/*if (!_invincibility && OBB(_niflheim.icePillar->getVIcePillar()[i].rotateCollsion, )
 		{ 회전충돌 체크 해야함...
@@ -139,7 +138,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseBullet(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); i++)
@@ -151,7 +150,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseGrenadeBullet(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); i++)
@@ -163,7 +162,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseH(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 	for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); i++)
@@ -175,7 +174,7 @@ void niflheim::hitNifleheim()
 			_timeCountEnd = _timeCount + 50;
 			_player->getPlayerBullet()->releaseS(i);
 
-			_niflheim.currentHP -= 35;
+			_niflheim.currentHP -= 15;
 		}
 	}
 }

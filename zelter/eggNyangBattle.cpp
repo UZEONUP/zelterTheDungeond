@@ -3,6 +3,8 @@
 
 HRESULT eggNyangBattle::init()
 {
+	SOUNDMANAGER->addSound("eggNyangBGM", "sound/에그냥 보스 배경음악.wav", true, true);
+
 	IMAGEMANAGER->addImage("eggNyangBackGround", L"eggNyang/eggNyangBackGround.png");
 	_backGround = IMAGEMANAGER->findImage("eggNyangBackGround");
 	
@@ -15,6 +17,8 @@ HRESULT eggNyangBattle::init()
 
 	_eggNyang->linkPlayer(_player);
 	_player->linkEggNyang(_eggNyang);
+
+	SOUNDMANAGER->play("eggNyangBGM");
 
 	return S_OK;
 }

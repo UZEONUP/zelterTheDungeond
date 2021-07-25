@@ -55,8 +55,30 @@ void inGame::update()
 
 void inGame::render()
 {
+
 	_inGameMap->render();
 	_player->render();
+
+	for (int i = 0; i < TILEX * TILEY; ++i)
+	{
+		if (_inGameMap->getTile()[i].object == OBJ_NONE)continue;
+
+		if (0 <= _inGameMap->getTile()[i].rc.right - CAMERAMANAGER->getX() &&
+			_inGameMap->getTile()[i].rc.left - CAMERAMANAGER->getX() <= WINSIZEX &&
+			0 <= _inGameMap->getTile()[i].rc.bottom - CAMERAMANAGER->getY() &&
+			_inGameMap->getTile()[i].rc.top - CAMERAMANAGER->getY() <= WINSIZEY)
+		{
+			/*if (_player->getPlayer().rc.bottom > _inGameMap->getTile()[i].checkRect.bottom)
+			{*/
+			IMAGEMANAGER->findImage("openWorld")->cutRender(
+				_inGameMap->getTile()[i].rc.left - CAMERAMANAGER->getX(), _inGameMap->getTile()[i].rc.top - CAMERAMANAGER->getY(),
+				_inGameMap->getTile()[i].objX, _inGameMap->getTile()[i].objY,
+				_inGameMap->getTile()[i].sizeX, _inGameMap->getTile()[i].sizeY
+			);
+			//}
+		}
+		D2DRENDER->DrawRectangle(_inGameMap->getTile()[i].checkRect, D2DDEFAULTBRUSH::Red);
+	}
 
 	_npc.img->cutRender(_npc.rc.left, _npc.rc.top, _npc.img->getFrameX(), _npc.img->getFrameY(),
 		_npc.img->getFrameWidth()*0.8, _npc.img->getFrameHeight()*0.8);

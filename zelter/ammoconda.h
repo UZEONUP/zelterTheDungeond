@@ -92,6 +92,8 @@ public:
 	tagAmmoconda& getPot() { return _pot; }
 	bool getIsPotCreate() { return _isPotCreate; }
 
+	
+	int getCurrentHp() { return _currentHp; }
 
 	//ÃÑ¾Ë get
 	ammocondaBullet* getBAmmocondaBullet() { return _ammocondaBullet; }
