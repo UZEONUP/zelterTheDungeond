@@ -134,7 +134,7 @@ void player::update()
 	{
 		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth()*_openWorldSize, _player.img->getFrameHeight()*_openWorldSize);
 		_playerGun.rc = RectMakeCenter(_player.x+20, _player.y, _playerGun.img->getWidth()*_openWorldSize, _playerGun.img->getHeight()*_openWorldSize);
-		_playerBullet->move(_gunType, _bulletKing->getBulletKing().x, _bulletKing->getBulletKing().y);
+	/*	_playerBullet->move(_gunType, _bulletKing->getBulletKing().x, _bulletKing->getBulletKing().y);*/
 	}
 
 	//ºÒ·¿ Å· ÃÑ¾Ë Ãæµ¹
