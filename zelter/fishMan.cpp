@@ -45,21 +45,21 @@ void fishMan::render()
 }
 
 
-void fishMan::setEnemy(float x, float y)
+void fishMan::setEnemy()
 {
 
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		if (10 <= _vFishMan.size()) return;
+
 
 		tagFishMan fishMan;
 		ZeroMemory(&fishMan, sizeof(tagFishMan));
 		fishMan.img = IMAGEMANAGER->findImage("fishManIdle");
 		fishMan.speed = 2.0f;
 		fishMan.angle = RND->getFromFloatTo(0, PI2);
-		fishMan.x = x;
-		fishMan.y = y;
+		fishMan.x = RND->getFromIntTo(0, TILEX * TILESIZEX);
+		fishMan.y = RND->getFromIntTo(0, TILEY * TILESIZEY);
 		fishMan.currentHp = fishMan.maxHp = 100;
 		fishMan.currentFrameX = fishMan.currentFrameY = 0;
 		fishMan.count = fishMan.changeCount = 0;
@@ -154,9 +154,9 @@ void fishMan::fishMove(float x, float y)
 		if (_viFishMan->angle <= 0) _viFishMan->angle += PI2;
 		//화면 밖 예외처리
 		if (_viFishMan->rc.left < 0) _viFishMan->x = (_viFishMan->img->getWidth() / _viFishMan->img->getMaxFrameX()) / 2;
-		if (_viFishMan->rc.right > WINSIZEX) _viFishMan->x = WINSIZEX - (_viFishMan->img->getWidth() / _viFishMan->img->getMaxFrameX()) / 2;
+		if (_viFishMan->rc.right > TILEX * TILESIZEX) _viFishMan->x = TILEX * TILESIZEX - (_viFishMan->img->getWidth() / _viFishMan->img->getMaxFrameX()) / 2;
 		if (_viFishMan->rc.top < 0) _viFishMan->y = (_viFishMan->img->getHeight() / _viFishMan->img->getMaxFrameY()) / 2;
-		if (_viFishMan->rc.bottom > WINSIZEY) _viFishMan->y = WINSIZEY - (_viFishMan->img->getHeight() / _viFishMan->img->getMaxFrameY()) / 2;
+		if (_viFishMan->rc.bottom > TILEY * TILESIZEY) _viFishMan->y = TILEY * TILESIZEY - (_viFishMan->img->getHeight() / _viFishMan->img->getMaxFrameY()) / 2;
 		//렉트 
 		_viFishMan->rc = RectMakeCenter(_viFishMan->x, _viFishMan->y, _viFishMan->img->getWidth() / _viFishMan->img->getMaxFrameX(), _viFishMan->img->getHeight() / _viFishMan->img->getMaxFrameY());
 	}
@@ -290,22 +290,22 @@ void fishMan::tileCheck()
 
 		rcCollision = RectMakeCenter(_viFishMan->x, _viFishMan->y, _viFishMan->img->getFrameWidth(), _viFishMan->img->getFrameHeight());
 
-		tileX = rcCollision.left / 64;
-		tileY = rcCollision.top / 64;
+		tileX = rcCollision.left / 48;
+		tileY = rcCollision.top / 48;
 
 		switch (_viFishMan->direction)
 		{
 		case 4:
-			tileIndex[0] = (tileX - 1) + (tileY*TILEY);
-			tileIndex[1] = tileX + (tileY*TILEY);
+			tileIndex[0] = (tileX - 1) + (tileY*TILEX);
+			tileIndex[1] = tileX + (tileY*TILEX);
 			break;
 		case 2:
 			tileIndex[0] = tileX + (tileY * TILEX);
 			tileIndex[1] = (tileX + 1) + (tileY * TILEX);
 			break;
 		case 5:
-			tileIndex[0] = (tileX)+(tileY * TILEX);
-			tileIndex[1] = tileX + 1 + (tileY * TILEX);
+			tileIndex[0] = tileX + (tileY * TILEX);
+			tileIndex[1] = (tileX + 1) + (tileY * TILEX);
 			break;
 		case 1:
 			tileIndex[0] = tileX + tileY * TILEX;
@@ -313,22 +313,21 @@ void fishMan::tileCheck()
 			break;
 		case 0:
 			tileIndex[0] = tileX + 1 + tileY * TILEX;
-			tileIndex[1] = tileX + 1 + (tileY + 1) * TILEX;
+			tileIndex[1] = (tileX + 1) + (tileY + 1) * TILEX;
 			break;
 		case 7:
 			tileIndex[0] = (tileX - 1) + (tileY * TILEX);
-			tileIndex[1] = tileX - 1 + (tileY + 1 * TILEX);
+			tileIndex[1] = (tileX - 1) + (tileY + 1) * TILEX;
 			break;
 		case 3:
 			tileIndex[0] = tileX + (tileY + 1) * TILEX;
-			tileIndex[1] = tileX + 1 + (tileY + 1)*TILEX;
+			tileIndex[1] = (tileX + 1) + (tileY + 1) * TILEX;
 			break;
 		case 6:
 			tileIndex[0] = tileX + 1 + (tileY * TILEX);
 			tileIndex[1] = (tileX + 1 + (tileY + 1) * TILEX);
 			break;
 		}
-
 		for (int i = 0; i < 2; ++i)
 		{
 			RECT rc;
@@ -368,7 +367,7 @@ void fishMan::tileCheck()
 		}
 		for (int i = 0; i < 2; ++i)
 		{
-			_viFishMan->tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 64, 64);
+			_viFishMan->tileIdx[i] = RectMake(_inGame->getTile()[tileIndex[i]].rc.left, _inGame->getTile()[tileIndex[i]].rc.top, 48, 48);
 		}
 
 		_viFishMan->rc = RectMakeCenter(_viFishMan->x, _viFishMan->y, _viFishMan->img->getFrameWidth(), _viFishMan->img->getFrameHeight());

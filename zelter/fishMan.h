@@ -65,13 +65,16 @@ public:
 	void release();
 	void update();
 	void render();
-	void setEnemy(float x, float y);
+	void setEnemy();
 	void fishMove(float x, float y);
 	void fishState();
 	void tileCheck();
 
 	tagFishMan getFishMan() { return _fishMan; }
 
+	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
 
+	vector<tagFishMan>& getVfishMan() { return _vFishMan; }
+	vector<tagFishMan>::iterator& getVifishMan() { return _viFishMan; }
 };
 
