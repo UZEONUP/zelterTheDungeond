@@ -13,7 +13,8 @@
 #include "niflheimBullet.h"
 #include "bulletKingBullet.h"
 #include "eggNyangBullet.h"
-#include "niflheimMap.h"
+#include "ammocondaBullet.h"
+
 
 class bulletKing;
 class ammoconda;
@@ -21,7 +22,8 @@ class niflheim;
 class eggNyang;
 class playerBullet;
 class stageManager;
-
+class fishMan;
+class dinosaur;
 
 
 struct tagPlayer
@@ -65,6 +67,8 @@ private:
 	quickSlot* _quickSlot;
 	progressBar* _progressBar;
 	niflheimMap* _nfm;
+	fishMan* _fishMan;
+	dinosaur* _dinosaur;
 
 	int _count;
 	int _index;

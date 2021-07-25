@@ -165,6 +165,7 @@ void bulletKing::collision()
 			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletN()[i].rc))
 			{
 				_bulletKing.currentHp--;
+				_player->getPlayerBullet()->releaseBullet(i);
 			}
 		}
 		for (int i = 0; i < _player->getPlayerBullet()->getVBulletF().size(); ++i)
@@ -172,6 +173,7 @@ void bulletKing::collision()
 			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletF()[i].rc))
 			{
 				_bulletKing.currentHp--;
+				_player->getPlayerBullet()->releaseF(i);
 			}
 		}
 		for (int i = 0; i < _player->getPlayerBullet()->getvGrenadeBullet().size(); ++i)
@@ -179,6 +181,7 @@ void bulletKing::collision()
 			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getvGrenadeBullet()[i].rc))
 			{
 				_bulletKing.currentHp--;
+				_player->getPlayerBullet()->releaseGrenadeBullet(i);
 			}
 		}
 		for (int i = 0; i < _player->getPlayerBullet()->getVBulletH().size(); ++i)
@@ -186,6 +189,7 @@ void bulletKing::collision()
 			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletH()[i].rc))
 			{
 				_bulletKing.currentHp--;
+				_player->getPlayerBullet()->releaseH(i);
 			}
 		}
 		for (int i = 0; i < _player->getPlayerBullet()->getVBulletS().size(); ++i)
@@ -193,6 +197,7 @@ void bulletKing::collision()
 			if (IsCollision(_bulletKing.rc, _player->getPlayerBullet()->getVBulletS()[i].rc))
 			{
 				_bulletKing.currentHp--;
+				_player->getPlayerBullet()->releaseS(i);
 			}
 		}
 	}
