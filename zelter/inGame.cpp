@@ -20,6 +20,7 @@ HRESULT inGame::init()
 
 	_player->setKeyType(false);
 	_player->linkOpenWorldMap(_inGameMap);
+	_player->linkNiflheimMap(_niflheimMap);
 
 	count = 0;
 	return S_OK;
@@ -33,7 +34,7 @@ void inGame::update()
 {
 	_player->setKeyType(false);
 	CAMERAMANAGER->updateCamera(_player->getPlayer().x, _player->getPlayer().y);
-	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse,_player->getPlayer().x,_player->getPlayer().y);
+	CAMERAMANAGER->updateCamera(_ptMouse, _mapMouse, _player->getPlayer().x, _player->getPlayer().y);
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
 
@@ -51,6 +52,8 @@ void inGame::update()
 	}
 
 
+	
+	
 }
 
 void inGame::render()

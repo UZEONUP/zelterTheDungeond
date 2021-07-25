@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "inGameMap.h"
+#include "niflheimMap.h"
 #include "player.h"
 
 struct tagNPC
@@ -15,6 +16,7 @@ class inGame : public gameNode
 {
 private:
 	inGameMap* _inGameMap;
+	niflheimMap* _niflheimMap;
 	player* _player;
 	POINT _mapMouse;
 
