@@ -40,6 +40,7 @@ void eggNyang::release()
 
 void eggNyang::update()
 {
+	if (_eggNyang.currentHp <= 0) _eggNyang.currentHp = 0;
 	_eggNyang.progressBar->setGauge(_eggNyang.currentHp, _eggNyang.maxHp);
 	_eggNyang.progressBar->update();
 
