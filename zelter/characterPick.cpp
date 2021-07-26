@@ -39,6 +39,33 @@ HRESULT characterPick::init()
 
 void characterPick::update()
 {
+	if (PtInRect(&_characterPick2.rc, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		_character2.pick = true;
+
+		if (_character2.pick)
+		{
+			_yes = RectMakeCenter(WINSIZEX / 2 - 195, WINSIZEY / 2 - 15, 160, 60);
+			_no = RectMakeCenter(WINSIZEX / 2 + 155, WINSIZEY / 2 - 15, 160, 60);
+		}
+	}
+
+
+	if (PtInRect(&_no, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		_character2.pick = false;
+	}
+
+	if (PtInRect(&_yes, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	{
+		_noMoney = TIMEMANAGER->getWorldTime();
+
+		if (_noMoney + 5> TIMEMANAGER->getWorldTime())
+		{
+			_noMoneyrc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 600, 400);
+		}
+	}
+
 	_count++;
 
 	if (PtInRect(&_characterPick.rc, _ptMouse))_characterPick.on = true;
@@ -60,7 +87,6 @@ void characterPick::update()
 				if (_characterPick.currentFrameX >= _characterPick.img->getMaxFrameX())_characterPick.currentFrameX = 0;
 				_count = 0;
 			}
-
 		}
 		else if (!_characterPick.on)
 		{
@@ -83,7 +109,6 @@ void characterPick::update()
 			if (_count % 7 == 0)_character.currentFrameX += 1;
 			if (_character.currentFrameX >= _character.img->getMaxFrameX())
 				SCENEMANAGER->changeScene("openWorld");
-
 		}
 	}
 	
@@ -95,37 +120,6 @@ void characterPick::update()
 	{
 		_characterPick2.img = IMAGEMANAGER->findImage("wizard_illust_off");
 	}
-
-
-	
-
-	if (PtInRect(&_characterPick2.rc, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-	{
-		_character2.pick = true;
-		
-		if (_character2.pick)
-		{
-			_yes = RectMakeCenter(WINSIZEX / 2 - 195, WINSIZEY / 2 - 15, 160, 60);
-			_no = RectMakeCenter(WINSIZEX / 2 + 155, WINSIZEY / 2 - 15, 160, 60);
-		}
-	}
-
-
-	if (PtInRect(&_no, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-	{
-		_character2.pick = false;
-	}
-
-	if (PtInRect(&_yes, _ptMouse) && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
-	{
-		_noMoney = TIMEMANAGER->getWorldTime();
-		
-		if (_noMoney + 5 < _noMoney)
-		{
-			_noMoneyrc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 600, 400);
-		}
-	}
-
 	//@=============다이얼로그
 
 	_rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 600, 400);

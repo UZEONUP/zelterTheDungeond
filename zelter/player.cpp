@@ -69,7 +69,7 @@ void player::release()
 void player::update()
 {
 	//cout << _player.direction << "¹æÇâ" << endl;
-	tileDetect(SCENEMANAGER->getSceneName());
+	
 	_cameraX = CAMERAMANAGER->getX();
 	_cameraY = CAMERAMANAGER->getY();
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
@@ -132,7 +132,7 @@ void player::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_F9))_player.currentHP -= 10;
 
 	if (SCENEMANAGER->isCurrentScene("openWorld"))
-	{
+	{  tileDetect(SCENEMANAGER->getSceneName());
 		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth()*_openWorldSize, _player.img->getFrameHeight()*_openWorldSize);
 		_playerGun.rc = RectMakeCenter(_player.x+18, _player.y+5, _playerGun.img->getWidth()*_openWorldSize, _playerGun.img->getHeight()*_openWorldSize);
 	

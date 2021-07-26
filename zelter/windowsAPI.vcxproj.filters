@@ -252,9 +252,6 @@
     <ClInclude Include="quickSlot.h">
       <Filter>playGround\player\playerUI</Filter>
     </ClInclude>
-    <ClInclude Include="characterPick.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
     <ClInclude Include="eggNyang.h">
       <Filter>playGround\boss\eggNyang</Filter>
     </ClInclude>
@@ -413,6 +410,9 @@
     </ClInclude>
     <ClInclude Include="aStar.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="characterPick.h">
+      <Filter>playGround\player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
