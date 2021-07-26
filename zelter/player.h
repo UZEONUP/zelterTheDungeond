@@ -94,7 +94,8 @@ private:
 	int _cameraX;
 	int _cameraY;
 	POINT _mapMouse;
-	RECT _tileIdx[2];
+	RECT _rcc[2];
+	RECT _rcc2[3];
 
 	bulletKing* _bulletKing;
 	ammoconda* _ammoconda;

@@ -35,6 +35,8 @@ ammocondaState * ammocondaAttack1::InputHandle(ammoconda * ammoconda)
 
 void ammocondaAttack1::enter(ammoconda * ammoconda)
 {
+	SOUNDMANAGER->addSound("아모콘다공격1", "sound/아모콘다공격1.wav", false, false);
+
 	_changeCount = 0;
 	_angleCount = 0;
 	ammoconda->getAmmoconda(0).currentFrameY = 0;
@@ -83,7 +85,11 @@ void ammocondaAttack1::attack(ammoconda* ammoconda, int bodyNum)
 	{
 		ammoconda->getAmmoconda(bodyNum).currentFrameX++;
 		//총알 발사(이미지 프레임이 일치할 경우)
-		if (ammoconda->getAmmoconda(bodyNum).currentFrameX == 3)ammoconda->getBAmmocondaBullet()->bulletFire1(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getPlayer()->getPlayer().x, ammoconda->getPlayer()->getPlayer().y);
+		if (ammoconda->getAmmoconda(bodyNum).currentFrameX == 3)
+		{
+			SOUNDMANAGER->play("아모콘다공격1");
+			ammoconda->getBAmmocondaBullet()->bulletFire1(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getPlayer()->getPlayer().x, ammoconda->getPlayer()->getPlayer().y);
+		}
 		//프레임 예외처리
 		if (ammoconda->getAmmoconda(bodyNum).currentFrameX >= ammoconda->getAmmoconda(bodyNum).img->getMaxFrameX())
 		{

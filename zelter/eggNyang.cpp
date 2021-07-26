@@ -177,6 +177,10 @@ void eggNyang::imageAdd()	//이미지 추가
 	IMAGEMANAGER->addFrameImage("boom", L"effect/boom.png", 4, 1);
 	//배경 이미지
 	IMAGEMANAGER->addImage("eggNynagBackGround", L"eggNyang/eggNyangBackGround.png");
+
+	SOUNDMANAGER->addSound("에그냥공격1", "sound/에그냥공격1.wav", false, false);
+	SOUNDMANAGER->addSound("에그냥공격2", "sound/에그냥공격2.wav", false, false);
+	SOUNDMANAGER->addSound("에그냥공격3", "sound/에그냥공격3.wav", false, false);
 }
 
 void eggNyang::move()
@@ -199,5 +203,8 @@ void eggNyang::attackPatternSign()
 	{
 		_bulletFireCount++;
 		_eggNyang.bullet->bulletFire((_eggNyang.rc.left + _eggNyang.rc.right) / 2, (_eggNyang.rc.top + _eggNyang.rc.bottom) / 2, _bulletFireCount);
+		
 	}
+	if (_eggNyangState->getStateName() == "eggNyangAttack3" && !_eggNyangState->getIsMove()	&& _bulletFireCount == EGGNYANGBULLETMAX / 2) SOUNDMANAGER->play("에그냥공격1");
+	
 }

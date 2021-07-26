@@ -174,6 +174,7 @@ void playerAttack::enter(player * player)
 	SOUNDMANAGER->addSound("플레이어발사2효과음", "sound/플레이어발사2.wav", false, false);
 	SOUNDMANAGER->addSound("플레이어발사3효과음", "sound/플레이어발사3.wav", false, false);
 	SOUNDMANAGER->addSound("플레이어발사4효과음", "sound/플레이어발사4.wav", false, false);
+	SOUNDMANAGER->addSound("플레이어발사5효과음", "sound/플레이어발사5.wav", false, false);
 	switch (player->getPlayerGuntype())
 	{
 	case NORMAL:
@@ -200,7 +201,7 @@ void playerAttack::enter(player * player)
 		player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
 			RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
 				GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
-		
+		SOUNDMANAGER->play("플레이어발사5효과음");
 		break;
 	}
 

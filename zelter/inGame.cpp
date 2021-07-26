@@ -89,7 +89,6 @@ void inGame::render()
 			);
 			//}
 		}
-		D2DRENDER->DrawRectangle(_inGameMap->getTile()[i].checkRect, D2DDEFAULTBRUSH::Red);
 	}
 
 }
