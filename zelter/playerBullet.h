@@ -113,6 +113,8 @@ public:
 
 	void fire(float x, float y, float angle, float speed, int type, float power);
 	void move(int type, float x, float y);
+	void move(int type); //¿ÀÇÂ¿ùµå
+
 
 	// ¼ö·ùÅº ÃÑ¾Ë Àü¿ë
 	void fireGrenadeBullet(float x, float y, float angle, float speed);

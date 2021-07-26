@@ -28,10 +28,15 @@ private:
 	RECT _rc;
 	RECT _yes;
 	RECT _no;
+	RECT _noMoneyrc;
 	image* _img;
+	image* _noMoneyimg;
 	const char* _pickText;
 	char _pickTextCut[128];
 	int _pickTextCount;
+
+	float _noMoney;
+
 
 public:
 
