@@ -91,7 +91,7 @@ void ammocondaBullet::bulletMove1()
 		_viAmmocondaBullet1->rc = RectMakeCenter(_viAmmocondaBullet1->x, _viAmmocondaBullet1->y, _viAmmocondaBullet1->img->getWidth(), _viAmmocondaBullet1->img->getHeight());
 
 		//抗寇贸府
-		if (_viAmmocondaBullet1->rc.right < 0 || _viAmmocondaBullet1->rc.left > WINSIZEX || _viAmmocondaBullet1->rc.bottom < 0 || _viAmmocondaBullet1->rc.top > WINSIZEY)
+		if (_viAmmocondaBullet1->rc.right < 0 || _viAmmocondaBullet1->rc.left > 2000 || _viAmmocondaBullet1->rc.bottom < 0 || _viAmmocondaBullet1->rc.top > 1000)
 		{
 			_viAmmocondaBullet1 = _vAmmocondaBullet1.erase(_viAmmocondaBullet1);
 		}
@@ -149,7 +149,7 @@ void ammocondaBullet::bulletMove2()
 			_count = 0;
 		}
 		//抗寇贸府
-		if (_viAmmocondaBullet2->rc.right < 0 || _viAmmocondaBullet2->rc.left > WINSIZEX || _viAmmocondaBullet2->rc.bottom < 0 || _viAmmocondaBullet2->rc.top > WINSIZEY)
+		if (_viAmmocondaBullet2->rc.right < 0 || _viAmmocondaBullet2->rc.left > 2000 || _viAmmocondaBullet2->rc.bottom < 0 || _viAmmocondaBullet2->rc.top > 1000)
 		{
 			_viAmmocondaBullet2 = _vAmmocondaBullet2.erase(_viAmmocondaBullet2);
 		}
@@ -185,7 +185,7 @@ void ammocondaBullet::bulletMovePot()
 		_viPotBullet->rc = RectMakeCenter(_viPotBullet->x, _viPotBullet->y, _viPotBullet->img->getWidth(), _viPotBullet->img->getHeight());
 
 		//抗寇贸府
-		if (_viPotBullet->rc.right < 0 || _viPotBullet->rc.left > WINSIZEX || _viPotBullet->rc.bottom < 0 || _viPotBullet->rc.top > WINSIZEY)
+		if (_viPotBullet->rc.right < 0 || _viPotBullet->rc.left > 2000 || _viPotBullet->rc.bottom < 0 || _viPotBullet->rc.top > 1000)
 		{
 			_viPotBullet = _vPotBullet.erase(_viPotBullet);
 		}

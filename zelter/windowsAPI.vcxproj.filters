@@ -414,9 +414,6 @@
     <ClInclude Include="aStar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="pickDialogue.h">
-      <Filter>playGround\player</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windowsAPI.cpp">
@@ -709,9 +706,6 @@
     </ClCompile>
     <ClCompile Include="aStar.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="pickDialogue.cpp">
-      <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

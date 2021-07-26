@@ -78,7 +78,6 @@ void eggNyangLazer::lazerReady(float x, float y, int direction)
 	for (int i = 0; i < MAXLAZESIZE; i++)
 	{
 		if (MAXLAZESIZE <= _vLazer.size()) return;
-
 		tagEggNyangBullet lazer;
 		ZeroMemory(&lazer, sizeof(tagEggNyangBullet));
 		if (i == 0)
@@ -125,11 +124,12 @@ void eggNyangLazer::lazerReady(float x, float y, int direction)
 
 void eggNyangLazer::lazerFire()
 {
+	SOUNDMANAGER->play("에그냥공격3");
 	for (int i = 0; i < _vLazer.size(); i++)	//이미지가 계속 바뀌기 때문에 x, 값, 가로세로, rc 갱신 계속 해주기
 	{
 		_vLazer[i].width = _vLazer[i].image->getFrameWidth();
 		_vLazer[i].height = _vLazer[i].image->getFrameHeight();
-
+		
 		if (i > 0)
 		{
 			if (_vLazer[i].currentFrameY == 0) _vLazer[i].x = _vLazer[i - 1].x + _vLazer[i - 1].image->getFrameWidth();
@@ -139,7 +139,7 @@ void eggNyangLazer::lazerFire()
 		}
 
 		if (_lazerFire)
-		{
+		{		
 			if (i == 0) _vLazer[i].image = IMAGEMANAGER->findImage("eggNyangLazer1End");
 			else _vLazer[i].image = IMAGEMANAGER->findImage("eggNyangLazer2End");
 

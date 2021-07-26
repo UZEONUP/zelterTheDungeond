@@ -35,6 +35,8 @@ ammocondaState * ammocondaAttack2::InputHandle(ammoconda * ammoconda)
 
 void ammocondaAttack2::enter(ammoconda * ammoconda)
 {
+	SOUNDMANAGER->addSound("아모콘다공격2", "sound/아모콘다공격2.wav", false, false);
+	
 	_changeCount = 0;
 	ammoconda->getAmmoconda(0).currentFrameY = 0;
 	for (int i = 1; i < AMMOCONDAMAX; i++)
@@ -88,7 +90,11 @@ void ammocondaAttack2::attack(ammoconda * ammoconda, int bodyNum)
 		}
 	}
 	//총알 발사(이미지 프레임과 카운트 값의 나머지 값이 일치할 경우)
-	if (ammoconda->getAmmoconda(bodyNum).currentFrameX == 3 && ammoconda->getAmmoconda(bodyNum).count % 3 == 0)
+	if (ammoconda->getAmmoconda(bodyNum).currentFrameX == 3 && ammoconda->getAmmoconda(bodyNum).count % 3 == 0) 
+	{
+		SOUNDMANAGER->play("아모콘다공격2");
 		ammoconda->getBAmmocondaBullet()->bulletFire2(ammoconda->getAmmoconda(bodyNum).x, ammoconda->getAmmoconda(bodyNum).y, ammoconda->getPlayer()->getPlayer().x, ammoconda->getPlayer()->getPlayer().y);
+
+	}
 
 }

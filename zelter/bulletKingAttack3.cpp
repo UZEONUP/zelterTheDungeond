@@ -10,6 +10,8 @@ bulletKingState * bulletKingAttack3::InputHandle(bulletKing * bulletKing)
 
 void bulletKingAttack3::enter(bulletKing * bulletKing)
 {
+	SOUNDMANAGER->addSound("ºí·¿Å·°ø°Ý3", "sound/ºí·¿Å·°ø°Ý3.wav", false, false);
+	SOUNDMANAGER->play("ºí·¿Å·°ø°Ý3");
 	bulletKing->setBulletKingImg(IMAGEMANAGER->findImage("bulletKingAttack3"));
 	bulletKing->setBulletKingIsAttack3(true);
 	bulletKing->setBulletKingCurrentFrameX(0);

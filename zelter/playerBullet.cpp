@@ -321,6 +321,105 @@ void playerBullet::move(int type, float x, float y)
 	}
 }
 
+void playerBullet::move(int type)
+{
+	if (_vBulletH.size() != 0)
+	{
+		for (_viBulletH = _vBulletH.begin(); _viBulletH != _vBulletH.end();)
+		{
+			
+				_viBulletH->x += cosf(_viBulletH->angle) * _viBulletH->speed;
+				_viBulletH->y += -sinf(_viBulletH->angle)* _viBulletH->speed;
+				_viBulletH->rc = RectMakeCenter(_viBulletH->x, _viBulletH->y,
+					_viBulletH->img->getWidth(),
+					_viBulletH->img->getHeight());
+		
+			if (_viBulletH->range < GetDistance(_viBulletH->fireX, _viBulletH->fireY, _viBulletH->x, _viBulletH->y))
+			{
+				_viBulletH = _vBulletH.erase(_viBulletH);
+			}
+			else ++_viBulletH;
+		}
+	}
+
+	if (_vBulletG.size() != 0)
+	{
+		for (_viBulletG = _vBulletG.begin(); _viBulletG != _vBulletG.end(); ++_viBulletG)
+		{
+			{ _viBulletG->x += cosf(_viBulletG->angle) * _viBulletG->speed;
+			_viBulletG->y -= sinf(_viBulletG->angle) * (_viBulletG->speed);
+			/*	_viBulletG->power -= _viBulletG->gravity;
+				_viBulletG->gravity += 0.5;*/
+			_viBulletG->rc = RectMakeCenter(_viBulletG->x, _viBulletG->y,
+				_viBulletG->img->getWidth(),
+				_viBulletG->img->getHeight());
+			}
+
+			if (_viBulletG->range < GetDistance(_viBulletG->fireX, _viBulletG->fireY, _viBulletG->x, _viBulletG->y))
+			{
+				_viBulletG->gravity = 0;
+				_viBulletG->speed = 0;
+				_viBulletG->power = 0;
+			}
+		}
+	}
+
+	if (_vBulletF.size() != 0)
+	{
+		for (_viBulletF = _vBulletF.begin(); _viBulletF != _vBulletF.end();)
+		{
+			_viBulletF->x += cosf(_viBulletF->angle) * (_viBulletF->speed / 2);
+			_viBulletF->y += -sinf(_viBulletF->angle) * (_viBulletF->speed / 2);
+			_viBulletF->rc = RectMakeCenter(_viBulletF->x, _viBulletF->y,
+				_viBulletF->img->getWidth(),
+				_viBulletF->img->getHeight());
+
+			if (_viBulletF->range < GetDistance(_viBulletF->fireX, _viBulletF->fireY, _viBulletF->x, _viBulletF->y))
+			{
+				_viBulletF = _vBulletF.erase(_viBulletF);
+			}
+			else ++_viBulletF;
+		}
+
+	}
+	if (_vBulletN.size() != 0)
+	{
+		for (_viBulletN = _vBulletN.begin(); _viBulletN != _vBulletN.end();)
+		{
+			_viBulletN->x += cosf(_viBulletN->angle) * _viBulletN->speed;
+			_viBulletN->y += -sinf(_viBulletN->angle) * _viBulletN->speed;
+			_viBulletN->rc = RectMakeCenter(_viBulletN->x, _viBulletN->y,
+				_viBulletN->img->getWidth(),
+				_viBulletN->img->getHeight());
+
+			if (_viBulletN->range < GetDistance(_viBulletN->fireX, _viBulletN->fireY, _viBulletN->x, _viBulletN->y))
+			{
+				_viBulletN = _vBulletN.erase(_viBulletN);
+			}
+			else ++_viBulletN;
+		}
+
+	}
+	if (_vBulletS.size() != 0)
+	{
+		for (_viBulletS = _vBulletS.begin(); _viBulletS != _vBulletS.end();)
+		{
+			_viBulletS->x += cosf(_viBulletS->angle) * _viBulletS->speed;
+			_viBulletS->y += -sinf(_viBulletS->angle) * _viBulletS->speed;
+			_viBulletS->rc = RectMakeCenter(_viBulletS->x, _viBulletS->y,
+				_viBulletS->img->getWidth(),
+				_viBulletS->img->getHeight());
+
+			if (_viBulletS->range < GetDistance(_viBulletS->fireX, _viBulletS->fireY, _viBulletS->x, _viBulletS->y))
+			{
+				_viBulletS = _vBulletS.erase(_viBulletS);
+			}
+			else ++_viBulletS;
+		}
+
+	}
+}
+
 
 void playerBullet::fireGrenadeBullet(float x, float y, float angle, float speed)
 {

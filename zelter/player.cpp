@@ -135,14 +135,8 @@ void player::update()
 	{
 		_player.rc = RectMakeCenter(_player.x, _player.y, _player.img->getFrameWidth()*_openWorldSize, _player.img->getFrameHeight()*_openWorldSize);
 		_playerGun.rc = RectMakeCenter(_player.x+18, _player.y+5, _playerGun.img->getWidth()*_openWorldSize, _playerGun.img->getHeight()*_openWorldSize);
-		for (int i = 0; i < _dinosaur->getVDinosaur().size(); ++i)
-		{
-			_playerBullet->move(_gunType, _dinosaur->getVDinosaur()[i].x, _dinosaur->getVDinosaur()[i].y);
-		}
-		for (int i = 0; i < _fishMan->getVfishMan().size(); ++i)
-		{
-			_playerBullet->move(_gunType, _fishMan->getVfishMan()[i].x, _fishMan->getVfishMan()[i].y);
-		}
+	
+		_playerBullet->move(_gunType);
 	}
 
 	//ºÒ·¿ Å· ÃÑ¾Ë Ãæµ¹
