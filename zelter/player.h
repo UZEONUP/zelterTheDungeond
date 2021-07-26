@@ -4,7 +4,6 @@
 #include "quickSlot.h"
 #include "progressBar.h"
 
-#include "inGameMap.h"
 #include "bulletKingMap.h"
 #include "ammocondaMap.h"
 #include "niflheimMap.h"
@@ -16,6 +15,7 @@
 #include "ammocondaBullet.h"
 
 
+
 class bulletKing;
 class ammoconda;
 class niflheim;
@@ -24,6 +24,7 @@ class playerBullet;
 class stageManager;
 class fishMan;
 class dinosaur;
+class inGameMap;
 
 
 struct tagPlayer

@@ -6,6 +6,8 @@
 #include "dinosaur.h"
 #include "fishMan.h"
 
+class stageManager;
+
 class inGame : public gameNode
 {
 private:
@@ -15,6 +17,8 @@ private:
 	dinosaur* _dinosaur;
 	fishMan* _fishMan;
 	POINT _mapMouse;
+
+	stageManager* _stageManager;
 public:
 	inGame() {};
 	~inGame() {};
@@ -26,7 +30,6 @@ public:
 
 	void collisionDoor();
 	void collisionEnemy();
-
 
 };
 

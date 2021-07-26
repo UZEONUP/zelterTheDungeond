@@ -38,6 +38,7 @@ HRESULT ammocondaBattle::init()
 
 void ammocondaBattle::release()
 {
+	SAFE_DELETE(_player);
 }
 
 void ammocondaBattle::update()

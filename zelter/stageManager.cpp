@@ -4,7 +4,8 @@
 HRESULT stageManager::init()
 {
 	sceneSet();
-
+	_player = new player;
+	_player->init();
 	return S_OK;
 }
 
@@ -15,11 +16,13 @@ void stageManager::release()
 void stageManager::update()
 {
 	SCENEMANAGER->update();
+	_player->update();
 }
 
 void stageManager::render()
 {
 	SCENEMANAGER->render();
+	_player->render();
 
 	
 }
@@ -37,5 +40,5 @@ void stageManager::sceneSet()
 	SCENEMANAGER->addScene("loading", new loading);
 	SCENEMANAGER->addScene("startTitle", new startTitle);
 
-	SCENEMANAGER->changeScene("startTitle");
+	SCENEMANAGER->changeScene("ammoconda");
 }
