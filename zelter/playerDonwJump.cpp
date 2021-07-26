@@ -7,7 +7,7 @@
 
 playerState * playerDonwJump::inputHandle(player * player)
 {
-	if (player->getPlayer().y >= WINSIZEY - 100)return new playerStateIdle;
+	if (player->getPlayer().isCollide)return new playerStateIdle;
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack;
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
 	if (player->getPlayer().isHit == true) return new playerHit;
@@ -23,7 +23,7 @@ playerState * playerDonwJump::inputHandle(player * player)
 
 void playerDonwJump::update(player * player)
 {
-	if (player->getPlayer().y < WINSIZEY - 100) player->setPlayerY(player->getPlayer().y + _jumpPower);
+	if (player->getPlayer().isCollide) player->setPlayerY(player->getPlayer().y + _jumpPower);
 	
 
 	_count++;

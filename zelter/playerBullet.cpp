@@ -77,21 +77,21 @@ void playerBullet::render()
 
 	for (_viBulletN = _vBulletN.begin(); _viBulletN != _vBulletN.end(); ++_viBulletN)
 	{
-		_viBulletN->img->render(_viBulletN->x- _cameraX, _viBulletN->y- _cameraY, 1.f, 1.f, _viBulletN->angle * 180 / PI, _viBulletN->img->getWidth() / 2, _viBulletN->img->getHeight() / 2);
+		_viBulletN->img->render(_viBulletN->x, _viBulletN->y, 1.f, 1.f, _viBulletN->angle * 180 / PI, _viBulletN->img->getWidth() / 2, _viBulletN->img->getHeight() / 2);
 		if(KEYMANAGER->isToggleKey(VK_TAB))
 		D2DRENDER->DrawRectangle(_viBulletN->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
 	for (_viBulletS = _vBulletS.begin(); _viBulletS != _vBulletS.end(); ++_viBulletS)
 	{
-		_viBulletS->img->render(_viBulletS->x- _cameraX, _viBulletS->y- _cameraY,1.f,1.f,_viBulletS->angle *180/PI,_viBulletS->img->getWidth()/2, _viBulletS->img->getHeight()/2);
+		_viBulletS->img->render(_viBulletS->x, _viBulletS->y,1.f,1.f,_viBulletS->angle *180/PI,_viBulletS->img->getWidth()/2, _viBulletS->img->getHeight()/2);
 		if (KEYMANAGER->isToggleKey(VK_TAB))
 			D2DRENDER->DrawRectangle(_viBulletS->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
 
 	for (_viBulletH = _vBulletH.begin(); _viBulletH != _vBulletH.end(); ++_viBulletH)
 	{
-		_viBulletH->img->render(_viBulletH->x- _cameraX, _viBulletH->y- _cameraY,1.f, 1.f, _viBulletH->angle * 180 / PI, _viBulletH->img->getWidth() / 2, _viBulletH->img->getHeight() / 2);
+		_viBulletH->img->render(_viBulletH->x, _viBulletH->y,1.f, 1.f, _viBulletH->angle * 180 / PI, _viBulletH->img->getWidth() / 2, _viBulletH->img->getHeight() / 2);
 		if (KEYMANAGER->isToggleKey(VK_TAB))
 			D2DRENDER->DrawRectangle(_viBulletH->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}
@@ -112,7 +112,7 @@ void playerBullet::render()
 
 	for (_viBulletF = _vBulletF.begin(); _viBulletF != _vBulletF.end(); ++_viBulletF)
 	{
-		_viBulletF->img->render(_viBulletF->x- _cameraX, _viBulletF->y- _cameraY);
+		_viBulletF->img->render(_viBulletF->x, _viBulletF->y);
 		if (KEYMANAGER->isToggleKey(VK_TAB))
 			D2DRENDER->DrawRectangle(_viBulletF->rc, D2DRenderer::DefaultBrush::White, 1.f);
 	}

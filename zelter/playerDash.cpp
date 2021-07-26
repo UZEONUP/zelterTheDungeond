@@ -30,42 +30,44 @@ void playerDash::update(player * player)
 	switch (player->getPlayer().direction)
 	{
 	case 0:
-		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed * 10);
+		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	case 1:
-		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed * 10);
+		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	case 2:
-		player->setPlayerY(player->getPlayer().y - player->getPlayer().speed * 10);
+		player->setPlayerY(player->getPlayer().y - player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	case 3:
-		player->setPlayerY(player->getPlayer().y + player->getPlayer().speed * 10);
+		player->setPlayerY(player->getPlayer().y + player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	case 4:
-		player->setPlayerY(player->getPlayer().y - player->getPlayer().speed*10);
-		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*10);
+		player->setPlayerY(player->getPlayer().y - player->getPlayer().speed*20);
+		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed*20);
 		player->setPlayerisEnd(true);
 		break;
 	case 5:
-		player->setPlayerY(player->getPlayer().y - player->getPlayer().speed * 10);
-		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed * 10);
+		player->setPlayerY(player->getPlayer().y - player->getPlayer().speed * 20);
+		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	case 6:
-		player->setPlayerY(player->getPlayer().y + player->getPlayer().speed * 10);
-		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed * 10);
+		player->setPlayerY(player->getPlayer().y + player->getPlayer().speed * 20);
+		player->setPlayerX(player->getPlayer().x + player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	case 7:
-		player->setPlayerY(player->getPlayer().y + player->getPlayer().speed * 10);
-		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed * 10);
+		player->setPlayerY(player->getPlayer().y + player->getPlayer().speed * 20);
+		player->setPlayerX(player->getPlayer().x - player->getPlayer().speed * 20);
 		player->setPlayerisEnd(true);
 		break;
 	}
+
+	
 }
 
 void playerDash::enter(player * player)

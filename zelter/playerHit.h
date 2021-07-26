@@ -7,9 +7,12 @@ class playerHit : public playerState
 	
 	int _blink;
 	
-	int _blinkTime;
-	int _blinkTimeEnd;
-	int _blinkCount;
+	int _blinkTime = 0;
+	int _blinkTimeEnd = 0;
+	int _blinkCount = 0;
+
+	float _jumpPower = 0.f;
+	float _gravity = 50.f;
 
 public:
 	virtual playerState* inputHandle(player* player);

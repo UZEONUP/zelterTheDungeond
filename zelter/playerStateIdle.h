@@ -5,7 +5,10 @@ class player;
 
 class playerStateIdle : public playerState
 {
-
+private :
+	float _jumpPower = 0.0f;
+	float _gravity = 1.2f;
+	POINT _mapMouse;
 public:
 
 	virtual playerState* inputHandle(player* player);

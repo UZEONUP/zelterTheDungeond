@@ -20,10 +20,20 @@ playerState * playerStateIdle::inputHandle(player * player)
 		if (player->getPlayer().isDunGreed == true)
 		{
 			if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerDonwJump();
-			if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerJump();
+
+			if(player->getPlayer().y >= 84)
+			{
+				if (KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerJump();
+			}
+			
 			if (KEYMANAGER->isStayKeyDown('A') || KEYMANAGER->isStayKeyDown('D'))return new playerRun();
 			if (!player->getPlayer().isEnd&&KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
-			if (!player->getPlayer().isCollide) return new playerFall;
+
+			if(player->getPlayer().y <=84)
+			{
+				if (!player->getPlayer().isCollide) return new playerFall;
+			}
+			
 		}
 		else
 		{
@@ -49,6 +59,9 @@ playerState * playerStateIdle::inputHandle(player * player)
 
 void playerStateIdle::update(player * player)
 {
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
 	if (player->getPlayer().isDunGreed)
 	{
 		switch (player->getPlayer().direction)
@@ -122,7 +135,27 @@ void playerStateIdle::update(player * player)
 		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
 		_count = 0;
 	}
-	
+
+	if (player->getPlayer().isDunGreed)
+	{
+		if (!player->getPlayer().isCollide)
+		{
+			_jumpPower -= _gravity;
+
+			player->setPlayerY(player->getPlayer().y - _jumpPower);
+
+		}
+	}
+
+	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+	{
+		if (player->getPlayerGuntype() == FLAMETHROWER)
+		{
+			player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
+				RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
+					GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
+		}
+	}
 
 	return;
 }
@@ -160,4 +193,5 @@ void playerStateIdle::enter(player * player)
 
 void playerStateIdle::exit(player * player)
 {
+	_gravity = 0;
 }

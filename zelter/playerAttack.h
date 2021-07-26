@@ -9,6 +9,9 @@ class playerAttack : public playerState
 
 	float _pressPower;
 	int _pressTime;
+
+	float _jumpPower = 0.0f;
+	float _gravity = 0.8f;
 	//========================
 	POINT _mapMouse;
 public :

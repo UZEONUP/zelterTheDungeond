@@ -10,6 +10,7 @@
 #include "playerAttack.h"
 #include "playerDie.h"
 #include "playerDash.h"
+#include "playerFall.h"
 
 
 playerState * playerRun::inputHandle(player * player)
@@ -20,6 +21,8 @@ playerState * playerRun::inputHandle(player * player)
 		if (KEYMANAGER->isOnceKeyUp('A') || KEYMANAGER->isOnceKeyUp('D')) return new playerStateIdle;
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
 		if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
+		if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerDonwJump();
+		if (!player->getPlayer().isCollide) return new playerFall;
 	}
 	else
 	{
@@ -42,6 +45,10 @@ playerState * playerRun::inputHandle(player * player)
 
 void playerRun::update(player * player)
 {
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
+
 	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))player->setPlayerX(player->getPlayer().x + player->getPlayer().speed*2);
@@ -129,6 +136,16 @@ void playerRun::update(player * player)
 			break;
 		}
 	}
+	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+	{
+		if (player->getPlayerGuntype() == FLAMETHROWER)
+		{
+			player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
+				RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
+					GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
+		}
+	}
+
 	_count++;
 	if (_count % 7 == 0)
 	{
@@ -136,6 +153,7 @@ void playerRun::update(player * player)
 		if (player->getPlayer().currentFrameX >= player->getPlayer().img->getMaxFrameX()) player->setPlayerCurrentFrameX(0);
 		_count = 0;
 	}
+
 	return;
 }
 

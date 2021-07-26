@@ -44,14 +44,24 @@ playerState * playerAttack::inputHandle(player * player)
 		{player->setPlayerisDeath(true);
 			return new playerDie();
 		}
+		if (player->getPlayer().isDunGreed)
+		{
+			if (!player->getPlayer().isCollide)
+			{
+				_jumpPower -= _gravity;
+
+				player->setPlayerY(player->getPlayer().y - _jumpPower);
+
+			}
+		}
 	return nullptr;
 }
 
 void playerAttack::update(player * player)
 {
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
-
 	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
 	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
@@ -154,15 +164,7 @@ void playerAttack::update(player * player)
 			_count = 0;
 		}
 	}
-	if (player->getPlayer().isDunGreed)
-	{
-		if (!player->getPlayer().isCollide)
-		{
-			_jumpPower -= _gravity;
 
-			player->setPlayerY(player->getPlayer().y - _jumpPower);
-		}
-	}
 }
 	
 void playerAttack::enter(player * player)
@@ -179,7 +181,7 @@ void playerAttack::enter(player * player)
 	{
 	case NORMAL:
 
-		player->getPlayerBullet()->fire(player->getPlayerGunX(), player->getPlayerGunY(),
+		player->getPlayerBullet()->fire(player->getPlayerGunX(), player->getPlayerGunY() ,
 			GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y), 10, player->getPlayerGuntype(), 0);
 		SOUNDMANAGER->play("플레이어발사1효과음");
 		break;
@@ -205,14 +207,7 @@ void playerAttack::enter(player * player)
 		break;
 	}
 
-	if (player->getPlayer().isDunGreed)
-	{
-		if (!player->getPlayer().isCollide)
-		{
-			_jumpPower = 0.0f;
-			_gravity = 0.4f;
-		}
-	}
+	
 }
 
 void playerAttack::exit(player * player)

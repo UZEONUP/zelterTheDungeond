@@ -7,17 +7,22 @@
 #include "playerStateIdle.h"
 #include "playerDie.h"
 #include "playerFall.h"
+#include "playerDonwJump.h"
 
 
 playerState * playerHit::inputHandle(player * player)
 {
-	if (player->getPlayer().isHit == false )return new playerStateIdle();
+	
 	
 	if (player->getPlayer().isDunGreed)
 	{
 		if (KEYMANAGER->isOnceKeyUp('A') || KEYMANAGER->isOnceKeyUp('D')) return new playerStateIdle;
-		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
 		if (!player->getPlayer().isCollide) return new playerFall;
+		if (player->getPlayer().isCollide)
+		{
+			if (KEYMANAGER->isOnceKeyDown(VK_SPACE))return new playerJump;
+			if (KEYMANAGER->isStayKeyDown('S') && KEYMANAGER->isOnceKeyDown(VK_SPACE)) return new playerDonwJump();
+		}
 	}
 	else
 	{
@@ -26,6 +31,7 @@ playerState * playerHit::inputHandle(player * player)
 
 		if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerRoll;
 	}
+	if (player->getPlayer().isHit == false)return new playerStateIdle();
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack;
 	if (player->getPlayer().currentHP <= 0)
 	{
@@ -41,11 +47,9 @@ void playerHit::update(player * player)
 	if (player->getPlayer().isHit)
 	{
 		_blinkCount++;
-
-		if (_blinkCount <= 10 )player->getPlayer().img->setAlpha(0);
-		else
+		if (_blinkCount <= 5 )
 		{
-			player->getPlayer().img->setAlpha(1);
+			player->getPlayer().img->setAlpha(0);
 			_blink++;
 			_blinkCount = 0;
 		}
@@ -71,6 +75,7 @@ void playerHit::update(player * player)
 			break;
 		}
 	}
+
 	else
 	{
 		if (KEYMANAGER->isStayKeyDown('D'))
@@ -118,6 +123,17 @@ void playerHit::update(player * player)
 			break;
 		}
 	}
+	if (player->getPlayer().isDunGreed)
+	{
+		if (!player->getPlayer().isCollide)
+		{
+			_jumpPower -= _gravity;
+
+			player->setPlayerY(player->getPlayer().y - _jumpPower);
+
+		}
+	}
+	return;
 }
 
 void playerHit::enter(player * player)

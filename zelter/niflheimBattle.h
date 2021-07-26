@@ -13,6 +13,11 @@ class niflheimBattle : public gameNode
 
 	image*	_backGround;
 
+	RECT _rc[9];
+	
+	float _gravity;
+
+	int tempW, tempH;
 public :
 	niflheimBattle() {};
 	~niflheimBattle() {};
@@ -21,5 +26,7 @@ public :
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void setRect();
 };
 

@@ -8,7 +8,7 @@ class playerState : public gameNode
 protected:
 
 	string _stateName;
-
+	POINT _mapMouse;
 	image* _img;
 	int _count;
 	int _currentFrameX, _currentFrameY;

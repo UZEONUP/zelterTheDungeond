@@ -11,17 +11,14 @@
 playerState * playerJump::inputHandle(player * player)
 {
 	
+	
 	if (_jumpPower <= 0)
 	{
 		player->setPlayerisEnd(true);
+		player->setIsjump(false);
 		return new playerFall;
 	}
 
-	if (player->getPlayer().y >= WINSIZEY - 100)
-	{
-		player->setIsjump(false);
-		return new playerStateIdle();
-	}
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON)) return new playerAttack();
 	if (player->getPlayer().isHit == true) return new playerHit();
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON)) return new playerDash;
@@ -35,6 +32,9 @@ playerState * playerJump::inputHandle(player * player)
 
 void playerJump::update(player * player)
 {
+	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
+	_mapMouse.y = _ptMouse.y + CAMERAMANAGER->getY();
+
 	player->setPlayerY(player->getPlayer().y - _jumpPower);
 	_jumpPower -= _gravity;
 
@@ -61,7 +61,15 @@ void playerJump::update(player * player)
 		_count = 0;
 	}
 
-	
+	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+	{
+		if (player->getPlayerGuntype() == FLAMETHROWER)
+		{
+			player->getPlayerBullet()->fire(player->getPlayer().x, player->getPlayer().y,
+				RND->getFromFloatTo(GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) + 0.15,
+					GetAngle(player->getPlayer().x, player->getPlayer().y, _mapMouse.x, _mapMouse.y) - 0.15), 10, player->getPlayerGuntype(), 0);
+		}
+	}
 
 	return;
 	
@@ -69,8 +77,8 @@ void playerJump::update(player * player)
 
 void playerJump::enter(player * player)
 {
-	_jumpPower = 13.0f;
-	_gravity = 0.4f;
+	_jumpPower = 15.0f;
+	_gravity = 0.5f;
 	if (player->getPlayer().direction == 0) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_right_jump"));
 	if (player->getPlayer().direction == 1) player->setPlayerImage(IMAGEMANAGER->findImage("gunner_left_jump"));
 	player->setIsjump(true);

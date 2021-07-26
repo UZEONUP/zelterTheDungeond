@@ -6,7 +6,9 @@ class player;
 
 class playerFall : public playerStateIdle
 {
-	
+	float _jumpPower;
+	float _gravity;
+		POINT _mapMouse;
 public:
 	virtual playerState* inputHandle(player* player);
 	virtual void update(player* player);

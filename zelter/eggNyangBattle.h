@@ -13,6 +13,7 @@ class eggNyangBattle : public gameNode
 
 	image*	_backGround;
 
+	RECT _rc[4];
 public :
 	eggNyangBattle() {};
 	~eggNyangBattle() {};

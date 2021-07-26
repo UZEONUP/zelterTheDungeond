@@ -7,7 +7,7 @@ class playerJump : public playerState
 {
 
 	
-
+	POINT _mapMouse;
 
 	float _tempX, _tempY;
 public :

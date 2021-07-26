@@ -49,6 +49,7 @@ struct tagPlayer
 	bool isDunGreed; // 던그리드 보스씬 구분용
 	bool isJump; // 점프체크
 	bool isCollide;
+	bool isLimit;
 };
 struct tagPlayerGun
 {
@@ -159,6 +160,10 @@ public:
 	void setIsjump(bool jump) { _player.isJump = jump; }
 
 	void setPlayerIscollde(bool collision) { _player.isCollide = collision; }
+
+	void setPlayerJumpPower(float jumppower) { _player.jumpPower = jumppower; }
+
+	void setPlayerIsLimit(bool limit) { _player.isLimit = limit; }
 
 	//==================맵 링크 관련====================================
 	void linkOpenWorldMap(inGameMap* map) { _inGame = map; }
