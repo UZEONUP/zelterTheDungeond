@@ -17,7 +17,7 @@ playGround::~playGround()
 //초기화 함수
 HRESULT playGround::init()
 {
-	gameNode::init(true);;
+	gameNode::init(true);
 
 	_stageManager = new stageManager;
 	_stageManager->init();

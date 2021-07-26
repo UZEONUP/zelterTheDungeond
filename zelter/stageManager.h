@@ -11,10 +11,12 @@
 #include "loading.h"
 #include "startTitle.h"
 
+class player;
+
 class stageManager : public gameNode
 {
 private:
-
+	player* _player;
 public:
 	virtual HRESULT init();
 	virtual void release();
@@ -22,5 +24,6 @@ public:
 	virtual void render();
 
 	void sceneSet();
+	void linkPlayer(player* player) { _player = player; }
 
 };

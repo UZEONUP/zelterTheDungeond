@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "inGame.h"
+#include "stageManager.h"
 
 
 HRESULT inGame::init()
 {
 	SOUNDMANAGER->addSound("openWorldBGM", "sound/¿ÀÇÂ¿ùµå ¹è°æÀ½¾Ç.wav", true, true);
 	SOUNDMANAGER->play("openWorldBGM");
+	
 	_inGameMap = new inGameMap;
 	_inGameMap->init();
 
@@ -26,6 +28,8 @@ HRESULT inGame::init()
 	_fishMan->init();
 	_fishMan->linkOpenWorldMap(_inGameMap);
 	_fishMan->setEnemy();
+
+	_stageManager->linkPlayer(_player);
 
 	return S_OK;
 }

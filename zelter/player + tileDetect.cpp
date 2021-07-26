@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "player.h"
+#include "inGameMap.h"
 
 void player::tileDetect(string sceneName)
 {
@@ -141,7 +142,15 @@ break;
 					case 4:
 						if (_inGame->getTileAttribute()[tileTriple[0]] == NONEMOVE)
 						{
-							if (_inGame->getTileAttribute()[tileTriple[1]] == NONEMOVE)
+							if(_inGame->getTileAttribute()[tileTriple[1]] == NONEMOVE &&
+								_inGame->getTileAttribute()[tileTriple[2]] == NONEMOVE)
+							{
+								_player.rc.left = _inGame->getTile()[tileTriple[1]].rc.right;
+								_player.rc.right = _player.rc.left + _player.img->getFrameWidth();
+								_player.rc.top = _inGame->getTile()[tileTriple[2]].rc.bottom;
+								_player.rc.bottom = _player.rc.top + _player.img->getFrameHeight();
+							}
+							else if (_inGame->getTileAttribute()[tileTriple[1]] == NONEMOVE)
 							{
 								_player.rc.left = _inGame->getTile()[tileTriple[1]].rc.right;
 								_player.rc.right = _player.rc.left + _player.img->getFrameWidth();
@@ -151,18 +160,21 @@ break;
 								_player.rc.top = _inGame->getTile()[tileTriple[2]].rc.bottom;
 								_player.rc.bottom = _player.rc.top + _player.img->getFrameHeight();
 							}
-							else
+						}
+						else if (_inGame->getTileAttribute()[tileTriple[1]] == NONEMOVE)
+						{
+							if (_inGame->getTileAttribute()[tileTriple[2]] == NONEMOVE)
 							{
 								_player.rc.left = _inGame->getTile()[tileTriple[1]].rc.right;
 								_player.rc.right = _player.rc.left + _player.img->getFrameWidth();
 								_player.rc.top = _inGame->getTile()[tileTriple[2]].rc.bottom;
 								_player.rc.bottom = _player.rc.top + _player.img->getFrameHeight();
 							}
-						}
-						else if (_inGame->getTileAttribute()[tileTriple[1]] == NONEMOVE)
-						{
+							else
+							{
 								_player.rc.left = _inGame->getTile()[tileTriple[1]].rc.right;
 								_player.rc.right = _player.rc.left + _player.img->getFrameWidth();
+							}
 						}
 						else
 						{

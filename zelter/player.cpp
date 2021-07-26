@@ -49,7 +49,7 @@ HRESULT player::init()
 	_progressBar->init(170, 25, 100, 30);
 	_progressBar->setGauge(_player.currentHP, _player.maxHP);
 
-	_inGame = new inGameMap;
+	//_inGame = new inGameMap;
 
 
 	_dinosaur = new dinosaur;
