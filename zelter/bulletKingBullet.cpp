@@ -88,7 +88,7 @@ void bulletKingBullet::bulletMove1()
 		_viBulletKingBullet1->y += -sinf(_viBulletKingBullet1->angle) * _viBulletKingBullet1->speed;
 		_viBulletKingBullet1->rc = RectMakeCenter(_viBulletKingBullet1->x, _viBulletKingBullet1->y, _viBulletKingBullet1->img->getWidth(), _viBulletKingBullet1->img->getHeight());
 		//抗寇贸府
-		if (_viBulletKingBullet1->rc.left < 0 || _viBulletKingBullet1->rc.right > WINSIZEX || _viBulletKingBullet1->rc.top < 0 || _viBulletKingBullet1->rc.bottom > WINSIZEY)
+		if (_viBulletKingBullet1->rc.left < 0 || _viBulletKingBullet1->rc.right > 2000 || _viBulletKingBullet1->rc.top < 0 || _viBulletKingBullet1->rc.bottom > 1000)
 		{
 			_viBulletKingBullet1 = _vBulletKingBullet1.erase(_viBulletKingBullet1);
 		}
@@ -138,7 +138,7 @@ void bulletKingBullet::bulletMove2()
 			_count = 0;
 		}
 		//抗寇贸府
-		if (_viBulletKingBullet2->rc.right < 0 || _viBulletKingBullet2->rc.left > WINSIZEX || _viBulletKingBullet2->rc.bottom < 0 || _viBulletKingBullet2->rc.top > WINSIZEY)
+		if (_viBulletKingBullet2->rc.right < 0 || _viBulletKingBullet2->rc.left > 2000 || _viBulletKingBullet2->rc.bottom < 0 || _viBulletKingBullet2->rc.top > 1000)
 		{
 			_viBulletKingBullet2 = _vBulletKingBullet2.erase(_viBulletKingBullet2);
 		}
@@ -179,7 +179,7 @@ void bulletKingBullet::bulletMove3()
 		_viBulletKingBullet3->y += -sinf(_viBulletKingBullet3->angle) * _viBulletKingBullet3->speed;
 		_viBulletKingBullet3->rc = RectMakeCenter(_viBulletKingBullet3->x, _viBulletKingBullet3->y, _viBulletKingBullet3->img->getWidth(), _viBulletKingBullet3->img->getHeight());
 		//抗寇贸府
-		if (_viBulletKingBullet3->rc.left < 0 || _viBulletKingBullet3->rc.right > WINSIZEX || _viBulletKingBullet3->rc.top < 0 || _viBulletKingBullet3->rc.bottom > WINSIZEY)
+		if (_viBulletKingBullet3->rc.left < 0 || _viBulletKingBullet3->rc.right > 2000 || _viBulletKingBullet3->rc.top < 0 || _viBulletKingBullet3->rc.bottom > 1000)
 		{
 			_viBulletKingBullet3 = _vBulletKingBullet3.erase(_viBulletKingBullet3);
 		}

@@ -59,6 +59,7 @@ void eggNyangSword::moveSword(float targetX, float targetY, bool fire)
 {
 	for (int i = 0; i < _vSword.size(); i++)
 	{
+		SOUNDMANAGER->play("에그냥공격2");
 		if (fire)
 		{
 			_vSword[i].angle = GetAngle(_vSword[i].x + _vSword[i].radiusX, _vSword[i].y + _vSword[i].radiusY, targetX, targetY);
