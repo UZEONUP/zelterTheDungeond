@@ -92,7 +92,7 @@ void inGameMap::load()
 			_tile[i].object == BLOCK_LTRIPLE ||
 			_tile[i].object == BLOCK_RTRIPLE)
 		{
-			_att[i] = NONEMOVE;
+			_attribute[i] = NONEMOVE;
 		}
 	}
 

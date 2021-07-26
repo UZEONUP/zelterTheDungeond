@@ -69,7 +69,7 @@ void player::release()
 void player::update()
 {
 	//cout << _player.direction << "¹æÇâ" << endl;
-	//tileDetect(SCENEMANAGER->getSceneName());
+	tileDetect(SCENEMANAGER->getSceneName());
 	_cameraX = CAMERAMANAGER->getX();
 	_cameraY = CAMERAMANAGER->getY();
 	_mapMouse.x = _ptMouse.x + CAMERAMANAGER->getX();
@@ -478,9 +478,13 @@ void player::render()
 	_quickSlot->render();
 	_mouse->render(_ptMouse.x - 7, _ptMouse.y - 5);
 
-	for (int i = 0; i < 8; ++i)
+	for (int i = 0; i < 2; i++) 
 	{
-		D2DRENDER->DrawRectangle(_tileIdx[i], D2DDEFAULTBRUSH::Red);
+		D2DRENDER->DrawRectangle(_rcc[i], D2DDEFAULTBRUSH::Red);
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		D2DRENDER->DrawRectangle(_rcc2[i], D2DDEFAULTBRUSH::Red);
 	}
 
 }
